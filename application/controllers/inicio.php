@@ -53,7 +53,7 @@ class Inicio extends CI_Controller {
 	
 	public function index()
 	{
-		$this->rssparser->set_feed_url('http://www.juntadeandalucia.es/educacion/www/novedades.xml');
+		$this->rssparser->set_feed_url('http://www.juntadeandalucia.es/educacion/portals/delegate/rss/ced/portalconsejeria/-/-/-/true/OR/true/cm_modified/DESC/');
 		$this->rssparser->set_cache_life(30);
 		$data['rss'] = $this->rssparser->getFeed(5);
 		
