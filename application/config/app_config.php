@@ -3,6 +3,7 @@
 $config['centro_denominacion']	= 'I.E.S. Monterroso';
 $config['centro_codigo']		= '29002885';
 $config['centro_direccion']		= 'Calle Santo Tomás de Aquino, s/n';
+$config['centro_coordenadas'] = '36.429595, -5.154449';
 $config['centro_codpostal']		= '29680';
 $config['centro_localidad']		= 'Estepona';
 $config['centro_provincia']		= 'Málaga';
