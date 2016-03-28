@@ -41,6 +41,7 @@
 $route['default_controller'] = "inicio";
 $route['404_override'] = '';
 $route['noticias'] = "inicio";
+$route['(:num)'] = "inicio/index/$1";
 $route['noticias/(:any)'] = "inicio/noticias/$1";
 $route['noticias/(:any)/(:any)'] = "inicio/noticias/$1/$2";
 $route['imagenes'] = "galeria/index";

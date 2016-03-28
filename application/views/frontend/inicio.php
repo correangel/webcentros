@@ -2,10 +2,10 @@
 
 	<div class="row">
 		<div class="col-md-8 col-lg-9">
-		
+
 			<div class="title-module">
 				<h4>Noticias</h4>
-				
+
 				<div class="pull-right">
 					<ul id="news-tabs" class="list-inline">
 						<li class="active"><a href="#news-all" aria-controls="news-all" role="tab" data-toggle="tab">Todas las noticias</a></li>
@@ -13,20 +13,21 @@
 					</ul>
 				</div>
 			</div>
-			
+
 			<div id="news-tabs" class="tab-content">
 			  <div role="tabpanel" class="tab-pane fade in active" id="news-all">
 			  	<?php if(count($noticias) < 1): ?>
-			  		
+
 			  		<div class="text-center" style="padding: 50px 0;">
 			  	  	<span class="fa fa-newspaper-o fa-5x text-muted"></span>
+							<p></p>
 			  	  	<p class="lead text-muted">No hay noticias en este momento.</p>
 			  	</div>
-			  		
+
 			  	<?php else: ?>
-			  	
+
 				<?php foreach ($noticias as $item): ?>
-				
+
 				<div class="row" style="margin-bottom: 20px;">
 					<div class="col-xs-4 col-lg-4">
 						<?php if ($item->imagen_cab != NULL): ?>
@@ -71,12 +72,12 @@
 						</ul>
 						<section>
 						<h2 class="blog-item-title"><?php echo anchor('noticias/' . $item->alias_categoria . '/' . $item->alias, $item->titulo); ?></h2>
-						
+
 						<p><?php echo ellipsize($item->contenido, 244); ?></p>
 						</section>
 						<ul class="list-inline">
 							<li>
-								<?php 
+								<?php
 								$atts = array(
 								              'width'      => '600',
 								              'height'     => '400',
@@ -90,7 +91,7 @@
 								?>
 							</li>
 							<li>
-								<?php 
+								<?php
 								$atts = array(
 								              'width'      => '600',
 								              'height'     => '400',
@@ -104,7 +105,7 @@
 								?>
 							</li>
 							<li>
-								<?php 
+								<?php
 								$atts = array(
 								              'width'      => '600',
 								              'height'     => '400',
@@ -128,59 +129,44 @@
 						</ul>
 					</div>
 				</div>
-				
+
 				<hr>
 				<?php endforeach; ?>
-				
+
 				<!-- PAGINACIÓN Y BÚSQUEDA -->
 				<div class="row">
-				
+
 					<div class="col-sm-7">
-					
-					  <ul class="pagination">
-					    <li>
-					      <a href="#" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    <li><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-					
+
+					  <?php echo $this->pagination->create_links(); ?>
+
 					</div>
-					
+
 					<div class="col-sm-5">
 						<div class="form-group has-feedback">
 						  <input type="text" class="form-control" placeholder="Buscar&hellip;">
 						  <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
 						</div>
 					</div>
-					
+
 				</div>
-				
+
 				<?php endif; ?>
 			  </div>
-			  
+
 			  <div role="tabpanel" class="tab-pane fade in" id="news-important">
 			  	<?php if(count($noticias_destacadas) < 1): ?>
-			  	
+
 			  	<div class="text-center" style="padding: 50px 0;">
 				  	<span class="fa fa-fire fa-5x text-muted"></span>
+						<p></p>
 				  	<p class="lead text-muted">No hay noticias destacadas en este momento.</p>
 				</div>
-			  	
+
 			  	<?php else: ?>
-			  	
+
 			  	<?php foreach ($noticias_destacadas as $item): ?>
-			  	
+
 			  	<div class="row" style="margin-bottom: 20px;">
 			  		<div class="col-xs-4 col-lg-4">
 			  			<?php if ($item->imagen_cab != NULL): ?>
@@ -225,12 +211,12 @@
 			  			</ul>
 			  			<section>
 			  			<h2 class="blog-item-title"><?php echo anchor('noticias/' . $item->alias, $item->titulo); ?></h2>
-			  			
+
 			  			<p><?php echo ellipsize($item->contenido, 244); ?></p>
 			  			</section>
 			  			<ul class="list-inline">
 			  				<li>
-			  					<?php 
+			  					<?php
 			  					$atts = array(
 			  					              'width'      => '600',
 			  					              'height'     => '400',
@@ -244,7 +230,7 @@
 			  					?>
 			  				</li>
 			  				<li>
-			  					<?php 
+			  					<?php
 			  					$atts = array(
 			  					              'width'      => '600',
 			  					              'height'     => '400',
@@ -258,7 +244,7 @@
 			  					?>
 			  				</li>
 			  				<li>
-			  					<?php 
+			  					<?php
 			  					$atts = array(
 			  					              'width'      => '600',
 			  					              'height'     => '400',
@@ -282,40 +268,40 @@
 			  			</ul>
 			  		</div>
 			  	</div>
-			  	
+
 			  	<hr>
 			  	<?php endforeach; ?>
-			  	
+
 			  	<?php endif; ?>
 			  </div>
 			</div><!-- /.tab-content -->
-		
+
 		</div><!-- /.col-sm-8 -->
-		
-		
+
+
 		<div class="col-md-4 col-lg-3">
-			
+
 			<section class="" style="margin-bottom: 40px;">
 				<div class="title-module">
 					<h4>Actividades</h4>
 				</div>
-				
+
 				<div class="row">
-					
+
 					<div class="col-xs-5 col-md-12">
 						<?php echo $this->calendar->generate(); ?>
 					</div>
-					
+
 					<div class="col-xs-7 col-md-12">
 						<h5 class="text-muted">Próximas actividades&hellip;</h5>
 						<ul id="calendar-list" class="list-unstyled">
 							<li>
 								<a href="#" style="display: block;">
 									<div class="pull-left" style="width: 45px; margin-right: 15px;">
-										<div style="background-color: #dd4814; text-transform: uppercase; font-size: 0.875em; font-weight: 400; text-align: center; border: 1px solid #dedede; color: #fff; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-bottom-left-radius: 0; -webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; border-bottom-right-radius: 0; -webkit-border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0;">oct</div> 
+										<div style="background-color: #dd4814; text-transform: uppercase; font-size: 0.875em; font-weight: 400; text-align: center; border: 1px solid #dedede; color: #fff; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-bottom-left-radius: 0; -webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; border-bottom-right-radius: 0; -webkit-border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0;">oct</div>
 										<div style="text-align: center; border: 1px solid #dedede; color: #777; border-top: none; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-top-left-radius: 0; -webkit-border-top-left-radius: 0; -moz-border-radius-topleft: 0; border-top-right-radius: 0; -webkit-border-top-right-radius: 0; -moz-border-radius-topright: 0;">16</div>
 									</div>
-									
+
 									Actividad 1<br>
 									<small>17:00h - 17:30h</small>
 								</a>
@@ -323,26 +309,26 @@
 							<li>
 								<a href="#" style="display: block;">
 									<div class="pull-left" style="width: 45px; margin-right: 15px;">
-										<div style="background-color: #dd4814; text-transform: uppercase; font-size: 0.875em; font-weight: 400; text-align: center; border: 1px solid #dedede; color: #fff; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-bottom-left-radius: 0; -webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; border-bottom-right-radius: 0; -webkit-border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0;">oct</div> 
+										<div style="background-color: #dd4814; text-transform: uppercase; font-size: 0.875em; font-weight: 400; text-align: center; border: 1px solid #dedede; color: #fff; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-bottom-left-radius: 0; -webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomleft: 0; border-bottom-right-radius: 0; -webkit-border-bottom-right-radius: 0; -moz-border-radius-bottomright: 0;">oct</div>
 										<div style="text-align: center; border: 1px solid #dedede; color: #777; border-top: none; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-top-left-radius: 0; -webkit-border-top-left-radius: 0; -moz-border-radius-topleft: 0; border-top-right-radius: 0; -webkit-border-top-right-radius: 0; -moz-border-radius-topright: 0;">16</div>
 									</div>
-									
+
 									Actividad 2<br>
 									<small>17:00h - 17:30h</small>
 								</a>
 							</li>
 						</ul>
 					</div>
-					
+
 				</div>
-				
+
 			</section>
-			
+
 			<section class="" style="margin-bottom: 40px;">
 				<div class="title-module">
 					<h4>Nuestras páginas</h4>
 				</div>
-			
+
 				<ul class="fa-ul">
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://erasmusmonterroso.blogspot.com.es', 'Erasmus+ con Alemania', array('target' => '_blank')); ?></li>
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://iesmonterroso.org/dbiblioteca/', 'Biblioteca', array('target' => '_blank')); ?></li>
@@ -355,18 +341,18 @@
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://trinity.iesmonterroso.org', 'Pruebas del Trinity', array('target' => '_blank')); ?></li>
 				</ul>
 			</section>
-			
+
 			<section class="" style="margin-bottom: 40px;">
 				<div class="title-module">
 						<h4>Erasmus+ de la EACEA</h4>
 					</div>
-					
+
 					<a href="#" data-toggle="modal" data-target="#modal_erasmus">
 						<img class="img-responsive img-thumbnail" src="<?php echo base_url().'assets/img/erasmus_charter.jpg'; ?>" alt="Erasmus+ de la EACEA">
 					</a>
-					
+
 				</div>
-				
+
 				<div class="modal fade" id="modal_erasmus" tabindex="-1" role="dialog">
 				  <div class="modal-dialog modal-lg" role="document">
 				    <div class="modal-content">
@@ -381,9 +367,9 @@
 				  </div>
 				</div>
 			</section>
-			
+
 		</div><!-- /col-md-4 -->
-	
+
 	</div><!-- /.row -->
-	
+
 </div><!-- /.container -->

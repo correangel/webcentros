@@ -2,30 +2,50 @@
 
 
 class Noticias_model extends CI_Model {
-	
-	function lista_noticias($limit = false, $destacadas = false)
+
+	function total_noticias()
 	{
+		$this->db->where('fechapub <= NOW()');
+		$query = $this->db->get('noticias');
+		return $query->num_rows();
+	}
+
+	function listado_noticias($limit = 10, $pagina = 0)
+	{
+		if ($pagina > 0) {
+			$offset = $pagina + $limit - 1;
+		}
+		else {
+			$offset = 0;
+		}
+
 		$this->db->select('noticias.*, noticias_categorias.alias AS alias_categoria, noticias_categorias.nombre AS nombre_categoria');
-		$this->db->from('noticias');
 		$this->db->join('noticias_categorias', 'noticias.id_categoria = noticias_categorias.id');
 		$this->db->where('noticias.fechapub <= NOW()');
-		if ($destacadas) {
-			$this->db->where('noticias.fechafinpub > NOW()');
-		}
-		if ($limit > 0) {
-			$this->db->limit($limit);
-		}
-		$consulta = $this->db->get();
-		
-		return $consulta->result();
+		$this->db->order_by('fechapub','desc');
+		$query = $this->db->get('noticias', $limit, $offset);
+
+		return $query->result();
 	}
-	
+
+	function listado_noticias_destacadas($limit = 10, $offset = 0)
+	{
+		$this->db->select('noticias.*, noticias_categorias.alias AS alias_categoria, noticias_categorias.nombre AS nombre_categoria');
+		$this->db->join('noticias_categorias', 'noticias.id_categoria = noticias_categorias.id');
+		$this->db->where('noticias.fechapub <= NOW()');
+		$this->db->order_by('fechapub','desc');
+		$this->db->where('noticias.fechafinpub > NOW()');
+		$query = $this->db->get('noticias', $limit, $offset);
+
+		return $query->result();
+	}
+
 	function lista_categorias()
 	{
 		$consulta = $this->db->get('noticias_categorias');
 		return $consulta->result();
 	}
-	
+
 	function lista_noticias_categoria($alias_categoria)
 	{
 		$this->db->select('noticias.*, noticias_categorias.alias AS alias_categoria, noticias_categorias.nombre AS nombre_categoria');
@@ -35,7 +55,7 @@ class Noticias_model extends CI_Model {
 		$consulta = $this->db->get();
 		return $consulta->result();
 	}
-	
+
 	function obtener_noticia($categoria, $alias)
 	{
 		$this->db->select('noticias.*, noticias_categorias.alias AS alias_categoria, noticias_categorias.nombre AS nombre_categoria');
@@ -46,20 +66,20 @@ class Noticias_model extends CI_Model {
 		$consulta = $this->db->get();
 		return $consulta->row();
 	}
-	
+
 	function ver_noticia($categoria, $alias)
 	{
 		$noticia = $this->obtener_noticia($categoria, $alias);
 		$vistas = $noticia->vistas+1;
-		
+
 		$data = array(
 		               'vistas' => $vistas,
 		            );
-		
+
 		$this->db->where('alias', $alias);
-		return $this->db->update('noticias', $data); 
+		return $this->db->update('noticias', $data);
 	}
-	
+
 	function noticias_mas_leidas()
 	{
 		$this->db->select('id, titulo, alias, vistas');
@@ -70,9 +90,9 @@ class Noticias_model extends CI_Model {
 		$consulta = $this->db->get();
 		return $consulta->result();
 	}
-	
-	
-	
+
+
+
 }
 
 /* End of file noticias_model.php */

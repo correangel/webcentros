@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Global Configs
 $this->config->load('app_config');
 
@@ -15,7 +15,7 @@ $bottom['noticias_mas_leidas'] = $CI->db_noticias->noticias_mas_leidas();
 $this->load->view('templates/frontend/header', $menu);
 
 
-if ((! empty($this->uri->segment(1))) && ($this->uri->segment(1) != 'noticias')) {
+if ((! empty($this->uri->segment(1))) && ($this->uri->segment(1) != 'noticias') && ! is_numeric($this->uri->segment(1))) {
 	$this->load->view('templates/frontend/breadcrumbs');
 }
 
