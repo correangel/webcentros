@@ -1,36 +1,75 @@
+<?php
+function dateDifference($date_1 , $date_2 , $differenceFormat = '%a' )
+{
+		$datetime1 = date_create($date_1);
+		$datetime2 = date_create($date_2);
+
+		$interval = date_diff($datetime1, $datetime2);
+
+		return $interval->format($differenceFormat);
+}
+
+$today = date('Y-m-d H:i:s');
+$datepub = $noticia->fechapub;
+
+$datepub_days = dateDifference($today, $datepub, '%a');
+$datepub_hours = dateDifference($today, $datepub, '%h');
+$datepub_minutes = dateDifference($today, $datepub, '%i');
+$datepub_seconds = dateDifference($today, $datepub, '%s');
+
+if ($datepub_days < 1) {
+	if ($datepub_hours < 1) {
+		if ($datepub_minutes < 1) {
+			$plural = ($datepub_seconds > 1) ? 's' : '';
+			$fecha_noticia = 'Hace ' . $datepub_seconds . ' segundo'.$plural;
+		}
+		else {
+			$plural = ($datepub_minutes > 1) ? 's' : '';
+			$fecha_noticia = 'Hace ' . $datepub_minutes . ' minuto'.$plural;
+		}
+	}
+	else {
+		$plural = ($datepub_hours > 1) ? 's' : '';
+		$fecha_noticia = 'Hace ' . $datepub_hours . ' hora'.$plural;
+	}
+}
+else {
+	$fecha_noticia = strftime("%d.%m.%Y", strtotime($noticia->fechapub));
+}
+?>
 <div id="content" class="container">
 
 	<div class="row">
-	
+
 		<div class="col-sm-9">
-		
+
 			<h1 class="blog-item-title"><?php echo anchor('noticias/' . $noticia->alias_categoria . '/' . $noticia->alias, $noticia->titulo); ?></h1>
-			
+
 			<ul class="list-inline blog-info">
 				<li><?php echo $noticia->autor; ?></li>
 				<li><?php echo anchor('noticias/' . $noticia->alias_categoria, $noticia->nombre_categoria); ?></li>
-				<li><?php echo strftime("%e %b, %Y %H:%Mh", strtotime($noticia->fechapub)); ?></li>
+				<li><?php echo $fecha_noticia; ?></li>
 			</ul>
-			
+
 			<?php if ($noticia->imagen_cab != NULL): ?>
 			<img class="img-responsive" src="<?php echo $noticia->imagen_cab; ?>" alt="<?php echo $noticia->titulo; ?>">
-			
+
 			<br>
 			<?php elseif ($noticia->video_cab != NULL): ?>
 			<div class="embed-responsive embed-responsive-16by9">
 				<iframe width="560" height="315" src="<?php echo $noticia->video_cab; ?>" frameborder="0" allowfullscreen></iframe>
 			</div>
-			
+
 			<br>
 			<?php endif; ?>
-			
+
 			<p><?php echo $noticia->contenido; ?></p>
-			
+
 			<br>
-			
+
 			<ul class="list-inline">
 				<li>
-					<?php 
+					<?php
 					$atts = array(
 					              'width'      => '600',
 					              'height'     => '400',
@@ -44,7 +83,7 @@
 					?>
 				</li>
 				<li>
-					<?php 
+					<?php
 					$atts = array(
 					              'width'      => '600',
 					              'height'     => '400',
@@ -58,7 +97,7 @@
 					?>
 				</li>
 				<li>
-					<?php 
+					<?php
 					$atts = array(
 					              'width'      => '600',
 					              'height'     => '400',
@@ -81,22 +120,22 @@
 				</li>
 			</ul>
 		</div><!-- /.col-sm-9 -->
-		
+
 		<div class="col-sm-3">
-			
+
 			<section class="" style="margin-bottom: 40px;">
 				<div class="title-module">
 					<h4>Actividades</h4>
 				</div>
-				
+
 				<?php echo $this->calendar->generate(); ?>
 			</section>
-			
+
 			<section class="" style="margin-bottom: 40px;">
 				<div class="title-module">
 					<h4>Nuestras páginas</h4>
 				</div>
-			
+
 				<ul class="fa-ul">
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://erasmusmonterroso.blogspot.com.es', 'Erasmus+ con Alemania', array('target' => '_blank')); ?></li>
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://iesmonterroso.org/dbiblioteca/', 'Biblioteca', array('target' => '_blank')); ?></li>
@@ -109,9 +148,9 @@
 					<li><span class="fa-li fa fa-external-link"></span> <?php echo anchor('http://trinity.iesmonterroso.org', 'Pruebas del Trinity', array('target' => '_blank')); ?></li>
 				</ul>
 			</section>
-			
+
 		</div><!-- /col-sm-3 -->
-		
+
 	</div><!-- /.row -->
-	
+
 </div><!-- /.content -->

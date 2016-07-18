@@ -1,11 +1,10 @@
-    <footer>
+    <footer class="bg-clouds">
 
     	<div class="container">
 
     		<div class="pull-left nofloat-xs">
     			<p style="display: inline;">&copy; <?php echo date('Y'); ?> <?php echo $this->config->item('centro_denominacion'); ?>. Todos los derechos reservados.</p>
     			<ol class="list-inline" style="display: inline;">
-    				<li><?php echo anchor('aviso-legal/', 'Aviso legal'); ?></li>
     				<li><?php echo anchor('cookies/', 'Uso de cookies'); ?></li>
     			</ol>
     		</div>
@@ -60,15 +59,15 @@
 
     </footer>
 
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 
     <script>
 	$(function(){
 
-		$('[data-toggle="tooltip"]').tooltip()
+		$('[rel="tooltip"]').tooltip()
 
 		$(".navbar-toggle").click(function() {
 			$("span.fa-toggle").toggle();

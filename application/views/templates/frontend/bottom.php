@@ -1,5 +1,5 @@
 
-	<section id="bottom1" style="background-color: #fff; border-top: 2px solid #f7f7f7; border-bottom: 2px solid #f7f7f7; padding: 20px 0;">
+	<section id="bottom1" style="background-color: #fff; border-top: 2px solid #f7f7f7; padding: 20px 0;">
 		
 		<div class="container">
 		

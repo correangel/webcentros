@@ -12,6 +12,8 @@ $config['centro_fax']			= '952795803';
 $config['centro_correoe']		= '29002885.edu@juntadeandalucia.es';
 
 $config['curso_actual']			= '2015/16';
+$config['inicio_curso']			= '2015-09-15';
+$config['final_curso']			= '2016-06-23';
 
 // SOCIAL
 $config['social_facebook']		= 'https://www.facebook.com/iesmonterroso.estepona';

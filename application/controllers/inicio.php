@@ -27,7 +27,7 @@ class Inicio extends CI_Controller {
 
 		   {heading_row_end}</tr>{/heading_row_end}
 
-		   {week_row_start}<tr>{/week_row_start}
+		   {week_row_start}<tr class="days">{/week_row_start}
 		   {week_day_cell}<td><strong>{week_day}</strong></td>{/week_day_cell}
 		   {week_row_end}</tr>{/week_row_end}
 

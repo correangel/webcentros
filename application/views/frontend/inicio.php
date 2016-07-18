@@ -26,12 +26,52 @@
 
 			  	<?php else: ?>
 
-				<?php foreach ($noticias as $item): ?>
+				<?php
 
+				function dateDifference($date_1 , $date_2 , $differenceFormat = '%a' )
+				{
+						$datetime1 = date_create($date_1);
+						$datetime2 = date_create($date_2);
+
+						$interval = date_diff($datetime1, $datetime2);
+
+						return $interval->format($differenceFormat);
+				}
+
+				foreach ($noticias as $item):
+
+				$today = date('Y-m-d H:i:s');
+				$datepub = $item->fechapub;
+
+				$datepub_days = dateDifference($today, $datepub, '%a');
+				$datepub_hours = dateDifference($today, $datepub, '%h');
+				$datepub_minutes = dateDifference($today, $datepub, '%i');
+				$datepub_seconds = dateDifference($today, $datepub, '%s');
+
+				if ($datepub_days < 1) {
+					if ($datepub_hours < 1) {
+						if ($datepub_minutes < 1) {
+							$plural = ($datepub_seconds > 1) ? 's' : '';
+							$fecha_noticia = 'Hace ' . $datepub_seconds . ' segundo'.$plural;
+						}
+						else {
+							$plural = ($datepub_minutes > 1) ? 's' : '';
+							$fecha_noticia = 'Hace ' . $datepub_minutes . ' minuto'.$plural;
+						}
+					}
+					else {
+						$plural = ($datepub_hours > 1) ? 's' : '';
+						$fecha_noticia = 'Hace ' . $datepub_hours . ' hora'.$plural;
+					}
+				}
+				else {
+					$fecha_noticia = strftime("%d.%m.%Y", strtotime($item->fechapub));
+				}
+				?>
 				<div class="row" style="margin-bottom: 20px;">
-					<div class="col-xs-4 col-lg-4">
+					<div class="col-xs-4 col-lg-4" style="margin-bottom: 5px;">
 						<?php if ($item->imagen_cab != NULL): ?>
-						<a href="<?php echo base_url().'noticias/' . $item->alias; ?>">
+						<a href="<?php echo 'noticias/' . $item->alias_categoria . '/' . $item->alias; ?>">
 							<?php if(! empty($item->fechafinpub)): ?>
 							<div class="news-triangle"></div>
 							<div class="news-triangle-icon">
@@ -52,7 +92,7 @@
 						</div>
 						<?php else: ?>
 						<div class="blog-noimage" align="center">
-							<a href="<?php echo base_url().'noticias/' . $item->alias; ?>">
+							<a href="<?php echo 'noticias/' . $item->alias_categoria . '/' . $item->alias; ?>">
 								<?php if(! empty($item->fechafinpub)): ?>
 								<div class="news-triangle"></div>
 								<div class="news-triangle-icon">
@@ -68,7 +108,7 @@
 						<ul class="list-inline blog-info hidden-xs">
 							<li><?php echo $item->autor; ?></li>
 							<li><?php echo anchor('noticias/' . $item->alias_categoria, $item->nombre_categoria); ?></li>
-							<li><?php echo strftime("%e %b, %Y %H:%Mh", strtotime($item->fechapub)); ?></li>
+							<li><?php echo $fecha_noticia; ?></li>
 						</ul>
 						<section>
 						<h2 class="blog-item-title"><?php echo anchor('noticias/' . $item->alias_categoria . '/' . $item->alias, $item->titulo); ?></h2>

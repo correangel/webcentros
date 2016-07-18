@@ -32,8 +32,8 @@ class Calendario extends CI_Controller {
 		   {cal_row_start}<tr>{/cal_row_start}
 		   {cal_cell_start}<td>{/cal_cell_start}
 		
-		   {cal_cell_content}<div class="label label-danger" data-toggle="tooltip" title="{content}">{day}</div>{/cal_cell_content}
-		   {cal_cell_content_today}<div class="label label-info" data-toggle="tooltip" title="{content}">{day}</div>{/cal_cell_content_today}
+		   {cal_cell_content}<div class="label label-danger" rel="tooltip" title="{content}">{day}</div>{/cal_cell_content}
+		   {cal_cell_content_today}<div class="label label-info" rel="tooltip" title="{content}">{day}</div>{/cal_cell_content_today}
 		
 		   {cal_cell_no_content}{day}{/cal_cell_no_content}
 		   {cal_cell_no_content_today}<div class="label label-info">{day}</div>{/cal_cell_no_content_today}
@@ -51,7 +51,7 @@ class Calendario extends CI_Controller {
 	
 	public function index()
 	{	
-		$calendario = $this->calendario->obtener_calendario();
+		$calendario = $this->calendario->obtener_festivos();
 		
 		foreach ($calendario as $item_calendario) {
 			

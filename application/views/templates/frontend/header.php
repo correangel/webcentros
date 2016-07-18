@@ -44,8 +44,8 @@
 	}
 
 	footer {
-		margin-top: 20px;
-		margin-bottom: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
 		font-size: 0.875em;
 	}
 
@@ -205,7 +205,7 @@
 
 
 	.navbar.navbar-inverse {
-		background: rgba(0, 0, 0, .75);
+		background: rgba(0, 0, 0, .9);
 	}
 
 	.navbar.navbar-inverse a.navbar-brand {
@@ -284,20 +284,26 @@
 
 
 	.table-calendar-home.table {
-		border: 0;
-		border-spacing: 7px;
+		border: 1px solid #dedede;
+		border-spacing: 3px;
 		border-collapse: separate;
 	}
-
+	
+	tr.days td {
+		background-color: #fff !important;
+		border: 1px solid #fff !important;
+	}
+	
 	.table-calendar-home.table>tbody>tr>td,
 	.table-calendar-home.table>tbody>tr>th,
 	.table-calendar-home.table>tfoot>tr>td,
 	.table-calendar-home.table>tfoot>tr>th,
 	.table-calendar-home.table>thead>tr>td,
 	.table-calendar-home.table>thead>tr>th {
-		border: 0;
+		background-color: #eee;
+		border: 1px solid #dedede;
 		width: 14.285%;
-		font-size: 0.875em;
+		text-align: center;
 	}
 
 	.table-calendar-home th {
@@ -305,11 +311,10 @@
 	}
 
 	.table-calendar-home tr td {
-		padding: 1px !important;
-		line-height: 26px !important;
+		padding: 0px !important;
+		line-height: 28px !important;
 		color: #555;
 	}
-
 
 	.active-green {
 		background-color: green;
@@ -322,9 +327,6 @@
 
 	.today {
 		background-color: #dd4814;
-		border-radius: 25px;
-		-moz-border-radius: 25px;
-		-webkit-border-radius: 25px;
 		font-weight: bold;
 		color: #fff;
 	}
@@ -716,6 +718,79 @@
 		content: '';
 		margin-left: 0;
 	}
+	
+	/* BACKGROUND COLORS */
+	
+	.bg-black { background-color: #111111 !important; }
+	.bg-white { background-color: #FFFFFF !important; }
+	.bg-offwhite { background-color: #F5F5F5 !important; }
+	.bg-clouds { background-color: #ECF0F1 !important; }
+	.bg-silver { background-color: #BDC3C7 !important; }
+	.bg-concrete { background-color: #95A5A6 !important; }
+	.bg-asbestos { background-color: #7F8C8d !important; }
+	.bg-tan { background-color: #D1DBBD !important; }
+	.bg-pewter { background-color: #91AA9D !important; }
+	.bg-moonlight { background-color: #3E606F !important; }
+	.bg-deepocean { background-color: #193441 !important; }
+	.bg-turquoise { background-color: #1ABC9C !important; }
+	.bg-aqua { background-color: #16A085 !important; }
+	.bg-sunflower { background-color: #F1C40F !important; }
+	.bg-orange { background-color: #F39C12 !important; }
+	.bg-sienna { background-color: #BF4E19 !important; }
+	.bg-milanored { background-color: #AC1C00 !important; }
+	.bg-river { background-color: #3498DB !important; }
+	.bg-marina { background-color: #2980B9 !important; }
+	.bg-deco { background-color: #C9D787 !important; }
+	.bg-crete { background-color: #7D8A2E !important; }
+	.bg-guardsman { background-color: #D90000 !important; }
+	.bg-pomegranate { background-color: #C0392B !important; }
+	.bg-finn { background-color: #723147 !important; }
+	.bg-tamarind { background-color: #31152B !important; }
+
+
+	/* COLORS */
+
+	.black { color: #111111; }
+	.white { color: #FFFFFF; }
+	.offwhite { color: #F5F5F5; }
+	.clouds { color: #ECF0F1; }
+	.silver { color: #BDC3C7; }
+	.concrete { color: #95A5A6; }
+	.asbestos { color: #7F8C8d; }
+	.tan { color: #D1DBBD; }
+	.pewter { color: #91AA9D; }
+	.moonlight { color: #3E606F; }
+	.deepocean { color: #193441; }
+	.turquoise { color: #1ABC9C; }
+	.aqua { color: #16A085; }
+	.sunflower { color: #F1C40F; }
+	.orange { color: #F39C12; }
+	.sienna { color: #BF4E19; }
+	.milanored { color: #AC1C00; }
+	.river { color: #3498DB; }
+	.marina { color: #2980B9; }
+	.deco { color: #C9D787; }
+	.crete { color: #7D8A2E; }
+	.guardsman { color: #D90000; }
+	.pomegranate { color: #C0392B; }
+	.finn { color: #723147; }
+	.tamarind { color: #31152B; }
+	</style>
+	
+	<style media="print" type="text/css">
+	a:after {
+	  content: " (" attr(href) ") ";
+	  display: none;
+	}
+	a:before {
+	  content: " (" attr(href) ") ";
+	  display: none;
+	}
+	
+	footer, section#bottom1  {
+		display: none;
+	}
+	
 	</style>
 
   </head>
@@ -785,8 +860,7 @@
 		                  <li><?php echo anchor('oferta-educativa/educacion-secundaria-obligatoria', 'Educación Secundaria Obligatoria'); ?></li>
 		                </ul>
 		                <ul>
-		                  <li class="dropdown-header">Educación Post-Obligatoria</li>
-		                  <li><?php echo anchor('oferta-educativa/bachillerato', 'Bachillerato (LOE)'); ?></li>
+		                  <li class="dropdown-header">Bachillerato</li>
 		                  <li><?php echo anchor('oferta-educativa/bachillerato', 'Bachillerato (LOMCE)'); ?></li>
 		                </ul>
 		            </li>
