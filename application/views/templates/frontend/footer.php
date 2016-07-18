@@ -1,4 +1,4 @@
-    <footer class="bg-clouds">
+    <footer>
 
     	<div class="container">
 
@@ -6,6 +6,7 @@
     			<p style="display: inline;">&copy; <?php echo date('Y'); ?> <?php echo $this->config->item('centro_denominacion'); ?>. Todos los derechos reservados.</p>
     			<ol class="list-inline" style="display: inline;">
     				<li><?php echo anchor('cookies/', 'Uso de cookies'); ?></li>
+    				<li><?php echo anchor('mapa-sitio/', 'Mapa del sitio'); ?></li>
     			</ol>
     		</div>
 

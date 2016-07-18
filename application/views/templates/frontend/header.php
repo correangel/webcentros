@@ -44,6 +44,7 @@
 	}
 
 	footer {
+		background-color: #eee;
 		padding-top: 20px;
 		padding-bottom: 20px;
 		font-size: 0.875em;
@@ -51,6 +52,13 @@
 
 	footer p {
 		line-height: 35px;
+		margin-right: 15px;
+	}
+	
+	@media screen and (max-device-width: 640px) {
+		footer div:last-child {
+			margin-top: 15px;
+		}
 	}
 
 	.icon-gray {

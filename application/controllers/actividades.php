@@ -27,5 +27,5 @@ class Actividades extends CI_Controller {
 	}
 }
 
-/* End of file contacto.php */
+/* End of file actividades.php */
 /* Location: ./application/controllers/actividades.php */

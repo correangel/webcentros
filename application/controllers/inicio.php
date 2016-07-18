@@ -7,7 +7,6 @@ class Inicio extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Noticias_model', 'db_noticias');
-		$this->load->library('rssparser');
 
 		$prefs = array (
 		              'show_next_prev'  => TRUE,

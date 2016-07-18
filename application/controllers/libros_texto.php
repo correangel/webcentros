@@ -35,5 +35,5 @@ class Libros_texto extends CI_Controller {
 	}
 }
 
-/* End of file contacto.php */
-/* Location: ./application/controllers/contacto.php */
+/* End of file libros_texto.php */
+/* Location: ./application/controllers/libros_texto.php */

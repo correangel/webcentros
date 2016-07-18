@@ -32,11 +32,11 @@ class Calendario extends CI_Controller {
 		   {cal_row_start}<tr>{/cal_row_start}
 		   {cal_cell_start}<td>{/cal_cell_start}
 		
-		   {cal_cell_content}<div class="label label-danger" rel="tooltip" title="{content}">{day}</div>{/cal_cell_content}
-		   {cal_cell_content_today}<div class="label label-info" rel="tooltip" title="{content}">{day}</div>{/cal_cell_content_today}
+		   {cal_cell_content}<div class="label label-danger">{day}</div>{/cal_cell_content}
+		   {cal_cell_content_today}<div class="label label-danger">{day}</div>{/cal_cell_content_today}
 		
 		   {cal_cell_no_content}{day}{/cal_cell_no_content}
-		   {cal_cell_no_content_today}<div class="label label-info">{day}</div>{/cal_cell_no_content_today}
+		   {cal_cell_no_content_today}<div>{day}</div>{/cal_cell_no_content_today}
 		
 		   {cal_cell_blank}&nbsp;{/cal_cell_blank}
 		
@@ -77,5 +77,5 @@ class Calendario extends CI_Controller {
 	
 }
 
-/* End of file contenido.php */
-/* Location: ./application/controllers/contenido.php */
+/* End of file calendario.php */
+/* Location: ./application/controllers/calendario.php */

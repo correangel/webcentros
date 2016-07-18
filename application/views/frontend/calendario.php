@@ -16,7 +16,7 @@
 					<?php echo $this->calendar->generate($anio_inicio, $mes_inicio, (isset(${'cal_'.$anio_inicio.'_'.$mes_inicio})) ? ${'cal_'.$anio_inicio.'_'.$mes_inicio} : false); ?>
 				</div>
 				
-				<div class="col-xs-6 col-sm-12 visible-xs">
+				<div class="col-xs-6 col-sm-12" style="margin-bottom: 15px;">
 					<h5>Días festivos</h5>
 					
 					<?php if (isset(${'cal_'.$anio_inicio.'_'.$mes_inicio})): ?>
