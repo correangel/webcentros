@@ -5,6 +5,7 @@ class Biblioteca extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Biblioteca_model', 'biblioteca');
+		$this->config->load('app_config');
 	}
 	
 	public function index()
@@ -27,6 +28,13 @@ class Biblioteca extends CI_Controller {
 		$data['template']['bottom'] = 1;
 		
 		$data['titulo'] = 'Fondos de la Biblioteca';
+		
+		$data['meta']['titulo'] = $data['titulo'];
+		$data['meta']['descripcion'] = 'Consulta de fondos de la Biblioteca del '.$this->config->item('centro_denominacion');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
 		$data['view'] = 'biblioteca';
 		$this->load->view('templates/template', $data);
 	}

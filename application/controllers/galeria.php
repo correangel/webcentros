@@ -6,18 +6,25 @@ class Galeria extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Galeria_model', 'galeria');
 		$this->load->library('image_lib');
+		$this->config->load('app_config');
 	}
 	
 	public function index()
 	{	
+		$data['galeria'] = $this->galeria->obtener_galerias();
+		
 		$data['template']['top'] = 0;
 		$data['template']['bottom'] = 1;
 
 		$data['titulo'] = 'Imágenes';
+		
+		$data['meta']['titulo'] = 'Imágenes';
+		$data['meta']['descripcion'] = 'Álbumes de imágenes del '.$this->config->item('centro_denominacion');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
 		$data['view'] = 'galeria';
-		
-		$data['galeria'] = $this->galeria->obtener_galerias();
-		
 		$this->load->view('templates/template', $data);
 	}
 	
@@ -36,8 +43,14 @@ class Galeria extends CI_Controller {
 		if($data['galeria']) {
 			
 			$data['titulo'] = $data['galeria'][0]->titulo;
-			$data['view'] = 'galeria_contenido';
 			
+			$data['meta']['titulo'] = $data['galeria'][0]->titulo;
+			$data['meta']['descripcion'] = 'Imágenes del álbum '.$data['galeria'][0]->titulo.' del '.$this->config->item('centro_denominacion');
+			$data['meta']['autor'] = $this->config->item('centro_denominacion');
+			$data['meta']['url'] = base_url().$this->uri->uri_string();
+			$data['meta']['imagen'] = base_url().'img/logo.gif';
+			
+			$data['view'] = 'galeria_contenido';
 			$this->load->view('templates/template', $data);
 		}
 		else {

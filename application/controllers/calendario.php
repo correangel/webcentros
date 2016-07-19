@@ -70,8 +70,14 @@ class Calendario extends CI_Controller {
 		$data['template']['bottom'] = 1;
 		
 		$data['titulo'] = 'Calendario escolar <small>Curso '.$this->config->item('curso_actual').'</small>';
-		$data['view'] = 'calendario';
 		
+		$data['meta']['titulo'] = $data['titulo'];
+		$data['meta']['descripcion'] = 'Calendario del curso escolar '.$this->config->item('curso_actual');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
+		$data['view'] = 'calendario';
 		$this->load->view('templates/template', $data);
 	}
 	

@@ -5,6 +5,7 @@ class Libros_texto extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Libros_texto_model', 'libros_texto');
+		$this->config->load('app_config');
 	}
 	
 	public function index()
@@ -30,6 +31,13 @@ class Libros_texto extends CI_Controller {
 		$data['template']['bottom'] = 1;
 		
 		$data['titulo'] = 'Libros de texto';
+		
+		$data['meta']['titulo'] = 'Libros de texto';
+		$data['meta']['descripcion'] = 'Libros de texto del curso escolar '.$this->config->item('curso_actual');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
 		$data['view'] = 'libros_texto';
 		$this->load->view('templates/template', $data);
 	}

@@ -11,11 +11,23 @@
     <![endif]-->
 
     <link rel="canonical" href="<?php echo base_url(); ?>">
-    <meta name="description" content="">
+    <meta name="description" content="<?php echo $meta['descripcion']; ?>">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="<?php echo $meta['titulo']; ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?php echo $meta['url']; ?>">
+    <meta property="og:image" content="<?php echo $meta['imagen']; ?>">
+    <meta property="og:locale" content="es_ES">
+    
+    <meta name="DC.Title" content="<?php echo $meta['titulo']; ?>">
+    <meta name="DC.Description" content="<?php echo $meta['descripcion']; ?>">
+    <meta name="DC.Publisher" content="<?php echo $meta['autor']; ?>">
+    <meta name="DC.Language" content="es_ES">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,300,600&amp;subset=cyrillic,latin">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,300,600&amp;subset=cyrillic,latin">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="<?php echo base_url(); ?>assets/js/html5shiv.min.js"></script>
@@ -921,7 +933,7 @@
                     <li class="col-sm-4">
                     	<ul>
                     		<li><a href="#" style="font-size: 0.875em; text-align: center; color: #555;"><span class="fa fa-calendar-o fa-fw fa-3x"></span><br>Agenda</a></li>
-                    		<li><a href="#" style="font-size: 0.875em; text-align: center; color: #555;"><span class="fa fa-tasks fa-fw fa-3x"></span><br>Actividades</a></li>
+                    		<li><a href="#" style="font-size: 0.875em; text-align: center; color: #555;"><span class="fa fa-list-ol fa-fw fa-3x"></span><br>Actividades</a></li>
                     		<li><a href="#" style="font-size: 0.875em; text-align: center; color: #555;"><span class="fa fa-clock-o fa-fw fa-3x"></span><br>Asistencia</a></li>
                     	</ul>
                     </li>

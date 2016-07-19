@@ -5,6 +5,7 @@ class Departamentos extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Departamentos_model', 'departamentos');
+		$this->config->load('app_config');
 		
 		function telefono($telefono) {
 			
@@ -27,8 +28,14 @@ class Departamentos extends CI_Controller {
 		$data['template']['bottom'] = 1;
 		
 		$data['titulo'] = 'Departamentos';
-		$data['view'] = 'departamentos';
 		
+		$data['meta']['titulo'] = 'Departamentos';
+		$data['meta']['descripcion'] = 'Información sobre los Departamentos del '.$this->config->item('centro_denominacion');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
+		$data['view'] = 'departamentos';
 		$this->load->view('templates/template', $data);
 	}
 	
@@ -41,8 +48,14 @@ class Departamentos extends CI_Controller {
 		$data['template']['bottom'] = 1;
 		
 		$data['titulo'] = 'Departamento de '.$data['componentes'][0]->departamento;
-		$data['view'] = 'departamento_detalles';
 		
+		$data['meta']['titulo'] = 'Departamento de '.$data['componentes'][0]->departamento;
+		$data['meta']['descripcion'] = 'Información sobre el Departamento de '.$data['componentes'][0]->departamento;
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
+		$data['view'] = 'departamento_detalles';
 		$this->load->view('templates/template', $data);
 	}
 	

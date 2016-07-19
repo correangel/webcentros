@@ -5,6 +5,7 @@ class Contenido extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Contenido_model', 'contenido');
+		$this->config->load('app_config');
 	}
 	
 	public function index($alias = false)
@@ -21,6 +22,13 @@ class Contenido extends CI_Controller {
 			$data['template']['bottom'] = 1;
 			
 			$data['titulo'] = $data['contenido']->titulo;
+			
+			$data['meta']['titulo'] = $data['contenido']->titulo;
+			$data['meta']['descripcion'] = 'Información sobre nuestra oferta educativa en '.$data['contenido']->titulo;
+			$data['meta']['autor'] = $this->config->item('centro_denominacion');
+			$data['meta']['url'] = base_url().$this->uri->uri_string();
+			$data['meta']['imagen'] = base_url().'img/logo.gif';
+			
 			$data['view'] = 'contenido';
 			
 			$this->load->view('templates/template', $data);

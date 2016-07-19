@@ -21,7 +21,16 @@ class Actividades extends CI_Controller {
 		$data['template']['top'] = 0;
 		$data['template']['bottom'] = 1;
 		
+		
+		
 		$data['titulo'] = 'Actividades extraescolares';
+		
+		$data['meta']['titulo'] = $data['titulo'];
+		$data['meta']['descripcion'] = 'Actividades Complementarias y Extraescolares programadas para el curso escolar '.$this->config->item('curso_actual');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
+		
 		$data['view'] = 'actividades';
 		$this->load->view('templates/template', $data);
 	}

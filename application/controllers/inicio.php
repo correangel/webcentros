@@ -7,10 +7,11 @@ class Inicio extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('Noticias_model', 'db_noticias');
+		$this->config->load('app_config');
 
 		$prefs = array (
 		              'show_next_prev'  => TRUE,
-		              'next_prev_url'   => base_url().'index.php/calendar/',
+		              'next_prev_url'   => base_url().'index.php/calendario/',
 		              'start_day'    => 'monday',
 		            );
 
@@ -67,6 +68,12 @@ class Inicio extends CI_Controller {
 
 		$data['template']['top'] = 0;
 		$data['template']['bottom'] = 1;
+		
+		$data['meta']['titulo'] = $this->config->item('centro_denominacion');
+		$data['meta']['descripcion'] = 'Información, noticias y documentos del '.$this->config->item('centro_denominacion');
+		$data['meta']['autor'] = $this->config->item('centro_denominacion');
+		$data['meta']['url'] = base_url().$this->uri->uri_string();
+		$data['meta']['imagen'] = base_url().'img/logo.gif';
 
 		$data['view'] = 'inicio';
 		$this->load->view('templates/template', $data);
@@ -88,6 +95,13 @@ class Inicio extends CI_Controller {
 			$data['template']['bottom'] = 1;
 
 			$data['titulo'] = $categoria;
+			
+			$data['meta']['titulo'] = $categoria;
+			$data['meta']['descripcion'] = 'Noticias de la categoría '.$categoria;
+			$data['meta']['autor'] = $this->config->item('centro_denominacion');
+			$data['meta']['url'] = base_url().$this->uri->uri_string();
+			$data['meta']['imagen'] = base_url().'img/logo.gif';
+			
 			$data['view'] = 'noticias_categoria';
 			$this->load->view('templates/template', $data);
 		}
@@ -104,6 +118,19 @@ class Inicio extends CI_Controller {
 			$data['template']['bottom'] = 1;
 
 			$data['titulo'] = $data['noticia']->titulo;
+			
+			$data['meta']['titulo'] = $data['noticia']->titulo;
+			$data['meta']['descripcion'] = trim(substr($data['noticia']->contenido,0, 200));
+			$data['meta']['autor'] = $data['noticia']->autor;
+			$data['meta']['url'] = base_url().$this->uri->uri_string();
+			
+			if (! $data['noticia']->imagen_cab) {
+				$data['meta']['imagen'] = base_url().'img/logo.gif';
+			}
+			else {
+				$data['meta']['imagen'] = $data['noticia']->imagen_cab;
+			}
+			
 			$data['view'] = 'noticias';
 			$this->load->view('templates/template', $data);
 		}
