@@ -1,0 +1,81 @@
+/* BACKGROUND COLORS */
+
+.bg-black { background-color: #111111 !important; }
+.bg-white { background-color: #FFFFFF !important; }
+.bg-offwhite { background-color: #F5F5F5 !important; }
+.bg-clouds { background-color: #ECF0F1 !important; }
+.bg-silver { background-color: #BDC3C7 !important; }
+.bg-concrete { background-color: #95A5A6 !important; }
+.bg-asbestos { background-color: #7F8C8d !important; }
+.bg-tan { background-color: #D1DBBD !important; }
+.bg-pewter { background-color: #91AA9D !important; }
+.bg-moonlight { background-color: #3E606F !important; }
+.bg-deepocean { background-color: #193441 !important; }
+.bg-turquoise { background-color: #1ABC9C !important; }
+.bg-aqua { background-color: #16A085 !important; }
+.bg-sunflower { background-color: #F1C30F !important; }
+.bg-orange { background-color: #F39C12 !important; }
+.bg-sienna { background-color: #BF4E19 !important; }
+.bg-milanored { background-color: #AC1C00 !important; }
+.bg-river { background-color: #3498DB !important; }
+.bg-marina { background-color: #2880B9 !important; }
+.bg-deco { background-color: #C9D787 !important; }
+.bg-crete { background-color: #7D8A2E !important; }
+.bg-guardsman { background-color: #D90000 !important; }
+.bg-pomegranate { background-color: #C0392B !important; }
+.bg-finn { background-color: #723147 !important; }
+.bg-tamarind { background-color: #31152B !important; }
+
+/* COLORS */
+
+.black { color: #111111; }
+.white { color: #FFFFFF; }
+.offwhite { color: #F5F5F5; }
+.clouds { color: #ECF0F1; }
+.silver { color: #BDC3C7; }
+.concrete { color: #95A5A6; }
+.asbestos { color: #7F8C8d; }
+.tan { color: #D1DBBD; }
+.pewter { color: #91AA9D; }
+.moonlight { color: #3E606F; }
+.deepocean { color: #193441; }
+.turquoise { color: #1ABC9C; }
+.aqua { color: #16A085; }
+.sunflower { color: #F1C40F; }
+.orange { color: #F39C12; }
+.sienna { color: #BF4E19; }
+.milanored { color: #AC1C00; }
+.river { color: #3498DB; }
+.marina { color: #2980B9; }
+.deco { color: #C9D787; }
+.crete { color: #7D8A2E; }
+.guardsman { color: #D90000; }
+.pomegranate { color: #C0392B; }
+.finn { color: #723147; }
+.tamarind { color: #31152B; }
+
+
+/* PADDING, MARGIN & ALIGNMENT */
+.pad5 { padding-top:5px; }
+.pad10 { padding-top:10px; }
+.pad15 { padding-top:15px; }
+.pad25 { padding-top:25px; }
+.pad30 { padding-top:30px; }
+.pad45 { padding-top:45px; }
+.pad60 { padding-top:60px; }
+.pad90 { padding-top:90px; }
+
+.min-height-100px { min-height: 100px; }
+.min-height-200px { min-height: 200px; }
+.min-height-300px { min-height: 300px; }
+.min-height-400px { min-height: 400px; }
+.min-height-500px { min-height: 500px; }
+.min-height-600px { min-height: 600px; }
+.min-height-700px { min-height: 700px; }
+.min-height-800px { min-height: 800px; }
+
+.marg-bottom15 { margin-bottom: 15px; }
+.marg-bottom5 { margin-bottom: 5px; }
+.marg-left5 { margin-left: 5px; }
+.marg-right5 { margin-right: 5px; }
+.but_marg { margin-left: 3px; }
