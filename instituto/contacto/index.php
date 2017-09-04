@@ -157,7 +157,7 @@ include("../../inc_menu.php");
     
     <script>
     function initMap() {
-        var myLatLng = {lat: 36.698111, lng: -4.453303};
+        var myLatLng = {lat: 36.429595, lng: -5.154449};
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
@@ -172,6 +172,6 @@ include("../../inc_menu.php");
         });
     }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL9eq_AOcudORWrrSjJZqv4XQS44eYK_I&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=[YOUR_KEY]&callback=initMap"></script>
     
     <?php include("../../inc_pie.php"); ?>
