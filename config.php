@@ -28,6 +28,16 @@ $acentos = array('.','_',' ','*','--',',',';',':','¡','!','"','\'','@','#','$',
 $no_acentos = array('','-','-','','-','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','n','c','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u');
 $no_acentos_con_espacio = array('','-',' ','','-','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','n','c','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u');
 
+/*
+*
+*   CONFIGURACIÓN DE LA PÁGINA EXTERNA PARA CENTROS EDUCATIVOS
+*
+*/
+
+// LOGOTIPO Y FAVICON
+// Añade en la carpeta webcentros/ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
+// Se recomienda que el archivo logo.png tenga unas dimensiones de entre 400 y 500 píxeles, y favicon.ico de 32 píxeles
+
 // BIBLIOTECA
 // Introducir la URL de la web, blog de la Biblioteca, por defecto, utiliza el enlace a BiblioWeb
 $config['biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/biblioweb/";
