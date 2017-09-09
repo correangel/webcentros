@@ -121,6 +121,7 @@ include("inc_menu.php");
                                     <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
                                     <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>
                                     <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-google-plus"></i></button>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-whatsapp"></i></a>
                                     <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-envelope"></i></a>
                                 </div>
                             </div>
@@ -140,6 +141,7 @@ include("inc_menu.php");
                                     <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
                                     <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>
                                     <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-google-plus"></i></button>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-whatsapp"></i></a>
                                     <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-envelope"></i></a>
                                 </div>
                             </div>
