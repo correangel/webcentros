@@ -72,12 +72,13 @@ include('../inc_menu.php');
 			<?php $row2 = mysqli_fetch_array($result); ?>
 			<?php mysqli_free_result($result); ?>
 			
-			<?php $result = mysqli_query($db_con, "select distinct alma.claveal, alma.DNI, alma.fecha, alma.domicilio, alma.telefono, alma.padre, alma.dnitutor, alma.matriculas, telefonourgencia, paisnacimiento, correo, nacionalidad, edad, curso, alma.unidad, numeroexpediente, tutor from alma, FTUTORES where alma.unidad=FTUTORES.unidad and alma.claveal= '$claveal' order BY alma.apellidos"); ?>
+			<?php $result = mysqli_query($db_con, "SELECT claveal, DNI, fecha, domicilio, telefono, padre, dnitutor, matriculas, telefonourgencia, paisnacimiento, correo, nacionalidad, edad, curso, unidad, numeroexpediente FROM alma WHERE claveal= '$claveal'"); ?>
 			
-			<?php if ($row = mysqli_fetch_array($result)): 
-			$tr_tutor = explode(", ",$row['tutor']);
-			$tutor = $tr_tutor[1]." ".$tr_tutor[0];
-			?>
+			<?php if ($row = mysqli_fetch_array($result)): ?>
+			<?php $result_tutor = mysqli_query($db_con, "SELECT tutor FROM FTUTORES WHERE unidad = '".$row['unidad']."' LIMIT 1"); ?>
+			<?php $row_tutor = mysqli_fetch_array($result_tutor); ?>
+			<?php $exp_tutor = explode(", ",$row_tutor['tutor']); ?>
+			<?php $tutor = trim($exp_tutor[1]." ".$exp_tutor[0]); ?>
 			<!-- SCAFFOLDING -->
 			<div class="card-box card-box-secondary">
 			<div class="row">
@@ -247,7 +248,11 @@ include('../inc_menu.php');
 			
 			<?php else: ?>
 			
-			<h3>No hay información sobre el alumno/a en el curso seleccionado.</h3>
+			<br><br><br>
+			<div class="text-center text-muted">
+				<p class="lead">No hay información sobre el alumno/a en este curso.</p>
+			</div>
+			<br><br><br>
 			
 			<?php endif; ?>
 		
