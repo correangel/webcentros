@@ -41,7 +41,7 @@ function nombremes($mes)
 			<?php while ($row_actividad = mysqli_fetch_array($result_actividad)): ?>
 			<tr>
 				<td>
-					<h4><span class="text-warning"><?php echo stripslashes($row_actividad['nombre']); ?></span><br><?php if(($row_actividad['fechaini'] == $row_actividad['fechafin']) && ($row_actividad['horaini'] == $row_actividad['horafin'])): ?><small class="text-muted">Todo el d�a</small><?php else: ?><small class="text-muted">Salida: <?php echo strftime('%A, %e de %B',strtotime($row_actividad['fechaini'])); ?> a las <?php echo strftime('%H:%M',strtotime($row_actividad['horaini'])); ?> | Regreso: <?php echo strftime('%A, %e de %B',strtotime($row_actividad['fechafin'])); ?> a las <?php echo strftime('%H:%M',strtotime($row_actividad['horafin'])); ?></small><?php endif; ?></h4>
+					<h4><span class="text-warning"><?php echo stripslashes($row_actividad['nombre']); ?></span><br><?php if(($row_actividad['fechaini'] == $row_actividad['fechafin']) && ($row_actividad['horaini'] == $row_actividad['horafin'])): ?><small class="text-muted">Todo el día</small><?php else: ?><small class="text-muted">Salida: <?php echo strftime('%A, %e de %B',strtotime($row_actividad['fechaini'])); ?> a las <?php echo strftime('%H:%M',strtotime($row_actividad['horaini'])); ?> | Regreso: <?php echo strftime('%A, %e de %B',strtotime($row_actividad['fechafin'])); ?> a las <?php echo strftime('%H:%M',strtotime($row_actividad['horafin'])); ?></small><?php endif; ?></h4>
 					<p><?php echo stripslashes($row_actividad['descripcion']); ?></p>
 					<hr>
 					<p><strong>Departamento:</strong> <?php echo stripslashes($row_actividad['departamento']); ?></p>
