@@ -136,9 +136,11 @@
                             <?php endif; ?>
                         </div>
                     </li>
+                    <?php if (isset($config['mod_documentos']) && $config['mod_documentos']): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>documentos">Documentos</a>
                     </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado">Alumnado</a>
                     </li>

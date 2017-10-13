@@ -1,5 +1,8 @@
 <?php
 include_once("../config.php");
+if (! isset($config['mod_documentos']) || $config['mod_documentos'] != 1) {
+	include("../error404.php");
+}
 
 if ( !defined('IN_PHPATM') )
 {
