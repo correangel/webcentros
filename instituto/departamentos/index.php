@@ -36,7 +36,7 @@ $icons = array(
 );
 
 $departamentos = array();
-$result = mysqli_query($db_con, "SELECT DISTINCT departamento FROM departamentos WHERE departamento <> 'Admin' AND departamento <> 'Administracion' AND departamento <> 'Conserjeria' ORDER BY departamento ASC");
+$result = mysqli_query($db_con, "SELECT DISTINCT departamento FROM departamentos WHERE departamento <> 'Admin' AND departamento <> 'Administracion' AND departamento <> 'Conserjeria' AND departamento <> 'Educador' ORDER BY departamento ASC");
 while ($row = mysqli_fetch_array($result)) {
 
         $componentes = array();
