@@ -52,13 +52,13 @@ $config['imagenes'] = "";
 
 // FORMACIÓN PROFESIONAL BÁSICA
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
-// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Atención a Personas en Situación de Dependencia
+// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Informática y Comunicaciones
 // En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título
 // El campo 'alias' se rellena automáticamente con lo que haya escrito en el campo 'nombre' o puede escribir el alias que crea adecuado
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
-$config['educacion_cfgb'][0]['nombre'] = "Atención a Personas en Situación de Dependencia";
-$config['educacion_cfgb'][0]['url']    = "http://todofp.es/que-como-y-donde-estudiar/que-estudiar/familia/loe/servicios-socioculturales-comunidad/atencion-personas-situacion-dependencia.html";
+$config['educacion_cfgb'][0]['nombre'] = "Informática y Comunicaciones";
+$config['educacion_cfgb'][0]['url']    = "http://www.todofp.es/que-como-y-donde-estudiar/que-estudiar/familia/loe/informatica-comunicaciones/informatica-comunicaciones.html";
 $config['educacion_cfgb'][0]['alias']  = mb_strtolower(str_replace($acentos, $no_acentos, $config['educacion_cfgb'][0]['nombre']));
 
 /*
@@ -69,7 +69,7 @@ $config['educacion_cfgb'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 
 // FORMACIÓN PROFESIONAL GRADO MEDIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
-// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Atención a Personas en Situación de Dependencia
+// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Sistemas Microinformáticos y Redes
 // En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo: 
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
@@ -85,7 +85,7 @@ $config['educacion_cfgm'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 
 // FORMACIÓN PROFESIONAL GRADO SUPERIOR
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
-// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Atención a Personas en Situación de Dependencia
+// En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Administración de Sistemas Informáticos en Red
 // En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo: 
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
@@ -136,7 +136,7 @@ $config['eqdirectivo_secretaria']['correoe']          = "";
 $config['sidebar_html'][0]['titulo'] = "Enlaces de interés";
 $config['sidebar_html'][0]['html'] = '
 <ul class="list-unstyled">
-    <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/ced" target="_blank">Consejería de Educación, Cultura y Deporte</li>
+    <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/ced" target="_blank">Consejería de Educación</li>
     <li><a href="http://www.mecd.gob.es/portada-mecd/" target="_blank">Ministerio de Educación, Cultura y Deporte</li>
     <li><a href="https://www.juntadeandalucia.es/educacion/portaldocente/" target="_blank">Portal Docente</li>
     <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/becas-y-ayudas" target="_blank">Portal de Becas y Ayudas</li>

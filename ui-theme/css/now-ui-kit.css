@@ -1376,7 +1376,7 @@
 .btn,
 .navbar .navbar-nav>a.btn {
   border-width: 2px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.8571em;
   line-height: 1.35em;
   margin: 5px 1px;
@@ -2295,6 +2295,7 @@ fieldset[disabled] .btn-link.active {
   color: #2c2c2c;
   line-height: normal;
   font-size: 0.8571em;
+  font-weight: 500;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -moz-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -o-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -3110,7 +3111,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 small {
@@ -3289,6 +3290,7 @@ p.description {
 body {
   color: #2c2c2c;
   font-size: 14px;
+  font-weight: 500;
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -3373,7 +3375,7 @@ body {
   text-align: center;
   height: 60px;
   width: 60px;
-  font-weight: 400;
+  font-weight: 500;
   color: #9A9A9A;
   margin-right: 19px;
   background-color: rgba(222, 222, 222, 0.3);
@@ -3791,6 +3793,7 @@ body {
   font-size: 0.8571em;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  font-weight: 500;
   -webkit-transition: all 150ms linear;
   -moz-transition: all 150ms linear;
   -o-transition: all 150ms linear;
