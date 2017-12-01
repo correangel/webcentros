@@ -163,8 +163,9 @@ $config['sidebar_html'][2]['titulo'] = "";
 $config['sidebar_html'][2]['html'] = '';
 */
 
-// PARA FINALIZAR
-// Edita el archivo webcentros/instituto/contacto/index.php y modifica las líneas 160 y 175
-// Línea 160: var myLatLng = {lat: 36.429595, lng: -5.154449}; <-- Debe modificar las coordenadas de su centro
-// Línea 175: <script async defer src="https://maps.googleapis.com/maps/api/js?key=[YOUR_KEY]&callback=initMap"></script> <-- Debe cambiar [YOUR_KEY] por su API Key de Google Maps
-// Para obtener una API Key dírigete a la web: https://developers.google.com/maps/documentation/javascript/?hl=es-419
+// GOOGLE MAPS API
+// Consigue la clave para usar la API de Google Maps en https://developers.google.com/maps/documentation/javascript/?hl=es-419
+// Puedes obtener las coordenadas de tu centro educativo en https://www.coordenadas-gps.com
+//$config['google_maps']['api_key'] = 'YOUR_CODE';
+//$config['google_maps']['latitud'] = 36.4295948;
+//$config['google_maps']['longitud'] = -5.154448600000023;

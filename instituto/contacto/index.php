@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $mail->AddReplyTo($contacto_correo, $contacto_nombre_completo);
 			$mail->addAddress($config['centro_email'], $config['centro_denominacion']);
 			$mail->Subject = 'Nuevo mensaje - '.$config['centro_denominacion'].' (Formulario de contacto)';
-			$mail->msgHTML('<p>' . $contacto_mensaje . '</p><p><br></p><p><br></p><p>Nombre: ' . $contacto_nombre . '</p><p>Correo: ' . $contacto_correo . '</p><p>Dirección IP: ' . getRealIP() . '</p><p><br></p>');
+			$mail->msgHTML(utf8_decode('<p>' . $contacto_mensaje . '</p><p><br></p><p><br></p><p>Nombre: ' . $contacto_nombre . '</p><p>Correo: ' . $contacto_correo . '</p><p>Dirección IP: ' . getRealIP() . '</p><p><br></p>'));
 			$mail->AltBody = $contacto_mensaje . "\n\nNombre: " . $contacto_nombre_completo . "\n\nCorreo: " . $contacto_correo . "\n\nDirección IP: " . getRealIP() ."\n\n";
 			$mail->send();
 			
@@ -153,11 +153,12 @@ include("../../inc_menu.php");
         </div>
     </div>
 
+    <?php if (isset($config['google_maps']['api_key']) && $config['google_maps']['api_key'] != 'YOUR_CODE' && isset($config['google_maps']['latitud']) && isset($config['google_maps']['longitud'])): ?>
     <div id="map" style="width: 100%; height: 500px;"></div>
     
     <script>
     function initMap() {
-        var myLatLng = {lat: 36.429595, lng: -5.154449};
+        var myLatLng = {lat: <?php echo $config['google_maps']['latitud']; ?>, lng: <?php echo $config['google_maps']['longitud']; ?>};
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 14,
@@ -172,6 +173,7 @@ include("../../inc_menu.php");
         });
     }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=[YOUR_KEY]&callback=initMap"></script>
-    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo $config['google_maps']['api_key']; ?>&callback=initMap"></script>
+    <?php endif; ?>
+
     <?php include("../../inc_pie.php"); ?>
