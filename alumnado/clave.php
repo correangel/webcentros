@@ -11,14 +11,13 @@ if ($_SESSION['alumno_autenticado'] != 1) {
 	$_SESSION = array();
 	session_destroy();
 	
-	if(isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] == "on") {
-		header('Location:'.'https://'.WEBCENTROS_DOMINIO.'alumnado/salir.php');
-		exit();
-	}
-	else {
-		header("Location:".WEBCENTROS_DOMINIO.'alumnado/salir.php');
-		exit();
-	}
+	header("Location:".WEBCENTROS_DOMINIO.'alumnado/salir.php');
+	exit();
+}
+
+if (isset($_SESSION['dnitutor'])) {
+	header("Location:".WEBCENTROS_DOMINIO.'alumnado/index.php');
+	exit();
 }
 
 
