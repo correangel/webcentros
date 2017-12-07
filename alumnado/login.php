@@ -23,26 +23,63 @@ if (isset($_POST['submit'])) {
 	$usuario	= mysqli_real_escape_string($db_con, $_POST['user']);
 	$clave		= mysqli_real_escape_string($db_con, $_POST['clave']);
 	
-	$result_admin = mysqli_query($db_con, "SELECT pass FROM c_profes WHERE nombre = 'Administrador' LIMIT 1");
-	$row_result_admin = mysqli_fetch_array($result_admin);
-	$clave_admin = $row_result_admin['pass'];
+	// Comprobamos si se ha introducido la clave del usuario Administrador de la Intranet
+	$result_admin = mysqli_query($db_con, "SELECT idea FROM c_profes WHERE idea = 'admin' AND pass = SHA1('$clave') LIMIT 1");
+	$esAdmin = (mysqli_num_rows($result_admin) > 0) ? 1 : 0;
+	mysqli_free_result($result_admin);
+
+	// Comprobamos si se ha introducido el DNI del primer tutor legal registrado en la matrícula
+	$result_tutor1 = mysqli_query($db_con, "SELECT dnitutor, primerapellidotutor, segundoapellidotutor, nombretutor FROM alma WHERE claveal = '$usuario' AND dnitutor = '$clave' LIMIT 1");
+	$esTutorLegal1 = (mysqli_num_rows($result_tutor1) > 0) ? 1 : 0;
+	if ($esTutorLegal1) {
+		$row_tutor1 = mysqli_fetch_array($result_tutor1);
+		if (! empty($row_tutor1['dnitutor']) && ! empty($row_tutor1['nombretutor'])) {
+			$_SESSION['dnitutor'] = $row_tutor1['dnitutor'];
+			$_SESSION['nombretutor'] = $row_tutor1['nombretutor'].' '.$row_tutor1['primerapellidotutor'].' '.$row_tutor1['segundoapellidotutor'];
+		}
+		else {
+			$esTutorLegal1 = 0;
+		}
+	}
+
+	// Comprobamos si se ha introducido el DNI del segundo tutor legal registrado en la matrícula
+	$result_tutor2 = mysqli_query($db_con, "SELECT dnitutor2, primerapellidotutor2, segundoapellidotutor2, nombretutor2 FROM alma WHERE claveal = '$usuario' AND dnitutor2 = '$clave' LIMIT 1");
+	$esTutorLegal2 = (mysqli_num_rows($result_tutor2) > 0) ? 1 : 0;
+	if ($esTutorLegal2) {
+		$row_tutor2 = mysqli_fetch_array($result_tutor2);
+		if (! empty($row_tutor2['dnitutor2']) && ! empty($row_tutor2['nombretutor2'])) {
+			$_SESSION['dnitutor'] = $row_tutor2['dnitutor2'];
+			$_SESSION['nombretutor'] = $row_tutor2['nombretutor2'].' '.$row_tutor2['primerapellidotutor2'].' '.$row_tutor2['segundoapellidotutor2'];
+		}	
+		else {
+			$esTutorLegal2 = 0;
+		}
+	}
 	
-	$result = mysqli_query($db_con, "SELECT alma.claveal, apellidos, nombre, control.pass, alma.correo AS correo_matricula, control.correo FROM alma LEFT JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='$usuario' AND (alma.claveal='$clave' OR control.pass=SHA1('$clave')) LIMIT 1");
+	if ($esAdmin || $esTutorLegal1 || $esTutorLegal2) {
+		$result = mysqli_query($db_con, "SELECT alma.claveal, alma.apellidos, alma.nombre, control.pass AS clave, alma.correo AS correo_matricula, control.correo FROM alma LEFT JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='$usuario' LIMIT 1");
+	}
+	else {
+		$result = mysqli_query($db_con, "SELECT alma.claveal, alma.apellidos, alma.nombre, control.pass AS clave, alma.correo AS correo_matricula, control.correo FROM alma LEFT JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='$usuario' AND (alma.claveal='$clave' OR control.pass=SHA1('$clave')) LIMIT 1");
+	}
 	
 	if (mysqli_num_rows($result)) {
 		
 		$usuario = mysqli_fetch_array($result);
-		
-		$_SESSION['alumno_autenticado'] = 1;
-		
-		$_SESSION['claveal'] = $usuario['claveal'];
-		
+
 		// Registramos el acceso
-		mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."')");
+		if (isset($_SESSION['nombretutor'])) {
+			mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, tutorlegal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."', '".$_SESSION['nombretutor']."')");
+		}
+		else {
+			mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."')");
+		}
 		
-		// PRIMERA VEZ QUE EL USUARIO ACCEDE
-		if ($clave == $usuario['claveal']) {
-		
+		// Comprobamos si es la primera vez que el usuario accede
+		if ((empty($usuario['clave']) && $clave == $usuario['claveal']) || sha1($clave) == $usuario['clave']) {
+			
+			$_SESSION['alumno_autenticado'] = 1;
+			$_SESSION['claveal'] = $usuario['claveal'];
 			$_SESSION['cambiar_clave_alumno'] = 1;
 			
 			mysqli_query($db_con, "INSERT INTO control (claveal, pass, correo) VALUES ('".$usuario['claveal']."', SHA1($clave), '".$usuario['correo_matricula']."')");
@@ -50,8 +87,10 @@ if (isset($_POST['submit'])) {
 			header("Location:".WEBCENTROS_DOMINIO."alumnado/clave.php");
 			exit();
 		}
-		elseif (sha1($clave) == $usuario['pass']) {
-			
+		elseif (sha1($clave) == $usuario['clave'] || $esAdmin || $esTutorLegal1 || $esTutorLegal2) {
+
+			$_SESSION['alumno_autenticado'] = 1;
+			$_SESSION['claveal'] = $usuario['claveal'];
 			$_SESSION['cambiar_clave_alumno'] = 0;
 			
 			header("Location:".WEBCENTROS_DOMINIO."alumnado/index.php");
@@ -59,13 +98,13 @@ if (isset($_POST['submit'])) {
 		}
 		else {
 			$msg_error = true;
-			$msg_error_text = "Nombre de usuario y/o contraseña incorrectos.";
+			$msg_error_text = "NIE y/o contraseña incorrectos.";
 		}
 		
 	}
 	else {
 		$msg_error = true;
-		$msg_error_text = "Nombre de usuario y/o contraseña incorrectos.";
+		$msg_error_text = "NIE y/o contraseña incorrectos.";
 	}
 	
 }

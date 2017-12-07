@@ -4,8 +4,12 @@ if(isset($_POST['enviar'])) {
 	
 	$asunto = trim(mysqli_real_escape_string($db_con,	$_POST['asunto']));
 	$mensaje = trim(mysqli_real_escape_string($db_con, $_POST['mensaje']));
-	
+
 	if (! empty($asunto) && ! empty($mensaje)) {
+
+		if (isset($_SESSION['dnitutor'])) {
+			$mensaje .= mysqli_real_escape_string('<br><p style="color: #000 !important; background-color: #fff !important;">Mensaje enviado por el tutor/a legal:</p><p style="color: #000 !important; background-color: #fff !important;">'.$_SESSION['nombretutor'].'</p>');
+		}
 		
 		$result = mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto', '$mensaje', '".$_SESSION['direccion_ip']."', '".$_SESSION['correo']."', '$unidad')");
 		
@@ -165,7 +169,7 @@ if(isset($_POST['leido'])){
         <h4 class="modal-title"><?php echo $mensajes_recibidos['asunto']; ?><br><small>Enviado por <?php echo $mensajes_recibidos['profesor']; ?> el <?php echo $mensajes_recibidos['ahora']; ?></small></h4>
       </div>
       <div class="modal-body">
-        <?php echo stripslashes($mensajes_recibidos['texto']); ?>
+        <?php echo html_entity_decode(stripslashes($mensajes_recibidos['texto'])); ?>
       </div>
       <div class="modal-footer">
       	<?php if(! $mensajes_recibidos['recibidoprofe']): ?>
@@ -194,7 +198,7 @@ if(isset($_POST['leido'])){
         <h4 class="modal-title"><?php echo $mensajes_enviados['asunto']; ?><br><small>Enviado por <?php echo $apellido.', '.$nombrepil; ?> el <?php echo $mensajes_enviados['ahora']; ?></small></h4>
       </div>
       <div class="modal-body">
-        <?php echo stripslashes($mensajes_enviados['texto']); ?>
+        <?php echo html_entity_decode(stripslashes($mensajes_enviados['texto'])); ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

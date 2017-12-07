@@ -104,6 +104,16 @@ include("../inc_menu.php");
 
 	<div class="section">
 		<div class="container">
+
+			<!-- TITULO DE LA PAGINA -->
+			<div class="marg-bottom15">
+				<h2 style="display: inline;" class="mr-auto">Expediente académico del alumno/a</h2>
+				<div style="display: inline;" class="pull-right hidden-print">
+					<a href="salir.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
+				</div>
+			</div>
+
+			<br>
 			
 			<!-- MENSAJES -->
 			<?php if(isset($msg_error)): ?>

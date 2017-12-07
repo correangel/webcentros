@@ -10,26 +10,14 @@ if ($_SESSION['alumno_autenticado'] != 1) {
 	$_SESSION = array();
 	session_destroy();
 	
-	if(isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] == "on") {
-		header('Location:'.WEBCENTROS_DOMINIO.'alumnado/salir.php');
-		exit();
-	}
-	else {
-		header("Location:".WEBCENTROS_DOMINIO.'alumnado/salir.php');
-		exit();
-	}
+	header("Location:".WEBCENTROS_DOMINIO.'alumnado/salir.php');
+	exit();
 }
 
 if($_SERVER['SCRIPT_NAME'] != '/alumnado/clave.php') {
-	if($_SESSION['alumno_cambiar_clave']) {
-		if(isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] == "on") {
-			header('Location:'.'https://'.WEBCENTROS_DOMINIO.'alumnado/clave.php');
-			exit();
-		}
-		else {
-			header("Location:".WEBCENTROS_DOMINIO.'alumnado/clave.php');
-			exit();
-		}
+	if(isset($_SESSION['cambiar_clave_alumno']) && $_SESSION['cambiar_clave_alumno']) {
+		header('Location:'.WEBCENTROS_DOMINIO.'alumnado/clave.php');
+		exit();
 	}
 }
 
@@ -63,10 +51,18 @@ include('../inc_menu.php');
 			<div class="marg-bottom15">
 				<h2 style="display: inline;" class="mr-auto">Expediente académico del alumno/a</h2>
 				<div style="display: inline;" class="pull-right hidden-print">
+					<?php if (! isset($_SESSION['dnitutor'])): ?>
 					<a href="clave.php" class="btn btn-info btn-sm">Cambiar contraseña</a>
+					<?php endif; ?>
 					<a href="salir.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
 				</div>
 			</div>
+
+			<?php if (isset($_SESSION['dnitutor'])): ?>
+			<div class="alert alert-info">
+				Ha iniciado sesión como <?php echo $_SESSION['nombretutor']; ?>, tutor/a legal de <?php echo $nombrepil; ?> <span style="border-bottom: 1px dotted #fff; cursor: help;" data-toggle="popover" data-placement="bottom" data-content="Los tutores legales registrados en la matrícula de su hijo/a en este centro tienen acceso al expediente académico utilizando su respectivo DNI como contraseña. Los accesos que realicen a este informe quedarán registrados, incluyendo fecha y dirección IP de su ordenador actual. Puede solicitar un documento con los accesos realizados a este informe en Jefatura de Estudios.">¿qué significa esto?</span>
+			</div>
+			<?php endif; ?>
 			
 			<?php $result = mysqli_query($db_con, "SELECT correo FROM control WHERE claveal='$claveal' LIMIT 1"); ?>
 			<?php $row2 = mysqli_fetch_array($result); ?>
@@ -206,7 +202,6 @@ include('../inc_menu.php');
 						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Problemas de Convivencia</a></li>
 						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Actividades Extraescolares</a></li>
 						<li class="nav-item"><a class="nav-link" href="#horario" role="tab" data-toggle="tab">Horario y Profesores</a></li>
-						<li class="nav-item"><a class="nav-link" href="#recursos" role="tab" data-toggle="tab">Recursos Educativos</a></li>
 						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Actividades Evaluables</a></li>
 						<li class="nav-item"><a class="nav-link" href="#evaluaciones" role="tab" data-toggle="tab">Notas de Evaluaciones</a></li>
 						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes del Centro</a></li>
