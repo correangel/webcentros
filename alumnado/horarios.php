@@ -65,8 +65,8 @@ mysqli_query($db_con,"DROP TABLE asig_tmp");
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="col-sm-4">Asignatura</th>
-				<th class="col-sm-8">Profesor/a</th>
+				<th>Asignatura</th>
+				<th>Profesor/a</th>
 			</tr>
 		</thead>
 		<tbody>
