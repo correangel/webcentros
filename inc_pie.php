@@ -72,6 +72,14 @@
     <!-- Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/now-ui-kit.js" type="text/javascript"></script>
+    <?php if ((date('d') > 1 && date('m') == 12) || (date('d') < 7 && date('m') == 1)): ?>
+    <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/snowfall.jquery.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function(){        
+        $(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+    });
+    </script>
+    <?php endif; ?>
 
 </body>
 </html>
