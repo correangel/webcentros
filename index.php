@@ -1,6 +1,27 @@
 <?php
 require_once("config.php");
 
+function cortarTexto($texto, $numMaxCaract){
+	if (strlen($texto) <  $numMaxCaract){
+		$textoCortado = $texto;
+	}else{
+		$textoCortado = substr($texto, 0, $numMaxCaract);
+		$ultimoEspacio = strripos($textoCortado, " ");
+ 
+		if ($ultimoEspacio !== false){
+			$textoCortadoTmp = substr($textoCortado, 0, $ultimoEspacio);
+			if (substr($textoCortado, $ultimoEspacio)){
+				$textoCortadoTmp .= '...';
+			}
+			$textoCortado = $textoCortadoTmp;
+		}elseif (substr($texto, $numMaxCaract)){
+			$textoCortado .= '...';
+		}
+	}
+ 
+	return $textoCortado;
+}
+
 $noticias_destacadas = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
@@ -115,7 +136,10 @@ include("inc_menu.php");
                             <div class="media-body" style="margin: 20px;">
                                 <h5 class="mt-0"><a href="<?php echo $url_noticia; ?>"><?php echo $noticia['titulo']; ?></a></h5>
                                 <h6 class="text-muted"><?php echo $noticia['categoria']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;<?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></h6>
-                                <p><?php echo trim(substr(strip_tags($noticia['contenido']), 0, 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <?php 
+                                 $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
+                                ?>
+                                <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="" style="margin-top: 10px;">
                                     <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
@@ -135,7 +159,12 @@ include("inc_menu.php");
                             <div class="media-body" style="margin: 20px;">
                                 <h5 class="mt-0"><a href="<?php echo $url_noticia; ?>"><?php echo $noticia['titulo']; ?></a></h5>
                                 <h6 class="text-muted"><?php echo $noticia['categoria']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;<?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></h6>
-                                <p><?php echo trim(substr(strip_tags($noticia['contenido']), 0, 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <?php 
+                                $noticia['contenido'] = str_ireplace(". ", ".", $noticia['contenido']);
+                                $noticia['contenido'] = str_ireplace(".", ". ", $noticia['contenido']);
+                                $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
+                                ?>
+                                <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="pad10">
                                     <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
