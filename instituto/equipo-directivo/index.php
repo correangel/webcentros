@@ -17,11 +17,15 @@ include("../../inc_menu.php");
 
     <div class="section">
         <div class="container">
-
+            <?php $enUnaFila = ((!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre']))) ? 1 : 0; ?>
+            
             <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'secretaria'); ?>
 
+            <?php if ($enUnaFila): ?>
+            <div class="row justify-content-center">
+            <?php endif; ?>
             <?php foreach ($cargos as $cargo): ?>
-            <?php if ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'secretaria'): ?>
+            <?php if (!$enUnaFila && ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'secretaria')): ?>
             <div class="row justify-content-center">
             <?php endif; ?>
 
@@ -49,11 +53,14 @@ include("../../inc_menu.php");
                 </div>
                 <?php endif; ?>
                 
-            <?php if ($cargo == 'vicedireccion' || $cargo == 'jefatura_adjunta' || $cargo == 'secretaria'): ?>
+            <?php if (!$enUnaFila && ($cargo == 'vicedireccion' || $cargo == 'jefatura_adjunta' || $cargo == 'secretaria')): ?>
             </div>
             <hr>
             <?php endif; ?>
             <?php endforeach; ?>
+            <?php if ($enUnaFila): ?>
+            </div>
+            <?php endif; ?>
 
         </div>
     </div>
