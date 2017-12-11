@@ -1,16 +1,6 @@
 <?php
 session_start();
 
-function getRealIP() {
-    if (!empty($_SERVER['HTTP_CLIENT_IP']))
-        return $_SERVER['HTTP_CLIENT_IP'];
-        
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-        return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    
-    return $_SERVER['REMOTE_ADDR'];
-}
-
 // CONFIGURACIÓN INICIAL
 error_reporting(0);
 date_default_timezone_set('Europe/Madrid');
@@ -41,5 +31,37 @@ $no_acentos_con_espacio = array('','-',' ','','-','','','','','','','','','','',
 
 // CARGAMOS LA FUNCIÓN DE FILTROS PARA EVITAR ATAQUES XSS EN LOS CAMPOS DE FORMULARIO
 require_once(WEBCENTROS_DIRECTORY.'/plugins/cleanxss.php');
+
+// FUNCIONES GENERALES
+function getRealIP() {
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        return $_SERVER['HTTP_CLIENT_IP'];
+        
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    
+    return $_SERVER['REMOTE_ADDR'];
+}
+
+function cortarTexto($texto, $numMaxCaract){
+	if (strlen($texto) <  $numMaxCaract){
+		$textoCortado = $texto;
+	}else{
+		$textoCortado = substr($texto, 0, $numMaxCaract);
+		$ultimoEspacio = strripos($textoCortado, " ");
+ 
+		if ($ultimoEspacio !== false){
+			$textoCortadoTmp = substr($textoCortado, 0, $ultimoEspacio);
+			if (substr($textoCortado, $ultimoEspacio)){
+				$textoCortadoTmp .= '...';
+			}
+			$textoCortado = $textoCortadoTmp;
+		}elseif (substr($texto, $numMaxCaract)){
+			$textoCortado .= '...';
+		}
+	}
+ 
+	return $textoCortado;
+}
 
 // Fin de archivo bootstrap.php

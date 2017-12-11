@@ -2,27 +2,6 @@
 require_once("bootstrap.php");
 require_once("config.php");
 
-function cortarTexto($texto, $numMaxCaract){
-	if (strlen($texto) <  $numMaxCaract){
-		$textoCortado = $texto;
-	}else{
-		$textoCortado = substr($texto, 0, $numMaxCaract);
-		$ultimoEspacio = strripos($textoCortado, " ");
- 
-		if ($ultimoEspacio !== false){
-			$textoCortadoTmp = substr($textoCortado, 0, $ultimoEspacio);
-			if (substr($textoCortado, $ultimoEspacio)){
-				$textoCortadoTmp .= '...';
-			}
-			$textoCortado = $textoCortadoTmp;
-		}elseif (substr($texto, $numMaxCaract)){
-			$textoCortado .= '...';
-		}
-	}
- 
-	return $textoCortado;
-}
-
 $noticias_destacadas = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
@@ -143,11 +122,12 @@ include("inc_menu.php");
                                 <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="" style="margin-top: 10px;">
-                                    <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
-                                    <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>
-                                    <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-google-plus"></i></button>
-                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-whatsapp"></i></a>
-                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-envelope"></i></a>
+                                    <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Facebook"><i class="fa fa-facebook"></i></button>
+                                    <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Twitter"><i class="fa fa-twitter"></i></button>
+                                    <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Google+"><i class="fa fa-google-plus"></i></button>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Telegram"><i class="fa fa-telegram"></i></a>
+                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="fa fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -168,11 +148,12 @@ include("inc_menu.php");
                                 <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="pad10">
-                                    <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
-                                    <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>
-                                    <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-google-plus"></i></button>
-                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-whatsapp"></i></a>
-                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-envelope"></i></a>
+                                    <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Facebook"><i class="fa fa-facebook"></i></button>
+                                    <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Twitter"><i class="fa fa-twitter"></i></button>
+                                    <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Google+"><i class="fa fa-google-plus"></i></button>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fa fa-whatsapp"></i></a>
+                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Telegram"><i class="fa fa-telegram"></i></a>
+                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="fa fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>

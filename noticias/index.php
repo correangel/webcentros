@@ -20,7 +20,7 @@ $pagina['titulo'] = strip_tags($noticia['titulo']);
 //$pagina['meta']['canonical'] = 0;
 $pagina['meta']['meta_title'] = $pagina['titulo'];
 $pagina['meta']['meta_autor'] = $noticia['autor'];
-$pagina['meta']['meta_description'] = trim(substr(strip_tags($noticia['contenido']), 0, 300)).'...';
+$pagina['meta']['meta_description'] = trim(cortarTexto(strip_tags($noticia['contenido']), 300)).'...';
 $pagina['meta']['meta_type'] = "article";
 $pagina['meta']['meta_locale'] = "es_ES";
 
@@ -58,6 +58,7 @@ include("../inc_menu.php");
                         <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>
                         <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-google-plus"></i></button>
                         <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-whatsapp"></i></a>
+                        <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-telegram"></i></a>
                         <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-envelope"></i></a>
                     </div>
           
