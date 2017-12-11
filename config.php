@@ -1,37 +1,6 @@
-<?php
-session_start();
-
-// CONFIGURACIÓN INICIAL
-error_reporting(0);
-date_default_timezone_set('Europe/Madrid');
-setlocale(LC_TIME, 'es_ES.UTF-8');
-
-// OBTENEMOS LA URL DE LA PÁGINA WEB
-if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) $servername = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
-else $servername = $_SERVER['SERVER_NAME'];
-if (! $_SERVER['HTTPS']) $servername = "http://".$servername."/";
-else $servername = "https://".$servername."/";
-
-// DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB 
-define("WEBCENTROS_DOMINIO", $servername);
-
-// OBTENEMOS LA CONFIGURACIÓN DE LA INTRANET
-if (@file_exists("./intranet/config.php")) require_once("./intranet/config.php");
-if (@file_exists("../intranet/config.php")) require_once("../intranet/config.php");
-if (@file_exists("../../intranet/config.php")) require_once("../../intranet/config.php");
-if (@file_exists("../../../intranet/config.php")) require_once("../../../intranet/config.php");
-$db_con = mysqli_connect($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']) or die("<h1>Error " . mysqli_connect_error() . "</h1>"); 
-mysqli_query($db_con,"SET NAMES 'utf8'");
-
-// ESCAPE DE CARACTERES PARA REALIZAR ALIAS, NECESARIO PARA GENERAR URL AMIGABLES
-$acentos = array('.','_',' ','*','--',',',';',':','¡','!','"','\'','@','#','$','%','&','/','(',')','[',']','{','}','<','>','+','|','\\','·','=','¬','?','¿','^','º','ª','`','´','ñ','Ñ','ç','Á','É','Í','Ó','Ú','á','é','í','ó','ú','À','È','Ì','Ò','Ù','à','è','ì','ò','ù','Â','Ê','Î','Ô','Û','â','ê','î','ô','û','Ä','Ë','Ï','Ö','Ü','ä','ë','ï','ö','ü');
-$no_acentos = array('','-','-','','-','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','n','N','c','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u');
-$no_acentos_con_espacio = array('','-',' ','','-','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','n','N','c','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u');
-
+<?php if (! defined("WEBCENTROS_DOMINIO")) die ('No direct script access allowed');
 /*
-*
 *   CONFIGURACIÓN DE LA PÁGINA EXTERNA PARA CENTROS EDUCATIVOS
-*
 */
 
 // LOGOTIPO Y FAVICON
@@ -169,3 +138,11 @@ $config['sidebar_html'][2]['html'] = '';
 //$config['google_maps']['api_key'] = 'YOUR_CODE';
 //$config['google_maps']['latitud'] = 36.4295948;
 //$config['google_maps']['longitud'] = -5.154448600000023;
+
+// GOOGLE reCAPTCHA
+// Consigue la clave para usar la API de Google reCAPTCHA v2 en https://www.google.com/recaptcha/admin/create
+// Copia la clave del sitio y la clave secreta en las siguientes variables de configuración
+//$config['google_recaptcha']['site_key'] = 'YOUR_SITE_KEY';
+//$config['google_recaptcha']['secret'] = 'YOUR_SECRET_CODE';
+
+// Fin de archivo config.php

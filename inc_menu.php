@@ -13,10 +13,10 @@
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/favicon.ico">
     
-    <title><?php echo ($pagina['titulo'] != '') ? strip_tags($pagina['titulo'])." - ".$config['centro_denominacion'] : $config['centro_denominacion']; ?> - Instituto de Educación Secundaria de <?php echo $config['centro_localidad']; ?></title>
-
+    <title><?php echo (isset($pagina['titulo']) && $pagina['titulo'] != '') ? strip_tags($pagina['titulo'])." - ".$config['centro_denominacion'] : $config['centro_denominacion']; ?> - Instituto de Educación Secundaria de <?php echo $config['centro_localidad']; ?></title>
+    <?php $canonical_str = rtrim(str_replace($_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']), '?'); ?>
     <?php if (! isset($pagina['meta']['canonical']) || $pagina['meta']['canonical'] = 0): ?>
-    <link rel="canonical" href="<?php echo WEBCENTROS_DOMINIO.ltrim($_SERVER['REQUEST_URI'], '/'); ?>">
+    <link rel="canonical" href="<?php echo WEBCENTROS_DOMINIO.ltrim($canonical_str, '/'); ?>">
     <?php endif; ?>
     
     <?php if (! isset($pagina['meta']['robots']) || $pagina['meta']['robots'] = 0): ?>
@@ -37,7 +37,8 @@
     <meta property="og:type" content="<?php echo $pagina['meta']['meta_type']; ?>">	
     <meta property="og:locale" content="<?php echo $pagina['meta']['meta_locale']; ?>">	
     <meta property="og:site_name" content="<?php echo $config['centro_denominacion']; ?>">	
-    <meta property="og:url" content="<?php echo WEBCENTROS_DOMINIO.ltrim($_SERVER['REQUEST_URI'], '/'); ?>">
+    
+    <meta property="og:url" content="<?php echo WEBCENTROS_DOMINIO.ltrim($canonical_str , '/'); ?>">
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="<?php echo $pagina['meta']['meta_description']; ?>">

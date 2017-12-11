@@ -1,19 +1,20 @@
 <?php
+require_once("../../bootstrap.php");
 require_once("../../config.php");
 
 $query_sql = "";
 
 if ( isset($_GET['q']) && (strlen(trim($_GET['q'])) > 3) ) {
-    $query = htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8');
-    $query_sql = "AND (titulo LIKE '%$query%' OR contenido LIKE '%$query%')";
+    $query = isset($_GET['q']) ? xss_clean(trim($_GET['q'])) : '';
+    $query_sql = "AND (titulo LIKE '$query%' OR titulo LIKE '% $query%' OR contenido LIKE '$query%' OR contenido LIKE '% $query%')";
 }
 elseif ( isset($_GET['q']) && ! (strlen(trim($_GET['q'])) > 3) ) {
     $msg_warning = true;
     $msg_warning_text = "Debe introducir al menos 3 caracteres para iniciar una búsqueda";
 }
 
-if (isset($_GET['p'])) {
-    $pag = htmlspecialchars(strip_tags($_GET['p']));
+if (isset($_GET['p']) && is_numeric($_GET['p'])) {
+    $pag = intval($_GET['p']);
     $pag = ($pag > 1) ? $pag : 0;
 }
 else {
@@ -65,13 +66,13 @@ include("../../inc_menu.php");
 
                 <div class="col-md-9">
 
-                    <form action="" method="get">
+                    <form action="" method="get" autocomplete="off">
                         <label for="buscar"></label>
                         <div class="input-group input-lg">
                             <span class="input-group-addon">
                                 <i class="now-ui-icons ui-1_zoom-bold"></i>
                             </span>
-                            <input type="text" id="buscar" name="q" class="form-control" placeholder="Buscar una noticia" value="<?php echo htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="text" id="buscar" name="q" class="form-control" placeholder="Buscar una noticia" value="<?php echo xss_clean($_GET['q']); ?>" autocomplete="off">
                         </div>
                     </form>
 
@@ -83,8 +84,10 @@ include("../../inc_menu.php");
                     </div>
                     <br>
                     <?php endif; ?>
+
+                    <?php if ($total_noticias > 0): ?>
                     
-                    <p class="text-muted text-right"><small><?php echo ($pag < 1) ? '1' : $pag; ?> - <?php echo $limite; ?> de <?php echo $total_noticias; ?> resultados</small></p>
+                    <p class="text-muted text-right"><small><?php echo ($pag < 1) ? '1' : $pag; ?> - <?php echo ($total_noticias >= $limite) ? $limite : $total_noticias; ?> de <?php echo $total_noticias; ?> resultados</small></p>
 
                     <table class="table">
                         <tbody>
@@ -118,6 +121,14 @@ include("../../inc_menu.php");
                             <?php endif; ?>
                         </ul>
                     </nav>
+                    <?php endif; ?>
+
+                    <?php else: // ($total_noticias > 0) ?>
+                    
+                    <div class="alert alert-warning">
+                        Lo sentimos, no hemos encontrado resultados.
+                    </div>
+
                     <?php endif; ?>
 
                 </div>

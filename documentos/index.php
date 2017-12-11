@@ -197,9 +197,7 @@ function scan_dir_for_digest($current_dir, &$message)
 
 function init($directory)
 {
-	global $uploads_folder_name, $direction, $mess, $font, $normalfontcolor;
-
-	$direction = ($direction == DIRECTION_UP) ? DIRECTION_DOWN : DIRECTION_UP;
+	global $uploads_folder_name, $mess, $font, $normalfontcolor;
 
 	$current_dir = $uploads_folder_name;
 	if ($directory != '')
@@ -226,7 +224,6 @@ function init($directory)
 //
 function assemble_tables($tab1, $tab2)
 {
-	global $direction;
 
 	$liste = '';
 
@@ -259,7 +256,6 @@ function txt_vers_html($text)
 //
 function listing($current_dir)
 {
-	global $direction, $order;
 
 	$totalsize = 0;
 	$handle = opendir($current_dir);
@@ -275,27 +271,11 @@ function listing($current_dir)
 			$totalsize += $filesize;
 			if (is_dir("$current_dir/$filename"))
 			{
-				if($order == 'mod')
-					$list_dir[$filename] = filemtime("$current_dir/$filename");
-				else
-					$list_dir[$filename] = $filename;
+				$list_dir[$filename] = $filename;
             }
             else
             {
-            	switch($order)
-            	{
-					case 'taille';
-						$list_file[$filename] = $filesize;
-						break;
-					case 'mod';
-						$list_file[$filename] = filemtime("$current_dir/$filename");
-						break;
-					//case 'rating';
-					//	break;
-					default;
-						$list_file[$filename] = get_mimetype_img("$current_dir/$filename");
-						break;
-				}
+            	$list_file[$filename] = get_mimetype_img("$current_dir/$filename");
 			}
 		}
 	}
@@ -303,31 +283,12 @@ function listing($current_dir)
 
 	if(is_array($list_file))
 	{
-       	switch($order)
-    	{
-			case 'taille':
-			//case 'rating':
-			//	$direction == DIRECTION_DOWN ? asort($list_file) : arsort($list_file);
-			//	break;
-			case 'mod':
-				$direction == DIRECTION_DOWN ? arsort($list_file) : asort($list_file);
-				break;
-			default:
-				$direction == DIRECTION_DOWN ? ksort($list_file) : krsort($list_file);
-				break;
-		}
+       	$direction == DIRECTION_DOWN ? ksort($list_file) : krsort($list_file);
 	}
 
 	if(is_array($list_dir))
 	{
-		if ($order == "mod")
-		{
-			$direction == DIRECTION_UP ? arsort($list_dir) : asort($list_dir);
-		}
-		else
-		{
-			$direction == DIRECTION_UP ? krsort($list_dir) : ksort($list_dir);
-		}
+		$direction == DIRECTION_UP ? krsort($list_dir) : ksort($list_dir);
 	}
 
 	$liste = assemble_tables($list_dir, $list_file);
@@ -348,7 +309,7 @@ function listing($current_dir)
 
 function contents_dir($current_dir, $directory)
 {
-  global $font,$direction,$order,$totalsize,$mess,$tablecolor,$lightcolor;
+  global $font,$totalsize,$mess,$tablecolor,$lightcolor;
   global $file_out_max_caracters,$normalfontcolor, $phpExt, $hidden_dirs, $showhidden;
   global $comment_max_caracters,$datetimeformat, $logged_user_name;
   global $user_status,$activationcode,$max_filesize_to_mail,$mail_functions_enabled, $timeoffset, $grants;
@@ -462,8 +423,8 @@ echo "    </div>
 //
 function list_dir($directory)
 {
-	global $mess,$direction,$uploads_folder_name;
-	global $font,$order,$totalsize,$tablecolor,$headercolor,$bordercolor;
+	global $mess,$uploads_folder_name;
+	global $font,$totalsize,$tablecolor,$headercolor,$bordercolor;
 	global $headerfontcolor, $normalfontcolor, $phpExt;
 	$directory = clean_path($directory);
 	$current_dir = init($directory);
@@ -473,7 +434,7 @@ function list_dir($directory)
 		echo "
 
 	  <table class=\"table table-hover\">";
-	    $direction = ($direction == DIRECTION_DOWN) ? DIRECTION_UP : DIRECTION_DOWN;
+	    $direction = DIRECTION_DOWN;
         contents_dir($current_dir, $directory);
 		echo "</table>";
 }
@@ -499,8 +460,8 @@ function normalize_filename($name)
 //
 function show_contents()
 {
-	global $current_dir,$directory,$uploads_folder_name,$mess,$direction,$timeoffset;
-	global $order,$totalsize,$font,$tablecolor,$bordercolor,$headercolor;
+	global $current_dir,$directory,$uploads_folder_name,$mess,$timeoffset;
+	global $totalsize,$font,$tablecolor,$bordercolor,$headercolor;
 	global $headerfontcolor,$normalfontcolor,$user_status, $grants, $phpExt;
 
 	echo '<div class="section">';

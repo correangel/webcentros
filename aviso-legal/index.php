@@ -1,4 +1,5 @@
 <?php
+require_once("../bootstrap.php");
 require_once("../config.php");
 
 $pagina['titulo'] = 'Aviso legal';
@@ -80,11 +81,11 @@ include("../inc_menu.php");
                     <p>Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador:</p>
                     
                     <ul>
-                        <li>Para más información sobre Internet Explorer <a href="windows.microsoft.com/es-es/internet-explorer/delete-manage-cookies#ie=ie-11" target="_blank">pulse aquí</a>.</li>
+                        <li>Para más información sobre Internet Explorer <a href="http://windows.microsoft.com/es-es/internet-explorer/delete-manage-cookies#ie=ie-11" target="_blank">pulse aquí</a>.</li>
                         <li>Para más información sobre Google Chrome <a href="https://support.google.com/chrome/answer/95647?hl=es" target="_blank">pulse aquí</a>.</li>
                         <li>Para más información sobre Safari <a href="https://support.apple.com/es-es/HT201265" target="_blank">pulse aquí</a>.</li>
                         <li>Para más información sobre Mozilla Firefox <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-que-los-sitios-we" target="_blank">pulse aquí</a>.</li>
-                        <li>Para más información sobre Opera <a href="help.opera.com/Windows/11.50/es-ES/cookies.html" target="_blank">pulse aquí</a>.</li>
+                        <li>Para más información sobre Opera <a href="http://help.opera.com/Windows/11.50/es-ES/cookies.html" target="_blank">pulse aquí</a>.</li>
                     </ul>
                     
                     <p>A través de su navegador, usted también puede ver las cookies que están en su ordenador, y borrarlas según crea conveniente. Las cookies son archivos de texto, los puede abrir y leer el contenido. Los datos dentro de ellos casi siempre está cifrado con una clave numérica que corresponde a una sesión en Internet por lo que muchas veces no tiene sentido más allá que la página web que lo escribió.</p>

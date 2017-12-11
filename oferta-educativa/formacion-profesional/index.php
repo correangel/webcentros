@@ -1,4 +1,5 @@
 <?php
+require_once("../../bootstrap.php");
 require_once("../../config.php");
 
 if (! isset($config['educacion_cfgb']) && ! isset($config['educacion_cfgm']) && ! isset($config['educacion_cfgs'])) {

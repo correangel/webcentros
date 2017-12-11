@@ -1,23 +1,33 @@
 <?php
+require_once("../../bootstrap.php");
 require_once("../../config.php");
-require('../../plugins/phpmailer/PHPMailerAutoload.php');
+require_once('../../plugins/phpmailer/PHPMailerAutoload.php');
 
-function getRealIP() {
-        if (!empty($_SERVER['HTTP_CLIENT_IP']))
-            return $_SERVER['HTTP_CLIENT_IP'];
-            
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        
-        return $_SERVER['REMOTE_ADDR'];
+$plugin_google_recaptcha = false;
+if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha']['site_key'] != 'YOUR_SITE_KEY' && isset($config['google_recaptcha']['secret']) && $config['google_recaptcha']['secret'] != 'YOUR_SECRET_CODE') {
+    require_once('../../plugins/recaptchalib.php');
+    $plugin_google_recaptcha = true;
 }
 
 if (isset($_POST['submit'])) {
-    $contacto_nombre = htmlspecialchars(strip_tags(trim($_POST['nombre'])), ENT_QUOTES, 'UTF-8');
-    $contacto_apellidos = htmlspecialchars(strip_tags(trim($_POST['apellidos'])), ENT_QUOTES, 'UTF-8');
-	$contacto_correo = htmlspecialchars(strip_tags(trim($_POST['email'])), ENT_QUOTES, 'UTF-8');
-    $contacto_mensaje = htmlspecialchars(strip_tags(trim($_POST['mensaje'])), ENT_QUOTES, 'UTF-8');
+    $contacto_nombre = xss_clean(trim($_POST['nombre']));
+    $contacto_apellidos = xss_clean(trim($_POST['apellidos']));
+	$contacto_correo = xss_clean(trim($_POST['email']));
+    $contacto_mensaje = xss_clean(trim($_POST['mensaje']));
     $contacto_nombre_completo = $contacto_nombre.' '.$contacto_apellidos;
+
+    if ($plugin_google_recaptcha) {
+        $response = null;
+        $reCaptcha = new ReCaptcha($config['google_recaptcha']['secret']);
+        $realIP = getRealIP();
+
+        if (trim($_POST["g-recaptcha-response"])) {
+            $response = $reCaptcha->verifyResponse(
+                $realIP,
+                $_POST["g-recaptcha-response"]
+            );
+        }
+    }
 	
 	if (! empty($contacto_nombre) && ! empty($contacto_apellidos) && ! empty($contacto_correo) && ! empty($contacto_mensaje)) {
 		
@@ -31,17 +41,59 @@ if (isset($_POST['submit'])) {
 			$msg_error_text = "El mensaje supera los 1000 caracteres de longitud.";
 		}
 		else {
-			
-			$mail = new PHPMailer;
-            $mail->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], $config['centro_denominacion']);
-            $mail->AddReplyTo($contacto_correo, $contacto_nombre_completo);
-			$mail->addAddress($config['centro_email'], $config['centro_denominacion']);
-			$mail->Subject = 'Nuevo mensaje - '.$config['centro_denominacion'].' (Formulario de contacto)';
-			$mail->msgHTML(utf8_decode('<p>' . $contacto_mensaje . '</p><p><br></p><p><br></p><p>Nombre: ' . $contacto_nombre . '</p><p>Correo: ' . $contacto_correo . '</p><p>Dirección IP: ' . getRealIP() . '</p><p><br></p>'));
-			$mail->AltBody = $contacto_mensaje . "\n\nNombre: " . $contacto_nombre_completo . "\n\nCorreo: " . $contacto_correo . "\n\nDirección IP: " . getRealIP() ."\n\n";
-			$mail->send();
-			
-			$msg_success = true;
+            
+            $mail = new PHPMailer;
+            $mail->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], utf8_decode($config['centro_denominacion']));
+            $mail->AddReplyTo($contacto_correo, utf8_decode($contacto_nombre_completo));
+            $mail->addAddress($config['centro_email'], utf8_decode($config['centro_denominacion']));
+            $mail->Subject = utf8_decode('Nuevo mensaje - '.$config['centro_denominacion'].' (Formulario de contacto)');
+            $mail->msgHTML(utf8_decode('<p>' . $contacto_mensaje . '</p><p><br></p><p><br></p><p>Nombre: ' . $contacto_nombre_completo . '</p><p>Correo: ' . $contacto_correo . '</p><p>Dirección IP: ' . getRealIP() . '</p><p><br></p>'));
+            $mail->AltBody = utf8_decode($contacto_mensaje . "\n\nNombre: " . $contacto_nombre_completo . "\n\nCorreo: " . $contacto_correo . "\n\nDirección IP: " . getRealIP() ."\n\n");
+
+            if ($plugin_google_recaptcha) {
+                if ($response != null && $response->success) {
+                    $result_send = $mail->send();
+                    if ($result_send) {
+                        
+                        $mail_copy = new PHPMailer;
+                        $mail_copy->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], utf8_decode($config['centro_denominacion']));
+                        $mail_copy->addAddress($contacto_correo, utf8_decode($contacto_nombre_completo));
+                        $mail_copy->Subject = utf8_decode('Copia de su mensaje en la web del '.$config['centro_denominacion']);
+                        $mail_copy->msgHTML(utf8_decode('<p>Hola ' . $contacto_nombre . '. </p><p>Gracias por contactar con nosotros. A continuación, le enviamos la copia del mensaje enviado a la Dirección del centro:</p><p>' . $contacto_mensaje . '</p><p><br></p><p>Le responderemos tan pronto como sea posible.</p><p>No responda a este correo electrónico. Este buzón no se supervisa y no recibirá respuesta.</p>'));
+                        $mail_copy->AltBody = utf8_decode("Hola " . $contacto_nombre . ". \nGracias por contactar con nosotros. A continuación, le enviamos la copia del mensaje enviado a la Dirección del centro: \n" . $contacto_mensaje . " \n\nLe responderemos tan pronto como sea posible. \nNo responda a este correo electrónico. Este buzón no se supervisa y no recibirá respuesta.\n");
+                        $result_copy_send = $mail_copy->send();
+
+                        $msg_success = true;
+                    }
+                    else {
+                        $msg_error = true;
+				        $msg_error_text = "Error al envíar el mensaje. Inténtelo de nuevo más tarde.";
+                    }
+                }
+                else {
+                    $msg_error = true;
+				    $msg_error_text = "Error en la comprobación reCAPTCHA. Inténtelo de nuevo.";
+                }
+            }
+            else {
+                $result_send = $mail->send();
+                if ($result_send) {
+
+                    $mail_copy = new PHPMailer;
+                    $mail_copy->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], $config['centro_denominacion']);
+                    $mail_copy->addAddress($contacto_correo, $contacto_nombre_completo);
+                    $mail_copy->Subject = utf8_decode('Copia de su mensaje en la web del '.$config['centro_denominacion']);
+                    $mail_copy->msgHTML(utf8_decode('<p>Hola ' . $contacto_nombre . '. </p><p>Gracias por contactar con nosotros. A continuación, le enviamos la copia del mensaje enviado a la Dirección del centro:</p><p>' . $contacto_mensaje . '</p><p><br></p><p>Le responderemos tan pronto como sea posible.</p><p>No responda a este correo electrónico. Este buzón no se supervisa y no recibirá respuesta.</p>'));
+                    $mail_copy->AltBody = utf8_decode("Hola " . $contacto_nombre . ". \nGracias por contactar con nosotros. A continuación, le enviamos la copia del mensaje enviado a la Dirección del centro: \n" . $contacto_mensaje . " \n\nLe responderemos tan pronto como sea posible.\nNo responda a este correo electrónico. Este buzón no se supervisa y no recibirá respuesta.\n");
+                    $result_copy_send = $mail_copy->send();
+
+                    $msg_success = true;
+                }
+                else {
+                    $msg_error = true;
+                    $msg_error_text = "Error al envíar el mensaje. Inténtelo de nuevo más tarde.";
+                }
+            }
 			
 		}
 	}
@@ -75,7 +127,7 @@ include("../../inc_menu.php");
 
             <?php if (isset($msg_success) && $msg_success): ?>
             <div class="alert alert-success">
-                Su mensaje ha sido enviado correctamente. Le responderemos tan pronto como sea posible.
+                Su mensaje ha sido enviado correctamente. Hemos enviado una copia de su mensaje a su correo electrónico. Le responderemos tan pronto como sea posible.
             </div>
 
             <br>
@@ -140,11 +192,52 @@ include("../../inc_menu.php");
                                 <label>Mensaje</label>
                                 <textarea name="mensaje" class="form-control" id="message" rows="6" placeholder="Mensaje" maxlenght="1000"></textarea>
                             </div>
+
+                            <?php if ($plugin_google_recaptcha): ?>
+                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group text-center">
+                                        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                        <div class="g-recaptcha" data-sitekey="<?php echo $config['google_recaptcha']['site_key']; ?>" style="display: inline-block;"></div>
+                                        <noscript>
+                                        <div>
+                                            <div style="width: 302px; height: 422px; position: relative;">
+                                            <div style="width: 302px; height: 422px; position: absolute;">
+                                                <iframe src="https://www.google.com/recaptcha/api/fallback?k=<?php echo $config['google_recaptcha']['site_key']; ?>"
+                                                        frameborder="0" scrolling="no"
+                                                        style="width: 302px; height:422px; border-style: none;">
+                                                </iframe>
+                                            </div>
+                                            </div>
+                                            <div style="width: 300px; height: 60px; border-style: none;
+                                                        bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                                                        background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                                            <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                                        class="g-recaptcha-response"
+                                                        style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                                                                margin: 10px 25px; padding: 0px; resize: none;" >
+                                            </textarea>
+                                            </div>
+                                        </div>
+                                        </noscript>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-round pull-right">Enviar mensaje</button>
+                                </div>
+                            </div>
+
+                            <?php else: ?>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" name="submit" class="btn btn-primary btn-round pull-right">Enviar mensaje</button>
                                 </div>
                             </div>
+
+                            <?php endif; ?>
+
                         </div>
                     </form>
                 </div>

@@ -1,4 +1,5 @@
 <?php
+require_once("../../bootstrap.php");
 require_once("../../config.php");
 if (! isset($config['educacion_bachiller']) || $config['educacion_bachiller'] == 0) {
     include("../../error404.php");

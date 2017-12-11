@@ -1,5 +1,7 @@
 <?php
-include_once("../config.php");
+require_once("../bootstrap.php");
+require_once("../config.php");
+
 if (! isset($config['mod_documentos']) || $config['mod_documentos'] != 1) {
 	include("../error404.php");
 }

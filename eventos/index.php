@@ -1,4 +1,5 @@
 <?php
+require_once("../bootstrap.php");
 require_once("../config.php");
 
 $anio_curso = substr($config['curso_actual'], 0, 4);

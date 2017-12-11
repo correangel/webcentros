@@ -1,5 +1,6 @@
 <?php
-require('../config.php');
+require_once("../bootstrap.php");
+require_once('../config.php');
 
 session_start();
 
@@ -10,15 +11,14 @@ if ($_SESSION['alumno_autenticado'] != 1) {
 	$_SESSION = array();
 	session_destroy();
 	
-	header("Location:".WEBCENTROS_DOMINIO.'alumnado/salir.php');
+	header('Location:'.WEBCENTROS_DOMINIO.'alumnado/salir.php');
 	exit();
 }
 
-if($_SERVER['SCRIPT_NAME'] != '/alumnado/clave.php') {
-	if(isset($_SESSION['cambiar_clave_alumno']) && $_SESSION['cambiar_clave_alumno']) {
-		header('Location:'.WEBCENTROS_DOMINIO.'alumnado/clave.php');
-		exit();
-	}
+// FORZAMOS EL CAMBIO DE CONTRASEÑA
+if(isset($_SESSION['cambiar_clave_alumno']) && $_SESSION['cambiar_clave_alumno']) {
+	header('Location:'.WEBCENTROS_DOMINIO.'alumnado/clave.php');
+	exit();
 }
 
 $claveal = $_SESSION['claveal'];

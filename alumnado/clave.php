@@ -1,5 +1,6 @@
 <?php
-require('../config.php');
+require_once('../bootstrap.php');
+require_once('../config.php');
 
 session_start();
 
@@ -36,10 +37,9 @@ function validarCorreo($correo) {
 // VALIDAMOS EL FORMULARIO
 if (isset($_POST['submit'])) {
 
-	$usuario = $_POST['usuario'];
-	$codigo2 = $_POST['codigo2'];
-	$codigo3 = $_POST['codigo3'];
-	$correo  = $_POST['correo'];
+	$codigo2 = xss_clean($_POST['codigo2']);
+	$codigo3 = xss_clean($_POST['codigo3']);
+	$correo  = xss_clean($_POST['correo']);
 	
 	$codigo2_has_error = 0;
 	$codigo3_has_error = 0;
@@ -97,7 +97,10 @@ if (isset($_POST['submit'])) {
 $result = mysqli_query($db_con, "SELECT control.claveal, control.correo, CONCAT(alma.apellidos,', ',alma.nombre) AS alumno FROM alma JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='".$_SESSION['claveal']."' LIMIT 1");
 $row = mysqli_fetch_assoc($result);
 
-$pagina['titulo'] = 'Cambiar la contraseña';
+$exp_nombre = explode(', ', $row['alumno']);
+$nombre_alumno = $exp_nombre[1].' '.$exp_nombre[0];
+
+$pagina['titulo'] = $nombre_alumno;
 include("../inc_menu.php");
 ?>
 
@@ -106,7 +109,7 @@ include("../inc_menu.php");
 
 			<!-- TITULO DE LA PAGINA -->
 			<div class="marg-bottom15">
-				<h2 style="display: inline;" class="mr-auto">Expediente académico del alumno/a</h2>
+				<h2 style="display: inline;" class="mr-auto">Cambiar la contraseña</h2>
 				<div style="display: inline;" class="pull-right hidden-print">
 					<a href="salir.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
 				</div>
@@ -131,41 +134,40 @@ include("../inc_menu.php");
 							<fieldset>
 								
 								<div class="form-group">
-								<label for="usuario" class="col-sm-4 control-label">Alumno/a</label>
-								<div class="col-sm-8">
-								<input type="text" class="form-control" id="usuario" name="usuario" value="<?php echo $row['alumno']; ?>" readonly>
+									<label for="usuario" class="col-sm-4 control-label">Alumno/a</label>
+									<div class="col-sm-8">
+									<input type="text" class="form-control" value="<?php echo $row['alumno']; ?>" readonly>
+									</div>
 								</div>
-							</div>
-							
-							<div id="form-group-codigo2"  class="form-group">
-								<label for="codigo2" class="col-sm-4 control-label">Nueva contraseña</label>
-								<div class="col-sm-8">
-								<input type="password" class="form-control" id="codigo2" name="codigo2" placeholder="Nueva contraseña" maxlength="12">
-								</div>
-							</div>
-							
-							<div id="form-group-codigo3"  class="form-group">
-								<label for="codigo3" class="col-sm-4 control-label">Repita la contraseña</label>
-								<div class="col-sm-8">
-								<input type="password" class="form-control" id="codigo3" name="codigo3" placeholder="Repita la contraseña" maxlength="12">
-								</div>
-							</div>
-							
-							<div id="form-group-email" class="form-group">
-								<label for="correo" class="col-sm-4 control-label">Correo electrónico</label>
-								<div class="col-sm-8">
-								<input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" value="<?php echo $row['correo'];?>">
-								</div>
-							</div>
 								
+								<div id="form-group-codigo2"  class="form-group">
+									<label for="codigo2" class="col-sm-4 control-label">Nueva contraseña</label>
+									<div class="col-sm-8">
+									<input type="password" class="form-control" id="codigo2" name="codigo2" placeholder="Nueva contraseña" maxlength="12">
+									</div>
+								</div>
+								
+								<div id="form-group-codigo3"  class="form-group">
+									<label for="codigo3" class="col-sm-4 control-label">Repita la contraseña</label>
+									<div class="col-sm-8">
+									<input type="password" class="form-control" id="codigo3" name="codigo3" placeholder="Repita la contraseña" maxlength="12">
+									</div>
+								</div>
+								
+								<div id="form-group-email" class="form-group">
+									<label for="correo" class="col-sm-4 control-label">Correo electrónico</label>
+									<div class="col-sm-8">
+									<input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" value="<?php echo $row['correo'];?>">
+									</div>
+								</div>
 								
 								<div class="form-group">
-								<div class="col-sm-8 col-sm-offset-4">
-									<button type="submit" class="btn btn-primary" name="submit">Cambiar la contraseña</button>
-									<?php if($_SESSION['cambiar_clave_alumno'] == 0): ?>
-									<a href="index.php" class="btn btn-default">Volver</a>
-									<?php endif; ?>
-								</div>
+									<div class="col-sm-8 col-sm-offset-4">
+										<button type="submit" class="btn btn-primary" name="submit">Cambiar la contraseña</button>
+										<?php if($_SESSION['cambiar_clave_alumno'] == 0): ?>
+										<a href="index.php" class="btn btn-default">Volver</a>
+										<?php endif; ?>
+									</div>
 								</div>
 							</fieldset>
 						</form>

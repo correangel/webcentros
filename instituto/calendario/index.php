@@ -1,4 +1,5 @@
 <?php
+require_once("../../bootstrap.php");
 require_once("../../config.php");
 require('../../plugins/calendar.class.php');
 
