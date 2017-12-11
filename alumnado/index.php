@@ -3,6 +3,7 @@ require_once("../bootstrap.php");
 require_once('../config.php');
 
 session_start();
+session_regenerate_id();
 
 define('INTRANET_DIRECTORY', __DIR__);
 
