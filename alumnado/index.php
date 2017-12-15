@@ -255,6 +255,8 @@ include('../inc_menu.php');
 		</div><!-- /.container -->
 	</div>
 	
+	<?php include("../inc_pie.php"); ?>
+	
 	<?php if(isset($_GET['mod']) && $_GET['mod'] == 'recursos'): ?>
 	<script>$('#nav_alumno a[href="#recursos"]').tab('show');</script>
 	<?php endif; ?>
@@ -262,8 +264,6 @@ include('../inc_menu.php');
 	<?php if(isset($_GET['mod']) && $_GET['mod'] == 'mensajes'): ?>
 	<script>$('#nav_alumno a[href="#mensajes"]').tab('show');</script>
 	<?php endif; ?>
-
-    <?php include("../inc_pie.php"); ?>
 
 </body>
 </html>

@@ -201,15 +201,18 @@ include("../inc_menu.php");
 		</div><!-- /.container -->
 	</div>
 
-<?php if($codigo2_has_error): ?>
-    <script>$("#form-group-codigo2").addClass( "has-error" );</script>
-<?php endif; ?>
-<?php if($codigo3_has_error): ?>
-    <script>$("#form-group-codigo3").addClass( "has-error" );</script>
-<?php endif; ?>
-<?php if($correo_has_error): ?>
-    <script>$("#form-group-email").addClass( "has-error" );</script>
-<?php endif; ?>
+
+	<?php include("../inc_pie.php"); ?>
+	
+	<?php if($codigo2_has_error): ?>
+	<script>$("#form-group-codigo2").addClass( "has-error" );</script>
+	<?php endif; ?>
+	<?php if($codigo3_has_error): ?>
+	<script>$("#form-group-codigo3").addClass( "has-error" );</script>
+	<?php endif; ?>
+	<?php if($correo_has_error): ?>
+	<script>$("#form-group-email").addClass( "has-error" );</script>
+	<?php endif; ?>
 
 </body>
 </html>

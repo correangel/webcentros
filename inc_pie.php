@@ -72,11 +72,18 @@
     <!-- Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/now-ui-kit.js" type="text/javascript"></script>
-    <?php if ((date('d') > 1 && date('m') == 12) || (date('d') < 7 && date('m') == 1)): ?>
+    <?php if (((date('d') > 1 && date('m') == 12) || (date('d') < 7 && date('m') == 1)) && stristr($_SERVER['REQUEST_URI'], '/alumnado/index.php') == false && stristr($_SERVER['REQUEST_URI'], '/alumnado/clave.php') == false): ?>
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/snowfall.jquery.js" type="text/javascript"></script>
     <script>
     $(document).ready(function(){        
-        $(document).snowfall({deviceorientation : true, round : true, minSize: 1, maxSize:8,  flakeCount : 250});
+        $(document).snowfall({
+            deviceorientation: true,
+            round: true,
+            minSize: 1,
+            maxSize:8,
+            flakeColor: '#f6f6f6',
+            flakeCount: 250
+        });
     });
     </script>
     <?php endif; ?>
