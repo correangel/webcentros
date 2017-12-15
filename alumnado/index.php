@@ -37,6 +37,39 @@ if ($claveal) {
   } 
 }
 
+if (isset($_POST['subirFotografia'])) {
+
+	$fotografia = $_FILES['foto']['tmp_name'];
+	
+	if (empty($claveal) || empty($fotografia)) {
+		$msg_error = "Todos los campos del formulario son obligatorios.";
+	}
+	else {
+		
+		if ($_FILES['foto']['type'] != 'image/jpeg') {
+			$msg_error = "El formato del archivo no es válido.";
+		}
+		else {
+			require_once('../plugins/class.Images.php');
+			$image = new Image($fotografia);
+			$image->resize(240,320,'crop');
+			$image->save($claveal, '../intranet/xml/fotos/', 'jpg');
+			
+			$file_content = mysqli_real_escape_string($db_con, file_get_contents('../intranet/xml/fotos/'.$claveal.'.jpg'));
+			$file_size = filesize('../intranet/xml/fotos/'.$claveal.'.jpg');
+			
+			// Eliminamos posibles imagenes que hayan en la tabla
+			mysqli_query($db_con, "DELETE FROM fotos WHERE nombre='".$claveal.".jpg'");
+			
+			// Insertamos la foto en la tabla, esto es útil para la página externa
+			mysqli_query($db_con, "INSERT fotos (nombre, datos, fecha, tamaño) VALUES ('".$claveal.".jpg', '$file_content', '".date('Y-m-d H:i:s')."', '".$file_size."')");
+			
+			$msg_success = "La fotografía se ha actualizado.";
+		}
+		
+	}
+}
+
 $pagina['titulo'] = $nombrepil.' '.$apellido;
 
 $pagina['meta']['robots'] = 0;
@@ -90,6 +123,7 @@ include('../inc_menu.php');
 					<h2><span class="fa fa-user fa-fw fa-4x"></span></h2>
 					<?php endif; ?>
 					
+					<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#subirFotografia"><small>Subir o cambiar foto</small></a>
 				</div><!-- /.col-sm-2 -->
 				
 				
@@ -164,7 +198,7 @@ include('../inc_menu.php');
 								<dd class="col-sm-7"><?php echo ($tutor != "") ? mb_convert_case($tutor, MB_CASE_TITLE, 'UTF-8'): '<span class="text-muted">Sin registrar</span>'; ?></dd>
 								
 								<dt class="col-sm-5">Repetidor/a</dt>
-								<dd class="col-sm-7"><?php echo ($row['matriculas'] > 1) ? 'S�': 'No'; ?></dd>
+								<dd class="col-sm-7"><?php echo ($row['matriculas'] > 1) ? 'Sí': 'No'; ?></dd>
 							</dl>
 							
 						</div><!-- /.col-sm-6 -->
@@ -199,13 +233,16 @@ include('../inc_menu.php');
 					
 					<ul id="nav_alumno" class="nav nav-tabs nav-tabs-neutral justify-content-center" data-background-color="orange" role="tablist">
 						<?php $tab1 = 1; ?>
-						<li class="nav-item"><a class="nav-link active" href="#asistencia" role="tab" data-toggle="tab">Faltas de Asistencia</a></li>
-						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Problemas de Convivencia</a></li>
-						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Actividades Extraescolares</a></li>
-						<li class="nav-item"><a class="nav-link" href="#horario" role="tab" data-toggle="tab">Horario y Profesores</a></li>
-						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Actividades Evaluables</a></li>
-						<li class="nav-item"><a class="nav-link" href="#evaluaciones" role="tab" data-toggle="tab">Notas de Evaluaciones</a></li>
-						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes del Centro</a></li>
+						<li class="nav-item"><a class="nav-link active" href="#asistencia" role="tab" data-toggle="tab">Asistencia</a></li>
+						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Convivencia</a></li>
+						<li class="nav-item"><a class="nav-link" href="#evaluaciones" role="tab" data-toggle="tab">Calificaciones</a></li>
+						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Extraescolares</a></li>
+						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Actividades</a></li>
+						<li class="nav-item"><a class="nav-link" href="#horario" role="tab" data-toggle="tab">Horario</a></li>
+						<?php if (isset($config['alumnado']['ver_informes_tutoria']) && $config['alumnado']['ver_informes_tutoria']): ?>
+						<li class="nav-item"><a class="nav-link" href="#tutoria" role="tab" data-toggle="tab">Tutoría</a></li>
+						<?php endif; ?>
+						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes</a></li>
 					</ul>
 
 					<br>
@@ -218,22 +255,24 @@ include('../inc_menu.php');
 						<div class="tab-pane" id="convivencia">
 						<?php include("fechorias.php"); ?>
 						</div>
+						<div class="tab-pane" id="evaluaciones">
+						<?php include("notas.php"); ?>
+						</div>
 						<div class="tab-pane" id="actividades">
 						<?php include("actividades.php"); ?>
-						</div>
-						<div class="tab-pane" id="horario">
-						<?php include("horarios.php"); ?>
-						</div>
-						<div class="tab-pane hidden-print" id="recursos">
-						<?php include("recursos.php"); ?>
 						</div>
 						<div class="tab-pane" id="evaluables">
 						<?php include("evaluables.php"); ?>
 						</div>
-						<div class="tab-pane" id="evaluaciones">
-						<?php include("notas.php"); ?>
+						<div class="tab-pane" id="horario">
+						<?php include("horarios.php"); ?>
 						</div>
-						<div class="tab-pane hidden-print" id="mensajes">
+						<?php if (isset($config['alumnado']['ver_informes_tutoria']) && $config['alumnado']['ver_informes_tutoria']): ?>
+						<div class="tab-pane" id="tutoria">
+						<?php include("tutoria.php"); ?>
+						</div>
+						<?php endif; ?>
+						<div class="tab-pane" id="mensajes">
 						<?php include("mensajes.php"); ?>
 						</div>
 					</div>
@@ -242,13 +281,50 @@ include('../inc_menu.php');
 				
 			</div><!-- /.row -->
 			
+			<!-- MODAL SUBIDA FOTOGRAFIA -->
+			<div class="modal fade" id="subirFotografia" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<form action="" method="post" enctype="multipart/form-data">
+						<div class="modal-content">
+							<div class="modal-header justify-content-center">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="title title-up">Subir o cambiar fotografía</h4>
+							</div>
+							<div class="modal-body">
+								<div class="bg-clouds p-3 rounded">
+									<div class="form-group">
+										<label for="foto">Suba o actualice la fotografía. El formato debe ser JPEG.</label>
+										<input type="file" class="form-control" id="foto" name="foto" accept="image/jpg">
+									</div>
+								</div>
+
+								<hr>
+
+								<div class="help-block">
+									<p>La foto debe cumplir la norma especificada:</p>
+									<ul>
+										<li>Tener el fondo de un único color, liso y claro.</li>
+										<li>La foto ha de ser reciente y tener menos de 6 meses de antigüedad.</li>
+										<li>Foto tipo carnet, la imagen no puede estar inclinada, tiene que mostrar la cara claramente de frente.</li>
+										<li>Fotografía de cerca que incluya la cabeza y parte superior de los hombros, la cara ocuparía un 70-80% de la fotografía.</li>
+										<li>Fotografía perfectamente enfocada y clara.</li>
+									</ul>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+								<button type="submit" name="subirFotografia" class="btn btn-primary">Subir fotografía</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</form>
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			
 			<?php else: ?>
 			
-			<br><br><br>
-			<div class="text-center text-muted">
-				<p class="lead">No hay información sobre el alumno/a en este curso.</p>
+			<div class="justify-content-center">
+				<p class="lead text-muted text-center p-5">No hay información de este alumno/a</p>
 			</div>
-			<br><br><br>
 			
 			<?php endif; ?>
 		
@@ -257,13 +333,13 @@ include('../inc_menu.php');
 	
 	<?php include("../inc_pie.php"); ?>
 	
-	<?php if(isset($_GET['mod']) && $_GET['mod'] == 'recursos'): ?>
-	<script>$('#nav_alumno a[href="#recursos"]').tab('show');</script>
-	<?php endif; ?>
-	
-	<?php if(isset($_GET['mod']) && $_GET['mod'] == 'mensajes'): ?>
-	<script>$('#nav_alumno a[href="#mensajes"]').tab('show');</script>
-	<?php endif; ?>
+	<script>
+		<?php if(isset($_GET['mod']) && $_GET['mod'] == 'recursos'): ?>
+		$('#nav_alumno a[href="#recursos"]').tab('show');
+		<?php elseif (isset($_GET['mod']) && $_GET['mod'] == 'mensajes'): ?>
+		$('#nav_alumno a[href="#mensajes"]').tab('show');
+		<?php endif; ?>
+	</script>
 
 </body>
 </html>

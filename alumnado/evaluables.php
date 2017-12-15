@@ -12,8 +12,8 @@ $query_evaluables = mysqli_query($db_con, "SELECT DISTINCT notas_cuaderno.profes
 <table class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th>Asignatura</th>
       <th>Actividad</th>
+      <th>Asignatura</th>
       <th>Fecha</th>
       <th>Calificación</th>
     </tr>
@@ -21,8 +21,8 @@ $query_evaluables = mysqli_query($db_con, "SELECT DISTINCT notas_cuaderno.profes
   <tbody>
     <?php while ($actividad = mysqli_fetch_array($query_evaluables)): ?>
     <tr>
-      <td><?php echo $actividad['nomasignatura']; ?></td>
       <td><?php echo $actividad['nomactividad'];  ?></td>
+      <td><?php echo $actividad['nomasignatura']; ?></td>
       <td><?php echo $actividad['fecactividad'];  ?></td>
       <?php
       $query_calificacion = mysqli_query($db_con, "SELECT nota FROM datos WHERE claveal='$claveal' AND id='".$actividad['idactividad']."'");
@@ -36,7 +36,8 @@ $query_evaluables = mysqli_query($db_con, "SELECT DISTINCT notas_cuaderno.profes
 
 <?php else: ?>
 
-<h3 class="text-muted">No hay actividades evaluables para la unidad <?php echo $unidad; ?>.</h3>
-<br>
+<div class="justify-content-center">
+	<p class="lead text-muted text-center p-5">No se han registrado actividades evaluables</p>
+</div>
 
 <?php endif; ?>

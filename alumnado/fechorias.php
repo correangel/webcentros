@@ -41,18 +41,33 @@ Fechoria.notas, Fechoria.asunto, Fechoria.informa, Fechoria.claveal, grave FROM 
 		<thead>
 			<tr>
 				<th>Expulsión</th>
-				<th>Inicio</th>
-				<th>Final</th>
+				<th>Fecha</th>
 				<th>Conducta contraria</th>
+				<?php if (isset($config['alumnado']['ver_informes_tareas']) && $config['alumnado']['ver_informes_tareas']): ?>
+				<th>Informe de tareas</th>
+				<?php endif; ?>
 			</tr>
 		</thead>
 		<tbody>
 			<?php while ($row = mysqli_fetch_array($result)): ?>
+			<?php $inicio_exp = ($row['expulsion'] > '1') ? $row['inicio'] : $row['inicio_aula']; ?>
+			<?php $final_exp = ($row['expulsion'] > '1') ? $row['fin'] : $row['fin_aula']; ?>
 			<tr>
-				<td><?php echo ($row['expulsion'] > '1') ? 'Expulsi�n del centro' : 'Aula de convivencia'; ?></td>
-				<td><?php echo ($row['expulsion'] > '1') ? cambia_fecha($row['inicio']) : cambia_fecha($row['inicio_aula']); ?></td>
-				<td><?php echo ($row['expulsion'] > '1') ? cambia_fecha($row['fin']) : cambia_fecha($row['fin_aula']); ?></td>
+				<td><?php echo ($row['expulsion'] > '1') ? 'Expulsión del centro' : 'Aula de convivencia'; ?></td>
+				<td><?php echo strftime('%e %b', strtotime($inicio_exp)); ?> al <?php echo strftime('%e %b', strtotime($final_exp)); ?></td>
 				<td><?php echo $row['asunto']; ?></td>
+				<?php if (isset($config['alumnado']['ver_informes_tareas']) && $config['alumnado']['ver_informes_tareas']): ?>
+				<td>
+					<?php $result_tareas = mysqli_query($db_con, "SELECT id FROM tareas_alumnos WHERE claveal = '".$claveal."' AND fecha = '".$inicio_exp."' AND fin = '".$final_exp."' LIMIT 1"); ?>
+					<?php if (mysqli_num_rows($result_tareas)): ?>
+					<?php $row_tareas = mysqli_fetch_array($result_tareas); ?>
+					<form action="imptareas.php" method="post">
+						<input type="hidden" name="id" value="<?php echo $row_tareas['id']; ?>">
+						<button type="submit" class="btn btn-primary">Descargar informe</button>
+					</form>
+					<?php endif; ?>
+				</td>
+				<?php endif; ?>
 			</tr>
 			<?php endwhile; ?>
 			<?php mysqli_free_result($result); ?>
@@ -64,8 +79,9 @@ Fechoria.notas, Fechoria.asunto, Fechoria.informa, Fechoria.claveal, grave FROM 
 
 <?php else: ?>
 
-<h3 class="text-muted">El alumno/a no tiene problemas de convivencia</h3>
-<br>
+<div class="justify-content-center">
+	<p class="lead text-muted text-center p-5">No se han registrado problemas de convicencia</p>
+</div>
 
 <?php endif; ?>
   

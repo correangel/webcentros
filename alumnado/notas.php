@@ -18,13 +18,22 @@ elseif(strlen($inicial) > 0) {
 
 <?php
 if (strlen($inicial) > 0) {
-	$titulo_extra = '<th data-bs="tooltip" title="Evaluación inicial">EVI.</th>';
+	$titulo_extra = '<th data-bs="tooltip" title="EvaluaciÃ³n inicial">EVI.</th>';
 	$col_extra = 1;
 }
 ?>
 <h3>Evaluaciones</h3><br>
 <div class='table-responsive'><table class='table table-bordered table-striped table-hover'>
-		<thead><tr><th>Asignatura / Materia</th><?php echo $titulo_extra; ?><th data-bs="tooltip" title="1ª Evaluación">1Ev.</th><th data-bs="tooltip" title="2ª Evaluación">2Ev.</th><th data-bs="tooltip" title="Evaluación ordinaria">Ord.</th><th data-bs="tooltip" title="Evaluación extraordinaria">Ext.</th></tr></thead>
+		<thead>
+			<tr>
+				<th>Asignatura / Materia</th>
+				<?php echo $titulo_extra; ?>
+				<th data-bs="tooltip" title="1Âª EvaluaciÃ³n">1Ev.</th>
+				<th data-bs="tooltip" title="2Âª EvaluaciÃ³n">2Ev.</th>
+				<th data-bs="tooltip" title="EvaluaciÃ³n ordinaria">Ord.</th>
+				<th data-bs="tooltip" title="EvaluaciÃ³n extraordinaria">Ext.</th>
+			</tr>
+		</thead>
 
 <?php 
 
@@ -35,10 +44,10 @@ $nombre_asig ="";
 $bloque = explode(":", $trozos[$i]);
 $nombreasig = "select NOMBRE, ABREV, CURSO, CODIGO from asignaturas where CODIGO = '" . $bloque[0] . "'  order by CURSO";
 $asig = mysqli_query($db_con, $nombreasig);
-if(mysqli_num_rows($asig) < 1)	{$nombre_asig = "Asignatura sin código"; }
+if(mysqli_num_rows($asig) < 1)	{$nombre_asig = "Asignatura sin cÃ³digo"; }
 while($rowasig = mysqli_fetch_array($asig))	{
   if ($rowasig[3] == "")
-  {$nombre_asig = "Asignatura sin código"; }
+  {$nombre_asig = "Asignatura sin cÃ³digo"; }
 else{
 $nombre_asig = $rowasig[0];
 }	
@@ -163,7 +172,7 @@ if($rown1[0] == "" and $rown2[0] == "" and $rown3[0] == "" and $rown4[0] == "")
 	else
 		{
 	echo "<tr><td>";
-	if ($nombre_asig == "Asignatura sin código")  $asig_pend = "Consultar con Administración";
+	if ($nombre_asig == "Asignatura sin cÃ³digo")  $asig_pend = "Consultar con AdministraciÃ³n";
 	$trozo_curso=explode("(",$asig_pend);
 	$asig_curso=$trozo_curso[0];
 	echo $nombre_asig . " <span  class='small'>(" . $asig_curso . ")</span></td>"; 

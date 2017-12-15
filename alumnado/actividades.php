@@ -73,7 +73,8 @@ function nombremes($mes)
 
 <?php else: ?>
 
-<h3 class="text-muted">No se han registrado actividades extraescolares para la unidad <?php echo $curso; ?>.</h3>
-<br>
+<div class="justify-content-center">
+	<p class="lead text-muted text-center p-5">No se han registrado actividades extraescolares</p>
+</div>
 
 <?php endif; ?>

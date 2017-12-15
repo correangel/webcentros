@@ -15,6 +15,11 @@ $config['biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic/".$
 // Introducir la URL de la web Google Fotos, Flickr u otra donde se almacenen las imágenes y reportajes
 $config['imagenes'] = "";
 
+// PÁGINA DE ALUMNADO
+// Si se establece estas variables a 1 o true, el alumno podrá ver y descargar los informes de tareas y tutoría
+$config['alumnado']['ver_informes_tareas'] = 0;
+$config['alumnado']['ver_informes_tutoria'] = 0;
+
 // OFERTA EDUCATIVA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato
 // $config['educacion_bachiller'] = 1;
