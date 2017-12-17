@@ -12,8 +12,6 @@ session_start();
 
 if (! isset($_SESSION['intentos'])) $_SESSION['intentos'] = 0;
 
-$_SESSION['direccion_ip'] = getRealIP();
-
 $_SESSION['alumno_autenticado'] = 0;
 
 if (isset($_POST['submit'])) {
@@ -80,6 +78,8 @@ if (isset($_POST['submit'])) {
 		
 		if (mysqli_num_rows($result)) {
 			
+			$direccionIP = getRealIP();
+			$useragent = $_SERVER['HTTP_USER_AGENT'];
 			$usuario = mysqli_fetch_array($result);
 			
 			// Comprobamos si es la primera vez que el usuario accede
@@ -87,10 +87,10 @@ if (isset($_POST['submit'])) {
 
 				// Registramos el acceso
 				if (isset($_SESSION['nombretutor'])) {
-					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, tutorlegal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."', '".$_SESSION['nombretutor']."')");
+					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, tutorlegal, useragent) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$direccionIP."', '".$usuario['claveal']."', '".$_SESSION['nombretutor']."', '".$useragent."')");
 				}
 				else {
-					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."')");
+					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, useragent) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$direccionIP."', '".$usuario['claveal']."', '".$useragent."')");
 				}
 				
 				$_SESSION['alumno_autenticado'] = 1;
@@ -107,10 +107,10 @@ if (isset($_POST['submit'])) {
 
 				// Registramos el acceso
 				if (isset($_SESSION['nombretutor'])) {
-					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, tutorlegal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."', '".$_SESSION['nombretutor']."')");
+					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, tutorlegal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$direccionIP."', '".$usuario['claveal']."', '".$_SESSION['nombretutor']."')");
 				}
 				elseif (! $esAdmin) {
-					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$_SESSION['direccion_ip']."', '".$usuario['claveal']."')");
+					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$direccionIP."', '".$usuario['claveal']."')");
 				}
 
 				$_SESSION['alumno_autenticado'] = 1;

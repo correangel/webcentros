@@ -10,8 +10,8 @@ if(isset($_POST['enviar'])) {
 		if (isset($_SESSION['dnitutor'])) {
 			$mensaje .= mysqli_real_escape_string('<br><p style="color: #000 !important; background-color: #fff !important;">Mensaje enviado por el tutor/a legal:</p><p style="color: #000 !important; background-color: #fff !important;">'.$_SESSION['nombretutor'].'</p>');
 		}
-		
-		$result = mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto', '$mensaje', '".$_SESSION['direccion_ip']."', '".$_SESSION['correo']."', '$unidad')");
+		$direccionIP = getRealIP();
+		$result = mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto', '$mensaje', '".$direccionIP."', '".$_SESSION['correo']."', '$unidad')");
 		
 		if(! $result) {
 			$msg_error = "Los campos del formulario son obligatorios.";
@@ -39,7 +39,8 @@ if(isset($_POST['leido'])){
 		$asunto_confirmacion = "Mensaje de confirmación";
 		$mensaje = "El mensaje enviado a $nombrepil $apellido con el asunto \"$asunto\" ha sido entregado y leído en la web del centro.";
 		
-		mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto_confirmacion', '$mensaje', '".$_SESSION['direccion_ip']."', '".$_SESSION['correo']."', '$unidad')");
+		$direccionIP = getRealIP();
+		mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto_confirmacion', '$mensaje', '".$direccionIP."', '".$_SESSION['correo']."', '$unidad')");
 	}
 
 }  
