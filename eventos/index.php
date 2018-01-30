@@ -79,14 +79,13 @@ include("../inc_menu.php");
                 <div class="col-md-3">
 
                     <ul class="nav nav-pills nav-pills-no-round nav-pills-primary flex-column" role="tablist">
-                        <?php $i = 0; ?>
+                        <?php $nummes_actual = date('n'); ?>
                         <?php foreach ($array_meses as $nummes => $nommes): ?>
                         <li class="nav-item">
-                            <a class="nav-link<?php echo ($i == 0) ? ' active' : ''; ?>" data-toggle="tab" href="#mes_<?php echo $nummes; ?>" role="tablist">
+                            <a class="nav-link<?php echo ($nummes == $nummes_actual) ? ' active' : ''; ?>" data-toggle="tab" href="#mes_<?php echo $nummes; ?>" role="tablist">
                                 <?php echo $nommes; ?>
                             </a>
                         </li>
-                        <?php $i++; ?>
                         <?php endforeach; ?>
                     </ul>
                     
@@ -94,9 +93,8 @@ include("../inc_menu.php");
 
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <?php $i = 0; ?>
                         <?php foreach ($array_meses as $nummes => $nommes): ?>
-                        <div class="tab-pane<?php echo ($i == 0) ? ' active' : ''; ?>" id="mes_<?php echo $nummes; ?>">
+                        <div class="tab-pane<?php echo ($nummes == $nummes_actual) ? ' active' : ''; ?>" id="mes_<?php echo $nummes; ?>">
                             <h3><?php echo $nommes; ?></h3>
 
                             <?php $found_mes = array_search($nummes, array_column($actividades_extraescolares, 'nummes')); ?>
@@ -178,7 +176,6 @@ include("../inc_menu.php");
 
                             <pre><?php print_r($actividades_extraescolares[8]['actividades']); ?></pre>
                         </div>
-                        <?php $i++; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
