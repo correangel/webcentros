@@ -2515,7 +2515,12 @@ fieldset[disabled] .btn-link.active {
 .input-group-addon {
   background-color: #FFFFFF;
   border: 1px solid #E3E3E3;
-  border-radius: 30px;
+  -webkit-border-top-left-radius: 30px;
+  -webkit-border-bottom-left-radius: 30px;
+  -moz-border-radius-topleft: 30px;
+  -moz-border-radius-bottomleft: 30px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
   color: #555555;
   padding: -0.5rem 0 -0.5rem -0.3rem;
   -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
