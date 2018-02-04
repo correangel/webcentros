@@ -137,10 +137,14 @@ $config['sidebar_html'][2]['titulo'] = "";
 $config['sidebar_html'][2]['html'] = '';
 */
 
+// GOOGLE ANALYTICS
+// Consigue el ID de seguimiento para usar la API de Google Analytics en https://analytics.google.com/analytics/
+//$config['google_analytics']['tracking_id'] = 'YOUR_GA_TRACKING_ID';
+
 // GOOGLE MAPS API
 // Consigue la clave para usar la API de Google Maps en https://developers.google.com/maps/documentation/javascript/?hl=es-419
 // Puedes obtener las coordenadas de tu centro educativo en https://www.coordenadas-gps.com
-//$config['google_maps']['api_key'] = 'YOUR_CODE';
+//$config['google_maps']['api_key'] = 'YOUR_API_KEY';
 //$config['google_maps']['latitud'] = 36.4295948;
 //$config['google_maps']['longitud'] = -5.154448600000023;
 

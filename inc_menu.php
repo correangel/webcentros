@@ -19,7 +19,7 @@
     <link rel="canonical" href="<?php echo WEBCENTROS_DOMINIO.ltrim($canonical_str, '/'); ?>">
     <?php endif; ?>
     
-    <?php if (! isset($pagina['meta']['robots']) || $pagina['meta']['robots'] = 0): ?>
+    <?php if (! isset($pagina['meta']['robots']) || (isset($pagina['meta']['robots']) && $pagina['meta']['robots'] == 1)): ?>
     <!-- SEO -->
     <meta name="robots" content="index, follow">
 
@@ -61,6 +61,18 @@
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/now-ui-kit.css" rel="stylesheet" />
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/my-style.css" rel="stylesheet" />
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/personalize.css" rel="stylesheet" />
+
+    <?php if ((! isset($pagina['meta']['robots']) || (isset($pagina['meta']['robots']) && $pagina['meta']['robots'] == 1)) && (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id']))): ?>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $config['google_analytics']['tracking_id']; ?>"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<?php echo $config['google_analytics']['tracking_id']; ?>');
+    </script>
+    <?php endif; ?>
 </head>
 
 <body class="index-page sidebar-collapse">

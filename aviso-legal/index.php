@@ -66,14 +66,16 @@ include("../inc_menu.php");
                         <li><strong>Cookies de análisis:</strong>  Son aquéllas que permiten al responsable de las mismas, el seguimiento y análisis del comportamiento de los usuarios de los sitios web a los que están vinculadas. La información recogida mediante este tipo de cookies se utiliza en la medición de la actividad de los sitios web, aplicación o plataforma y para la elaboración de perfiles de navegación de los usuarios de dichos sitios, aplicaciones y plataformas, con el fin de introducir mejoras en función del análisis de los datos de uso que hacen los usuarios del servicio.</li>
                     </ul>
                     
+                    <?php if (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id'])): ?>
                     <h4>5.1. Herramienta de Gestión de las Cookies</h4>
                     <p>Está página Web utiliza Google Analytics.</p>
                     
                     <p>Google Analytics es una herramienta gratuita de análisis web de Google que principalmente permite que los propietarios de sitios web conozcan cómo interactúan los usuarios con su sitio web. Asimismo, habilita cookies en el dominio del sitio en el que te encuentras y utiliza un conjunto de cookies denominadas "__utma" y "__utmz" para recopilar información <strong>de forma anónima</strong> y elaborar informes de tendencias de sitios web <strong>sin identificar a usuarios individuales</strong>.</p>
                     
                     <p>Para realizar las estadísticas de uso de esta Web utilizamos las cookies con la finalidad de conocer el nivel de recurrencia de nuestros visitantes y los contenidos que resultan más interesantes. De esta manera podemos concentrar nuestros esfuerzos en mejorar las áreas más visitadas y hacer que el usuario encuentre más fácilmente lo que busca. En esta Web puede utilizarse la información de su visita para realizar evaluaciones y cálculos estadísticos sobre datos anónimos, así como para garantizar la continuidad del servicio o para realizar mejoras en sus sitios Web. Para más detalles, consulte en el siguiente enlace la política de privacidad [<a href="www.google.com/intl/es/policies/privacy/" target="_blank">www.google.com/intl/es/policies/privacy/</a>]</p>
+                    <?php endif; ?>
 
-                    <h4>5.2. Cómo gestionar las Cookies en su equipo: la desactivación y eliminación de las cookies</h4>
+                    <h4><?php echo (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id'])) ? '5.2.' : '5.1'; ?> Cómo gestionar las Cookies en su equipo: la desactivación y eliminación de las cookies</h4>
                     <p>Todos los navegadores de Internet le permiten limitar el comportamiento de una cookie o desactivar las cookies dentro de la configuración o las opciones del navegador. Los pasos para hacerlo son diferentes para cada navegador, se pueden encontrar instrucciones en el menú de ayuda de su navegador.</p>
                     
                     <p>Si no acepta el uso de las cookies, ya que es posible gracias a los menús de preferencias o ajustes de su navegador, rechazarlas, este sitio Web seguirá funcionando adecuadamente sin el uso de las mismas.</p>
