@@ -246,7 +246,7 @@ include("../../inc_menu.php");
         </div>
     </div>
 
-    <?php if (isset($config['google_maps']['api_key']) && $config['google_maps']['api_key'] != 'YOUR_CODE' && isset($config['google_maps']['latitud']) && isset($config['google_maps']['longitud'])): ?>
+    <?php if (isset($config['google_maps']['api_key']) && $config['google_maps']['api_key'] != 'YOUR_API_CODE' && isset($config['google_maps']['latitud']) && isset($config['google_maps']['longitud'])): ?>
     <div id="map" style="width: 100%; height: 500px;"></div>
     
     <script>
