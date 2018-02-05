@@ -52,7 +52,7 @@ include("../inc_menu.php");
                     
                     <hr>
 
-                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticia/".$noticia['id']."/".$alias; ?>
+                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$alias; ?>
                     <div class="pad10">
                         <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-facebook"></i></button>
                         <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round"><i class="fa fa-twitter"></i></button>

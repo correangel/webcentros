@@ -92,7 +92,7 @@ include("../../inc_menu.php");
                     <table class="table">
                         <tbody>
                             <?php foreach ($noticias as $noticia): ?>
-                            <?php $url_noticia = WEBCENTROS_DOMINIO."noticia/".$noticia['id']."/".$noticia['alias']; ?>
+                            <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$noticia['alias']; ?>
                             <tr>
                                 <td class="text-info" nowrap><?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></td>
                                 <td><a href="<?php echo $url_noticia; ?>" class="black"><?php echo strip_tags($noticia['titulo']); ?></a></td>

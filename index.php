@@ -110,7 +110,7 @@ include("inc_menu.php");
 
                     <?php if (count($noticias_destacadas) || count($noticias)): ?>
                     <?php foreach ($noticias_destacadas as $noticia): ?>
-                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticia/".$noticia['id']."/".$noticia['alias']; ?>
+                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$noticia['alias']; ?>
                     <article>
                         <div class="media bg-secondary">
                             <div class="media-body" style="margin: 20px;">
@@ -134,7 +134,7 @@ include("inc_menu.php");
                     </article>
                     <?php endforeach; ?>
                     <?php foreach ($noticias as $noticia): ?>
-                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticia/".$noticia['id']."/".$noticia['alias']; ?>
+                    <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$noticia['alias']; ?>
                     <article>
                         <div class="media">
                             <div class="media-body" style="margin: 20px;">
