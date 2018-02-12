@@ -45,7 +45,7 @@ include("../../inc_menu.php");
                             <h6 class="category text-primary"><?php echo $config['eqdirectivo_'.$cargo]['cargo']; ?></h6>
                             <ul class="list-unstyled">
                                 <li><a class="text-muted" href="call:+34<?php echo ! empty($config['eqdirectivo_'.$cargo]['telefono']) ? $config['eqdirectivo_'.$cargo]['telefono'] : $config['centro_telefono']; ?>"><span class="fa fa-phone fa-fw"></span> <?php echo ! empty($config['eqdirectivo_'.$cargo]['telefono']) ? $config['eqdirectivo_'.$cargo]['telefono'] : $config['centro_telefono']; ?></a></li>
-                                <li><a class="text-muted" href="mailto:<?php echo ! empty($config['eqdirectivo_'.$cargo]['correoe']) ? $config['eqdirectivo_'.$cargo]['correoe'] : $config['centro_codigo'].'.edu@juntadeandalucia.es'; ?>"><span class="fa fa-envelope fa-fw"></span> <?php echo ! empty($config['eqdirectivo_'.$cargo]['correoe']) ? $config['eqdirectivo_'.$cargo]['correoe'] : $config['centro_codigo'].'.edu@juntadeandalucia.es'; ?></a></li>
+                                <li><a class="text-muted" href="mailto:<?php echo ! empty($config['eqdirectivo_'.$cargo]['correoe']) ? ofuscarEmail($config['eqdirectivo_'.$cargo]['correoe']) : ofuscarEmail($config['centro_codigo'].'.edu@juntadeandalucia.es'); ?>"><span class="fa fa-envelope fa-fw"></span> <?php echo ! empty($config['eqdirectivo_'.$cargo]['correoe']) ? ofuscarEmail($config['eqdirectivo_'.$cargo]['correoe']) : ofuscarEmail($config['centro_codigo'].'.edu@juntadeandalucia.es'); ?></a></li>
                             </ul>
                         </div>
                     </div>

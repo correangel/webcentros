@@ -127,7 +127,7 @@ include("../../inc_menu.php");
 
             <?php if (isset($msg_success) && $msg_success): ?>
             <div class="alert alert-success">
-                Su mensaje ha sido enviado correctamente. Hemos enviado una copia de su mensaje a su correo electrónico. Le responderemos tan pronto como sea posible.
+                Su mensaje ha sido enviado correctamente. Le hemos enviado una copia del mensaje a su correo electrónico. Le responderemos tan pronto como sea posible.
             </div>
 
             <br>
@@ -147,7 +147,7 @@ include("../../inc_menu.php");
                                     <br> <?php echo $config['centro_codpostal']; ?>, <?php echo $config['centro_localidad']; ?> (<?php echo $config['centro_provincia']; ?>)
                                     <br> Teléfono: (+34) <?php echo $config['centro_telefono']; ?>
                                     <br> Fax: (+34) <?php echo $config['centro_fax']; ?>
-                                    <br> Correo-e: <?php echo $config['centro_email']; ?>
+                                    <br> Correo-e: <?php echo ofuscarEmail($config['centro_email']); ?>
                                 </p>
                             </div>
                         </div>

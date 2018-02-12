@@ -87,6 +87,31 @@
     });
     </script>
     <?php endif; ?>
+    <?php if (stristr($_SERVER['REQUEST_URI'], '/alumnado/login.php') == true): ?>
+    <script>
+    $(document).ready(function(){  
+        // Deshabilitamos el botón
+        $("button[type=submit]").attr("disabled", "disabled");
+
+        // Cuando se presione una tecla en un input del formulario
+        // realizamos la validación
+        $('input').keyup(function(){
+                // Validamos el formulario
+                var validated = true;
+                if($('#user').val().length < 7) validated = false;
+                if($('#clave').val().length < 7) validated = false;
+
+        // Si el formulario es válido habilitamos el botón, en otro caso
+        // lo volvemos a deshabilitar
+        if(validated) $("button[type=submit]").removeAttr("disabled");
+        else $("button[type=submit]").attr("disabled", "disabled");
+
+        });
+
+        $('input:first').trigger('keyup');
+    });
+    </script>
+    <?php endif; ?>
 
 </body>
 </html>

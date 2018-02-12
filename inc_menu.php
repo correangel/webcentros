@@ -105,6 +105,9 @@
                             <h6 class="dropdown-header">Información académica</h6>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">Información y contacto</a>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
+                            <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
+                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
+                            <?php endif; ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
                             <?php if (isset($config['biblioteca']) && ! empty($config['biblioteca'])): ?>
                             <a class="dropdown-item" href="<?php echo $config['biblioteca']; ?>" target="_blank">Biblioteca</a>
@@ -146,6 +149,12 @@
                             <?php foreach ($config['educacion_cfgs'] as $cfgs): ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgs['alias']; ?>"><?php echo $cfgs['nombre']; ?></a>
                             <?php endforeach; ?>
+                            <?php endif; ?>
+                            <?php if ((isset($config['educacion_bachiller']) && $config['educacion_bachiller']) || count($educacion_cfgb) || count($educacion_cfgm) || count($educacion_cfgs)): ?>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Información sobre pruebas de acceso</h6>
+                            <a class="dropdown-item" href="http://www.juntadeandalucia.es/temas/estudiar/universidad/acceso.html" target="_blank">Acceso a la Universidad</a>
+                            <a class="dropdown-item" href="http://www.juntadeandalucia.es/temas/estudiar/fp/pruebas-acceso.html" target="_blank">Acceso a Formación Profesional</a>
                             <?php endif; ?>
                         </div>
                     </li>

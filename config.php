@@ -73,7 +73,7 @@ $config['educacion_cfgs'][1]['url']    = "";
 $config['educacion_cfgs'][1]['alias']  = mb_strtolower(str_replace($acentos, $no_acentos, $config['educacion_cfgs'][1]['nombre']));
 */
 
-// ORGANIGRAMA COMPLETO QUIPO DIRECTIVO
+// ORGANIGRAMA COMPLETO DEL EQUIPO DIRECTIVO
 // Completar las variables con los datos correspondientes. No es necesario borrar o comentar estas variables, si están vacías no se mostrará información
 $config['eqdirectivo_direccion']['nombre']            = $config['directivo_direccion'];
 $config['eqdirectivo_direccion']['cargo']             = "Director/a";

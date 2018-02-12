@@ -32,6 +32,22 @@ $no_acentos_con_espacio = array('','-',' ','','-','','','','','','','','','','',
 // CARGAMOS LA FUNCIÓN DE FILTROS PARA EVITAR ATAQUES XSS EN LOS CAMPOS DE FORMULARIO
 require_once(WEBCENTROS_DIRECTORY.'/plugins/cleanxss.php');
 
+// COMPROBAMOS DATOS PARA LA CARGA DE MÓDULOS
+$result = mysqli_query($db_con, "SELECT isbn FROM textos_gratis") or die (mysqli_error($db_con));
+$libros_tabla1 = mysqli_num_rows($result);
+mysqli_free_result($result);
+$result = mysqli_query($db_con, "SELECT isbn FROM Textos") or die (mysqli_error($db_con));
+$libros_tabla2 = mysqli_num_rows($result);
+mysqli_free_result($result);
+if ($libros_tabla1 || $libros_tabla2) {
+	$config['libros_texto'] = 1;
+}
+else {
+	$config['libros_texto'] = 0;
+}
+unset($libros_tabla1);
+unset($libros_tabla2);
+
 // FUNCIONES GENERALES
 function getRealIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))
@@ -43,7 +59,7 @@ function getRealIP() {
     return $_SERVER['REMOTE_ADDR'];
 }
 
-function cortarTexto($texto, $numMaxCaract){
+function cortarTexto($texto, $numMaxCaract) {
 	if (strlen($texto) <  $numMaxCaract){
 		$textoCortado = $texto;
 	}else{
@@ -62,6 +78,17 @@ function cortarTexto($texto, $numMaxCaract){
 	}
  
 	return $textoCortado;
+}
+
+function ofuscarEmail($email) {
+	$result = '';
+
+	// Encode string using oct and hex character codes
+	for ($i = 0; $i < strlen($email); $i++) {
+		$result .= '&#x' . dechex(ord($email[$i])) . ';';
+	}
+
+	return $result;
 }
 
 // Fin de archivo bootstrap.php

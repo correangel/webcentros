@@ -14,7 +14,7 @@ if (! isset($_SESSION['intentos'])) $_SESSION['intentos'] = 0;
 
 $_SESSION['alumno_autenticado'] = 0;
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && (strlen($_POST['user']) < 7 && strlen($_POST['clave']) < 7)) {
 	
 	$usuario	= xss_clean($_POST['user']);
 	$clave		= xss_clean($_POST['clave']);
@@ -173,13 +173,13 @@ include('../inc_menu.php');
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons users_circle-08 text-white"></i>
                                 </span>
-                                <input type="text" name="user" class="form-control" placeholder="Número de Identificación Escolar" value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>" autocomplete="off">
+                                <input type="text" id="user" name="user" class="form-control" placeholder="Número de Identificación Escolar" value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>" autocomplete="off">
                             </div>
                             <div class="input-group form-group-no-border input-lg">
                                 <span class="input-group-addon">
                                     <i class="now-ui-icons objects_key-25 text-white"></i>
                                 </span>
-                                <input type="password" name="clave" placeholder="Contraseña" class="form-control" autocomplete="new-password">
+                                <input type="password" id="clave" name="clave" placeholder="Contraseña" class="form-control" autocomplete="new-password">
                             </div>
 							<?php if ($recaptcha_obligatorio): ?>
 							 <div class="form-group text-center">
