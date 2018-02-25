@@ -9,7 +9,7 @@ if (! isset($config['libros_texto']) || $config['libros_texto'] == 0) {
 $niveles = array();
 
 $libros = array();
-$result = mysqli_query($db_con, "SELECT isbn, ean, materia, editorial, titulo, nivel FROM textos_gratis ORDER BY nivel ASC, materia ASC");
+$result = mysqli_query($db_con, "SELECT `isbn`, `ean`, `materia`, `editorial`, `titulo`, `nivel`, `programaGratuidad` FROM `libros_texto` ORDER BY `nivel` ASC, `materia` ASC");
 while ($row = mysqli_fetch_array($result)) {
 
     $libro = array(
@@ -18,28 +18,8 @@ while ($row = mysqli_fetch_array($result)) {
         'materia'   => $row['materia'],
         'editorial' => $row['editorial'],
         'titulo'    => $row['titulo'],
-        'nivel'     => $row['nivel']
-    );
-
-    if (! in_array($row['nivel'], $niveles)) {
-        array_push($niveles, $row['nivel']);
-    }
-
-    array_push($libros, $libro);
-}
-mysqli_free_result($result);
-unset($libro);
-
-$result = mysqli_query($db_con, "SELECT isbn, departamento, editorial, titulo, nivel FROM Textos ORDER BY nivel ASC, departamento ASC");
-while ($row = mysqli_fetch_array($result)) {
-    
-    $libro = array(
-        'isbn'      => $row['isbn'],
-        'ean'       => '',
-        'materia'   => $row['departamento'],
-        'editorial' => $row['editorial'],
-        'titulo'    => $row['titulo'],
-        'nivel'     => $row['nivel']
+        'nivel'     => $row['nivel'],
+        'gratuidad' => $row['programaGratuidad']
     );
 
     if (! in_array($row['nivel'], $niveles)) {

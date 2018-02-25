@@ -33,20 +33,14 @@ $no_acentos_con_espacio = array('','-',' ','','-','','','','','','','','','','',
 require_once(WEBCENTROS_DIRECTORY.'/plugins/cleanxss.php');
 
 // COMPROBAMOS DATOS PARA LA CARGA DE MÓDULOS
-$result = mysqli_query($db_con, "SELECT isbn FROM textos_gratis") or die (mysqli_error($db_con));
-$libros_tabla1 = mysqli_num_rows($result);
-mysqli_free_result($result);
-$result = mysqli_query($db_con, "SELECT isbn FROM Textos") or die (mysqli_error($db_con));
-$libros_tabla2 = mysqli_num_rows($result);
-mysqli_free_result($result);
-if ($libros_tabla1 || $libros_tabla2) {
+$result_libros_texto = mysqli_query($db_con, "SELECT `isbn` FROM `libros_texto`") or die (mysqli_error($db_con));
+if (mysqli_num_rows($result_libros_texto)) {
 	$config['libros_texto'] = 1;
 }
 else {
 	$config['libros_texto'] = 0;
 }
-unset($libros_tabla1);
-unset($libros_tabla2);
+mysqli_free_result($result);
 
 // FUNCIONES GENERALES
 function getRealIP() {

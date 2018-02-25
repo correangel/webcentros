@@ -3,16 +3,22 @@ require_once("bootstrap.php");
 require_once("config.php");
 
 $noticias_destacadas = array();
-$result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
+$result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
 
+    $exp_autor = explode(', ', $row['autor']);
+    $autor = trim($exp_autor[1]);
+
     $noticia_destacada = array(
-        'id'        => $row['id'],
-        'titulo'    => $row['titulo'],
-        'categoria' => $row['categoria'],
-        'contenido' => $row['contenido'],
-        'fechapub'  => $row['fechapub'],
-        'alias'     => mb_strtolower(str_replace($acentos, $no_acentos, $row['titulo']))
+        'id'                => $row['id'],
+        'titulo'            => $row['titulo'],
+        'categoria'         => $row['categoria'],
+        'alias_categoria'   => mb_strtolower(str_replace($acentos, $no_acentos, $row['categoria'])),
+        'autor'             => $autor,
+        'alias_autor'       => mb_strtolower(str_replace($acentos, $no_acentos, $row['autor'])),
+        'contenido'         => $row['contenido'],
+        'fechapub'          => $row['fechapub'],
+        'alias'             => mb_strtolower(str_replace($acentos, $no_acentos, $row['titulo']))
     );
 
     array_push($noticias_destacadas, $noticia_destacada);
@@ -23,16 +29,22 @@ unset($noticia_destacada);
 
 // 5 ULTIMAS NOTICIAS
 $noticias = array();
-$result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub, categoria FROM noticias WHERE fechapub <= '".date('Y-m-d H:i:s')."' AND pagina LIKE '%2%' AND id NOT IN (SELECT id FROM noticias WHERE pagina LIKE '%2%' AND fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC) ORDER BY fechapub DESC LIMIT 5");
+$result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria FROM noticias WHERE fechapub <= '".date('Y-m-d H:i:s')."' AND pagina LIKE '%2%' AND id NOT IN (SELECT id FROM noticias WHERE pagina LIKE '%2%' AND fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC) ORDER BY fechapub DESC LIMIT 5");
 while ($row = mysqli_fetch_array($result)) {
 
+    $exp_autor = explode(', ', $row['autor']);
+    $autor = trim($exp_autor[1]);
+
     $noticia = array(
-        'id'        => $row['id'],
-        'titulo'    => $row['titulo'],
-        'categoria' => $row['categoria'],
-        'contenido' => $row['contenido'],
-        'fechapub'  => $row['fechapub'],
-        'alias'     => mb_strtolower(str_replace($acentos, $no_acentos, $row['titulo']))
+        'id'                => $row['id'],
+        'titulo'            => $row['titulo'],
+        'categoria'         => $row['categoria'],
+        'alias_categoria'   => mb_strtolower(str_replace($acentos, $no_acentos, $row['categoria'])),
+        'autor'             => $autor,
+        'alias_autor'       => mb_strtolower(str_replace($acentos, $no_acentos, $row['autor'])),
+        'contenido'         => $row['contenido'],
+        'fechapub'          => $row['fechapub'],
+        'alias'             => mb_strtolower(str_replace($acentos, $no_acentos, $row['titulo']))
     );
 
     array_push($noticias, $noticia);
@@ -115,7 +127,13 @@ include("inc_menu.php");
                         <div class="media bg-secondary">
                             <div class="media-body" style="margin: 20px;">
                                 <h5 class="mt-0"><a href="<?php echo $url_noticia; ?>"><?php echo $noticia['titulo']; ?></a></h5>
-                                <h6 class="text-muted"><?php echo $noticia['categoria']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;<?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></h6>
+                                <h6 class="text-muted">
+                                    <a href="<?php echo WEBCENTROS_DOMINIO."noticias/autor/".$noticia['alias_autor']; ?>" class="text-muted"><?php echo $noticia['autor']; ?></a>
+                                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                                    <a href="<?php echo WEBCENTROS_DOMINIO."noticias/categoria/".$noticia['alias_categoria']; ?>" class="text-muted"><?php echo $noticia['categoria']; ?></a>
+                                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                                    <?php echo strftime('%e %b %Y', strtotime($noticia['fechapub'])); ?>
+                                </h6>
                                 <?php 
                                  $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
@@ -139,7 +157,13 @@ include("inc_menu.php");
                         <div class="media">
                             <div class="media-body" style="margin: 20px;">
                                 <h5 class="mt-0"><a href="<?php echo $url_noticia; ?>"><?php echo $noticia['titulo']; ?></a></h5>
-                                <h6 class="text-muted"><?php echo $noticia['categoria']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;<?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></h6>
+                                <h6 class="text-muted">
+                                    <a href="<?php echo WEBCENTROS_DOMINIO."noticias/autor/".$noticia['alias_autor']; ?>" class="text-muted"><?php echo $noticia['autor']; ?></a>
+                                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                                    <a href="<?php echo WEBCENTROS_DOMINIO."noticias/categoria/".$noticia['alias_categoria']; ?>" class="text-muted"><?php echo $noticia['categoria']; ?></a>
+                                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                                    <?php echo strftime('%e %b %Y', strtotime($noticia['fechapub'])); ?>
+                                </h6>
                                 <?php 
                                 $noticia['contenido'] = str_ireplace(". ", ".", $noticia['contenido']);
                                 $noticia['contenido'] = str_ireplace(".", ". ", $noticia['contenido']);

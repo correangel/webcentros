@@ -11,6 +11,8 @@ if (! mysqli_num_rows($result)) {
 $noticia = mysqli_fetch_array($result);
 $exp_autor = explode(', ', $noticia['autor']);
 $autor = trim($exp_autor[1].' '.$exp_autor[0]);
+$alias_autor = mb_strtolower(str_replace($acentos, $no_acentos, $noticia['autor']));
+$alias_categoria = mb_strtolower(str_replace($acentos, $no_acentos, $noticia['categoria']));
 $alias = mb_strtolower(str_replace($acentos, $no_acentos, $noticia['titulo']));
 
 $pagina['titulo'] = strip_tags($noticia['titulo']);
@@ -36,9 +38,9 @@ include("../inc_menu.php");
                     
                     <div class="text-muted">
                         <ul class="list-inline">
-                            <li class="list-inline-item"><?php echo $autor; ?></li>
+                            <li class="list-inline-item"><a href="<?php echo WEBCENTROS_DOMINIO."noticias/autor/".$alias_autor; ?>" class="text-muted"><?php echo $autor; ?></a></li>
                             <li class="list-inline-item">/</li>
-                            <li class="list-inline-item"><?php echo $noticia['categoria']; ?></li>
+                            <li class="list-inline-item"><a href="<?php echo WEBCENTROS_DOMINIO."noticias/categoria/".$alias_categoria; ?>" class="text-muted"><?php echo $noticia['categoria']; ?></a></li>
                             <li class="list-inline-item">/</li>
                             <li class="list-inline-item"><?php echo strftime('%e %B %Y', strtotime($noticia['fechapub'])); ?></li>
                         </ul>
