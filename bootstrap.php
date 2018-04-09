@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // CONFIGURACIÓN INICIAL
 error_reporting(0);
 date_default_timezone_set('Europe/Madrid');

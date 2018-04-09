@@ -1,6 +1,7 @@
 <?php 
 require_once("../bootstrap.php");
 require_once('../config.php');
+require_once('session.php');
 
 $plugin_google_recaptcha = false;
 if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha']['site_key'] != 'YOUR_SITE_KEY' && isset($config['google_recaptcha']['secret']) && $config['google_recaptcha']['secret'] != 'YOUR_SECRET_CODE') {
@@ -8,7 +9,6 @@ if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha'
 	$plugin_google_recaptcha = true;
 	$recaptcha_obligatorio = false;
 }
-session_start();
 
 if (! isset($_SESSION['intentos'])) $_SESSION['intentos'] = 0;
 
@@ -81,6 +81,8 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 			$direccionIP = getRealIP();
 			$useragent = $_SERVER['HTTP_USER_AGENT'];
 			$usuario = mysqli_fetch_array($result);
+
+			session_regenerate_id(true);
 			
 			// Comprobamos si es la primera vez que el usuario accede
 			if ((empty($usuario['clave']) && $clave == $usuario['claveal']) || sha1($clave) == $usuario['clave']) {

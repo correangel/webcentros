@@ -1,4 +1,4 @@
-<?php defined('INTRANET_DIRECTORY') OR exit('No direct script access allowed'); 
+<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed'); 
 
 // Evaluaciones
 $notas1 = "select notas1, notas2, notas3, notas4, unidad, notas0 from alma, notas where alma.CLAVEAL1 = notas.claveal and alma.CLAVEAL = '$claveal'";

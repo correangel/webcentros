@@ -1,11 +1,7 @@
 <?php
 require_once('../bootstrap.php');
 require_once('../config.php');
-
-session_start();
-
-define('INTRANET_DIRECTORY', __DIR__);
-
+require_once('session.php');
 
 // COMPROBAMOS LA SESION
 if ($_SESSION['alumno_autenticado'] != 1) {
