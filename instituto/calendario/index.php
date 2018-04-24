@@ -48,15 +48,15 @@ include("../../inc_menu.php");
 
             <div class="row">
             
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(9, $curso); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(10, $curso); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(11, $curso); ?>
                 </div>
             
@@ -64,15 +64,15 @@ include("../../inc_menu.php");
         
             <div class="row">
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(12, $curso); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(1, $curso+1); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(2, $curso+1); ?>
                 </div>
                 
@@ -80,15 +80,15 @@ include("../../inc_menu.php");
             
             <div class="row">
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(3, $curso+1); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(4, $curso+1); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(5, $curso+1); ?>
                 </div>
                 
@@ -96,15 +96,15 @@ include("../../inc_menu.php");
             
             <div class="row">
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(6, $curso+1); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(7, $curso+1); ?>
                 </div>
                 
-                <div class="col-sm-4 col-md-4">
+                <div class="col-lg-4">
                 <?php $cal->display(8, $curso+1); ?>
                 </div>
                 
