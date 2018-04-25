@@ -240,37 +240,26 @@ function popup(url,ancho,alto) {
     window.open(url, "", "width="+ancho+",height="+alto+",menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
 }
 
-function getCookie(c_name){
-    var c_value = document.cookie;
-    var c_start = c_value.indexOf(" " + c_name + "=");
-    if (c_start == -1){
-        c_start = c_value.indexOf(c_name + "=");
-    }
-    if (c_start == -1){
-        c_value = null;
-    }else{
-        c_start = c_value.indexOf("=", c_start) + 1;
-        var c_end = c_value.indexOf(";", c_start);
-        if (c_end == -1){
-            c_end = c_value.length;
+// Cookie Consent
+window.addEventListener("load", function () {
+    window.cookieconsent.initialise({
+        "palette": {
+            "popup": {
+                "background": "#000"
+            },
+            "button": {
+                "background": "#f96332",
+                "text": "#ffffff"
+            }
+        },
+        "position": "bottom-right",
+        "type": "opt-in",
+        "content": {
+            "message": "Este sitio web utiliza cookies para mejorar su experiencia de navegación.",
+            "dismiss": "Rechazo las cookies",
+            "allow": "Acepto las cookies",
+            "link": "Más información sobre cómo usamos las cookies y de qué manera puede cambiar su configuración",
+            "href": "http://" + window.location.host + "/aviso-legal/",
         }
-        c_value = unescape(c_value.substring(c_start,c_end));
-    }
-    return c_value;
-}
-
-function setCookie(c_name,value,exdays){
-    var exdate=new Date();
-    exdate.setDate(exdate.getDate() + exdays);
-    var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-    document.cookie=c_name + "=" + c_value;
-}
-
-if(getCookie('aceptaCookie')!="1"){
-    document.getElementById("barraCookies").style.display="block";
-}
-
-function permitirCookie(){
-    setCookie('aceptaCookie','1',365);
-    document.getElementById("barraCookies").style.display="none";
-}
+    })
+});

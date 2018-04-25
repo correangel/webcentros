@@ -56,26 +56,68 @@ include("../inc_menu.php");
                         <li>El usuario será el único responsable por el uso de este sitio y por el cumplimiento de estas condiciones generales en su totalidad. En consecuencia, el usuario se obliga a mantener en secreto, con el carácter de información confidencial y reservada, cuando las tuviera, sus claves de acceso, contraseñas o datos similares asignados para acceder a cualquier servicio. Será responsable de cualesquiera daños y perjuicios de toda naturaleza derivados del mal uso realizado por sí o por terceros, considerándose éste el producido como consecuencia de su negligencia, respondiendo de todos los daños y perjuicios, así como de los que pueda sufrir la Web o su titular.</li>
                         <li>Cualquier infracción de estas condiciones generales puede dar lugar al ejercicio de cualesquiera acciones judiciales que correspondan contra el usuario.</li>
                     </ol>
+
+                    <h4>5. Política de Privacidad</h4>
+                    <p>Se considera información personal cualquier dato que pueda utilizarse para identificar a una persona en particular o ponerse en contacto con ella.</p>
+
+                    <h5>5.1. Recopilación y uso de los datos de carácter personal</h5>
+                    <p>Es posible que tengas que proporcionar datos de carácter personal cuando contactes con el <?php echo $config['centro_denominacion']; ?>. El <?php echo $config['centro_denominacion']; ?> puede compartir los datos de carácter personal y utilizarlos de acuerdo con la presente Política de Privacidad. Asimismo, pueden combinarlos con otros datos para suministrar y mejorar los servicios y contenidos. No estás obligado a facilitar la información personal que te soliciten pero, si decides no proporcionarla, habrá muchas ocasiones en las que no podrás utilizar los servicios, o no recibirás respuestas a las preguntas que pudieras tener.</p>
                     
-                    <h4>5. Tipos de cookies según su finalidad:</h4>
-                    <p>Según la finalidad para la que se traten los datos obtenidos a través de las cookies, podemos distinguir entre:</p>
+                    <p>A continuación se muestran algunos ejemplos de los tipos de información personal que el <?php echo $config['centro_denominacion']; ?> puede recopilar y los posibles usos que puede darle:</p>
+
+                    <h6>Qué datos de carácter personal se recopilan y cómo se usa tu información personal</h6>
+                    <p>Cuando utilizas el formulario de contacto de esta web, se recopila su nombre y apellidos y su dirección de correo electrónico, con el fin de poder responderle.</p>
+
+                    <p>Cuando accede a la página de Alumnado para consultar la información académica, se recopilan la dirección de correo electrónico, número de teléfono móvil, con el fin de poder actualizar o combinar la información de contacto ofrecida por el alumno o tutores legales en la matrícula para enviar notificaciones vía SMS o correo eléctronico.</p>
+
+                    <h6>Recopilación y uso de los datos de carácter no personal</h6>
+                    <p>También se recopilan datos de manera que no es posible asociarlos, por sí solos, directamente a una persona determinada. El <?php echo $config['centro_denominacion']; ?> puede recopilar, tratar, transferir y divulgar datos de carácter no personal con cualquier fin.</p>
                     
-                    <ul>
-                        <li><strong>Cookies técnicas:</strong>  Son aquéllas que permiten al usuario la navegación a través de una página web, plataforma o aplicación y la utilización de las diferentes opciones o servicios que en ella existan como, por ejemplo, controlar el tráfico y la comunicación de datos, identificar la sesión, acceder a partes de acceso restringido, recordar los elementos que integran un pedido, realizar el proceso de compra de un pedido, realizar la solicitud de inscripción o participación en un evento, utilizar elementos de seguridad durante la navegación, almacenar contenidos para la difusión de vídeos o sonido o compartir contenidos a través de redes sociales.</li>
-                        <li><strong>Cookies de personalización:</strong>  Son aquéllas que permiten al usuario acceder al servicio con algunas características de carácter general predefinidas en función de una serie de criterios en el terminal del usuario como por ejemplo serian el idioma, el tipo de navegador a través del cual accede al servicio, la configuración regional desde donde accede al servicio, etc.</li>
-                        <li><strong>Cookies de análisis:</strong>  Son aquéllas que permiten al responsable de las mismas, el seguimiento y análisis del comportamiento de los usuarios de los sitios web a los que están vinculadas. La información recogida mediante este tipo de cookies se utiliza en la medición de la actividad de los sitios web, aplicación o plataforma y para la elaboración de perfiles de navegación de los usuarios de dichos sitios, aplicaciones y plataformas, con el fin de introducir mejoras en función del análisis de los datos de uso que hacen los usuarios del servicio.</li>
-                    </ul>
+                    <p>Estos son algunos ejemplos de las categorías de datos de carácter no personal que puede recopilar el <?php echo $config['centro_denominacion']; ?> y los posibles usos que puede darle:</p>
+
+                    <p>Es posible que se recopilen datos tales como dirección IP, dirección URL de referencia, ubicación física basada en IP en la que se utiliza este sitio web, para conocer mejor la conducta de los usuarios y mejorar los servicios y contenidos.</p>
+
+                    <p>Si se combinan datos de carácter no personal con datos de carácter personal, los datos combinados serán tratados como datos de carácter personal en tanto sigan estando combinados.</p>
+
+                    <h5>5.2. Divulgación a terceros</h5>
+
+                    <p>En algunas ocasiones, el <?php echo $config['centro_denominacion']; ?> puede facilitar determinados datos de carácter personal a empresas con los que trabaja, como proveedores de productos y servicios. El <?php echo $config['centro_denominacion']; ?> únicamente compartirá tus datos de carácter personal para suministrar o mejorar los servicios y contenidos, y no los compartirá con ningún tercero con fines de marketing.</p>
+
+                    <h6>Proveedores de servicios</h6>
+
+                    <p>El <?php echo $config['centro_denominacion']; ?> comparte datos de carácter personal con empresas que se dedican, entre otras actividades, a prestar servicios de tratamiento de datos. Estas empresas están obligadas a proteger tus datos y pueden estar situadas en cualquiera de los países en los que desarrolla su actividad.</p>
+
+                    <h6>Otros terceros</h6>
+
+                    <p>Es posible que el <?php echo $config['centro_denominacion']; ?> tenga la obligación de divulgar tus datos de carácter personal por imperativo legal, en el marco de un procedimiento judicial o por requerimiento de una autoridad pública o gubernamental, tanto de tu país de residencia como del extranjero. Asimismo, se puede divulgar información sobre tu persona si se considera que dicha divulgación es necesaria o conveniente por razones de seguridad nacional, para cumplir la legislación vigente o por otros motivos importantes de orden público.</p>
+
+                    <h5>5.3. Acceso a los datos de caracter personal</h5>
+
+                    <p>Puedes comprobar que tu información de contacto sean correctas, estén completas y se mantengan actualizadas en todo momento accediendo a la página de <a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/" target="_blank">Alumnado</a> si eres alumno o tutor legal, o accediendo a la <a href="<?php echo WEBCENTROS_DOMINIO; ?>intranet/" target="_blank">Intranet</a> si eres profesor o personal de administración y servicios.</p>
+
+                    <p>Las solicitudes de acceso, rectificación o eliminación pueden realizarse en la Administración del <?php echo $config['centro_denominacion']; ?> de lunes a viernes en horario de atención al público.</p>
+
+                    <h4>6. Política de Cookies</h4>
+                    <p>Para que este sitio funcione adecuadamente, a veces instalamos en los dispositivos de los usuarios pequeños ficheros de datos, conocidos como cookies. La mayoría de los grandes sitios web también lo hacen.</p>
+                    
+                    <p>Una cookie es un pequeño fichero de texto que los sitios web instalan en el ordenador o el dispositivo móvil de los usuarios que los visitan. Las cookies hacen posible que el sitio web recuerde las acciones y preferencias del usuario (identificador de inicio de sesión, idioma, tamaño de letra y otras preferencias de visualización), para que este no tenga que volver a configurarlos cuando regrese al sitio o navegue por sus páginas.</p>
                     
                     <?php if (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id'])): ?>
-                    <h4>5.1. Herramienta de Gestión de las Cookies</h4>
-                    <p>Está página Web utiliza Google Analytics.</p>
+                    <h5>6.1. Herramienta de Gestión de las Cookies</h5>
+                    <p>Esta página web utiliza Google Analytics, un servicio analítico de web prestado por Google, Inc., una compañía de Delaware cuya oficina principal está en 1600 Amphitheatre Parkway, Mountain View (California), CA 94043, Estados Unidos (“Google”).</p>
                     
-                    <p>Google Analytics es una herramienta gratuita de análisis web de Google que principalmente permite que los propietarios de sitios web conozcan cómo interactúan los usuarios con su sitio web. Asimismo, habilita cookies en el dominio del sitio en el que te encuentras y utiliza un conjunto de cookies denominadas "__utma" y "__utmz" para recopilar información <strong>de forma anónima</strong> y elaborar informes de tendencias de sitios web <strong>sin identificar a usuarios individuales</strong>.</p>
+                    <p>Google Analytics utiliza “cookies”, que son archivos de texto ubicados en su ordenador, para ayudar al website a analizar el uso que hacen los usuarios del sitio web. La información que genera la cookie acerca de su uso del website (incluyendo su dirección IP) será directamente transmitida y archivada por Google en los servidores de Estados Unidos.</p>
                     
-                    <p>Para realizar las estadísticas de uso de esta Web utilizamos las cookies con la finalidad de conocer el nivel de recurrencia de nuestros visitantes y los contenidos que resultan más interesantes. De esta manera podemos concentrar nuestros esfuerzos en mejorar las áreas más visitadas y hacer que el usuario encuentre más fácilmente lo que busca. En esta Web puede utilizarse la información de su visita para realizar evaluaciones y cálculos estadísticos sobre datos anónimos, así como para garantizar la continuidad del servicio o para realizar mejoras en sus sitios Web. Para más detalles, consulte en el siguiente enlace la política de privacidad [<a href="www.google.com/intl/es/policies/privacy/" target="_blank">www.google.com/intl/es/policies/privacy/</a>]</p>
+                    <p>Google usará esta información por cuenta nuestra con el propósito de seguir la pista de su uso del website, recopilando informes de la actividad del website y prestando otros servicios relacionados con la actividad del website y el uso de Internet.</p>
+                    
+                    <p>Google podrá transmitir dicha información a terceros cuando así se lo requiera la legislación, o cuando dichos terceros procesen la información por cuenta de Google.</p>
+                    
+                    <p>Google no asociará su dirección IP con ningún otro dato del que disponga Google.</p>
+
+                    <p>Puede Usted rechazar el tratamiento de los datos o la información rechazando el uso de cookies mediante la selección de la configuración apropiada de su navegador, sin embargo, debe Usted saber que si lo hace puede ser que no pueda usar la plena funcionabilidad de este website. Al utilizar este website Usted consiente el tratamiento de información acerca de Usted por Google en la forma y para los fines arriba indicados.</p>
                     <?php endif; ?>
 
-                    <h4><?php echo (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id'])) ? '5.2.' : '5.1'; ?> Cómo gestionar las Cookies en su equipo: la desactivación y eliminación de las cookies</h4>
+                    <h5><?php echo (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id'])) ? '6.2.' : '6.1'; ?> Cómo gestionar las Cookies en su equipo: la desactivación y eliminación de las cookies</h5>
                     <p>Todos los navegadores de Internet le permiten limitar el comportamiento de una cookie o desactivar las cookies dentro de la configuración o las opciones del navegador. Los pasos para hacerlo son diferentes para cada navegador, se pueden encontrar instrucciones en el menú de ayuda de su navegador.</p>
                     
                     <p>Si no acepta el uso de las cookies, ya que es posible gracias a los menús de preferencias o ajustes de su navegador, rechazarlas, este sitio Web seguirá funcionando adecuadamente sin el uso de las mismas.</p>
@@ -92,8 +134,14 @@ include("../inc_menu.php");
                     
                     <p>A través de su navegador, usted también puede ver las cookies que están en su ordenador, y borrarlas según crea conveniente. Las cookies son archivos de texto, los puede abrir y leer el contenido. Los datos dentro de ellos casi siempre está cifrado con una clave numérica que corresponde a una sesión en Internet por lo que muchas veces no tiene sentido más allá que la página web que lo escribió.</p>
                     
-                    <h4>6. Consentimiento informado</h4>
-                    <p>La utilización de la presente página Web por su parte, implica que <strong>Vd. presta su consentimiento expreso e inequívoco a la utilización de cookies, en los términos y condiciones previstos en esta Política de Cookies</strong>, sin perjuicio de las medidas de desactivación y eliminación de las cookies que Vd. pueda adoptar, y que se mencionan en el apartado anterior.</p>
+                    <h4>7. Consentimiento informado</h4>
+                    <p>La utilización de la presente página Web por su parte, implica que <strong>Vd. presta su consentimiento expreso e inequívoco a la utilización de cookies, en los términos y condiciones previstos en la Política de Cookies</strong>, sin perjuicio de las medidas de desactivación y eliminación de las cookies que Vd. pueda adoptar, y que se mencionan en el apartado anterior.</p>
+                    
+                    <br>
+                    
+                    <div class="alert alert-info text-center">
+                        Las Condiciones Generales de este sitio web se actualizaron el <?php echo strftime('%d de %B de %Y', strtotime(date("Y-m-d", filectime('index.php')))); ?>.
+                    </div>
                 </div>
             </div>
         </div>

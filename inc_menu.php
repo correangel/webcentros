@@ -62,6 +62,7 @@
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/my-style.css" rel="stylesheet" />
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/personalize.css" rel="stylesheet" />
 
+    <?php if (isset($_COOKIE["cookieconsent_status"]) && $_COOKIE["cookieconsent_status"] == "allow"): ?>
     <?php if ((! isset($pagina['meta']['robots']) || (isset($pagina['meta']['robots']) && $pagina['meta']['robots'] == 1)) && (isset($config['google_analytics']['tracking_id']) && ! empty($config['google_analytics']['tracking_id']))): ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $config['google_analytics']['tracking_id']; ?>"></script>
@@ -72,6 +73,7 @@
 
     gtag('config', '<?php echo $config['google_analytics']['tracking_id']; ?>');
     </script>
+    <?php endif; ?>
     <?php endif; ?>
 </head>
 
