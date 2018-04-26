@@ -71,13 +71,17 @@ include("../inc_menu.php");
                     <p>Cuando accede a la página de <a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/" target="_blank">Alumnado</a> para consultar la información académica, se recopilan la dirección de correo electrónico y número de teléfono móvil, con el fin de poder actualizar o combinar la información de contacto ofrecida por el alumno o tutores legales en la matrícula para enviar notificaciones vía SMS o correo eléctronico.</p>
 
                     <p>Cuando accede a la <a href="<?php echo WEBCENTROS_DOMINIO; ?>intranet/" target="_blank">Intranet</a> se recopilan la dirección de correo electrónico y número de teléfono móvil, con el fin de poder enviar notificaciones vía SMS o correo eléctronico.</p>
+                    
+                    <p>Como esta información es fundamental para tu interacción con el <?php echo $config['centro_denominacion']; ?>, no puedes optar por rechazar la recepción de estas comunicaciones.</p>
+                    
+                    <p>También se pueden utilizar tus datos de carácter personal para fines internos, incluyendo análisis de datos y estadísticas, con el fin de mejorar los servicios y contenidos.</p>
 
                     <h6>Recopilación y uso de los datos de carácter no personal</h6>
                     <p>También se recopilan datos de manera que no es posible asociarlos, por sí solos, directamente a una persona determinada. El <?php echo $config['centro_denominacion']; ?> puede recopilar, tratar, transferir y divulgar datos de carácter no personal con cualquier fin.</p>
                     
                     <p>Estos son algunos ejemplos de las categorías de datos de carácter no personal que puede recopilar el <?php echo $config['centro_denominacion']; ?> y los posibles usos que puede darle:</p>
 
-                    <p>Es posible que se recopilen datos tales como dirección IP, dirección URL de referencia, información sobre su dispositivo como nombre y versión del sistema operativo y nombre y versión del navegador en la que se utiliza este sitio web, para conocer mejor la conducta de los usuarios y mejorar los servicios y contenidos.</p>
+                    <p>Es posible que se recopilen datos tales como dirección IP, dirección URL de referencia, información sobre su dispositivo como nombre y versión del sistema operativo, nombre y versión del navegador e idioma, en la que se utiliza este sitio web, para conocer mejor la conducta de los usuarios y mejorar los servicios y contenidos.</p>
 
                     <p>Si se combinan datos de carácter no personal con datos de carácter personal, los datos combinados serán tratados como datos de carácter personal en tanto sigan estando combinados.</p>
 
@@ -87,7 +91,7 @@ include("../inc_menu.php");
 
                     <h6>Proveedores de servicios</h6>
 
-                    <p>El <?php echo $config['centro_denominacion']; ?> comparte datos de carácter personal con empresas que se dedican, entre otras actividades, a prestar servicios de tratamiento de datos. Estas empresas están obligadas a proteger tus datos y pueden estar situadas en cualquiera de los países en los que desarrolla su actividad.</p>
+                    <p>El <?php echo $config['centro_denominacion']; ?> comparte datos de carácter personal con empresas que se dedican, entre otras actividades, a prestar servicios de tratamiento de datos, alojamiento de contenidos, servicio de envío de correo electrónico y mensajes de texto SMS. Estas empresas están obligadas a proteger tus datos y pueden estar situadas en cualquiera de los países en los que desarrolla su actividad.</p>
 
                     <h6>Otros terceros</h6>
 
