@@ -25,7 +25,7 @@ include("../inc_menu.php");
                     <p>Por favor, lea detenidamente las condiciones legales de uso de esta web.</p>
                     
                     <h4>1.- Introducción</h4>
-                    <p>El <?php echo $config['centro_denominacion']; ?> (centro código <?php echo $config['centro_codigo']; ?>), con domicilio social en <?php echo $config['centro_direccion']; ?>, <?php echo $config['centro_localidad']; ?>, <?php echo $config['centro_codpostal']; ?>, <?php echo $config['centro_provincia']; ?>, es la entidad titular del sitio Web.
+                    <p>El <?php echo $config['centro_denominacion']; ?> (centro código <?php echo $config['centro_codigo']; ?>), sito en <?php echo $config['centro_direccion']; ?>, <?php echo $config['centro_localidad']; ?>, <?php echo $config['centro_codpostal']; ?>, <?php echo $config['centro_provincia']; ?>, es la entidad titular del sitio Web.
                     
                     </p><p>La presente Web tiene por objeto facilitar el conocimiento por el público en general del <?php echo $config['centro_denominacion']; ?>, de las actividades que realiza y de los servicios que presta.</p>
                     
