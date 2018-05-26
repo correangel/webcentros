@@ -58,9 +58,15 @@ include("../inc_menu.php");
                     </ol>
 
                     <h4>5. Política de Privacidad</h4>
+                    
+                    <h5>5.1. ¿Quién es el responsable del tratamiento de tus datos?</h5>
+                    <p>El responsable del tratamiento de tus datos es:</p>
+
+                    <p>Secretaría General Técnica de la Consejería de Educación de la Junta de Andalucía, con dirección en Avda. Juan Antonio de Vizarrón, s/n, Edificio Torretriana. 41071, Sevilla.</p>
+
+                    <h5>5.2. Recopilación y uso de los datos de carácter personal</h5>
                     <p>Se considera información personal cualquier dato que pueda utilizarse para identificar a una persona en particular o ponerse en contacto con ella.</p>
 
-                    <h5>5.1. Recopilación y uso de los datos de carácter personal</h5>
                     <p>Es posible que tengas que proporcionar datos de carácter personal cuando contactes con el <?php echo $config['centro_denominacion']; ?>. El <?php echo $config['centro_denominacion']; ?> puede compartir los datos de carácter personal y utilizarlos de acuerdo con la presente Política de Privacidad. Asimismo, pueden combinarlos con otros datos para suministrar y mejorar los servicios y contenidos. No estás obligado a facilitar la información personal que te soliciten pero, si decides no proporcionarla, habrá muchas ocasiones en las que no podrás utilizar los servicios, o no recibirás respuestas a las preguntas que pudieras tener.</p>
                     
                     <p>A continuación se muestran algunos ejemplos de los tipos de información personal que el <?php echo $config['centro_denominacion']; ?> puede recopilar y los posibles usos que puede darle:</p>
@@ -85,7 +91,7 @@ include("../inc_menu.php");
 
                     <p>Si se combinan datos de carácter no personal con datos de carácter personal, los datos combinados serán tratados como datos de carácter personal en tanto sigan estando combinados.</p>
 
-                    <h5>5.2. Divulgación a terceros</h5>
+                    <h5>5.3. Divulgación a terceros</h5>
 
                     <p>En algunas ocasiones, el <?php echo $config['centro_denominacion']; ?> puede facilitar determinados datos de carácter personal a empresas con los que trabaja, como proveedores de productos y servicios. El <?php echo $config['centro_denominacion']; ?> únicamente compartirá tus datos de carácter personal para suministrar o mejorar los servicios y contenidos, y no los compartirá con ningún tercero con fines de marketing.</p>
 
@@ -97,11 +103,20 @@ include("../inc_menu.php");
 
                     <p>Es posible que el <?php echo $config['centro_denominacion']; ?> tenga la obligación de divulgar tus datos de carácter personal por imperativo legal, en el marco de un procedimiento judicial o por requerimiento de una autoridad pública o gubernamental, tanto de tu país de residencia como del extranjero. Asimismo, se puede divulgar información sobre tu persona si se considera que dicha divulgación es necesaria o conveniente por razones de seguridad nacional, para cumplir la legislación vigente o por otros motivos importantes de orden público.</p>
 
-                    <h5>5.3. Acceso a los datos de caracter personal</h5>
+                    <h5>5.4. Acceso a los datos de caracter personal</h5>
 
                     <p>Puedes comprobar que tu información de contacto sean correctas, estén completas y se mantengan actualizadas en todo momento accediendo a la página de <a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/" target="_blank">Alumnado</a> si eres alumno o tutor legal, o accediendo a la <a href="<?php echo WEBCENTROS_DOMINIO; ?>intranet/" target="_blank">Intranet</a> si eres profesor o personal de administración y servicios.</p>
 
-                    <p>Las solicitudes de acceso, rectificación o eliminación pueden realizarse en la Administración del <?php echo $config['centro_denominacion']; ?> de lunes a viernes en horario de atención al público.</p>
+                    <p>Las solicitudes de acceso, rectificación, cancelación u oposición pueden realizarse enviando un escrito a la Secretaría General Técnica de la Consejería de Educación de la Junta de Andalucía, con dirección en Avda. Juan Antonio de Vizarrón, s/n, Edificio Torretriana. 41071, Sevilla..</p>
+
+                    <h5>5.5. ¿Durante cuanto tiempo conservaremos tus datos?</h5>
+                    <p>El plazo de conservación de tus datos dependerá de las finalidades para las que los tratemos, según lo explicado a continuación:</p>
+                    
+                    <p><strong>Gestionar tu registro como usuario de la plataforma:</strong> Trataremos tus datos durante un periodo de hasta 6 años si eres empleado o alumno/a matriculado.</p>
+
+                    <p><strong>Atención a los usuarios a través del formulario de contacto:</strong> Trataremos tus datos durante el tiempo que sea necesario para atender tu solicitud o petición.</p>
+
+                    <p><strong>Análisis de usabilidad y de calidad:</strong> Trataremos tus datos puntualmente durante el tiempo en el que procedamos a realizar una acción o hasta que anonimicemos tus datos de navegación.</p>
 
                     <h4>6. Política de Cookies</h4>
                     <p>Para que este sitio funcione adecuadamente, a veces instalamos en los dispositivos de los usuarios pequeños ficheros de datos, conocidos como cookies. La mayoría de los grandes sitios web también lo hacen.</p>
@@ -139,9 +154,6 @@ include("../inc_menu.php");
                     </ul>
                     
                     <p>A través de su navegador, usted también puede ver las cookies que están en su ordenador, y borrarlas según crea conveniente. Las cookies son archivos de texto, los puede abrir y leer el contenido. Los datos dentro de ellos casi siempre está cifrado con una clave numérica que corresponde a una sesión en Internet por lo que muchas veces no tiene sentido más allá que la página web que lo escribió.</p>
-                    
-                    <h4>7. Consentimiento informado</h4>
-                    <p>La utilización de la presente página Web por su parte, implica que <strong>Vd. presta su consentimiento expreso e inequívoco a la utilización de cookies, en los términos y condiciones previstos en la Política de Cookies</strong>, sin perjuicio de las medidas de desactivación y eliminación de las cookies que Vd. pueda adoptar, y que se mencionan en el apartado anterior.</p>
                     
                     <br>
                     
