@@ -6,6 +6,7 @@ $query_sql = "";
 
 if ( isset($_GET['q']) && (strlen(trim($_GET['q'])) > 3) ) {
     $query = isset($_GET['q']) ? xss_clean(trim($_GET['q'])) : '';
+    $query = mysqli_real_escape_string($db_con, $query);
     $query_sql = "AND (titulo LIKE '$query%' OR titulo LIKE '% $query%' OR contenido LIKE '$query%' OR contenido LIKE '% $query%')";
 }
 elseif ( isset($_GET['q']) && ! (strlen(trim($_GET['q'])) > 3) ) {
@@ -86,7 +87,7 @@ include("../../inc_menu.php");
                     <?php endif; ?>
 
                     <?php if ($total_noticias > 0): ?>
-                    
+
                     <p class="text-muted text-right"><small><?php echo ($pag < 1) ? '1' : $pag; ?> - <?php echo ($total_noticias >= $limite) ? $limite : $total_noticias; ?> de <?php echo $total_noticias; ?> resultados</small></p>
 
                     <table class="table">
@@ -102,7 +103,7 @@ include("../../inc_menu.php");
                     </table>
 
                     <br>
-                    
+
                     <?php if ($total_pags > 1): ?>
                     <nav role="pagination">
                         <ul class="pagination justify-content-sm-center">
@@ -124,7 +125,7 @@ include("../../inc_menu.php");
                     <?php endif; ?>
 
                     <?php else: // ($total_noticias > 0) ?>
-                    
+
                     <div class="alert alert-warning">
                         Lo sentimos, no hemos encontrado resultados.
                     </div>
@@ -132,7 +133,7 @@ include("../../inc_menu.php");
                     <?php endif; ?>
 
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha'
 if (isset($_POST['submit'])) {
     $contacto_nombre = xss_clean(trim($_POST['nombre']));
     $contacto_apellidos = xss_clean(trim($_POST['apellidos']));
-	$contacto_correo = xss_clean(trim($_POST['email']));
+	  $contacto_correo = xss_clean(trim($_POST['email']));
     $contacto_mensaje = xss_clean(trim($_POST['mensaje']));
     $contacto_nombre_completo = $contacto_nombre.' '.$contacto_apellidos;
 
@@ -22,26 +22,26 @@ if (isset($_POST['submit'])) {
         $realIP = getRealIP();
 
         if (trim($_POST["g-recaptcha-response"])) {
-            $response = $reCaptcha->verifyResponse(
+                $response = $reCaptcha->verifyResponse(
                 $realIP,
                 $_POST["g-recaptcha-response"]
             );
         }
     }
-	
+
 	if (! empty($contacto_nombre) && ! empty($contacto_apellidos) && ! empty($contacto_correo) && ! empty($contacto_mensaje)) {
-		
-		
+
+
 		if (! filter_var($contacto_correo, FILTER_VALIDATE_EMAIL)) {
 			$msg_error = true;
 			$msg_error_text = "El correo electrónico no es válido.";
-        }
+    }
 		elseif (strlen($contacto_mensaje) > 1000) {
 			$msg_error = true;
 			$msg_error_text = "El mensaje supera los 1000 caracteres de longitud.";
 		}
 		else {
-            
+
             $mail = new PHPMailer;
             $mail->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], utf8_decode($config['centro_denominacion']));
             $mail->AddReplyTo($contacto_correo, utf8_decode($contacto_nombre_completo));
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
                 if ($response != null && $response->success) {
                     $result_send = $mail->send();
                     if ($result_send) {
-                        
+
                         $mail_copy = new PHPMailer;
                         $mail_copy->setFrom('no-reply@'.$_SERVER['SERVER_NAME'], utf8_decode($config['centro_denominacion']));
                         $mail_copy->addAddress($contacto_correo, utf8_decode($contacto_nombre_completo));
@@ -67,12 +67,12 @@ if (isset($_POST['submit'])) {
                     }
                     else {
                         $msg_error = true;
-				        $msg_error_text = "Error al envíar el mensaje. Inténtelo de nuevo más tarde.";
+				                $msg_error_text = "Error al envíar el mensaje. Inténtelo de nuevo más tarde.";
                     }
                 }
                 else {
                     $msg_error = true;
-				    $msg_error_text = "Error en la comprobación reCAPTCHA. Inténtelo de nuevo.";
+				            $msg_error_text = "Error en la comprobación reCAPTCHA. Inténtelo de nuevo.";
                 }
             }
             else {
@@ -94,7 +94,7 @@ if (isset($_POST['submit'])) {
                     $msg_error_text = "Error al envíar el mensaje. Inténtelo de nuevo más tarde.";
                 }
             }
-			
+
 		}
 	}
 	else {
@@ -153,7 +153,7 @@ include("../../inc_menu.php");
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-6">
                     <form action="" method="post">
                         <div class="card-block">
@@ -194,7 +194,7 @@ include("../../inc_menu.php");
                             </div>
 
                             <?php if ($plugin_google_recaptcha): ?>
-                            
+
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group text-center">
@@ -210,13 +210,8 @@ include("../../inc_menu.php");
                                                 </iframe>
                                             </div>
                                             </div>
-                                            <div style="width: 300px; height: 60px; border-style: none;
-                                                        bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
-                                                        background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
-                                            <textarea id="g-recaptcha-response" name="g-recaptcha-response"
-                                                        class="g-recaptcha-response"
-                                                        style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
-                                                                margin: 10px 25px; padding: 0px; resize: none;" >
+                                            <div style="width: 300px; height: 60px; border-style: none; bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px; background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                                            <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;">
                                             </textarea>
                                             </div>
                                         </div>
@@ -248,7 +243,7 @@ include("../../inc_menu.php");
 
     <?php if (isset($config['google_maps']['api_key']) && $config['google_maps']['api_key'] != 'YOUR_API_CODE' && isset($config['google_maps']['latitud']) && isset($config['google_maps']['longitud'])): ?>
     <div id="map" style="width: 100%; height: 500px;"></div>
-    
+
     <script>
     function initMap() {
         var myLatLng = {lat: <?php echo $config['google_maps']['latitud']; ?>, lng: <?php echo $config['google_maps']['longitud']; ?>};
