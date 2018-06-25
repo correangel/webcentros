@@ -44,7 +44,7 @@ $config['educacion_cfgb'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 // FORMACIÓN PROFESIONAL GRADO MEDIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
 // En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Sistemas Microinformáticos y Redes
-// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo: 
+// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo:
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 /*
@@ -60,7 +60,7 @@ $config['educacion_cfgm'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 // FORMACIÓN PROFESIONAL GRADO SUPERIOR
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
 // En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Administración de Sistemas Informáticos en Red
-// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo: 
+// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo:
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 /*
@@ -111,7 +111,7 @@ $config['sidebar_html'][0]['titulo'] = "Enlaces de interés";
 $config['sidebar_html'][0]['html'] = '
 <ul class="list-unstyled">
     <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/ced" target="_blank">Consejería de Educación</li>
-    <li><a href="http://www.mecd.gob.es/portada-mecd/" target="_blank">Ministerio de Educación, Cultura y Deporte</li>
+    <li><a href="http://www.mecd.gob.es/portada-mecd/" target="_blank">Ministerio de Educación y Cultura</li>
     <li><a href="https://www.juntadeandalucia.es/educacion/portaldocente/" target="_blank">Portal Docente</li>
     <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/becas-y-ayudas" target="_blank">Portal de Becas y Ayudas</li>
     <li><a href="http://www.juntadeandalucia.es/educacion/webportal/web/convivencia-escolar" target="_blank">Portal de Convivencia Escolar</li>
@@ -121,7 +121,7 @@ $config['sidebar_html'][0]['html'] = '
     <li><a href="http://www.juntadeandalucia.es/educacion/webportal/web/portal-de-plurilinguismo" target="_blank">Portal de Plurilingüismo</li>
     <li><a href="http://www.juntadeandalucia.es/temas/estudiar/universidad/acceso.html" target="_blank">Prueba de Acceso a la Universidad</li>
     <li><a href="http://www.juntadeandalucia.es/temas/estudiar/fp/pruebas-acceso.html" target="_blank">Prueba de Acceso a Ciclos Formativos</li>
-    <li><a href="https://www.juntadeandalucia.es/educacion/secretariavirtual/" target="_blank">Secretaría Virtual de los centros educativos</li>    
+    <li><a href="https://www.juntadeandalucia.es/educacion/secretariavirtual/" target="_blank">Secretaría Virtual de los centros educativos</li>
 </ul>
 ';
 

@@ -133,7 +133,7 @@ include('../inc_menu.php');
 			<?php $row2 = mysqli_fetch_array($result); ?>
 			<?php mysqli_free_result($result); ?>
 
-			<?php $result = mysqli_query($db_con, "SELECT claveal, DNI, fecha, domicilio, telefono, padre, dnitutor, matriculas, telefonourgencia, paisnacimiento, correo, nacionalidad, edad, curso, unidad, numeroexpediente, segsocial FROM alma WHERE claveal= '$claveal'"); ?>
+			<?php $result = mysqli_query($db_con, "SELECT claveal, DNI, fecha, domicilio, telefono, padre, dnitutor, matriculas, telefonourgencia, paisnacimiento, correo, nacionalidad, edad, curso, unidad, numeroexpediente FROM alma WHERE claveal= '$claveal'"); ?>
 
 			<?php if ($row = mysqli_fetch_array($result)): ?>
 			<?php $result_tutor = mysqli_query($db_con, "SELECT tutor FROM FTUTORES WHERE unidad = '".$row['unidad']."' LIMIT 1"); ?>
@@ -215,9 +215,6 @@ include('../inc_menu.php');
 
 								<dt class="col-sm-5">Nº Expediente</dt>
 								<dd class="col-sm-7"><?php echo ($row['numeroexpediente'] != "") ? $row['numeroexpediente']: '<span class="text-muted">Sin registrar</span>'; ?></dd>
-
-								<dt class="col-sm-5">Nº Seguridad Social</dt>
-								<dd class="col-sm-7"><?php echo ($row['segsocial'] != "") ? $row['segsocial']: '<span class="text-muted">Sin registrar</span>'; ?></dd>
 
 								<dt class="col-sm-5">Año académico</dt>
 								<dd class="col-sm-7"><?php echo $c_escolar; ?></dd>
