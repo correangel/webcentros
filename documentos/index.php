@@ -392,7 +392,7 @@ else
 //
 if ($grants[$user_status][DOWNLOAD] && !is_dir("$current_dir/$filename"))
 {
-echo "<a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class='fa fa-cloud-download fa-lg' title='Descargar' alt=\"$mess[23]\"></i> Descargar</a>";
+echo "<a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class='far fa-cloud-download fa-lg' title='Descargar' alt=\"$mess[23]\"></i> Descargar</a>";
 
 }
 else
@@ -409,7 +409,7 @@ echo "    </div>
 		<td colspan=\"2\">
 			<br><br>
 			<div class=\"text-center\">
-				<span class=\"fa fa-folder-o fa-4x\"></span>
+				<span class=\"far fa-folderfa-4x\"></span>
 				<p class=\"lead\">Directorio vacío</p>
 			</div>
 			<br><br>
@@ -479,7 +479,7 @@ function show_contents()
 		$name = dirname($directory);
 		if ($directory == $name || $name == '.') $name = '';
 		echo "<h5><a href=\"index.${phpExt}?&directory=$name\">";
-		echo "<i class='fa fa-chevron-up'> &nbsp;&nbsp;</i> \n";
+		echo "<i class='far fa-chevron-up'> &nbsp;&nbsp;</i> \n";
 		echo "</a>\n";
 		echo split_dir("$directory");
 		echo "</h5><br />";	
@@ -629,9 +629,9 @@ switch($action)
 		echo "<center><h4>$mess[26] : ";
 		echo "<img src=\"images/".get_mimetype_img("$current_dir/$filename")."\" align=\"ABSMIDDLE\">\n";
 		echo "".$filenametoview."<br><br><hr>\n";
-		echo "<a href=\"javascript:window.print()\"><i class='fa fa-print' alt=\"$mess[27]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
-		echo "<div align=\"center\"><a href=\"index.${phpExt}?action=downloadfile&filename=".$filename."&directory=".$directory."h.php\"><i class='fa fa-cloud-download' alt=\"$mess[23]\"> &nbsp;&nbsp;</i></a>";
-		echo "<a href=\"javascript:window.close()\"><i class='fa fa-chevron-left' alt=\"$mess[28]\" border=\"0\"> &nbsp;&nbsp;</i></a></div>\n";
+		echo "<a href=\"javascript:window.print()\"><i class='far fa-print' alt=\"$mess[27]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
+		echo "<div align=\"center\"><a href=\"index.${phpExt}?action=downloadfile&filename=".$filename."&directory=".$directory."h.php\"><i class='far fa-cloud-download' alt=\"$mess[23]\"> &nbsp;&nbsp;</i></a>";
+		echo "<a href=\"javascript:window.close()\"><i class='far fa-chevron-left' alt=\"$mess[28]\" border=\"0\"> &nbsp;&nbsp;</i></a></div>\n";
 		echo "</h4>\n";
 		echo "</center>\n";
 		if (is_browsable($filename))
@@ -661,9 +661,9 @@ switch($action)
 		}
 		echo "<center>\n";
 		echo "<hr>\n";
-		echo "<a href=\"javascript:window.print()\"><i class='fa fa-print' alt=\"$mess[27]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
-		echo "<center><a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\"><i class='fa fa-cloud-download' alt=\"$mess[23]\" width=\"20\" height=\"20\" border=\"0\"> &nbsp;&nbsp;</i></a>";
-		echo "<a href=\"javascript:window.close()\"><i class='fa fa-chevron-left' alt=\"$mess[28]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
+		echo "<a href=\"javascript:window.print()\"><i class='far fa-print' alt=\"$mess[27]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
+		echo "<center><a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\"><i class='far fa-cloud-download' alt=\"$mess[23]\" width=\"20\" height=\"20\" border=\"0\"> &nbsp;&nbsp;</i></a>";
+		echo "<a href=\"javascript:window.close()\"><i class='far fa-chevron-left' alt=\"$mess[28]\" border=\"0\"> &nbsp;&nbsp;</i></a>\n";
 		echo "<hr></center>\n";
 		echo "</body>\n";
 		echo "</html>\n";

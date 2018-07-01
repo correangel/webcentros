@@ -13,7 +13,7 @@ include("inc_menu.php");
                 <div class="col-md-8 text-center">
 
                     <br>
-                    <span class="fa fa-meh-o fa-4x"></span>
+                    <span class="far fa-mehfa-4x"></span>
                     <h3>¡Lo sentimos!</h3>
 
                     <p class="lead">La página que buscas no existe.<br>Quizá has escrito mal la dirección o nosotros hemos eliminado la página.</p>

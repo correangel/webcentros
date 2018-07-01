@@ -151,7 +151,7 @@ include('../inc_menu.php');
 					<?php $foto_usuario = 'data:image/png;base64,'.base64_encode(file_get_contents($foto)); ?>
 					<img class="img-thumbnail" src="<?php echo $foto_usuario; ?>" alt="<?php echo $apellido.', '.$nombrepil; ?>">
 					<?php else: ?>
-					<h2><span class="fa fa-user fa-fw fa-4x"></span></h2>
+					<h2><span class="far fa-user fa-fw fa-4x"></span></h2>
 					<?php endif; ?>
 
 					<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#subirFotografia"><small>Subir o cambiar foto</small></a>
@@ -259,7 +259,7 @@ include('../inc_menu.php');
 											<span class="text-info"><?php echo $dia_matricula_ini; ?> - <?php echo $dia_matricula_fin; ?></span>
 										</th>
 										<td style="vertical-align: middle;">Solicitud de matrícula en Educación Secundaria Obligatoria</td>
-										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="fa fa-sign-in fa-fw fa-2x"></span></a></td>
+										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
 									</tr>
 									<?php endif; ?>
 									<?php if ($ofertaBachillerato && stristr($curso_matricula, 'BACH') == true): ?>
@@ -268,7 +268,7 @@ include('../inc_menu.php');
 											<span class="text-info"><?php echo $dia_matricula_ini; ?> - <?php echo $dia_matricula_fin; ?></span>
 										</th>
 										<td style="vertical-align: middle;">Solicitud de matrícula en Bachillerato</td>
-										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="fa fa-sign-in fa-fw fa-2x"></span></a></td>
+										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
 									</tr>
 									<?php endif; ?>
 								</tbody>

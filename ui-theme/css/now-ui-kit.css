@@ -1568,14 +1568,14 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .btn.btn-icon.btn-lg i.now-ui-icons,
 .btn.btn-icon.btn-lg i.fa,
 .navbar .navbar-nav>a.btn.btn-icon.btn-lg i.now-ui-icons,
-.navbar .navbar-nav>a.btn.btn-icon.btn-lg i.fa {
+.navbar .navbar-nav>a.btn.btn-icon.btn-lg i.far {
   font-size: 1.325rem;
 }
 
 .btn.btn-icon:not(.btn-footer) i.now-ui-icons,
 .btn.btn-icon:not(.btn-footer) i.fa,
 .navbar .navbar-nav>a.btn.btn-icon:not(.btn-footer) i.now-ui-icons,
-.navbar .navbar-nav>a.btn.btn-icon:not(.btn-footer) i.fa {
+.navbar .navbar-nav>a.btn.btn-icon:not(.btn-footer) i.far {
   position: absolute;
   top: 50%;
   left: 50%;

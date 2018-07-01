@@ -16,7 +16,7 @@ $icons = array(
 	'Economía' => 'fa-bar-chart',
 	'FOL' => 'fa-bar-chart',
 	'FOL y Economía' => 'fa-bar-chart',
-	'Educación Física' => 'fa-futbol-o',
+	'Educación Física' => 'fa-futbol',
 	'Filosofía' => 'fa-gavel',
 	'Física y Química' => 'fa-flask',
 	'Francés' => 'fa-language',
@@ -87,7 +87,7 @@ include("../../inc_menu.php");
                 <?php foreach ($departamentos as $departamento): ?>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <a href="#" data-toggle="modal" data-target="#modal_<?php echo $departamento['alias']; ?>" class="btn btn-default btn-block btn-departamentos">
-                        <span class="fa <?php echo $departamento['icono']; ?> fa-fw fa-lg"></span>
+                        <span class="far <?php echo $departamento['icono']; ?> fa-fw fa-lg"></span>
                         <?php echo $departamento['nombre']; ?>
                     </a>
                 </div>
@@ -110,20 +110,20 @@ include("../../inc_menu.php");
                 <div class="modal-body">
                 
                     <div class="pad30">
-                        <h6><span class="fa fa-group fa-fw"></span> Miembros del Departamento</h6>
+                        <h6><span class="far fa-group fa-fw"></span> Miembros del Departamento</h6>
                         <hr>
                         <ul class="fa-ul">
                             <?php foreach ($departamento['componentes'] as $componente): ?>
-                            <li><span class="fa-li fa fa-user"></span> <?php echo $componente['nombre']; ?><?php echo ($componente['esJefe'] == 1) ? ' <span class="text-muted"><strong>(Jefe/a de departamento)</strong></span>' : ''; ?></li>
+                            <li><span class="fa-li far fa-user"></span> <?php echo $componente['nombre']; ?><?php echo ($componente['esJefe'] == 1) ? ' <span class="text-muted"><strong>(Jefe/a de departamento)</strong></span>' : ''; ?></li>
                             <?php endforeach; ?>
                         </ul>
 
                         <br>
 
-                        <h6><span class="fa fa-folder fa-fw"></span> Recursos</h6>
+                        <h6><span class="far fa-folder fa-fw"></span> Recursos</h6>
                         <hr>
                         <ul class="list-unstyled">
-                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/index.php?&amp;directory=Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="fa fa-file-text fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
+                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/index.php?&amp;directory=Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="far fa-file-text fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
                         </ul>
                     </div>
                 </div>

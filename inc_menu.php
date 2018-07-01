@@ -8,17 +8,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
-    
+
     <!-- FAVICON -->
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/apple-icon.png">
     <link rel="icon" type="image/png" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/favicon.ico">
-    
+
     <title><?php echo (isset($pagina['titulo']) && $pagina['titulo'] != '') ? strip_tags($pagina['titulo'])." - ".$config['centro_denominacion'] : $config['centro_denominacion']; ?> - Instituto de Educación Secundaria de <?php echo $config['centro_localidad']; ?></title>
     <?php $canonical_str = rtrim(str_replace($_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']), '?'); ?>
     <?php if (! isset($pagina['meta']['canonical']) || $pagina['meta']['canonical'] = 0): ?>
     <link rel="canonical" href="<?php echo WEBCENTROS_DOMINIO.ltrim($canonical_str, '/'); ?>">
     <?php endif; ?>
-    
+
     <?php if (! isset($pagina['meta']['robots']) || (isset($pagina['meta']['robots']) && $pagina['meta']['robots'] == 1)): ?>
     <!-- SEO -->
     <meta name="robots" content="index, follow">
@@ -33,11 +33,11 @@
     <?php if (isset($pagina['meta']['meta_autor'])): ?>
     <meta property="og:author" content="<?php echo $pagina['meta']['meta_autor']; ?>">
     <?php endif; ?>
-    <meta property="og:description" content="<?php echo $pagina['meta']['meta_description']; ?>">	
-    <meta property="og:type" content="<?php echo $pagina['meta']['meta_type']; ?>">	
-    <meta property="og:locale" content="<?php echo $pagina['meta']['meta_locale']; ?>">	
-    <meta property="og:site_name" content="<?php echo $config['centro_denominacion']; ?>">	
-    
+    <meta property="og:description" content="<?php echo $pagina['meta']['meta_description']; ?>">
+    <meta property="og:type" content="<?php echo $pagina['meta']['meta_type']; ?>">
+    <meta property="og:locale" content="<?php echo $pagina['meta']['meta_locale']; ?>">
+    <meta property="og:site_name" content="<?php echo $config['centro_denominacion']; ?>">
+
     <meta property="og:url" content="<?php echo WEBCENTROS_DOMINIO.ltrim($canonical_str , '/'); ?>">
 
     <meta name="twitter:card" content="summary" />
@@ -55,9 +55,9 @@
 
     <!-- Fonts and icons -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- CSS Files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/now-ui-kit.css" rel="stylesheet" />
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/my-style.css" rel="stylesheet" />
     <link href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/css/personalize.css" rel="stylesheet" />
@@ -183,9 +183,9 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="wrapper">
-        
+
     <?php if (! empty($pagina['titulo'])): ?>
     <div class="my-header d-flex align-content-center justify-content-center flex-wrap">
         <div class="container">
@@ -193,5 +193,3 @@
         </div>
     </div>
     <?php endif; ?>
-
-    

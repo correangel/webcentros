@@ -8,8 +8,8 @@ class calendar {
 	private $dayNames = array ( 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do');
 	private $monthNames = array ( 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' );
 	// Defaults for prev and next links
-	private $prevMonthNavTxt = '<i class="fa fa-arrow-circle-left fa-lg"></i>';
-	private $nextMonthNavTxt = '<i class="fa fa-arrow-circle-right fa-lg"></i>';
+	private $prevMonthNavTxt = '<i class="far fa-arrow-circle-left fa-lg"></i>';
+	private $nextMonthNavTxt = '<i class="far fa-arrow-circle-right fa-lg"></i>';
 	private $calendarName;
 
 	public function __construct($name='calendar') {

@@ -57,7 +57,7 @@ $ultima_fecha = "0000-00-00";
 $eventos = array();
 $result = mysqli_query($db_con, "SELECT c.nombre, c.fechaini, c.horaini, c.fechafin, c.horafin, c.lugar, c.categoria, c.confirmado FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE cc.espublico = 1 AND fechaini BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL 7 DAY) ORDER BY fechaini ASC");
 while ($row = mysqli_fetch_array($result)) {
-    
+
     if (($row['categoria'] == 2 && $row['confirmado'] == 1) || $row['categoria'] != 2) {
         $evento = array(
             'nombre'        => $row['nombre'],
@@ -70,7 +70,7 @@ while ($row = mysqli_fetch_array($result)) {
         array_push($eventos, $evento);
         $ultima_fecha = $row['fechaini'];
     }
-    
+
 }
 mysqli_free_result($result);
 unset($evento);
@@ -113,7 +113,7 @@ include("inc_menu.php");
 
     <div class="section section-news">
         <div class="container">
-            
+
             <h2 class="h3 title">Novedades en el instituto</h2>
 
             <div class="row">
@@ -134,18 +134,18 @@ include("inc_menu.php");
                                     &nbsp;&nbsp;/&nbsp;&nbsp;
                                     <?php echo strftime('%e %b %Y', strtotime($noticia['fechapub'])); ?>
                                 </h6>
-                                <?php 
+                                <?php
                                  $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
                                 <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="" style="margin-top: 10px;">
-                                    <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Google+"><i class="fa fa-google-plus"></i></a>
-                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fa fa-whatsapp"></i></a>
-                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Telegram"><i class="fa fa-telegram"></i></a>
-                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="fa fa-envelope"></i></a>
+                                    <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
+                                    <a href="#" onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Google+"><i class="fab fa-google-plus-g"></i></a>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Telegram"><i class="fab fa-telegram-plane"></i></a>
+                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="far fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@ include("inc_menu.php");
                                     &nbsp;&nbsp;/&nbsp;&nbsp;
                                     <?php echo strftime('%e %b %Y', strtotime($noticia['fechapub'])); ?>
                                 </h6>
-                                <?php 
+                                <?php
                                 $noticia['contenido'] = str_ireplace(". ", ".", $noticia['contenido']);
                                 $noticia['contenido'] = str_ireplace(".", ". ", $noticia['contenido']);
                                 $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
@@ -172,12 +172,12 @@ include("inc_menu.php");
                                 <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="pad10">
-                                    <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Facebook"><i class="fa fa-facebook"></i></a>
-                                    <a href="#" onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Twitter"><i class="fa fa-twitter"></i></a>
-                                    <a href="#" onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Google+"><i class="fa fa-google-plus"></i></a>
-                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fa fa-whatsapp"></i></a>
-                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir en Telegram"><i class="fa fa-telegram"></i></a>
-                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="fa fa-envelope"></i></a>
+                                    <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
+                                    <a href="#" onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Google+"><i class="fab fa-google-plus-g"></i></a>
+                                    <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Telegram"><i class="fab fa-telegram-plane"></i></a>
+                                    <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="far fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +187,7 @@ include("inc_menu.php");
 
                     <br><br><br><br>
                     <div class="text-center text-muted">
-                        <span class="fa fa-newspaper-o fa-4x"></span>
+                        <span class="far fa-newspaperfa-4x"></span>
                         <p class="lead pad10">No hay novedades en el instituto</p>
                     </div>
                     <br><br><br><br>
@@ -231,7 +231,7 @@ include("inc_menu.php");
 
                             <br>
                             <div class="text-center text-muted">
-                                <span class="fa fa-calendar fa-4x"></span>
+                                <span class="far fa-calendar fa-4x"></span>
                                 <p class="lead pad10">No hay eventos próximos</p>
                             </div>
                             <br>

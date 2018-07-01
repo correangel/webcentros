@@ -122,7 +122,7 @@ if(isset($_POST['leido'])){
 										$leido = "El tutor aún no ha leido el mensaje";
 									}
 									?>
-									<span class="fa fa-check fa-fw pull-right <?php echo $leido_class; ?>" data-toggle="tooltip" title="<?php echo $leido; ?>"></span>
+									<span class="far fa-check fa-fw pull-right <?php echo $leido_class; ?>" data-toggle="tooltip" title="<?php echo $leido; ?>"></span>
 								</a>
 							</td>
 						</tr>

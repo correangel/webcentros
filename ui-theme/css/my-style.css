@@ -69,6 +69,10 @@ small {
     margin-bottom: 5px;
 }
 
+.btn-pad5 {
+  padding-top: 5px !important;
+}
+
 .card-box {
     padding-bottom: 20px;
     margin-bottom: 20px;
@@ -161,7 +165,7 @@ small {
     color:#fff;
     z-index:99999;
 }
- 
+
 #barraCookies .inner {
     width:100%;
     position:absolute;

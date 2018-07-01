@@ -168,7 +168,7 @@ include("../inc_menu.php");
                             <?php else: ?>
                             <br><br>
                             <div class="text-center text-muted">
-                                <span class="fa fa-calendar-o fa-4x"></span>
+                                <span class="far fa-calendarfa-4x"></span>
                                 <p class="lead pad10">No hay actividades programadas</p>
                             </div>
                             <br><br>
