@@ -5,7 +5,7 @@ require_once("../config.php");
 $anio_curso = substr($config['curso_actual'], 0, 4);
 $anio_curso_sig = $anio_curso + 1;
 $array_meses = array(
-    9 => 'Septiembre '.$anio_curso, 
+    9 => 'Septiembre '.$anio_curso,
     10 => 'Octubre '.$anio_curso,
     11 => 'Noviembre '.$anio_curso,
     12 => 'Diciembre '.$anio_curso,
@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($result)) {
         $actividades_mes = array();
         $result_actividades = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, lugar, departamento, profesores, unidades, observaciones FROM calendario WHERE MONTH(fechaini) = '".$row['nummes']."' AND categoria = 1 AND fechaini BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' ORDER BY fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
         while ($row_actividades = mysqli_fetch_array($result_actividades)) {
-        
+
                 $actividad_mes = array(
                     'id'            => $row_actividades['id'],
                     'nombre'        => $row_actividades['nombre'],
@@ -41,7 +41,7 @@ while ($row = mysqli_fetch_array($result)) {
                     'unidades'      => $row_actividades['unidades'],
                     'observaciones' => $row_actividades['observaciones']
                 );
-            
+
                 array_push($actividades_mes, $actividad_mes);
         }
         mysqli_free_result($result_actividades);
@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_array($result)) {
             'nummes'        => $row['nummes'],
             'actividades'   => $actividades_mes
         );
-    
+
         array_push($actividades_extraescolares, $actividad);
 }
 mysqli_free_result($result);
@@ -88,7 +88,7 @@ include("../inc_menu.php");
                         </li>
                         <?php endforeach; ?>
                     </ul>
-                    
+
                 </div>
 
                 <div class="col-md-9">
@@ -168,18 +168,17 @@ include("../inc_menu.php");
                             <?php else: ?>
                             <br><br>
                             <div class="text-center text-muted">
-                                <span class="far fa-calendarfa-4x"></span>
+                                <span class="far fa-calendar fa-4x"></span>
                                 <p class="lead pad10">No hay actividades programadas</p>
                             </div>
                             <br><br>
                             <?php endif; ?>
 
-                            <pre><?php print_r($actividades_extraescolares[8]['actividades']); ?></pre>
                         </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

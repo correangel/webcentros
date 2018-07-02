@@ -2,6 +2,7 @@
 require_once("../../bootstrap.php");
 require_once("../../config.php");
 
+
 if (! isset($config['educacion_cfgb']) && ! isset($config['educacion_cfgm']) && ! isset($config['educacion_cfgs'])) {
     include("../../error404.php");
 }
@@ -83,7 +84,7 @@ include("../../inc_menu.php");
                 <div class="col-md-8">
                     <?php echo $contenido; ?>
                 </div>
-            
+
             </div>
 
         </div>

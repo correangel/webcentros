@@ -111,7 +111,7 @@ $config['sidebar_html'][0]['titulo'] = "Enlaces de interés";
 $config['sidebar_html'][0]['html'] = '
 <ul class="list-unstyled">
     <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/ced" target="_blank">Consejería de Educación</li>
-    <li><a href="http://www.mecd.gob.es/portada-mecd/" target="_blank">Ministerio de Educación y Cultura</li>
+    <li><a href="https://www.mecd.gob.es/portada-mecd/" target="_blank">Ministerio de Educación</li>
     <li><a href="https://www.juntadeandalucia.es/educacion/portaldocente/" target="_blank">Portal Docente</li>
     <li><a href="http://www.juntadeandalucia.es/educacion/portals/web/becas-y-ayudas" target="_blank">Portal de Becas y Ayudas</li>
     <li><a href="http://www.juntadeandalucia.es/educacion/webportal/web/convivencia-escolar" target="_blank">Portal de Convivencia Escolar</li>

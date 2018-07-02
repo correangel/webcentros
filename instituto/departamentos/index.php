@@ -3,37 +3,41 @@ require_once("../../bootstrap.php");
 require_once("../../config.php");
 
 $icons = array(
-	'Idiomas' => 'fa-language',
-	'Inglés' => 'fa-language',
-	'Alemán' => 'fa-language',
-    'Biología y Geología' => 'fa-leaf',
-    'Ciencias Naturales' => 'fa-leaf',
-    'Ciencias Naturales y Física y Química' => 'fa-leaf',
-	'Cultura Clásica' => 'fa-university',
-    'Dibujo' => 'fa-paint-brush',
-    'Educación Plástica, Audiovisual y Visual' => 'fa-paint-brush',
-	'Plástica y Visual' => 'fa-paint-brush',
-	'Economía' => 'fa-bar-chart',
-	'FOL' => 'fa-bar-chart',
-	'FOL y Economía' => 'fa-bar-chart',
-	'Educación Física' => 'fa-futbol',
-	'Filosofía' => 'fa-gavel',
-	'Física y Química' => 'fa-flask',
-	'Francés' => 'fa-language',
-	'Geografía e Historia' => 'fa-globe',
-	'Hostelería y Turismo' => 'fa-cutlery',
-	'Religión' => 'fa-child',
-	'Religión Católica' => 'fa-child',
-	'Religión Evangélica' => 'fa-child',
-	'Lengua Castellana y Literatura' => 'fa-book',
-	'Matemáticas' => 'fa-superscript',
-	'Música' => 'fa-music',
-	'Orientación Educativa' => 'fa-compass',
-	'Pedagogía Terapéutica ESO' => 'fa-compass',
-	'Servicios Socioculturales y a la Comunidad' => 'fa-briefcase',
-	'Tecnología' => 'fa-cogs',
-	'Tecnología e Informática' => 'fa-tachometer',
-	'Informática' => 'fa-desktop',
+	'Idiomas' => 'fas fa-language',
+	'Inglés' => 'fas fa-language',
+	'Alemán' => 'fas fa-language',
+  'Biología y Geología' => 'fas fa-leaf',
+	'Biología y Geología y Física y Química' => 'fas fa-leaf',
+  'Ciencias Naturales' => 'fas fa-leaf',
+  'Ciencias Naturales y Física y Química' => 'fas fa-leaf',
+	'Cultura Clásica' => 'fas fa-university',
+  'Dibujo' => 'fas fa-pencil-ruler',
+  'Educación Plástica, Audiovisual y Visual' => 'fas fa-pencil-ruler',
+	'Plástica y Visual' => 'fas fa-paint-brush',
+	'Economía' => 'fas fa-chart-bar',
+	'FOL' => 'fas fa-chart-bar',
+	'FOL y Economía' => 'fas fa-chart-bar',
+	'Educación Física' => 'fas fa-football-ball',
+	'Filosofía' => 'fas fa-gavel',
+	'Física y Química' => 'fas fa-flask',
+	'Francés' => 'fas fa-language',
+	'Geografía e Historia' => 'fas fa-globe-africa',
+	'Hostelería y Turismo' => 'fas fa-cutlery',
+	'Interculturalidad' => 'fas fa-child',
+	'Religión' => 'fas fa-church',
+	'Religión Católica' => 'fas fa-church',
+	'Religión Evangélica' => 'fas fa-church',
+	'Lengua Castellana y Literatura' => 'fas fa-book',
+	'Matemáticas' => 'fas fa-superscript',
+	'Música' => 'fas fa-music',
+	'Orientación Educativa' => 'far fa-compass',
+	'Pedagogía Terapéutica ESO' => 'fas fa-compass',
+	'Servicios a la Comunidad' => 'fas fa-people-carry',
+	'Tecnología' => 'fab fa-whmcs',
+	'Tecnología e Informática' => 'fab fa-whmcs',
+	'Informática' => 'fas fa-desktop',
+	'Convenio O.N.C.E. Maestros' => 'fas fa-blind',
+	'PROFESOR ADICIONAL' => 'fas fa-user-plus'
 );
 
 $departamentos = array();
@@ -56,10 +60,10 @@ while ($row = mysqli_fetch_array($result)) {
         $departamento = array(
             'nombre'        => $row['departamento'],
             'alias'         => strtolower(str_replace($acentos, $no_acentos, $row['departamento'])),
-            'icono'         => ((array_key_exists($row['departamento'], $icons) == true) ? $icons[$row['departamento']] : 'fa-briefcase'),
+            'icono'         => ((array_key_exists($row['departamento'], $icons) == true) ? $icons[$row['departamento']] : 'fas fa-briefcase'),
             'componentes'   => $componentes
         );
-    
+
         array_push($departamentos, $departamento);
 }
 mysqli_free_result($result);
@@ -87,7 +91,7 @@ include("../../inc_menu.php");
                 <?php foreach ($departamentos as $departamento): ?>
                 <div class="col-sm-12 col-md-6 col-lg-4">
                     <a href="#" data-toggle="modal" data-target="#modal_<?php echo $departamento['alias']; ?>" class="btn btn-default btn-block btn-departamentos">
-                        <span class="far <?php echo $departamento['icono']; ?> fa-fw fa-lg"></span>
+                        <span class="<?php echo $departamento['icono']; ?> fa-fw fa-lg"></span>
                         <?php echo $departamento['nombre']; ?>
                     </a>
                 </div>
@@ -96,7 +100,7 @@ include("../../inc_menu.php");
             </div>
         </div>
     </div>
-    
+
     <?php foreach ($departamentos as $departamento): ?>
     <div class="modal fade" id="modal_<?php echo $departamento['alias']; ?>" tabindex="-1" role="dialog">
         <div class="modal-dialog  modal-lg" role="document">
@@ -108,7 +112,7 @@ include("../../inc_menu.php");
                     <h4 class="title title-up"><?php echo $departamento['nombre']; ?></h4>
                 </div>
                 <div class="modal-body">
-                
+
                     <div class="pad30">
                         <h6><span class="far fa-group fa-fw"></span> Miembros del Departamento</h6>
                         <hr>
@@ -123,7 +127,7 @@ include("../../inc_menu.php");
                         <h6><span class="far fa-folder fa-fw"></span> Recursos</h6>
                         <hr>
                         <ul class="list-unstyled">
-                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/index.php?&amp;directory=Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="far fa-file-text fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
+                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/index.php?&amp;directory=Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="far fa-file-alt fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
                         </ul>
                     </div>
                 </div>

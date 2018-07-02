@@ -138,7 +138,7 @@ include("../../inc_menu.php");
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-2 text-center">
-                            <span class="far fa-map-marker-alt fa-5x text-primary"></span>
+                            <span class="fas fa-map-marker-alt fa-5x text-primary"></span>
                         </div>
                         <div class="col-10">
                             <div class="description">

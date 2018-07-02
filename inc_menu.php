@@ -131,6 +131,16 @@
                             <h6 class="dropdown-header">Bachillerato</h6>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/bachillerato">Bachillerato</a>
                             <?php endif; ?>
+                            <?php if (isset($config['educacion_permanente']) && $config['educacion_permanente']): ?>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Educación Permanente</h6>
+                            <?php if (isset($config['educacion_permanente']['espa']) && $config['educacion_permanente']['espa']): ?>
+                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/espa">Educación Secundaria para Personas Adultas (ESPA)</a>
+                            <?php endif; ?>
+                              <?php if (isset($config['educacion_permanente']['bachillerato']) && $config['educacion_permanente']['bachillerato']): ?>
+                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/bachillerato">Bachillerato</a>
+                            <?php endif; ?>
+                            <?php endif; ?>
                             <?php if (isset($config['educacion_cfgb']) && count($config['educacion_cfgb'])): ?>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Formación Profesional Básico</h6>
