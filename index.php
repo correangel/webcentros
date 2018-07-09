@@ -120,6 +120,16 @@ include("inc_menu.php");
 
                 <div class="col-md-8">
 
+                    <?php if (isset($config['content_html']['top']) && count($config['content_html']['top'])): ?>
+                    <?php foreach ($config['content_html']['top'] as $content_html_top): ?>
+                    <?php if (isset($content_html_top['titulo']) && ! empty($content_html_top['titulo'])): ?>
+                    <h4><?php echo $content_html_top['titulo']; ?></h4>
+                    <?php endif; ?>
+
+                    <?php echo $content_html_top['html']; ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+
                     <?php if (count($noticias_destacadas) || count($noticias)): ?>
                     <?php foreach ($noticias_destacadas as $noticia): ?>
                     <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$noticia['alias']; ?>
@@ -199,6 +209,17 @@ include("inc_menu.php");
                     </div>
 
                     <br>
+
+                    <?php if (isset($config['content_html']['bottom']) && count($config['content_html']['bottom'])): ?>
+                    <?php foreach ($config['content_html']['bottom'] as $content_html_bottom): ?>
+                    <?php if (isset($content_html_bottom['titulo']) && ! empty($content_html_bottom['titulo'])): ?>
+                    <h4><?php echo $content_html_bottom['titulo']; ?></h4>
+                    <?php endif; ?>
+
+                    <?php echo $content_html_bottom['html']; ?>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+
                 </div>
 
                 <div class="col-md-4">

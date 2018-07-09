@@ -103,6 +103,9 @@
                             <h6 class="dropdown-header">Organización</h6>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
+                            <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
+                            <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
+                            <?php endif; ?>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Información académica</h6>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">Información y contacto</a>
@@ -161,12 +164,6 @@
                             <?php foreach ($config['educacion_cfgs'] as $cfgs): ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgs['alias']; ?>"><?php echo $cfgs['nombre']; ?></a>
                             <?php endforeach; ?>
-                            <?php endif; ?>
-                            <?php if ((isset($config['educacion_bachiller']) && $config['educacion_bachiller']) || count($educacion_cfgb) || count($educacion_cfgm) || count($educacion_cfgs)): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Información sobre pruebas de acceso</h6>
-                            <a class="dropdown-item" href="http://www.juntadeandalucia.es/temas/estudiar/universidad/acceso.html" target="_blank">Acceso a la Universidad</a>
-                            <a class="dropdown-item" href="http://www.juntadeandalucia.es/temas/estudiar/fp/pruebas-acceso.html" target="_blank">Acceso a Formación Profesional</a>
                             <?php endif; ?>
                         </div>
                     </li>

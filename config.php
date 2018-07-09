@@ -7,11 +7,17 @@
 // Añade en la carpeta webcentros/ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
 // Se recomienda que el archivo logo.png tenga unas dimensiones de entre 400 y 500 píxeles, y favicon.ico de 32 píxeles
 
-// BIBLIOTECA
+// SITIO WEB DE LA AMPA
+// Introducir la URL de la web, blog de la AMPA
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el sitio web de la AMPA
+// $config['web_ampa'] = "";
+
+// SITIO WEB DE LA BIBLIOTECA
 // Introducir la URL de la web, blog de la Biblioteca, por defecto, utiliza el enlace a BiblioWeb
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el sitio web de la Biblioteca
 $config['biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/biblioweb/";
 
-// IMAGENES Y REPORTAJES
+// SITIO WEB DE IMAGENES Y REPORTAJES
 // Introducir la URL de la web Google Fotos, Flickr u otra donde se almacenen las imágenes y reportajes
 $config['imagenes'] = "";
 
@@ -99,6 +105,23 @@ $config['eqdirectivo_secretaria']['nombre']           = $config['directivo_secre
 $config['eqdirectivo_secretaria']['cargo']            = "Secretario/a";
 $config['eqdirectivo_secretaria']['telefono']         = "";
 $config['eqdirectivo_secretaria']['correoe']          = "";
+
+// CÓDIGO PERSONALIZADO EN BLOQUE DE CONTENIDO DE LA PÁGINA DE INICIO
+// Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
+// En el campo 'titulo' se escribe el nombre del módulo, que aparecerá en la parte superior. Si se deja en blanco se mostrará el contenido HTML únicamente.
+// En el campo 'html' se escribe el código HTML de lo que necesite añadir, por ejemplo: menú de enlaces, imágenes, vídeos, etc.
+// ¡CUIDADO! Es necesario escribir una barra inversa para escapar el caracter comilla (') correctamente (\')
+// Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
+
+/*
+$config['content_html']['top'][0]['titulo'] = "";
+$config['content_html']['top'][0]['html'] = '';
+*/
+
+/*
+$config['content_html']['bottom'][0]['titulo'] = "";
+$config['content_html']['bottom'][0]['html'] = '';
+*/
 
 // CÓDIGO PERSONALIZADO EN LA BARRA LATERAL DE LA PÁGINA DE INICIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:

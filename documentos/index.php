@@ -321,7 +321,7 @@ function contents_dir($current_dir, $directory)
   {
     while (list($filename,$mime) = each($liste)) {
 
-	
+
       if (is_dir("$current_dir/$filename")){
 
       	if (preg_match('/'.$hidden_dirs.'/i', $filename) && !$showhidden) {
@@ -350,7 +350,7 @@ function contents_dir($current_dir, $directory)
 		<td>
 			<span class=\"$icon_color ".get_mimetype_img("$current_dir/$filename")." fa-2x\" style=\"margin: 0 8px 4px 0\"></span>";
 
-			  
+
 		if (is_dir("$current_dir/$filename"))
 		{
 		echo "<a href=\"$filenameandpath\">";
@@ -360,7 +360,7 @@ function contents_dir($current_dir, $directory)
 		{echo "</a>\n";}
 
 		echo "$contents";
-		
+
 		if (! is_dir("$current_dir/$filename")) {
 			echo '<div class="text-muted pad10"><small>';
 			echo 'Tamaño: '.get_filesize("$current_dir/$filename");
@@ -392,7 +392,7 @@ else
 //
 if ($grants[$user_status][DOWNLOAD] && !is_dir("$current_dir/$filename"))
 {
-echo "<a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class='far fa-cloud-download fa-lg' title='Descargar' alt=\"$mess[23]\"></i> Descargar</a>";
+echo "<a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-cloud-download-alt fa-2x d-block d-sm-none\"></i><span class=\"d-none d-sm-block\">Descargar</span></a>";
 
 }
 else
@@ -482,7 +482,7 @@ function show_contents()
 		echo "<i class='far fa-chevron-up'> &nbsp;&nbsp;</i> \n";
 		echo "</a>\n";
 		echo split_dir("$directory");
-		echo "</h5><br />";	
+		echo "</h5><br />";
 	}
 
 
@@ -531,7 +531,7 @@ switch($action)
 		if (!$grants[$user_status][DOWNLOAD])
 		{
 			// place_header($mess[111]);
-			
+
 			$pagina['titulo'] = 'Documentos';
 
 			// SEO
@@ -551,7 +551,7 @@ switch($action)
 		{
 			// // place_header($mess[125]);
 			$pagina['titulo'] = 'Documentos';
-			
+
 			// SEO
 			//$pagina['meta']['robots'] = 0;
 			//$pagina['meta']['canonical'] = 0;
@@ -569,7 +569,7 @@ switch($action)
 		{
 			// // place_header($mess[111]);
 			$pagina['titulo'] = 'Documentos';
-			
+
 			// SEO
 			//$pagina['meta']['robots'] = 0;
 			//$pagina['meta']['canonical'] = 0;
@@ -670,10 +670,10 @@ switch($action)
 		exit;
 		break;
 
-	
+
 	default;
 		$pagina['titulo'] = 'Documentos';
-	
+
 		// SEO
 		//$pagina['meta']['robots'] = 0;
 		//$pagina['meta']['canonical'] = 0;
