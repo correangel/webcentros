@@ -212,23 +212,11 @@ function page_header($title)
   global $charsetencoding,$skins,$skinindex,$headerpage;
 
   $bodytag = $skins[$skinindex]["bodytag"];
-  echo '<!DOCTYPE html>
-<html>
-  <head>
-    <title>IES Monterroso</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <META name="Author" content="Miguel A. García">
-    <META name="keywords" content="insituto,monterroso,estepona,andalucia,linux,smeserver,tic">
-<title>$title</title>
-<link rel="stylesheet" href="<?php echo $dominio;?>css/bootstrap.min_cerulean.css">
-<link rel="stylesheet" href="<?php echo $dominio;?>css/bootstrap_personal.css">
-<link rel="stylesheet" href="<?php echo $dominio;?>font-awesome/css/font-awesome.min.css">
-';
   if ($charsetencoding != "")
     echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=$charsetencoding\">";
   echo "</head><body $bodytag>";
   if (file_exists($headerpage))
-    include($headerpage);        
+    include($headerpage);
 }
 
 //
@@ -388,7 +376,7 @@ function save_user_profile($username)
   fwrite($fp, "\n");
   fwrite($fp, $user_account_creation_time);  // 8 line: The time when user account created
   fwrite($fp, "\n");
-  fwrite($fp, $language);  // 
+  fwrite($fp, $language);  //
   fwrite($fp, "\n");
   fclose($fp);
 }
