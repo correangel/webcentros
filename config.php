@@ -29,6 +29,10 @@ $config['alumnado']['ver_informes_tutoria'] = 0;
 // OFERTA EDUCATIVA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato
 // $config['educacion_bachiller'] = 1;
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Educación Secundaria Para Adultos (ESPA)
+// $config['educacion_permanente']['espa'] = 1;
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato para adultos
+// $config['educacion_permanente']['bachillerato'] = 1;
 
 // FORMACIÓN PROFESIONAL BÁSICA
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
