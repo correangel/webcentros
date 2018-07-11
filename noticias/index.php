@@ -35,7 +35,7 @@ include("../inc_menu.php");
             <div class="row justify-content-md-center">
 
                 <div class="col-md-8">
-                    
+
                     <div class="text-muted">
                         <ul class="list-inline">
                             <li class="list-inline-item"><a href="<?php echo WEBCENTROS_DOMINIO."noticias/autor/".$alias_autor; ?>" class="text-muted"><?php echo $autor; ?></a></li>
@@ -51,21 +51,22 @@ include("../inc_menu.php");
                     <?php echo $noticia['contenido']; ?>
 
                     <br>
-                    
+
                     <hr>
 
                     <?php $url_noticia = WEBCENTROS_DOMINIO."noticias/".$noticia['id']."/".$alias; ?>
-                    <div class="pad10">
-                        <button onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm"><i class="fab fa-facebook"></i></button>
-                        <button onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm"><i class="fab fa-twitter"></i></button>
-                        <button onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm"><i class="fab fa-google-plus-g"></i></button>
-                        <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm"><i class="fab fa-telegram-plane"></i></a>
-                        <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm"><i class="far fa-envelope"></i></a>
+                    <div class="" style="margin-top: 10px;">
+                        <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" onclick="javascript:popup('http://twitter.com/home?status=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" onclick="javascript:popup('https://plus.google.com/share?url=<?php echo $url_noticia; ?>',550,550)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Google+"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#" onclick="javascript:popup('https://www.linkedin.com/shareArticle?title=<?php echo urlencode($noticia['titulo']); ?>&url=<?php echo $url_noticia; ?>&mini=true&share_to=http%3A%2F%2Fwww.linkedin.com%2FshareArticle',550,550)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="whatsapp://send?text=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tg://msg_url?url=<?php echo $url_noticia; ?>&amp;text=<?php echo $noticia['titulo']; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="mailto:?subject=<?php echo $noticia['titulo']; ?>&amp;body=<?php echo $url_noticia; ?>" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir por correo electrónico"><i class="far fa-envelope"></i></a>
                     </div>
-          
+
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -146,21 +146,21 @@
                             <?php endif; ?>
                             <?php if (isset($config['educacion_cfgb']) && count($config['educacion_cfgb'])): ?>
                             <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional Básico</h6>
+                            <h6 class="dropdown-header">Formación Profesional Básica</h6>
                             <?php foreach ($config['educacion_cfgb'] as $cfgb): ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgb['alias']; ?>"><?php echo $cfgb['nombre']; ?></a>
                             <?php endforeach; ?>
                             <?php endif; ?>
                             <?php if (isset($config['educacion_cfgm']) && count($config['educacion_cfgm'])): ?>
                             <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional de Grado Medio</h6>
+                            <h6 class="dropdown-header">Formación Profesional Inicial de Grado Medio</h6>
                             <?php foreach ($config['educacion_cfgm'] as $cfgm): ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgm['alias']; ?>"><?php echo $cfgm['nombre']; ?></a>
                             <?php endforeach; ?>
                             <?php endif; ?>
                             <?php if (isset($config['educacion_cfgs']) && count($config['educacion_cfgs'])): ?>
                             <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional de Grado Superior</h6>
+                            <h6 class="dropdown-header">Formación Profesional Inicial de Grado Superior</h6>
                             <?php foreach ($config['educacion_cfgs'] as $cfgs): ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgs['alias']; ?>"><?php echo $cfgs['nombre']; ?></a>
                             <?php endforeach; ?>
