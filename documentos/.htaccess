@@ -1,6 +1,6 @@
 RewriteEngine on
-RewriteBase /noticias/autor/
+RewriteBase /documentos/
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-RewriteRule ^([a-zA-Z0-9-]*)/?$ index.php?alias=$1 [L]
+RewriteRule ^(.*)/?$ index.php?directory=$1 [L]

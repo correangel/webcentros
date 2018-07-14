@@ -328,7 +328,7 @@ function contents_dir($current_dir, $directory)
       		continue;
       	}
 
-        $filenameandpath = "index.$phpExt?".SID."&directory=";
+        $filenameandpath = WEBCENTROS_DOMINIO . "documentos/";
 
         if ($directory != '') $filenameandpath .= "$directory/";
 
@@ -392,7 +392,7 @@ else
 //
 if ($grants[$user_status][DOWNLOAD] && !is_dir("$current_dir/$filename"))
 {
-echo "<a href=\"index.${phpExt}?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-cloud-download-alt fa-2x d-block d-sm-none\"></i><span class=\"d-none d-sm-block\">Descargar</span></a>";
+echo "<a href=\"index.php?action=downloadfile&filename=$filename&directory=$directory\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-cloud-download-alt fa-2x d-block d-sm-none\"></i><span class=\"d-none d-sm-block\">Descargar</span></a>";
 
 }
 else
@@ -478,7 +478,7 @@ function show_contents()
 
 		$name = dirname($directory);
 		if ($directory == $name || $name == '.') $name = '';
-		echo "<h5><a href=\"index.${phpExt}?&directory=$name\">";
+		echo "<h5><a href=\"" . WEBCENTROS_DOMINIO . "documentos/" . "$name\">";
 		echo "<i class='far fa-chevron-up'> &nbsp;&nbsp;</i> \n";
 		echo "</a>\n";
 		echo split_dir("$directory");

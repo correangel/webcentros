@@ -18,7 +18,8 @@ if ($_SERVER['DOCUMENT_ROOT'] != __DIR__) {
 	if (empty($_document_root)) $_document_root = $_SERVER['DOCUMENT_ROOT'];
 	// Reemplazamos la parte común de ambas cadenas
 	$_directory = str_replace($_document_root, "", __DIR__);
-	$_servername = $_servername . ltrim($_directory, '/') . '/';
+
+	if (! empty($_directory)) $_servername = $_servername . ltrim($_directory, '/') . '/';
 }
 
 // DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB Y EL DIRECTORIO DONDE ESTÁ INSTALADO

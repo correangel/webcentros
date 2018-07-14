@@ -664,14 +664,14 @@ function split_dir($directory)
 	$arr = explode("/", $directory);
 
 	$address = '';
-	$nav="<a href=\"index.${phpExt}?direction=$direction&order=$order&".SID."\">Inicio</a>";
+	$nav="<a href=\"" . WEBCENTROS_DOMINIO . "documentos/" . "\">Inicio</a>";
 	foreach ($arr as $value)
 	{
 		if ($address == '')
 			$address.="$value";
 		else
 			$address.="/$value";
-		$nav.=" / <a href=\"index.${phpExt}?direction=$direction&order=$order&directory=$address&".SID."\">$value</a>";
+		$nav.=" / <a href=\"" . WEBCENTROS_DOMINIO . "documentos/" . "$address\">$value</a>";
 	}
 
 	return($nav);
