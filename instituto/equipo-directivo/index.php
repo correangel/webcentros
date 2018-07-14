@@ -17,15 +17,15 @@ include("../../inc_menu.php");
 
     <div class="section">
         <div class="container">
-            <?php $enUnaFila = ((!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre']))) ? 1 : 0; ?>
+            <?php $enUnaFila = ((!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']))) ? 1 : 0; ?>
 
-            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'secretaria'); ?>
+            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'jefatura_adultos', 'jefatura_adjunta_adultos', 'secretaria'); ?>
 
             <?php if ($enUnaFila): ?>
             <div class="row justify-content-center">
             <?php endif; ?>
             <?php foreach ($cargos as $cargo): ?>
-            <?php if (!$enUnaFila && ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'secretaria')): ?>
+            <?php if (!$enUnaFila && ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'jefatura_adultos' || $cargo == 'secretaria')): ?>
             <div class="row justify-content-center">
             <?php endif; ?>
 
@@ -38,7 +38,7 @@ include("../../inc_menu.php");
                             <i class="far fa-user-circle fa-7x"></i>
                         </div>
                         <div class="card-block pad15">
-                            <h3 class="card-title"><?php echo $config['eqdirectivo_'.$cargo]['nombre']; ?></h3>
+                            <h5 class="card-title"><?php echo $config['eqdirectivo_'.$cargo]['nombre']; ?></h5>
                             <h6 class="category text-primary"><?php echo $config['eqdirectivo_'.$cargo]['cargo']; ?></h6>
                             <ul class="list-unstyled">
                                 <li><a class="text-muted" href="call:+34<?php echo ! empty($config['eqdirectivo_'.$cargo]['telefono']) ? $config['eqdirectivo_'.$cargo]['telefono'] : $config['centro_telefono']; ?>"><span class="fas fa-phone fa-fw"></span> <?php echo ! empty($config['eqdirectivo_'.$cargo]['telefono']) ? $config['eqdirectivo_'.$cargo]['telefono'] : $config['centro_telefono']; ?></a></li>
@@ -50,7 +50,7 @@ include("../../inc_menu.php");
                 </div>
                 <?php endif; ?>
 
-            <?php if (!$enUnaFila && ($cargo == 'vicedireccion' || $cargo == 'jefatura_adjunta' || $cargo == 'secretaria')): ?>
+            <?php if (!$enUnaFila && ($cargo == 'vicedireccion' || $cargo == 'jefatura_adjunta'  || $cargo == 'jefatura_adjunta_adultos' || $cargo == 'secretaria')): ?>
             </div>
             <hr>
             <?php endif; ?>

@@ -4,13 +4,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
-                    <a href="http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/seneca.png" class="pad10" alt="">
+                    <a href="https://www.mecd.gob.es/portada-mecd/" target="_blank">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/mefp.png" class="pad10" alt="">
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
-                    <a href="https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/pasen.png" class="pad10" alt="">
+                    <a href="https://www.mecd.gob.es/educacion/mc/fse/fse.html" target="_blank">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/fse.png" class="pad10" alt="">
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
@@ -24,8 +24,8 @@
                     </a>
                 </div>
                  <div class="col-sm-6 col-md-4 col-lg-2 text-center">
-                    <a href="http://www.juntadeandalucia.es/averroes/centros-tic/<?php echo $config['centro_codigo']; ?>/moodle2/" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/moodle.png" class="pad10" alt="">
+                    <a href="http://www.juntadeandalucia.es/educacion/portals/web/buenas-practicas-educativas" target="_blank">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/bpe.png" class="pad10" alt="">
                     </a>
                 </div>
                  <div class="col-sm-6 col-md-4 col-lg-2 text-center">
