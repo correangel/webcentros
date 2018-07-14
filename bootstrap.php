@@ -13,7 +13,11 @@ else $_servername = "https://".$_servername."/";
 // COMPROBAMOS SI LA WEB ESTÁ EN EL DOCUMENT_ROOT Y REDEFINIMOS LA VARIABLE SERVERNAME
 if ($_SERVER['DOCUMENT_ROOT'] != __DIR__) {
 	$_urldomain = $_servername;
-	$_directory = str_replace($_SERVER['DOCUMENT_ROOT'], "", __DIR__);
+	// Eliminamos la parte no común de la cadena si la hubiese
+	$_document_root = strstr($_SERVER['DOCUMENT_ROOT'], __DIR__);
+	if (empty($_document_root)) $_document_root = $_SERVER['DOCUMENT_ROOT'];
+	// Reemplazamos la parte común de ambas cadenas
+	$_directory = str_replace($_document_root, "", __DIR__);
 	$_servername = $_servername . ltrim($_directory, '/') . '/';
 }
 
@@ -90,6 +94,42 @@ function ofuscarEmail($email) {
 	}
 
 	return $result;
+}
+
+function nombreProfesorTitle($nombre) {
+	return mb_convert_case($nombre, MB_CASE_TITLE, "UTF-8");
+}
+
+function obtenerHoraTutoria($db_con, $dia, $hora) {
+
+	if (empty($dia) && empty($hora)) {
+		return false;
+	}
+	else {
+		switch ($dia) {
+			case '1': $diasem = "Lunes"; break;
+			case '2': $diasem = "Martes"; break;
+			case '3': $diasem = "Miércoles"; break;
+			case '4': $diasem = "Jueves"; break;
+			case '5': $diasem = "Viernes"; break;
+			case '6': $diasem = "Sábado"; break;
+			case '7': $diasem = "Domingo"; break;
+		}
+
+		$result = mysqli_query($db_con, "SELECT `hora_inicio`, `hora_fin` FROM `tramos` WHERE `hora` = '$hora' LIMIT 1");
+
+		if (mysqli_num_rows($result)) {
+			$row = mysqli_fetch_array($result);
+
+			$hora_ini = substr($row['hora_inicio'], 0, 5);
+			$hora_fin = substr($row['hora_fin'], 0, 5);
+
+			return $diasem . " de " . $hora_ini . ' a ' . $hora_fin . ' horas';
+		}
+		else {
+			return 1;
+		}
+	}
 }
 
 // Fin de archivo bootstrap.php

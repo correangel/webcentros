@@ -103,6 +103,7 @@
                             <h6 class="dropdown-header">Organización</h6>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
+                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías</a>
                             <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
                             <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
                             <?php endif; ?>
