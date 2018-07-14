@@ -10,16 +10,18 @@ else $_servername = $_SERVER['SERVER_NAME'];
 if (! $_SERVER['HTTPS']) $_servername = "http://".$_servername."/";
 else $_servername = "https://".$_servername."/";
 
-// COMPROBAMOS SI LA WEB ESTÁ EN EL DOCUMENT_ROOT Y REDEFINIMOS LA VARIABLE SERVERNAME
+// COMPROBAMOS SI LA WEB ESTÁ EN UN SUBDIRECTORIO
 if ($_SERVER['DOCUMENT_ROOT'] != __DIR__) {
 	$_urldomain = $_servername;
-	// Eliminamos la parte no común de la cadena si la hubiese
-	$_document_root = strstr($_SERVER['DOCUMENT_ROOT'], __DIR__);
-	if (empty($_document_root)) $_document_root = $_SERVER['DOCUMENT_ROOT'];
-	// Reemplazamos la parte común de ambas cadenas
-	$_directory = str_replace($_document_root, "", __DIR__);
 
-	if (! empty($_directory)) $_servername = $_servername . ltrim($_directory, '/') . '/';
+	$_directory = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__);
+
+	if (strlen(__DIR__) === strlen($_directory)) {
+		$_directory = str_replace('public_html', 'private_html', __DIR__);
+		$_directory = str_replace($_SERVER['DOCUMENT_ROOT'], '', $_directory);
+	}
+	
+	$_servername = $_servername . ltrim($_directory, '/') . '/';
 }
 
 // DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB Y EL DIRECTORIO DONDE ESTÁ INSTALADO
