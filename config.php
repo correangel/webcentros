@@ -10,7 +10,7 @@
 // SITIO WEB DE LA AMPA
 // Introducir la URL de la web, blog de la AMPA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el sitio web de la AMPA
-// $config['web_ampa'] = "";
+//$config['web_ampa']       = "";
 
 // SITIO WEB DE LA BIBLIOTECA
 // Introducir la URL de la web, blog de la Biblioteca, por defecto, utiliza el enlace a BiblioWeb
@@ -19,20 +19,23 @@ $config['web_biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic
 
 // SITIO WEB DE IMAGENES Y REPORTAJES
 // Introducir la URL de la web Google Fotos, Flickr u otra donde se almacenen las imágenes y reportajes
-$config['web_imagenes'] = "";
+$config['web_imagenes']   = "";
 
 // PÁGINA DE ALUMNADO
 // Si se establece estas variables a 1 o true, el alumno podrá ver y descargar los informes de tareas y tutoría
-$config['alumnado']['ver_informes_tareas'] = 0;
+$config['alumnado']['ver_informes_tareas']  = 0;
 $config['alumnado']['ver_informes_tutoria'] = 0;
 
 // OFERTA EDUCATIVA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato
 // $config['educacion_bachiller'] = 1;
+
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Educación Secundaria Para Adultos (ESPA)
 // $config['educacion_permanente']['espa'] = 1;
+
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato para adultos
 // $config['educacion_permanente']['bachillerato'] = 1;
+
 
 // FORMACIÓN PROFESIONAL BÁSICA
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
@@ -54,7 +57,7 @@ $config['educacion_cfgb'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 // FORMACIÓN PROFESIONAL GRADO MEDIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
 // En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Sistemas Microinformáticos y Redes
-// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo:
+// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título.
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 /*
@@ -70,7 +73,7 @@ $config['educacion_cfgm'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 // FORMACIÓN PROFESIONAL GRADO SUPERIOR
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
 // En el campo 'nombre' se introduce el nombre del título correspondiente, por ejemplo: Administración de Sistemas Informáticos en Red
-// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título, por ejemplo:
+// En el campo 'url' se introduce la URL de la página todofp.es donde está la información del título.
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 /*
@@ -85,30 +88,41 @@ $config['educacion_cfgs'][1]['alias']  = mb_strtolower(str_replace($acentos, $no
 
 // ORGANIGRAMA COMPLETO DEL EQUIPO DIRECTIVO
 // Completar las variables con los datos correspondientes. No es necesario borrar o comentar estas variables, si están vacías no se mostrará información
-$config['eqdirectivo_direccion']['nombre']            = $config['directivo_direccion'];
-$config['eqdirectivo_direccion']['cargo']             = "Director/a";
-$config['eqdirectivo_direccion']['telefono']          = "";
-$config['eqdirectivo_direccion']['correoe']           = "";
+$config['eqdirectivo_direccion']['nombre']                    = $config['directivo_direccion'];
+$config['eqdirectivo_direccion']['cargo']                     = "Director/a";
+$config['eqdirectivo_direccion']['telefono']                  = "";
+$config['eqdirectivo_direccion']['correoe']                   = "";
 
-$config['eqdirectivo_vicedireccion']['nombre']        = "";
-$config['eqdirectivo_vicedireccion']['cargo']         = "Vicedirector/a";
-$config['eqdirectivo_vicedireccion']['telefono']      = "";
-$config['eqdirectivo_vicedireccion']['correoe']       = "";
+$config['eqdirectivo_vicedireccion']['nombre']                = "";
+$config['eqdirectivo_vicedireccion']['cargo']                 = "Vicedirector/a";
+$config['eqdirectivo_vicedireccion']['telefono']              =  "";
+$config['eqdirectivo_vicedireccion']['correoe']               = "";
 
-$config['eqdirectivo_jefatura']['nombre']             = $config['directivo_jefatura'];
-$config['eqdirectivo_jefatura']['cargo']              = 'Jefe/a de estudios';
-$config['eqdirectivo_jefatura']['telefono']           = "";
-$config['eqdirectivo_jefatura']['correoe']            = "";
+$config['eqdirectivo_jefatura']['nombre']                     = $config['directivo_jefatura'];
+$config['eqdirectivo_jefatura']['cargo']                      = 'Jefe/a de estudios';
+$config['eqdirectivo_jefatura']['telefono']                   = "";
+$config['eqdirectivo_jefatura']['correoe']                    = "";
 
-$config['eqdirectivo_jefatura_adjunta']['nombre']     = "";
-$config['eqdirectivo_jefatura_adjunta']['cargo']      = "Jefe/a de estudios adjunto/a";
-$config['eqdirectivo_jefatura_adjunta']['telefono']   = "";
-$config['eqdirectivo_jefatura_adjunta']['correoe']    = "";
+$config['eqdirectivo_jefatura_adjunta']['nombre']             = "";
+$config['eqdirectivo_jefatura_adjunta']['cargo']              = "Jefe/a de estudios adjunto/a";
+$config['eqdirectivo_jefatura_adjunta']['telefono']           = "";
+$config['eqdirectivo_jefatura_adjunta']['correoe']            = "";
 
-$config['eqdirectivo_secretaria']['nombre']           = $config['directivo_secretaria'];
-$config['eqdirectivo_secretaria']['cargo']            = "Secretario/a";
-$config['eqdirectivo_secretaria']['telefono']         = "";
-$config['eqdirectivo_secretaria']['correoe']          = "";
+$config['eqdirectivo_jefatura_adultos']['nombre']             = "";
+$config['eqdirectivo_jefatura_adultos']['cargo']              = "Jefe/a de estudios (EPA)";
+$config['eqdirectivo_jefatura_adultos']['telefono']           = "";
+$config['eqdirectivo_jefatura_adultos']['correoe']            = "";
+
+$config['eqdirectivo_jefatura_adjunta_adultos']['nombre']     = "";
+$config['eqdirectivo_jefatura_adjunta_adultos']['cargo']      = "Jefe/a de estudios adjunto/a (EPA)";
+$config['eqdirectivo_jefatura_adjunta_adultos']['telefono']   = "";
+$config['eqdirectivo_jefatura_adjunta_adultos']['correoe']    = "";
+
+$config['eqdirectivo_secretaria']['nombre']                   = $config['directivo_secretaria'];
+$config['eqdirectivo_secretaria']['cargo']                    = "Secretario/a";
+$config['eqdirectivo_secretaria']['telefono']                 = "";
+$config['eqdirectivo_secretaria']['correoe']                  = "";
+
 
 // CÓDIGO PERSONALIZADO EN BLOQUE DE CONTENIDO DE LA PÁGINA DE INICIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
