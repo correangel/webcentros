@@ -17,9 +17,14 @@ include("../../inc_menu.php");
 
     <div class="section">
         <div class="container">
-            <?php $enUnaFila = ((!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre'])) && (!isset($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']))) ? 1 : 0; ?>
+            <?php $enUnaFila = (
+                (!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) &&
+                (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre'])) &&
+                (!isset($config['eqdirectivo_jefatura_adjunta2']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta2']['nombre'])) &&
+                (!isset($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']))
+              ) ? 1 : 0; ?>
 
-            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'jefatura_adultos', 'jefatura_adjunta_adultos', 'secretaria'); ?>
+            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'jefatura_adjunta2', 'jefatura_adultos', 'jefatura_adjunta_adultos', 'secretaria'); ?>
 
             <?php if ($enUnaFila): ?>
             <div class="row justify-content-center">
@@ -50,7 +55,7 @@ include("../../inc_menu.php");
                 </div>
                 <?php endif; ?>
 
-            <?php if (!$enUnaFila && ($cargo == 'vicedireccion' || $cargo == 'jefatura_adjunta'  || $cargo == 'jefatura_adjunta_adultos' || $cargo == 'secretaria')): ?>
+            <?php if (!$enUnaFila && ($cargo == 'vicedireccion' || (! empty($config['eqdirectivo_jefatura_adjunta2']['nombre']) ? $cargo == 'jefatura_adjunta2' : $cargo ==  'jefatura_adjunta') || $cargo == 'jefatura_adjunta_adultos' || $cargo == 'secretaria')): ?>
             </div>
             <hr>
             <?php endif; ?>

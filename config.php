@@ -108,6 +108,11 @@ $config['eqdirectivo_jefatura_adjunta']['cargo']              = "Jefe/a de estud
 $config['eqdirectivo_jefatura_adjunta']['telefono']           = "";
 $config['eqdirectivo_jefatura_adjunta']['correoe']            = "";
 
+$config['eqdirectivo_jefatura_adjunta2']['nombre']            = "";
+$config['eqdirectivo_jefatura_adjunta2']['cargo']             = "Jefe/a de estudios adjunto/a";
+$config['eqdirectivo_jefatura_adjunta2']['telefono']          = "";
+$config['eqdirectivo_jefatura_adjunta2']['correoe']           = "";
+
 $config['eqdirectivo_jefatura_adultos']['nombre']             = "";
 $config['eqdirectivo_jefatura_adultos']['cargo']              = "Jefe/a de estudios (EPA)";
 $config['eqdirectivo_jefatura_adultos']['telefono']           = "";
