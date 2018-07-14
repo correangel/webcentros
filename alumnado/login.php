@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("../bootstrap.php");
 require_once('../config.php');
 require_once('session.php');
@@ -15,7 +15,7 @@ if (! isset($_SESSION['intentos'])) $_SESSION['intentos'] = 0;
 $_SESSION['alumno_autenticado'] = 0;
 
 if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['clave']) > 6)) {
-	
+
 	$usuario	= xss_clean($_POST['user']);
 	$clave		= xss_clean($_POST['clave']);
 
@@ -33,9 +33,9 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 			);
 		}
 	}
-	
+
 	if ((! $plugin_google_recaptcha) || ($plugin_google_recaptcha && ! $recaptcha_obligatorio) || ($plugin_google_recaptcha && $recaptcha_obligatorio && $response != null && $response->success)) {
-		
+
 		// Comprobamos si se ha introducido la clave del usuario Administrador de la Intranet
 		$result_admin = mysqli_query($db_con, "SELECT idea FROM c_profes WHERE idea = 'admin' AND pass = SHA1('$clave') LIMIT 1");
 		$esAdmin = (mysqli_num_rows($result_admin) > 0) ? 1 : 0;
@@ -63,29 +63,27 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 			if (! empty($row_tutor2['dnitutor2']) && ! empty($row_tutor2['nombretutor2'])) {
 				$_SESSION['dnitutor'] = $row_tutor2['dnitutor2'];
 				$_SESSION['nombretutor'] = $row_tutor2['nombretutor2'].' '.$row_tutor2['primerapellidotutor2'].' '.$row_tutor2['segundoapellidotutor2'];
-			}	
+			}
 			else {
 				$esTutorLegal2 = 0;
 			}
 		}
-		
+
 		if ($esAdmin || $esTutorLegal1 || $esTutorLegal2) {
 			$result = mysqli_query($db_con, "SELECT alma.claveal, alma.apellidos, alma.nombre, control.pass AS clave, alma.correo AS correo_matricula, control.correo FROM alma LEFT JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='$usuario' LIMIT 1");
 		}
 		else {
 			$result = mysqli_query($db_con, "SELECT alma.claveal, alma.apellidos, alma.nombre, control.pass AS clave, alma.correo AS correo_matricula, control.correo FROM alma LEFT JOIN control ON alma.claveal = control.claveal WHERE alma.claveal='$usuario' AND (alma.claveal='$clave' OR control.pass=SHA1('$clave')) LIMIT 1");
 		}
-		
+
 		if (mysqli_num_rows($result)) {
-			
+
 			$direccionIP = getRealIP();
 			$useragent = $_SERVER['HTTP_USER_AGENT'];
 			$usuario = mysqli_fetch_array($result);
 
-			session_regenerate_id(true);
-			
 			// Comprobamos si es la primera vez que el usuario accede
-			if ((empty($usuario['clave']) && $clave == $usuario['claveal']) || sha1($clave) == $usuario['clave']) {
+			if ((empty($usuario['clave']) && $clave == $usuario['claveal'])) {
 
 				// Registramos el acceso
 				if (isset($_SESSION['nombretutor'])) {
@@ -94,14 +92,14 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 				else {
 					mysqli_query($db_con, "INSERT INTO reg_principal (pagina, fecha, ip, claveal, useragent) VALUES ('".$_SERVER['REQUEST_URI']."', NOW(), '".$direccionIP."', '".$usuario['claveal']."', '".$useragent."')");
 				}
-				
+
 				$_SESSION['alumno_autenticado'] = 1;
 				$_SESSION['claveal'] = $usuario['claveal'];
 				$_SESSION['cambiar_clave_alumno'] = 1;
 				unset($_SESSION['intentos']);
-				
+
 				mysqli_query($db_con, "INSERT INTO control (claveal, pass, correo) VALUES ('".$usuario['claveal']."', SHA1($clave), '".$usuario['correo_matricula']."')");
-				
+
 				header("Location:".WEBCENTROS_DOMINIO."alumnado/clave.php");
 				exit();
 			}
@@ -119,7 +117,7 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 				$_SESSION['claveal'] = $usuario['claveal'];
 				$_SESSION['cambiar_clave_alumno'] = 0;
 				unset($_SESSION['intentos']);
-				
+
 				header("Location:".WEBCENTROS_DOMINIO."alumnado/index.php");
 				exit();
 			}
@@ -128,7 +126,7 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 				$msg_error_text = "NIE y/o contraseña incorrectos.";
 				$_SESSION['intentos']++;
 			}
-			
+
 		}
 		else {
 			$msg_error = true;
@@ -140,7 +138,7 @@ if (isset($_POST['submit']) && (strlen($_POST['user']) > 6 && strlen($_POST['cla
 		$msg_error = true;
 		$msg_error_text = "Error en la comprobación reCAPTCHA. Inténtelo de nuevo.";
 	}
-	
+
 }
 
 // SEO
@@ -153,7 +151,7 @@ $pagina['meta']['meta_locale'] = "es_ES";
 
 include('../inc_menu.php');
 ?>
-	
+
 	<div class="page-header" filter-color="orange">
         <div class="page-header-image" style="background-image:url(../ui-theme/img/login.jpg)"></div>
         <div class="container">

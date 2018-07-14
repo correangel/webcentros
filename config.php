@@ -15,11 +15,11 @@
 // SITIO WEB DE LA BIBLIOTECA
 // Introducir la URL de la web, blog de la Biblioteca, por defecto, utiliza el enlace a BiblioWeb
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el sitio web de la Biblioteca
-$config['biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/biblioweb/";
+$config['web_biblioteca'] = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/biblioweb/";
 
 // SITIO WEB DE IMAGENES Y REPORTAJES
 // Introducir la URL de la web Google Fotos, Flickr u otra donde se almacenen las imágenes y reportajes
-$config['imagenes'] = "";
+$config['web_imagenes'] = "";
 
 // PÁGINA DE ALUMNADO
 // Si se establece estas variables a 1 o true, el alumno podrá ver y descargar los informes de tareas y tutoría

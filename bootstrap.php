@@ -5,13 +5,21 @@ date_default_timezone_set('Europe/Madrid');
 setlocale(LC_TIME, 'es_ES.UTF-8');
 
 // OBTENEMOS LA URL DE LA PÁGINA WEB
-if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) $servername = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
-else $servername = $_SERVER['SERVER_NAME'];
-if (! $_SERVER['HTTPS']) $servername = "http://".$servername."/";
-else $servername = "https://".$servername."/";
+if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) $_servername = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
+else $_servername = $_SERVER['SERVER_NAME'];
+if (! $_SERVER['HTTPS']) $_servername = "http://".$_servername."/";
+else $_servername = "https://".$_servername."/";
+
+// COMPROBAMOS SI LA WEB ESTÁ EN EL DOCUMENT_ROOT Y REDEFINIMOS LA VARIABLE SERVERNAME
+if ($_SERVER['DOCUMENT_ROOT'] != __DIR__) {
+	$_urldomain = $_servername;
+	$_directory = str_replace($_SERVER['DOCUMENT_ROOT'], "", __DIR__);
+	$_servername = $_servername . ltrim($_directory, '/') . '/';
+}
 
 // DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB Y EL DIRECTORIO DONDE ESTÁ INSTALADO
-define("WEBCENTROS_DOMINIO", $servername);
+define("DOMINIO", $_urldomain);
+define("WEBCENTROS_DOMINIO", $_servername);
 define("WEBCENTROS_DIRECTORY", __DIR__);
 
 // OBTENEMOS LA CONFIGURACIÓN DE LA INTRANET
@@ -19,7 +27,8 @@ if (@file_exists("./intranet/config.php")) require_once("./intranet/config.php")
 if (@file_exists("../intranet/config.php")) require_once("../intranet/config.php");
 if (@file_exists("../../intranet/config.php")) require_once("../../intranet/config.php");
 if (@file_exists("../../../intranet/config.php")) require_once("../../../intranet/config.php");
-$db_con = mysqli_connect($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']) or die("<h1>Error " . mysqli_connect_error() . "</h1>"); 
+if (@file_exists("../../../../intranet/config.php")) require_once("../../../../intranet/config.php");
+$db_con = mysqli_connect($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']) or die("<h1>Error " . mysqli_connect_error() . "</h1>");
 mysqli_query($db_con,"SET NAMES 'utf8'");
 
 // ESCAPE DE CARACTERES PARA REALIZAR ALIAS, NECESARIO PARA GENERAR URL AMIGABLES
@@ -44,10 +53,10 @@ mysqli_free_result($result);
 function getRealIP() {
     if (!empty($_SERVER['HTTP_CLIENT_IP']))
         return $_SERVER['HTTP_CLIENT_IP'];
-        
+
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
         return $_SERVER['HTTP_X_FORWARDED_FOR'];
-    
+
     return $_SERVER['REMOTE_ADDR'];
 }
 
@@ -57,7 +66,7 @@ function cortarTexto($texto, $numMaxCaract) {
 	}else{
 		$textoCortado = substr($texto, 0, $numMaxCaract);
 		$ultimoEspacio = strripos($textoCortado, " ");
- 
+
 		if ($ultimoEspacio !== false){
 			$textoCortadoTmp = substr($textoCortado, 0, $ultimoEspacio);
 			if (substr($textoCortado, $ultimoEspacio)){
@@ -68,7 +77,7 @@ function cortarTexto($texto, $numMaxCaract) {
 			$textoCortado .= '...';
 		}
 	}
- 
+
 	return $textoCortado;
 }
 

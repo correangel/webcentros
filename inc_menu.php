@@ -114,11 +114,11 @@
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
                             <?php endif; ?>
                             <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
-                            <?php if (isset($config['biblioteca']) && ! empty($config['biblioteca'])): ?>
-                            <a class="dropdown-item" href="<?php echo $config['biblioteca']; ?>" target="_blank">Biblioteca</a>
+                            <?php if (isset($config['web_biblioteca']) && ! empty($config['web_biblioteca'])): ?>
+                            <a class="dropdown-item" href="<?php echo $config['web_biblioteca']; ?>" target="_blank">Biblioteca</a>
                             <?php endif; ?>
-                            <?php if (isset($config['imagenes']) && ! empty($config['imagenes'])): ?>
-                            <a class="dropdown-item" href="<?php echo $config['imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
+                            <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
+                            <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
                             <?php endif; ?>
                         </div>
                     </li>
@@ -176,7 +176,7 @@
                         <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado">Alumnado</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>intranet" target="_blank">Intranet</a>
+                        <a class="nav-link" href="<?php echo DOMINIO; ?>intranet" target="_blank">Intranet</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

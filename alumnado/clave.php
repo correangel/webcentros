@@ -104,9 +104,11 @@ include("../inc_menu.php");
 		<div class="container">
 
 			<!-- TITULO DE LA PAGINA -->
-			<div class="marg-bottom15">
-				<h2 style="display: inline;" class="mr-auto">Cambiar la contraseña</h2>
-				<div style="display: inline;" class="pull-right hidden-print">
+			<div class="row marg-bottom15">
+				<div class="col-auto mr-auto">
+					<h2 style="display: inline;">Cambiar la contraseña</h2>
+				</div>
+				<div style="display: inline;" class="col-auto hidden-print">
 					<a href="logout.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
 				</div>
 			</div>

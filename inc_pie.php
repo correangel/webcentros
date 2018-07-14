@@ -41,9 +41,7 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>aviso-legal">Aviso legal</a></li>
-                    <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>aviso-legal">Protección de datos</a></li>
-                    <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>aviso-legal">Política de Cookies</a></li>
+                    <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>aviso-legal">Aviso legal y Política de Cookies</a></li>
                 </ul>
             </nav>
             <div class="copyright">

@@ -116,7 +116,7 @@ include('../inc_menu.php');
 			<div class="row marg-bottom15">
 				<div class="col-auto mr-auto">
 					<h2 style="display: inline;">Expediente académico del alumno/a</h2>
-				</div>	
+				</div>
 				<div style="display: inline;" class="col-auto hidden-print">
 					<?php if (! isset($_SESSION['dnitutor'])): ?>
 					<a href="clave.php" class="btn btn-info btn-sm">Cambiar contraseña</a>
@@ -243,7 +243,6 @@ include('../inc_menu.php');
 			</div><!-- /.row -->
 			</div><!-- /.well -->
 
-			<?php if ($claveal == '3284099'): ?>
 			<?php if ((isset($config['mod_matriculacion']) && $config['mod_matriculacion']) && ((date('Y-m-d') >= $config['matriculas']['fecha_inicio']) && (date('Y-m-d') <= $config['matriculas']['fecha_fin']))): ?>
 			<hr>
 
@@ -261,7 +260,7 @@ include('../inc_menu.php');
 											<span class="text-info"><?php echo $dia_matricula_ini; ?> - <?php echo $dia_matricula_fin; ?></span>
 										</th>
 										<td style="vertical-align: middle;">Solicitud de matrícula en Educación Secundaria Obligatoria</td>
-										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
+										<td style="vertical-align: middle; width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
 									</tr>
 									<?php endif; ?>
 									<?php if ($ofertaBachillerato && stristr($curso_matricula, 'BACH') == true): ?>
