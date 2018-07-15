@@ -87,6 +87,9 @@
     a:hover.text-primary { color: <?php echo cmykcolor($config['color_primario'], 1, 'dark'); ?> !important; }
     .btn-primary { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
     .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    .form-control:focus { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
+    .form-control:focus+.input-group-addon, .form-control:focus~.input-group-addon { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
+    .input-group-focus .input-group-addon { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
     </style>
     <?php endif; ?>
 </head>
@@ -96,7 +99,7 @@
         <div class="navbar-lg d-none d-sm-none d-md-none d-lg-block">
           <div class="container">
             <a class="navbar-brand-lg text-primary" href="<?php echo WEBCENTROS_DOMINIO; ?>">
-              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" width="80" class="d-inline-block" alt="">
+              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" height="80" class="d-inline-block" alt="">
               <?php echo $config['centro_denominacion']; ?>
             </a>
           </div>
