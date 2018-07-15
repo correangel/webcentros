@@ -229,12 +229,6 @@
                   </li>
               </ul>
               <ul class="navbar-nav">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">
-                          <i class="now-ui-icons travel_info"></i>
-                          <p>Te informamos</p>
-                      </a>
-                  </li>
                   <?php if (isset($_SESSION['alumno_autenticado']) && $_SESSION['alumno_autenticado']): ?>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -249,6 +243,12 @@
                     </div>
                   </li>
                   <?php endif; ?>
+                  <li class="nav-item active">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">
+                          <i class="now-ui-icons travel_info"></i>
+                          <p>Te informamos</p>
+                      </a>
+                  </li>
               </ul>
             </div>
           </div>
