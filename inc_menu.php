@@ -241,12 +241,9 @@
                       <i class="far fa-user-circle fa-lg fa-fw"></i> <?php echo $_SESSION['alumno']; ?>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="menuUsuario">
-                      <?php if (! isset($_SESSION['dnitutor'])): ?>
-                      <?php if ($_SERVER['REQUEST_URI'] != '/web/alumnado/clave.php'): ?>
-                      <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/clave.php">Cambiar contraseña</a>
-                      <?php else: ?>
                       <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/index.php">Expediente académico</a>
-                      <?php endif; ?>
+                      <?php if (! isset($_SESSION['dnitutor'])): ?>
+                      <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/clave.php">Cambiar contraseña</a>
                       <?php endif; ?>
                       <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/logout.php">Cerrar sesión</a>
                     </div>
