@@ -91,16 +91,11 @@
     .form-control:focus+.input-group-addon, .form-control:focus~.input-group-addon { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
     .input-group-focus .input-group-addon { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
     .page-header[filter-data="login"] {
-      background: rgba(44, 44, 44, 0.2);
-      /* For browsers that do not support gradients */
+      background: rgba(44, 44, 44, 0.2); 
       background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      /* For Safari 5.1 to 6.0 */
       background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      /* For Opera 11.1 to 12.0 */
       background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      /* For Firefox 3.6 to 15 */
       background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      /* Standard syntax */
     }
     </style>
     <?php endif; ?>
