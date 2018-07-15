@@ -48,7 +48,9 @@ include("../inc_menu.php");
 
                     <br>
 
+                    <div class="text-wrap">
                     <?php echo $noticia['contenido']; ?>
+                    </div>
 
                     <br>
 

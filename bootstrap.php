@@ -120,4 +120,87 @@ function obtenerHoraTutoria($db_con, $dia, $hora) {
 	}
 }
 
+/*
+	La función cmyk_rgb convierte un color CMYK en RGB y devuelve el código CSS correspondiente
+*/
+function cmyk_rgb($c, $m, $y, $k) {
+	$c = $c / 100;
+	$m = $m / 100;
+	$y = $y / 100;
+	$k = $k / 100;
+
+	$r = 1 - ($c * (1 - $k)) - $k;
+	$g = 1 - ($m * (1 - $k)) - $k;
+	$b = 1 - ($y * (1 - $k)) - $k;
+
+	$r = round($r * 255);
+	$g = round($g * 255);
+	$b = round($b * 255);
+
+	$rgb = 'rgb(' . $r . ', ' . $g . ', ' . $b . ')';
+
+	return $rgb;
+}
+/*
+	La función cmykcolor comprueba si el formato CMYK es válido y devuelve el código CSS.
+	La variable $color recibe el color que el usuario ha proporcionado.
+	La variable $rgb recibe el valor 1 o 0 si se desea devolver el código CSS en formato RGB.
+	La variable $tono modifica el color introducido por el usuario para aclarar
+	(introduciendo el valor light) u oscurecer (introduciendo el valor dark).
+*/
+function cmykcolor($color, $rgb = false, $tono = false) {
+		$tonalidad = 0;
+		$color = str_replace('%', '', $color);
+		$color = str_replace(' ', '', $color);
+
+		if ($tono !== false) {
+			switch ($tono) {
+				case 'light'  : $tonalidad -= 10; break;
+				case 'dark'   : $tonalidad += 10; break;
+				default       : $tonalidad = 0;  break;
+			}
+		}
+
+		$exp_cmyk = explode(',', $color);
+		if (count($exp_cmyk) != 4) {
+			die('Error CMYK Color : El número de valores del formato CMYK no es válido. Debe introducir 4 valores separados por coma.');
+		}
+		else {
+			$cvalue = trim($exp_cmyk[0]);
+			$mvalue = trim($exp_cmyk[1]) + $tonalidad;
+			$yvalue = trim($exp_cmyk[2]) + $tonalidad;
+			$kvalue = trim($exp_cmyk[3]);
+
+			if (! ($cvalue >= 0 && $cvalue <= 100)) {
+				die('Error CMYK Color : El porcentaje de color Cyan ' . $cvalue . ' no es válido. Debe ser un valor entre 0% y 100%.');
+			}
+			else if (! ($mvalue >= 0 && $mvalue <= 100)) {
+				die('Error CMYK Color : El porcentaje de color Magenta ' . $mvalue . ' no es válido. Debe ser un valor entre 0% y 100%.');
+			}
+			else if (! ($yvalue >= 0 && $yvalue <= 100)) {
+				die('Error CMYK Color : El porcentaje de color Yellow ' . $yvalue . ' no es válido. Debe ser un valor entre 0% y 100%.');
+			}
+			else if (! ($kvalue >= 0 && $kvalue <= 100)) {
+				die('Error CMYK Color : El porcentaje de color blacK ' . $yvalue . ' no es válido. Debe ser un valor entre 0% y 100%.');
+			}
+			else {
+
+			}
+
+			$cmyk = 'cmyk(' . $cvalue . '%,' . $mvalue . '%,' . $yvalue . '%,' . $kvalue . '%)';
+
+			if (! (preg_match("/cmyk\([0-9]{0,3}%,[0-9]{0,3}%,[0-9]{0,3}%,[0-9]{0,3}%\)/i", $cmyk))) {
+				return false;
+			}
+			else {
+				if ($rgb !== false) {
+					return cmyk_rgb($cvalue, $mvalue, $yvalue, $kvalue);
+				}
+				else {
+					return $cmyk;
+				}
+			}
+		}
+}
+
 // Fin de archivo bootstrap.php

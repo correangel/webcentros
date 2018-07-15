@@ -75,14 +75,38 @@
     </script>
     <?php endif; ?>
     <?php endif; ?>
+
+    <?php if (isset($config['color_primario']) && cmykcolor($config['color_primario'])): ?>
+    <style type="text/css">
+    .text-primary { color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    .bg-primary { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    .border-primary { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    a, a:hover, a:focus, a:active { color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
+    a:hover { color: <?php echo cmykcolor($config['color_primario'], 1, 'dark'); ?>; }
+    a.text-primary, a:focus.text-primary, a:active.text-primary { color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    a:hover.text-primary { color: <?php echo cmykcolor($config['color_primario'], 1, 'dark'); ?> !important; }
+    .btn-primary { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
+    </style>
+    <?php endif; ?>
 </head>
 
 <body class="index-page sidebar-collapse">
+    <nav class="fixed-top">
+        <div class="navbar-lg d-none d-sm-none d-md-none d-lg-block">
+          <div class="container">
+            <a class="navbar-brand-lg text-primary" href="<?php echo WEBCENTROS_DOMINIO; ?>">
+              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" width="80" class="d-inline-block" alt="">
+              <?php echo $config['centro_denominacion']; ?>
+            </a>
+          </div>
+        </div>
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary">
-        <div class="container">
+        <div class="navbar navbar-expand-lg bg-primary">
+
+          <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="<?php echo WEBCENTROS_DOMINIO; ?>">
+                <a class="navbar-brand d-block d-md-block d-lg-none" href="<?php echo WEBCENTROS_DOMINIO; ?>">
                     <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" width="30" height="30" class="d-inline-block" alt="">
                     <?php echo $config['centro_denominacion']; ?>
                 </a>
@@ -94,108 +118,109 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navigation">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="menInstituto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Instituto
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="menuInstituto">
-                            <h6 class="dropdown-header">Organización</h6>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías</a>
-                            <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
-                            <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
-                            <?php endif; ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Información académica</h6>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">Información y contacto</a>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
-                            <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
-                            <?php endif; ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
-                            <?php if (isset($config['web_biblioteca']) && ! empty($config['web_biblioteca'])): ?>
-                            <a class="dropdown-item" href="<?php echo $config['web_biblioteca']; ?>" target="_blank">Biblioteca</a>
-                            <?php endif; ?>
-                            <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
-                            <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
-                            <?php endif; ?>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="menuOfertaEducativa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Oferta educativa
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="menuOfertaEducativa">
-                            <h6 class="dropdown-header">Educación Obligatoria</h6>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-secundaria-obligatoria">Educación Secundaria Obligatoria</a>
-                            <?php if (isset($config['educacion_bachiller']) && $config['educacion_bachiller']): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Bachillerato</h6>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/bachillerato">Bachillerato</a>
-                            <?php endif; ?>
-                            <?php if (isset($config['educacion_permanente']) && $config['educacion_permanente']): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Educación Permanente</h6>
-                            <?php if (isset($config['educacion_permanente']['espa']) && $config['educacion_permanente']['espa']): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/espa">Educación Secundaria para Personas Adultas (ESPA)</a>
-                            <?php endif; ?>
-                              <?php if (isset($config['educacion_permanente']['bachillerato']) && $config['educacion_permanente']['bachillerato']): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/bachillerato">Bachillerato</a>
-                            <?php endif; ?>
-                            <?php endif; ?>
-                            <?php if (isset($config['educacion_cfgb']) && count($config['educacion_cfgb'])): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional Básica</h6>
-                            <?php foreach ($config['educacion_cfgb'] as $cfgb): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgb['alias']; ?>"><?php echo $cfgb['nombre']; ?></a>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                            <?php if (isset($config['educacion_cfgm']) && count($config['educacion_cfgm'])): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional Inicial de Grado Medio</h6>
-                            <?php foreach ($config['educacion_cfgm'] as $cfgm): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgm['alias']; ?>"><?php echo $cfgm['nombre']; ?></a>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                            <?php if (isset($config['educacion_cfgs']) && count($config['educacion_cfgs'])): ?>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Formación Profesional Inicial de Grado Superior</h6>
-                            <?php foreach ($config['educacion_cfgs'] as $cfgs): ?>
-                            <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgs['alias']; ?>"><?php echo $cfgs['nombre']; ?></a>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
-                    </li>
-                    <?php if (isset($config['mod_documentos']) && $config['mod_documentos']): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>documentos">Documentos</a>
-                    </li>
-                    <?php endif; ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado">Alumnado</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>intranet" target="_blank">Intranet</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">
-                            <i class="now-ui-icons travel_info"></i>
-                            <p>Te informamos</p>
-                        </a>
-                    </li>
-                </ul>
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="menInstituto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Instituto
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="menuInstituto">
+                          <h6 class="dropdown-header">Organización</h6>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías</a>
+                          <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
+                          <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
+                          <?php endif; ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Información académica</h6>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">Información y contacto</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
+                          <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
+                          <?php endif; ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
+                          <?php if (isset($config['web_biblioteca']) && ! empty($config['web_biblioteca'])): ?>
+                          <a class="dropdown-item" href="<?php echo $config['web_biblioteca']; ?>" target="_blank">Biblioteca</a>
+                          <?php endif; ?>
+                          <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
+                          <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
+                          <?php endif; ?>
+                      </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="menuOfertaEducativa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Oferta educativa
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="menuOfertaEducativa">
+                          <h6 class="dropdown-header">Educación Obligatoria</h6>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-secundaria-obligatoria">Educación Secundaria Obligatoria</a>
+                          <?php if (isset($config['educacion_bachiller']) && $config['educacion_bachiller']): ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Bachillerato</h6>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/bachillerato">Bachillerato</a>
+                          <?php endif; ?>
+                          <?php if (isset($config['educacion_permanente']) && $config['educacion_permanente']): ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Educación Permanente</h6>
+                          <?php if (isset($config['educacion_permanente']['espa']) && $config['educacion_permanente']['espa']): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/espa">Educación Secundaria para Personas Adultas (ESPA)</a>
+                          <?php endif; ?>
+                            <?php if (isset($config['educacion_permanente']['bachillerato']) && $config['educacion_permanente']['bachillerato']): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/bachillerato">Bachillerato (BTOPA)</a>
+                          <?php endif; ?>
+                          <?php endif; ?>
+                          <?php if (isset($config['educacion_cfgb']) && count($config['educacion_cfgb'])): ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Formación Profesional Básica</h6>
+                          <?php foreach ($config['educacion_cfgb'] as $cfgb): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgb['alias']; ?>"><?php echo $cfgb['nombre']; ?></a>
+                          <?php endforeach; ?>
+                          <?php endif; ?>
+                          <?php if (isset($config['educacion_cfgm']) && count($config['educacion_cfgm'])): ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Formación Profesional Inicial de Grado Medio</h6>
+                          <?php foreach ($config['educacion_cfgm'] as $cfgm): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgm['alias']; ?>"><?php echo $cfgm['nombre']; ?></a>
+                          <?php endforeach; ?>
+                          <?php endif; ?>
+                          <?php if (isset($config['educacion_cfgs']) && count($config['educacion_cfgs'])): ?>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Formación Profesional Inicial de Grado Superior</h6>
+                          <?php foreach ($config['educacion_cfgs'] as $cfgs): ?>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/formacion-profesional/<?php echo $cfgs['alias']; ?>"><?php echo $cfgs['nombre']; ?></a>
+                          <?php endforeach; ?>
+                          <?php endif; ?>
+                      </div>
+                  </li>
+                  <?php if (isset($config['mod_documentos']) && $config['mod_documentos']): ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>documentos">Documentos</a>
+                  </li>
+                  <?php endif; ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado">Alumnado</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>intranet" target="_blank">Intranet</a>
+                  </li>
+              </ul>
+              <ul class="navbar-nav">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">
+                          <i class="now-ui-icons travel_info"></i>
+                          <p>Te informamos</p>
+                      </a>
+                  </li>
+              </ul>
             </div>
+          </div>
         </div>
     </nav>
 
     <div class="wrapper">
 
     <?php if (! empty($pagina['titulo'])): ?>
-    <div class="my-header d-flex align-content-center justify-content-center flex-wrap">
+    <div class="my-header">
         <div class="container">
             <h2 class="title"><?php echo $pagina['titulo']; ?></h2>
         </div>

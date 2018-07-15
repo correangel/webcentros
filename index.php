@@ -2,6 +2,8 @@
 require_once("bootstrap.php");
 require_once("config.php");
 
+error_reporting(E_ALL);
+
 $noticias_destacadas = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
@@ -147,7 +149,7 @@ include("inc_menu.php");
                                 <?php
                                  $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
-                                <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <p class="text-wrap"><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="" style="margin-top: 10px;">
                                     <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
@@ -180,7 +182,7 @@ include("inc_menu.php");
                                 $noticia['contenido'] = str_ireplace(".", ". ", $noticia['contenido']);
                                 $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
-                                <p><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <p class="text-wrap"><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
 
                                 <div class="pad10">
                                     <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
@@ -249,7 +251,7 @@ include("inc_menu.php");
                     <br>
 
                     <div class="calendario pad15">
-                        <div class="card-box primary">
+                        <div class="card-box border-primary">
                             <h5 class="card-title">Próximos eventos</h5>
                             <?php if (count($eventos)): ?>
                             <?php foreach ($eventos as $evento): ?>

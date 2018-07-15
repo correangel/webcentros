@@ -281,7 +281,6 @@ include('../inc_menu.php');
 
 			<hr>
 			<?php endif; ?>
-			<?php endif; ?>
 
 			<div class="row">
 

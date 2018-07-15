@@ -160,54 +160,56 @@ include('../inc_menu.php');
                     <form class="form" method="post" action="" autocomplete="off">
                         <div class="header header-primary text-center">
                             <div class="logo-container" style="margin-bottom: 50px;">
-                                <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" width="125" alt="">
+                                <h3 style="margin-bottom: 5px;">Alumnado</h3>
+                                <h5 class="text-muted">Inicia sesión para acceder</h5>
                             </div>
-						</div>
-						<?php if (isset($msg_error) && $msg_error): ?>
-						<div class="alert alert-warning">
-							<?php echo $msg_error_text; ?>
-						</div>
-						<?php endif; ?>
+            						</div>
+
+            						<?php if (isset($msg_error) && $msg_error): ?>
+            						<div class="alert alert-warning">
+            							<?php echo $msg_error_text; ?>
+            						</div>
+						            <?php endif; ?>
                         <div class="content">
-                            <div class="input-group form-group-no-border input-lg">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons users_circle-08 text-white"></i>
-                                </span>
-                                <input type="text" id="user" name="user" class="form-control" placeholder="Número de Identificación Escolar" value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>" autocomplete="off">
-                            </div>
-                            <div class="input-group form-group-no-border input-lg">
-                                <span class="input-group-addon">
-                                    <i class="now-ui-icons objects_key-25 text-white"></i>
-                                </span>
-                                <input type="password" id="clave" name="clave" placeholder="Contraseña" class="form-control" autocomplete="new-password">
-                            </div>
-							<?php if ($recaptcha_obligatorio): ?>
-							 <div class="form-group text-center">
-								<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-								<div class="g-recaptcha" data-sitekey="<?php echo $config['google_recaptcha']['site_key']; ?>" style="display: inline-block;"></div>
-								<noscript>
-								<div>
-									<div style="width: 302px; height: 422px; position: relative;">
-									<div style="width: 302px; height: 422px; position: absolute;">
-										<iframe src="https://www.google.com/recaptcha/api/fallback?k=<?php echo $config['google_recaptcha']['site_key']; ?>"
-												frameborder="0" scrolling="no"
-												style="width: 302px; height:422px; border-style: none;">
-										</iframe>
-									</div>
-									</div>
-									<div style="width: 300px; height: 60px; border-style: none;
-												bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
-												background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
-									<textarea id="g-recaptcha-response" name="g-recaptcha-response"
-												class="g-recaptcha-response"
-												style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
-														margin: 10px 25px; padding: 0px; resize: none;" >
-									</textarea>
-									</div>
-								</div>
-								</noscript>
-							</div>
-							<?php endif; ?>
+                          <div class="input-group form-group-no-border input-lg">
+                              <span class="input-group-addon">
+                                  <i class="now-ui-icons users_circle-08 text-white"></i>
+                              </span>
+                              <input type="text" id="user" name="user" class="form-control" placeholder="Número de Identificación Escolar" value="<?php echo isset($_POST['user']) ? $_POST['user'] : ''; ?>" autocomplete="off">
+                          </div>
+                          <div class="input-group form-group-no-border input-lg">
+                              <span class="input-group-addon">
+                                  <i class="now-ui-icons objects_key-25 text-white"></i>
+                              </span>
+                              <input type="password" id="clave" name="clave" placeholder="Contraseña" class="form-control" autocomplete="new-password">
+                          </div>
+            							<?php if ($recaptcha_obligatorio): ?>
+            							 <div class="form-group text-center">
+            								<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            								<div class="g-recaptcha" data-sitekey="<?php echo $config['google_recaptcha']['site_key']; ?>" style="display: inline-block;"></div>
+            								<noscript>
+            								<div>
+            									<div style="width: 302px; height: 422px; position: relative;">
+            									<div style="width: 302px; height: 422px; position: absolute;">
+            										<iframe src="https://www.google.com/recaptcha/api/fallback?k=<?php echo $config['google_recaptcha']['site_key']; ?>"
+            												frameborder="0" scrolling="no"
+            												style="width: 302px; height:422px; border-style: none;">
+            										</iframe>
+            									</div>
+            									</div>
+            									<div style="width: 300px; height: 60px; border-style: none;
+            												bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+            												background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+            									<textarea id="g-recaptcha-response" name="g-recaptcha-response"
+            												class="g-recaptcha-response"
+            												style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+            														margin: 10px 25px; padding: 0px; resize: none;" >
+            									</textarea>
+            									</div>
+            								</div>
+            								</noscript>
+            							</div>
+            							<?php endif; ?>
                         </div>
                         <div class="footer text-center">
                             <button type="submit" name="submit" class="btn btn-primary btn-round btn-lg btn-block">Iniciar sesión</button>
