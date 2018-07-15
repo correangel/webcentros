@@ -90,6 +90,18 @@
     .form-control:focus { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
     .form-control:focus+.input-group-addon, .form-control:focus~.input-group-addon { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
     .input-group-focus .input-group-addon { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
+    .page-header[filter-data="login"] {
+      background: rgba(44, 44, 44, 0.2);
+      /* For browsers that do not support gradients */
+      background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
+      /* For Safari 5.1 to 6.0 */
+      background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
+      /* For Opera 11.1 to 12.0 */
+      background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
+      /* For Firefox 3.6 to 15 */
+      background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
+      /* Standard syntax */
+    }
     </style>
     <?php endif; ?>
 </head>
@@ -132,7 +144,7 @@
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="menInstituto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" href="#" id="menuInstituto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Instituto
                       </a>
                       <div class="dropdown-menu" aria-labelledby="menuInstituto">
@@ -223,6 +235,23 @@
                           <p>Te informamos</p>
                       </a>
                   </li>
+                  <?php if (isset($_SESSION['alumno_autenticado']) && $_SESSION['alumno_autenticado']): ?>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="far fa-user-circle fa-lg fa-fw"></i> <?php echo $_SESSION['alumno']; ?>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="menuUsuario">
+                      <?php if (! isset($_SESSION['dnitutor'])): ?>
+                      <?php if ($_SERVER['REQUEST_URI'] != '/web/alumnado/clave.php'): ?>
+                      <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/clave.php">Cambiar contraseña</a>
+                      <?php else: ?>
+                      <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/index.php">Expediente académico</a>
+                      <?php endif; ?>
+                      <?php endif; ?>
+                      <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/logout.php">Cerrar sesión</a>
+                    </div>
+                  </li>
+                  <?php endif; ?>
               </ul>
             </div>
           </div>

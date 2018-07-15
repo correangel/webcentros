@@ -1,7 +1,6 @@
 <?php
 require_once("../bootstrap.php");
 require_once('../config.php');
-require_once('session.php');
 
 // COMPROBAMOS LA SESION
 if ($_SESSION['alumno_autenticado'] != 1) {
@@ -31,6 +30,7 @@ if ($claveal) {
 	  $apellido = $row1['apellidos'];
 	  $nombrepil = $row1['nombre'];
 	  $dni_responsable_legal = $row1['dnitutor'];
+		$_SESSION['alumno'] = $nombrepil;
   }
 }
 
@@ -101,7 +101,7 @@ if (isset($config['mod_matriculacion']) && $config['mod_matriculacion']) {
 	}
 }
 
-$pagina['titulo'] = $nombrepil.' '.$apellido;
+$pagina['titulo'] = 'Expediente académico';
 
 $pagina['meta']['robots'] = 0;
 $pagina['meta']['canonical'] = 0;
@@ -111,19 +111,6 @@ include('../inc_menu.php');
 
 	<div class="section">
 		<div class="container">
-
-			<!-- TITULO DE LA PAGINA -->
-			<div class="row marg-bottom15">
-				<div class="col-auto mr-auto">
-					<h2 style="display: inline;">Expediente académico del alumno/a</h2>
-				</div>
-				<div style="display: inline;" class="col-auto hidden-print">
-					<?php if (! isset($_SESSION['dnitutor'])): ?>
-					<a href="clave.php" class="btn btn-info btn-sm">Cambiar contraseña</a>
-					<?php endif; ?>
-					<a href="logout.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
-				</div>
-			</div>
 
 			<?php if (isset($_SESSION['dnitutor'])): ?>
 			<div class="alert alert-info">
@@ -143,7 +130,7 @@ include('../inc_menu.php');
 			<?php $exp_tutor = explode(", ",$row_tutor['tutor']); ?>
 			<?php $tutor = trim($exp_tutor[1]." ".$exp_tutor[0]); ?>
 			<!-- SCAFFOLDING -->
-			<div class="card-box card-box-secondary">
+			<div class="card-box border-primary">
 			<div class="row">
 
 				<!-- COLUMNA IZQUIERDA -->
@@ -302,7 +289,7 @@ include('../inc_menu.php');
 					}
 					</style>
 
-					<ul id="nav_alumno" class="nav nav-tabs nav-tabs-neutral justify-content-center" data-background-color="orange" role="tablist">
+					<ul id="nav_alumno" class="nav nav-tabs nav-tabs-neutral justify-content-center bg-primary" role="tablist">
 						<?php $tab1 = 1; ?>
 						<li class="nav-item"><a class="nav-link active" href="#asistencia" role="tab" data-toggle="tab">Asistencia</a></li>
 						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Convivencia</a></li>

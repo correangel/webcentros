@@ -221,6 +221,10 @@ a:hover.navbar-brand-lg {
   max-width: 440px;
 }
 
+.card .card-body {
+  min-height: auto;
+}
+
 /* COOKIE */
 
 #barraCookies {

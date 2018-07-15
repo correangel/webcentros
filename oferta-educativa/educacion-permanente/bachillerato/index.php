@@ -26,7 +26,6 @@ include("../../../inc_menu.php");
 
                 <div class="col-md-8">
 
-                  <h4>Descripción</h4>
                   <p>El Bachillerato tiene como finalidad proporcionar al alumnado formación, madurez intelectual y humana, conocimientos y habilidades que les permitan desarrollar funciones sociales e incorporarse a la vida activa con responsabilidad y competencia. Asimismo, capacitará al alumnado para acceder a la educación superior.</p>
 
                   <h4>Requisitos de acceso</h4>
@@ -70,9 +69,9 @@ include("../../../inc_menu.php");
 
                   <h6>1º de Bachillerato</h6>
                   <div class="accordion" id="bachArtes1">
-                    <div class="card">
+                    <div class="shadow-none card">
                       <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
+                        <h6 class="mb-0">
                           <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Materias troncales generales
                           </button>
@@ -90,9 +89,9 @@ include("../../../inc_menu.php");
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="shadow-none card">
                       <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
+                        <h6 class="mb-0">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Materias troncales de opción <small>(Elegir 2)</small>
                           </button>
@@ -107,9 +106,9 @@ include("../../../inc_menu.php");
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="shadow-none card">
                       <div class="card-header" id="headingThree">
-                        <h5 class="mb-0">
+                        <h6 class="mb-0">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             Materia específica obligatoria
                           </button>
@@ -123,9 +122,9 @@ include("../../../inc_menu.php");
                         </div>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="shadow-none card">
                       <div class="card-header" id="headingFour">
-                        <h5 class="mb-0">
+                        <h6 class="mb-0">
                           <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             Materias específicas de opción <small>(Elegir 2 de la opción "A" o 1 de la opción "B")</small>
                           </button>

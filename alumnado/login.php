@@ -1,7 +1,6 @@
 <?php
 require_once("../bootstrap.php");
 require_once('../config.php');
-require_once('session.php');
 
 $plugin_google_recaptcha = false;
 if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha']['site_key'] != 'YOUR_SITE_KEY' && isset($config['google_recaptcha']['secret']) && $config['google_recaptcha']['secret'] != 'YOUR_SECRET_CODE') {
@@ -152,7 +151,7 @@ $pagina['meta']['meta_locale'] = "es_ES";
 include('../inc_menu.php');
 ?>
 
-	<div class="page-header" filter-color="orange">
+	<div class="page-header" filter-data="login">
         <div class="page-header-image" style="background-image:url(../ui-theme/img/login.jpg)"></div>
         <div class="container">
             <div class="col-md-4 content-center">

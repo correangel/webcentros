@@ -228,23 +228,25 @@ include("inc_menu.php");
 
                 <div class="col-md-4">
 
-                    <div class="row pad10">
-                      <div class="col-sm-4">
-                        <a href="http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Séneca">
-                            <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/seneca.png" alt="">
-                        </a>
-                      </div>
+                    <div class="pad10 d-none d-sm-block">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <a href="http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Séneca">
+                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/seneca.png" alt="">
+                          </a>
+                        </div>
 
-                      <div class="col-sm-4">
-                        <a href="https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Pasen">
-                            <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/pasen.png" alt="">
-                        </a>
-                      </div>
+                        <div class="col-sm-4">
+                          <a href="https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Pasen">
+                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/pasen.png" alt="">
+                          </a>
+                        </div>
 
-                      <div class="col-sm-4">
-                        <a href="http://www.juntadeandalucia.es/averroes/centros-tic/<?php echo $config['centro_codigo']; ?>/moodle2/" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Plataforma Moodle">
-                            <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/moodle.png" alt="">
-                        </a>
+                        <div class="col-sm-4">
+                          <a href="http://www.juntadeandalucia.es/averroes/centros-tic/<?php echo $config['centro_codigo']; ?>/moodle2/" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Plataforma Moodle">
+                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/moodle.png" alt="">
+                          </a>
+                        </div>
                       </div>
                     </div>
 

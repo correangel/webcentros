@@ -1,7 +1,6 @@
 <?php
 require_once('../bootstrap.php');
 require_once('../config.php');
-require_once('session.php');
 
 // COMPROBAMOS LA SESION
 if ($_SESSION['alumno_autenticado'] != 1) {
@@ -96,24 +95,12 @@ $row = mysqli_fetch_assoc($result);
 $exp_nombre = explode(', ', $row['alumno']);
 $nombre_alumno = $exp_nombre[1].' '.$exp_nombre[0];
 
-$pagina['titulo'] = $nombre_alumno;
+$pagina['titulo'] = 'Cambiar contraseña';
 include("../inc_menu.php");
 ?>
 
 	<div class="section">
 		<div class="container">
-
-			<!-- TITULO DE LA PAGINA -->
-			<div class="row marg-bottom15">
-				<div class="col-auto mr-auto">
-					<h2 style="display: inline;">Cambiar la contraseña</h2>
-				</div>
-				<div style="display: inline;" class="col-auto hidden-print">
-					<a href="logout.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
-				</div>
-			</div>
-
-			<br>
 
 			<!-- MENSAJES -->
 			<?php if(isset($msg_error)): ?>
