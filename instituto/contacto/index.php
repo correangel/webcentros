@@ -249,7 +249,7 @@ include("../../inc_menu.php");
         var myLatLng = {lat: <?php echo $config['google_maps']['latitud']; ?>, lng: <?php echo $config['google_maps']['longitud']; ?>};
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
+            zoom: <?php echo (isset($config['google_maps']['zoom'])) ? $config['google_maps']['zoom'] : 15; ?>,
             center: myLatLng
         });
 

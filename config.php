@@ -198,6 +198,7 @@ $config['sidebar_html'][2]['html'] = '';
 //$config['google_maps']['api_key'] = 'YOUR_API_KEY';
 //$config['google_maps']['latitud'] = 36.4295948;
 //$config['google_maps']['longitud'] = -5.154448600000023;
+//$config['google_maps']['zoom'] = 15;
 
 // GOOGLE reCAPTCHA
 // Consigue la clave para usar la API de Google reCAPTCHA v2 en https://www.google.com/recaptcha/admin/create
