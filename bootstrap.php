@@ -203,4 +203,9 @@ function cmykcolor($color, $rgb = false, $tono = false) {
 		}
 }
 
+function formatoTelefono($telefono) {
+	$telefono = str_replace(' ', '', $telefono);
+	return substr($telefono, 0, 3) . ' ' . substr($telefono, 3, 2) . ' ' . substr($telefono, 5, 2) . ' ' . substr($telefono, 7, 2);
+}
+
 // Fin de archivo bootstrap.php

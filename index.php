@@ -116,11 +116,11 @@ include("inc_menu.php");
     <div class="section section-news">
         <div class="container">
 
-            <h2 class="h3 title">Novedades en el instituto</h2>
-
             <div class="row">
 
                 <div class="col-md-8">
+
+                    <h2 class="h3 title">Novedades en el instituto</h2>
 
                     <?php if (isset($config['content_html']['top']) && count($config['content_html']['top'])): ?>
                     <?php foreach ($config['content_html']['top'] as $content_html_top): ?>
@@ -228,7 +228,7 @@ include("inc_menu.php");
 
                 <div class="col-md-4">
 
-                    <div class="row">
+                    <div class="row pad10">
                       <div class="col-sm-4">
                         <a href="http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Séneca">
                             <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/seneca.png" alt="">

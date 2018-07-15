@@ -145,9 +145,9 @@ include("../../inc_menu.php");
                                 <h5 class="info-title"><?php echo $config['centro_denominacion']; ?><br><small>Centro código <?php echo $config['centro_codigo']; ?></small></h5>
                                 <p><?php echo $config['centro_direccion']; ?>
                                     <br> <?php echo $config['centro_codpostal']; ?>, <?php echo $config['centro_localidad']; ?> (<?php echo $config['centro_provincia']; ?>)
-                                    <br> Teléfono: (+34) <?php echo $config['centro_telefono']; ?>
-                                    <br> Fax: (+34) <?php echo $config['centro_fax']; ?>
-                                    <br> Correo-e: <?php echo ofuscarEmail($config['centro_email']); ?>
+                                    <?php echo (isset($config['centro_telefono']) && $config['centro_telefono']) ? '<br> Teléfono: (+34) ' . formatoTelefono($config['centro_telefono']) : ''; ?>
+                                    <?php echo (isset($config['centro_fax']) && $config['centro_fax']) ? '<br> Fax: (+34) ' . formatoTelefono($config['centro_fax']) : ''; ?>
+                                    <?php echo (isset($config['centro_email']) && $config['centro_email']) ? '<br> Correo-e: ' . ofuscarEmail($config['centro_email']) : ''; ?>
                                 </p>
                             </div>
                         </div>

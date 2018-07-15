@@ -98,10 +98,19 @@
     <nav class="fixed-top">
         <div class="navbar-lg d-none d-sm-none d-md-none d-lg-block">
           <div class="container">
-            <a class="navbar-brand-lg text-primary" href="<?php echo WEBCENTROS_DOMINIO; ?>">
-              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" height="80" class="d-inline-block" alt="">
-              <?php echo $config['centro_denominacion']; ?>
-            </a>
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1">
+                <a class="navbar-brand-lg text-primary" href="<?php echo WEBCENTROS_DOMINIO; ?>">
+                  <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/logo.png" height="80" class="d-inline-block" alt="">
+                  <?php echo $config['centro_denominacion']; ?>
+                </a>
+              </div>
+
+              <div class="p-2 text-muted" style="font-size: 1rem;">
+                <i class="fas fa-phone fa-lg fa-fw fa-rotate-90"></i> <?php echo formatoTelefono($config['centro_telefono']); ?><?php echo (isset($config['centro_fax']) && $config['centro_fax']) ? ' - Fax: ' . formatoTelefono($config['centro_fax']) : ''; ?><br>
+                <i class="fas fa-envelope fa-lg fa-fw"></i> <?php echo ofuscarEmail($config['centro_email']); ?>
+              </div>
+            </div>
           </div>
         </div>
 
