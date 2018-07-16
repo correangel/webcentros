@@ -139,7 +139,7 @@ function obtenerHoraTutoria($db_con, $dia, $hora) {
 }
 
 /*
-	La función cmyk_rgb convierte un color CMYK en RGB y devuelve el código CSS correspondiente
+	La función cmyk_rgb convierte un color CMYK en RGB y devuelve el código correspondiente
 */
 function cmyk_rgb($c, $m, $y, $k) {
 	$c = $c / 100;
@@ -155,18 +155,40 @@ function cmyk_rgb($c, $m, $y, $k) {
 	$g = round($g * 255);
 	$b = round($b * 255);
 
-	$rgb = 'rgb(' . $r . ', ' . $g . ', ' . $b . ')';
+	$rgb = $r . ', ' . $g . ', ' . $b;
 
 	return $rgb;
 }
+
+/*
+	La función rgb_hex convierte un color RGB en Hexadecimal y devuelve el código correspondiente
+*/
+function rgb_hex($r, $g, $b)
+{
+
+    $r = dechex($r);
+    if (strlen($r)<2)
+    $r = '0'.$r;
+
+    $g = dechex($g);
+    if (strlen($g)<2)
+    $g = '0'.$g;
+
+    $b = dechex($b);
+    if (strlen($b)<2)
+    $b = '0'.$b;
+
+    return '#' . $r . $g . $b;
+}
+
 /*
 	La función cmykcolor comprueba si el formato CMYK es válido y devuelve el código CSS.
 	La variable $color recibe el color que el usuario ha proporcionado.
-	La variable $rgb recibe el valor 1 o 0 si se desea devolver el código CSS en formato RGB.
+	La variable $output recibe el formato de color de salida: rgb o hex.
 	La variable $tono modifica el color introducido por el usuario para aclarar
 	(introduciendo el valor light) u oscurecer (introduciendo el valor dark).
 */
-function cmykcolor($color, $rgb = false, $tono = false) {
+function cmykcolor($color, $output = false, $tono = false) {
 		$tonalidad = 0;
 		$color = str_replace('%', '', $color);
 		$color = str_replace(' ', '', $color);
@@ -211,8 +233,25 @@ function cmykcolor($color, $rgb = false, $tono = false) {
 				return false;
 			}
 			else {
-				if ($rgb !== false) {
-					return cmyk_rgb($cvalue, $mvalue, $yvalue, $kvalue);
+				if ($output !== false) {
+					switch ($output) {
+						case 'rgb':
+							return 'rgb(' . cmyk_rgb($cvalue, $mvalue, $yvalue, $kvalue) . ')';
+							break;
+
+						case 'hex':
+							$rgb = cmyk_rgb($cvalue, $mvalue, $yvalue, $kvalue);
+							$exp_rgb = explode(', ', $rgb);
+							$r = trim($exp_rgb[0]);
+							$g = trim($exp_rgb[1]);
+							$b = trim($exp_rgb[2]);
+							return rgb_hex($r, $g, $b);
+							break;
+
+						default:
+							return $cmyk;
+							break;
+					}
 				}
 				else {
 					return $cmyk;

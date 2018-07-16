@@ -6,6 +6,11 @@
     <meta charset="utf-8">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <?php if (isset($config['color_primario']) && cmykcolor($config['color_primario'])): ?>
+    <meta name="theme-color" content="<?php echo cmykcolor($config['color_primario'], 'hex'); ?>">
+    <meta name="msapplication-navbutton-color" content="<?php echo cmykcolor($config['color_primario'], 'hex'); ?>">
+    <meta name="apple-mobile-web-app-status-bar-style" content="<?php echo cmykcolor($config['color_primario'], 'hex'); ?>">
+    <?php endif; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
 
@@ -78,24 +83,24 @@
 
     <?php if (isset($config['color_primario']) && cmykcolor($config['color_primario'])): ?>
     <style type="text/css">
-    .text-primary { color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    .bg-primary { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    .border-primary { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    a, a:hover, a:focus, a:active { color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
-    a:hover { color: <?php echo cmykcolor($config['color_primario'], 1, 'dark'); ?>; }
-    a.text-primary, a:focus.text-primary, a:active.text-primary { color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    a:hover.text-primary { color: <?php echo cmykcolor($config['color_primario'], 1, 'dark'); ?> !important; }
-    .btn-primary { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover { background-color: <?php echo cmykcolor($config['color_primario'], 1); ?> !important; }
-    .form-control:focus { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
-    .form-control:focus+.input-group-addon, .form-control:focus~.input-group-addon { border: 1px solid <?php echo cmykcolor($config['color_primario'], 1); ?>; }
-    .input-group-focus .input-group-addon { border-color: <?php echo cmykcolor($config['color_primario'], 1); ?>; }
+    .text-primary { color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    .bg-primary { background-color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    .border-primary { border-color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    a, a:hover, a:focus, a:active { color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>; }
+    a:hover { color: <?php echo cmykcolor($config['color_primario'], 'rgb', 'dark'); ?>; }
+    a.text-primary, a:focus.text-primary, a:active.text-primary { color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    a:hover.text-primary { color: <?php echo cmykcolor($config['color_primario'], 'rgb', 'dark'); ?> !important; }
+    .btn-primary { background-color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover { background-color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
+    .form-control:focus { border: 1px solid <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>; }
+    .form-control:focus+.input-group-addon, .form-control:focus~.input-group-addon { border: 1px solid <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>; }
+    .input-group-focus .input-group-addon { border-color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>; }
     .page-header[filter-data="login"] {
-      background: rgba(44, 44, 44, 0.2); 
-      background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
-      background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 1); ?>);
+      background: rgba(44, 44, 44, 0.2);
+      background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>);
+      background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>);
+      background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>);
+      background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), <?php echo cmykcolor($config['color_primario'], 'rgb'); ?>);
     }
     </style>
     <?php endif; ?>
