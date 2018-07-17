@@ -188,6 +188,30 @@ $config['sidebar_html'][2]['titulo'] = "";
 $config['sidebar_html'][2]['html'] = '';
 */
 
+// CAROUSEL
+// Comente / descomente el bloque para ocultar o mostrar, respectivamente, un carousel de imagenes en la página principal.
+// En el campo 'imagen' se escribe la URL completa de la imagen. Este campo es obligatorio.
+// En el campo 'titulo' se escribe el título de la noticia, que aparecerá en la parte superior. Si se deja en blanco se mostrará el contenido únicamente.
+// En el campo 'contenido' se escribe el texto o código HTML del contenido que desee añadir para acompañar a la imagen. Este campo es opcional.
+// En el campo 'enlace' se escribe la URL a la que desee que el usuario vaya si hace click en la imagen. Este campo es opcional.
+// ¡CUIDADO! Es necesario escribir una barra inversa para escapar el caracter comilla (') correctamente (\')
+// Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
+
+$config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpeg';
+$config['carousel'][0]['titulo'] = 'Escolarización oferta parcial diferenciada 2018/19';
+$config['carousel'][0]['contenido'] = '<p>Presencial, semipresencial y distancia.</p><p>Plazo de solicitudes:<br>Del 10 al 25 de junio</p>';
+$config['carousel'][0]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-parcial';
+
+$config['carousel'][1]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide2.jpeg';
+$config['carousel'][1]['titulo'] = 'Idiomas en Escuelas Oficiales de Idiomas (EOI)';
+$config['carousel'][1]['contenido'] = '<p>Modalidades presencial y semipresencial.</p><p>Plazo de matriculación:<br>Del 1 al 10 de julio</p>';
+$config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/educacion-permanente/idiomas/tramitacion';
+
+$config['carousel'][2]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide3.jpeg';
+$config['carousel'][2]['titulo'] = 'Educación para personas adultas';
+$config['carousel'][2]['contenido'] = '<p>Modalidades presencial y semipresencial.</p><ul><li>ESO</li><li>Bachillerato</li></ul><p>Plazo de matriculación:<br>Del 1 al 10 de julio</p>';
+$config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/educacion-permanente';
+
 // GOOGLE ANALYTICS
 // Consigue el ID de seguimiento para usar la API de Google Analytics en https://analytics.google.com/analytics/
 //$config['google_analytics']['tracking_id'] = 'YOUR_GA_TRACKING_ID';

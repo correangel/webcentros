@@ -122,6 +122,64 @@ include("inc_menu.php");
 
                     <h2 class="h3 title">Novedades en el instituto</h2>
 
+                    <?php if (isset($config['carousel']) && count($config['carousel'])): ?>
+                    <?php
+                    $carouselEstado = 1;
+                    foreach ($config['carousel'] as $carousel) {
+                      if (empty($carousel['imagen'])) {
+                        $carouselEstado = 0;
+                      }
+                    }
+                    ?>
+                    <?php if ($carouselEstado): ?>
+                    <div id="carousel" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <?php $i = 0; ?>
+                        <?php foreach ($config['carousel'] as $carousel): ?>
+                        <li data-target="#carousel" data-slide-to="<?php echo $i; ?>"<?php echo ($i == 0) ? 'class="active"' : ''; ?>></li>
+                        <?php $i++; ?>
+                        <?php endforeach; ?>
+                        <?php unset($i); ?>
+                      </ol>
+                      <div class="carousel-inner shadow-sm">
+                        <?php $i = 0; ?>
+                        <?php foreach ($config['carousel'] as $carousel): ?>
+                        <?php $rgbImagen = obtenerColorImagen($carousel['imagen']); ?>
+                        <?php
+                        $umbral = 255 / 2;
+                        $rDecimal = hexdec($rgbImagen['r']);
+                        $gDecimal = hexdec($rgbImagen['g']);
+                        $bDecimal = hexdec($rgbImagen['b']);
+                        $promedioDecimal = ($rDecimal + $gDecimal + $bDecimal) / 3;
+                        $esClaro = ($promedioDecimal >= $umbral) ? 1 : 0;
+                        ?>
+                        <div class="carousel-item <?php echo ($i == 1) ? 'active' : ''; ?>" data-href="<?php echo $carousel['enlace']; ?>" style="cursor: pointer;">
+                          <div class="row" style="background-color: rgb(<?php echo $rgbImagen['r'].','.$rgbImagen['g'].','.$rgbImagen['b']; ?>);">
+                            <?php $contenidoCarousel = 0; ?>
+                            <?php if (isset($carousel['titulo']) || (isset($carousel['contenido']) && ! empty($carousel['contenido']))): ?>
+                            <?php $contenidoCarousel = 1; ?>
+                            <div class="col-lg-4 d-none d-lg-block">
+                              <div class="container <?php echo ($esClaro) ? 'text-black' : 'text-white'; ?>" style="padding-top: 10px;">
+                                <h6><?php echo $carousel['titulo']; ?></h6>
+                                <?php echo $carousel['contenido']; ?>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+                            <div class="<?php echo ($contenidoCarousel) ? 'col-lg-8' : 'col-12'; ?>">
+                              <img class="d-block w-100" src="<?php echo $carousel['imagen']; ?>" alt="<?php echo $carousel['titulo']; ?>" draggable="false" style="-moz-user-select: none;">
+                            </div>
+                          </div>
+                        </div>
+                        <?php $i++; ?>
+                        <?php endforeach; ?>
+                        <?php unset($i); ?>
+                      </div>
+                    </div>
+
+                    <br>
+                    <?php endif; ?>
+                    <?php endif; ?>
+
                     <?php if (isset($config['content_html']['top']) && count($config['content_html']['top'])): ?>
                     <?php foreach ($config['content_html']['top'] as $content_html_top): ?>
                     <?php if (isset($content_html_top['titulo']) && ! empty($content_html_top['titulo'])): ?>

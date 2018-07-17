@@ -265,4 +265,37 @@ function formatoTelefono($telefono) {
 	return substr($telefono, 0, 3) . ' ' . substr($telefono, 3, 2) . ' ' . substr($telefono, 5, 2) . ' ' . substr($telefono, 7, 2);
 }
 
+function obtenerColorImagen($imagen) {
+	$im = imagecreatefromjpeg($imagen);
+
+	$rTotal = 0;
+	$gTotal = 0;
+	$bTotal = 0;
+	$total = 0;
+
+	for ($x = 0; $x < imagesx($im); $x++) {
+			for ($y = 0; $y < imagesy($im); $y++) {
+					$rgb = imagecolorat($im, $x, $y);
+					$r   = ($rgb >> 16) & 0xFF;
+					$g   = ($rgb >> 8) & 0xFF;
+					$b   = $rgb & 0xFF;
+					$rTotal += $r;
+					$gTotal += $g;
+					$bTotal += $b;
+					$total++;
+			}
+	}
+
+	$rPromedio = round($rTotal/$total);
+	$gPromedio = round($gTotal/$total);
+	$bPromedio = round($bTotal/$total);
+
+	return array(
+		'r' => $rPromedio,
+		'g' => $gPromedio,
+		'b' => $bPromedio
+	);
+
+}
+
 // Fin de archivo bootstrap.php
