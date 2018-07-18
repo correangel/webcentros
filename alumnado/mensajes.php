@@ -1,7 +1,7 @@
-<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed'); 
+<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed');
 
 if(isset($_POST['enviar'])) {
-	
+
 	$asunto = trim(mysqli_real_escape_string($db_con,	$_POST['asunto']));
 	$mensaje = trim(mysqli_real_escape_string($db_con, $_POST['mensaje']));
 
@@ -12,38 +12,38 @@ if(isset($_POST['enviar'])) {
 		}
 		$direccionIP = getRealIP();
 		$result = mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto', '$mensaje', '".$direccionIP."', '".$_SESSION['correo']."', '$unidad')");
-		
+
 		if(! $result) {
 			$msg_error = "Los campos del formulario son obligatorios.";
 		}
 		else {
 			$msg_success = "El mensaje ha sido enviado correctamente.";
 		}
-		
+
 	}
 	else {
 		$msg_error = "Los campos del formulario son obligatorios.";
 	}
-	
+
 }
 
 if(isset($_POST['leido'])){
 	$verifica = $_POST['verifica'];
-	
+
 	$result = mysqli_query("SELECT recibidoprofe FROM mens_profes WHERE id_profe = '".$_POST['verifica']."'");
 	$row = mysqli_fetch_array($result);
 
 	if (! $row['recibidoprofe']) {
 		mysqli_query($db_con, "UPDATE mens_profes SET recibidoprofe = '1' WHERE id_profe = '".$_POST['verifica']."'");
-	
+
 		$asunto_confirmacion = "Mensaje de confirmación";
 		$mensaje = "El mensaje enviado a $nombrepil $apellido con el asunto \"$asunto\" ha sido entregado y leído en la web del centro.";
-		
+
 		$direccionIP = getRealIP();
 		mysqli_query($db_con, "INSERT INTO mensajes (dni, claveal, asunto, texto, ip, correo, unidad) VALUES ('$dni_responsable_legal', '".$_SESSION['claveal']."', '$asunto_confirmacion', '$mensaje', '".$direccionIP."', '".$_SESSION['correo']."', '$unidad')");
 	}
 
-}  
+}
 ?>
 
 <a name="mensajes"></a>
@@ -64,14 +64,13 @@ if(isset($_POST['leido'])){
 <?php endif; ?>
 
 <div class="row">
-	
+
 	<div class="col-sm-5">
-		
+
 		<div class="bg-clouds p-3 rounded">
 			<h5>Mensajes recibidos</h5>
-		
-			<?php $query_mensajes = mysqli_query($db_con, "SELECT mens_texto.id, ahora, asunto, texto, c_profes.profesor, (SELECT recibidoprofe FROM mens_profes WHERE id_texto = mens_texto.id AND profesor LIKE '%$apellido, $nombrepil%' OR profesor LIKE '%".$_SESSION['claveal']."%' LIMIT 1) AS recibidoprofe FROM mens_texto JOIN c_profes ON mens_texto.origen = c_profes.idea WHERE ahora BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' AND (destino LIKE '%$apellido, $nombrepil%' OR destino LIKE '%".$_SESSION['claveal']."%' AND asunto NOT LIKE 'Mensaje de confirmación') ORDER BY ahora DESC"); ?>
-			<?php if(mysqli_num_rows($query_mensajes)): ?>
+
+			<?php if ($numeroMensajesRecibidos): ?>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
 					<tbody>
@@ -83,23 +82,22 @@ if(isset($_POST['leido'])){
 					</tbody>
 				</table>
 			</div>
-			
+
 			<?php else: ?>
-			
+
 			<div class="justify-content-center">
 				<p class="lead text-muted text-center p-5">No ha recibido mensajes</p>
 			</div>
-			
+
 			<?php endif; ?>
 		</div>
-		
+
 		<hr>
-		
+
 		<div class="bg-clouds p-3 rounded">
 			<h5>Mensajes enviados</h5>
-			
-			<?php $query_enviados = mysqli_query($db_con, "SELECT id, ahora, asunto, texto, recibidotutor FROM mensajes WHERE ahora BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' AND (claveal = '".$_SESSION['claveal']."' AND asunto NOT LIKE 'Mensaje de confirmación')"); ?>
-			<?php if(mysqli_num_rows($query_enviados)): ?>
+
+			<?php if ($numeroMensajesEnviados): ?>
 			<div class="table-responsive">
 				<table class="table table-bordered table-striped">
 					<tbody>
@@ -109,14 +107,14 @@ if(isset($_POST['leido'])){
 								<a href="#" data-toggle="modal" data-target="#enviados_<?php echo $mensajes_enviados['id']; ?>" style="display: block;">
 									<?php echo $mensajes_enviados['asunto'];  ?><br />
 									<small class="text-muted"><?php echo $apellido.', '.$nombrepil; ?> - <?php echo $mensajes_enviados['ahora']; ?></small>
-									
+
 									<?php
 									if ($mensajes_enviados['recibidotutor']) {
 										$leido_class = "text-success";
 										$leido = "El tutor ha leido el mensaje";
-										
+
 										mysqli_query($db_con, "UPDATE mensajes SET recibidopadre = '1' WHERE id='".$mensajes_enviados['id']."' LIMIT 1");
-									} 
+									}
 									else {
 										$leido_class = "text-muted";
 										$leido = "El tutor aún no ha leido el mensaje";
@@ -130,41 +128,41 @@ if(isset($_POST['leido'])){
 					</tbody>
 				</table>
 			</div>
-			
+
 			<?php else: ?>
-			
+
 			<div class="justify-content-center">
 				<p class="lead text-muted text-center p-5">No ha enviado ningún mensaje</p>
 			</div>
-			
+
 			<?php endif; ?>
 		</div>
-		
+
 	</div>
-	
+
 	<div class="col-sm-6 col-sm-offset-1">
-		
+
 		<form method="post" action="index.php?mod=mensajes">
-			
+
 			<fieldset>
 				<legend>Contactar con el tutor</legend>
-				
+
 				<div class="form-group">
 					<label for="asunto">Asunto</label>
 					<input type="text" class="form-control" id="asunto" name="asunto">
 				</div>
-				
+
 				<div class="form-group">
 					<label for="mensaje">Mensaje</label>
 					<textarea type="text" class="form-control" id="mensaje" name="mensaje" rows="5"></textarea>
 				</div>
-				
+
 				<button type="submit" class="btn btn-primary" name="enviar">Enviar mensaje</button>
-				
+
 			</fieldset>
-			
+
 		</form>
-		
+
 	</div>
 
 </div>

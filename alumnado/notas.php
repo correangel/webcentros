@@ -1,4 +1,28 @@
-<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed'); 
+<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed');
+
+function obtener_calificacion_texto($nota) {
+    switch ($nota) {
+        case 10:
+        case 9:
+            $calificacion = 'SB';
+            break;
+        case 8:
+        case 7:
+            $calificacion = 'NT';
+            break;
+        case 6:
+            $calificacion = 'BI';
+            break;
+        case 5:
+            $calificacion = 'SU';
+            break;
+        default:
+            $calificacion = 'IN';
+            break;
+    }
+
+    return $calificacion;
+}
 
 // Evaluaciones
 $notas1 = "select notas1, notas2, notas3, notas4, unidad, notas0 from alma, notas where alma.CLAVEAL1 = notas.claveal and alma.CLAVEAL = '$claveal'";
@@ -35,7 +59,7 @@ if (strlen($inicial) > 0) {
 			</tr>
 		</thead>
 
-<?php 
+<?php
 
 $num = count($trozos);
  for ($i=0;$i<$num; $i++)
@@ -50,10 +74,10 @@ while($rowasig = mysqli_fetch_array($asig))	{
   {$nombre_asig = "Asignatura sin código"; }
 else{
 $nombre_asig = $rowasig[0];
-}	
+}
 	if(strlen(strstr($rowasig[1],'_')) > 0)	{	}
 
-	else 	{	$asig_pend = $rowasig[2];	}	
+	else 	{	$asig_pend = $rowasig[2];	}
 	}
 
 
@@ -65,11 +89,11 @@ $trozos1 = explode(";", $asignatura1);
 	$bloque1 = explode(":", $codi1);
 	if($bloque1[0] == $bloque[0])
 	{
-$califica1 = "select nombre from calificaciones where codigo = '" . $bloque1[1]. "'";
+$califica1 = "select abreviatura from calificaciones where codigo = '" . $bloque1[1]. "'";
 $numero1 = mysqli_query($db_con, $califica1);
 $rown1 = mysqli_fetch_array($numero1);
 	}
-	}	
+	}
 	}
 	else{
 		$rown1[0]=" ";
@@ -86,18 +110,18 @@ $trozos2 = explode(";", $asignatura2);
 	$bloque2 = explode(":", $codi2);
 	if($bloque2[0] == $bloque[0])
 	{
-$califica2 = "select nombre from calificaciones where codigo = '" . $bloque2[1]. "'";
+$califica2 = "select abreviatura from calificaciones where codigo = '" . $bloque2[1]. "'";
 $numero2 = mysqli_query($db_con, $califica2);
 $rown2 = mysqli_fetch_array($numero2);
 	}
-	}	
+	}
 	}
 	else{
 		$rown2[0]=" ";
 	}
-	
-	
-	
+
+
+
 $asignatura3 = substr($row1[2], 0, strlen($row1[2])-1);
 $trozos3 = explode(";", $asignatura3);
 	if (strstr($row1[2],$bloque[0])) {
@@ -106,31 +130,28 @@ $trozos3 = explode(";", $asignatura3);
 	$bloque3 = explode(":", $codi3);
 	if($bloque3[0] == $bloque[0])
 	{
-$califica3 = "select nombre from calificaciones where codigo = '" . $bloque3[1]. "'";
+$califica3 = "select abreviatura from calificaciones where codigo = '" . $bloque3[1]. "'";
 $numero3 = mysqli_query($db_con, $califica3);
 $rown3 = mysqli_fetch_array($numero3);
-//if($rown3[0] == "No Presentado"){
-//	$rown3[0] = "NP";
-//}
 	}
 	}
 	}
 	else{
 		$rown3[0]=" ";
 	}
-	
-	
-	
+
+
+
 $asignatura4 = substr($row1[3], 0, strlen($row1[3])-1);
 $trozos4 = explode(";", $asignatura4);
 	if (strstr($row1[3],$bloque[0])) {
 		foreach($trozos4 as $codi4)
 	{
 	$bloque4 = explode(":", $codi4);
-	
+
 	if($bloque[0] == $bloque4[0])
 	{
-$califica4 = "select nombre from calificaciones where codigo = '" . $bloque4[1]. "'";
+$califica4 = "select abreviatura from calificaciones where codigo = '" . $bloque4[1]. "'";
 $numero4 = mysqli_query($db_con, $califica4);
 $rown4 = mysqli_fetch_array($numero4);
 	}
@@ -141,7 +162,7 @@ $rown4 = mysqli_fetch_array($numero4);
 	}
 
 
-	
+
 $asignatura5 = substr($row1[5], 0, strlen($row1[5])-1);
 $trozos5 = explode(";", $asignatura5);
 	if (strstr($row1[5],$bloque[0])) {
@@ -151,7 +172,7 @@ $trozos5 = explode(";", $asignatura5);
 
 	if($bloque[0] == $bloque5[0])
 	{
-$califica5 = "select nombre from calificaciones where codigo = '" . $bloque5[1]. "'";
+$califica5 = "select abreviatura from calificaciones where codigo = '" . $bloque5[1]. "'";
 $numero5 = mysqli_query($db_con, $califica5);
 $rown5 = mysqli_fetch_array($numero5);
 	}
@@ -162,10 +183,10 @@ $rown5 = mysqli_fetch_array($numero5);
 	}
 
 
-	
 
-	
-	
+
+
+
 if($rown1[0] == "" and $rown2[0] == "" and $rown3[0] == "" and $rown4[0] == "")
 	{
 			}
@@ -175,24 +196,51 @@ if($rown1[0] == "" and $rown2[0] == "" and $rown3[0] == "" and $rown4[0] == "")
 	if ($nombre_asig == "Asignatura sin código")  $asig_pend = "Consultar con Administración";
 	$trozo_curso=explode("(",$asig_pend);
 	$asig_curso=$trozo_curso[0];
-	echo $nombre_asig . " <span  class='small'>(" . $asig_curso . ")</span></td>"; 
-	
+	echo $nombre_asig . " <span  class='small'>(" . $asig_curso . ")</span></td>";
+
 	if ($col_extra==1) {
 		echo "<td>";
-	echo $rown5[0] ."</td>";
+		if (intval($rown5[0])) {
+			echo obtener_calificacion_texto($rown5[0]) . ' | ' . $rown5[0];
+		} else {
+			echo $rown5[0];
+		}
+		echo "</td>";
 	}
-	
+
 	echo "<td>";
-	echo $rown1[0] ."</td>";
-	
+	if (intval($rown1[0])) {
+		echo obtener_calificacion_texto($rown1[0]) . ' | ' . $rown1[0];
+	} else {
+		echo $rown1[0];
+	}
+	echo "</td>";
+
 	echo "<td>";
-	echo $rown2[0] ." </td>";
-	
+	if (intval($rown2[0])) {
+		echo obtener_calificacion_texto($rown2[0]) . ' | ' . $rown2[0];
+	} else {
+		echo $rown2[0];
+	}
+	echo "</td>";
+
 	echo "<td>";
-	echo $rown3[0] . " </td>";
-	
+	if (intval($rown3[0])) {
+		echo obtener_calificacion_texto($rown3[0]) . ' | ' . $rown3[0];
+	} else {
+		echo $rown3[0];
+	}
+	echo "</td>";
+
 	echo "<td>";
-	 echo $rown4[0] . "</td></tr>";
+	if (intval($rown4[0])) {
+		echo obtener_calificacion_texto($rown4[0]) . ' | ' . $rown4[0];
+	} else {
+		echo $rown4[0];
+	}
+	echo "</td>";
+
+	echo "</tr>";
 
 			}
 	}

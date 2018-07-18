@@ -23,7 +23,7 @@ foreach ($tr_combasi as $codigo){
 <div class="table-responsive">
 	<table class="table table-bordered table-striped">
 		<thead>
-			<tr class="text-info">
+			<tr>
 				<th>&nbsp;</th>
 				<th>Lunes</th>
 				<th>Martes</th>
@@ -33,19 +33,21 @@ foreach ($tr_combasi as $codigo){
 			</tr>
 		</thead>
 		<tbody>
-			<?php 
+			<?php
 			$hr = mysqli_query($db_con,"select hora_inicio, hora_fin, hora from tramos where hora < '7'");
 				while ($hor = mysqli_fetch_array($hr)):
-					$desc = $hor[0]." - ".$hor[1];	
+					$desc = substr($hor[0],0,5)." - ".substr($hor[1],0,5);
 					$hora = $hor[2];
 			?>
 			<tr>
-				<th nowrap class="text-warning"><?php echo $desc; ?></th>
+				<th nowrap><?php echo $desc; ?></th>
 				<?php for($i = 1; $i < 6; $i++): ?>
 				<td width="20%">
 					<?php $result = mysqli_query($db_con, "SELECT DISTINCT asig, c_asig, a_aula, n_aula FROM horw WHERE (a_grupo=(select unidad from alma where claveal = '$claveal')) AND dia='$i' AND hora='$hora' and c_asig in (select codigo from asig_tmp)");?>
 					<?php while($row = mysqli_fetch_array($result)): ?>
-					<?php echo $row[0]."<div class='text-success' data-bs='tooltip' title='".$row[3]."'>".$row[2]."</div>"; ?>
+          <?php if ($pos = strpos($combasi, $row[0]) !== false): ?>
+          <?php echo $row[0]."<div class='text-success' data-bs='tooltip' title='".$row[3]."'>".$row[2]."</div>"; ?>
+          <?php endif; ?>
 					<?php endwhile; ?>
 				</td>
 				<?php endfor; ?>
@@ -81,8 +83,8 @@ mysqli_query($db_con,"DROP TABLE asig_tmp");
 				<td class="text-info"><?php echo $row['profesor']; ?></td>
 			</tr>
 			<?php endwhile; ?>
-		<?php endforeach; ?>	
-		</tbody>		
+		<?php endforeach; ?>
+		</tbody>
 	</table>
 </div>
 <!-- FIN MODULO HORARIO Y PROFESORES -->

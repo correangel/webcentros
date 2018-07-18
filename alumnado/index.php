@@ -21,7 +21,7 @@ $claveal = $_SESSION['claveal'];
 $c_escolar = (date('n') > 6) ?  date('Y').'/'.(date('y')+1) : (date('Y')-1).'/'.date('y');
 
 if ($claveal) {
-  $result1 = mysqli_query($db_con, "SELECT DISTINCT apellidos, nombre, unidad, curso, claveal, claveal1, numeroexpediente, dnitutor FROM alma WHERE claveal = '$claveal' ORDER BY apellidos");
+  $result1 = mysqli_query($db_con, "SELECT DISTINCT apellidos, nombre, unidad, curso, claveal, claveal1, numeroexpediente, dnitutor, combasi FROM alma WHERE claveal = '$claveal' ORDER BY apellidos");
 
 	if ($row1 = mysqli_fetch_array($result1)) {
 	  $unidad = $row1['unidad'];
@@ -30,6 +30,7 @@ if ($claveal) {
 	  $apellido = $row1['apellidos'];
 	  $nombrepil = $row1['nombre'];
 	  $dni_responsable_legal = $row1['dnitutor'];
+		$combasi = $row1['combasi'];
 		$_SESSION['alumno'] = $nombrepil;
   }
 }
@@ -67,39 +68,13 @@ if (isset($_POST['subirFotografia'])) {
 	}
 }
 
-// Módulo de matriculación
-if (isset($config['mod_matriculacion']) && $config['mod_matriculacion']) {
-	if (@file_exists("../intranet/admin/matriculas/config.php")) require_once("../intranet/admin/matriculas/config.php");
-	if (@file_exists("/home/e-smith/files/ibays/intranet/html/admin/matriculas/config.php")) require_once("/home/e-smith/files/ibays/intranet/html/admin/matriculas/config.php");
+// Comprobamos mensajes recibidos
+$query_mensajes = mysqli_query($db_con, "SELECT mens_texto.id, ahora, asunto, texto, c_profes.profesor, (SELECT recibidoprofe FROM mens_profes WHERE id_texto = mens_texto.id AND profesor LIKE '%$apellido, $nombrepil%' OR profesor LIKE '%".$_SESSION['claveal']."%' LIMIT 1) AS recibidoprofe FROM mens_texto JOIN c_profes ON mens_texto.origen = c_profes.idea WHERE ahora BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' AND (destino LIKE '%$apellido, $nombrepil%' OR destino LIKE '%".$_SESSION['claveal']."%' AND asunto NOT LIKE 'Mensaje de confirmación') ORDER BY ahora DESC");
+$numeroMensajesRecibidos = mysqli_num_rows($query_mensajes);
 
-	$dia_matricula_ini = strftime('%d %B', strtotime($config['matriculas']['fecha_inicio']));
-	$dia_matricula_fin = strftime('%d %B', strtotime($config['matriculas']['fecha_fin']));
+$query_enviados = mysqli_query($db_con, "SELECT id, ahora, asunto, texto, recibidotutor FROM mensajes WHERE ahora BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' AND (claveal = '".$_SESSION['claveal']."' AND asunto NOT LIKE 'Mensaje de confirmación')");
+$numeroMensajesEnviados = mysqli_num_rows($query_enviados);
 
-	// Comprobamos si el centro ofrece estudios de Bachillerato
-	$result = mysqli_query($db_con, "SELECT nomcurso FROM cursos WHERE nomcurso LIKE '%Bachillerato%' LIMIT 1");
-	if (mysqli_num_rows($result)) $ofertaBachillerato = 1;
-	else $ofertaBachillerato = 0;
-
-	if (stristr($curso, '4º de E.S.O.') == true || stristr($curso, '1º de Bachillerato') == true) {
-		$result_matricula_bach = mysqli_query($db_con, "SELECT claveal FROM matriculas_bach WHERE claveal = '$claveal' LIMIT 1");
-		if (mysqli_num_rows($result_matricula_bach)) $estaMatriculadoBachillerato = 1;
-		else $estaMatriculadoBachillerato = 0;
-
-		if (stristr($curso, '4º de E.S.O.') == true) {
-			$curso_matricula = "1 BACH";
-		}
-		elseif (stristr($curso, '1º de Bachillerato') == true) {
-			$curso_matricula = "2 BACH";
-		}
-	}
-	else {
-		$result_matricula_eso = mysqli_query($db_con, "SELECT claveal FROM matriculas WHERE claveal = '$claveal' LIMIT 1");
-		if (mysqli_num_rows($result_matricula_eso)) $estaMatriculadoESO = 1;
-		else $estaMatriculadoESO = 0;
-
-		$curso_matricula = substr($curso, 0, 1) + 1 . " ESO";
-	}
-}
 
 $pagina['titulo'] = 'Expediente académico';
 
@@ -230,45 +205,6 @@ include('../inc_menu.php');
 			</div><!-- /.row -->
 			</div><!-- /.well -->
 
-			<?php if ((isset($config['mod_matriculacion']) && $config['mod_matriculacion']) && ((date('Y-m-d') >= $config['matriculas']['fecha_inicio']) && (date('Y-m-d') <= $config['matriculas']['fecha_fin']))): ?>
-			<hr>
-
-			<div class="row">
-
-					<div class="col-sm-12">
-
-							<h3>Solicitudes disponibles</h3>
-
-							<table class="table table-bordered table-hover">
-								<tbody>
-									<?php if (! ($ofertaBachillerato && stristr($curso_matricula, 'BACH') == true)): ?>
-									<tr>
-										<th class="text-center" style="vertical-align: middle; width: 180px;">
-											<span class="text-info"><?php echo $dia_matricula_ini; ?> - <?php echo $dia_matricula_fin; ?></span>
-										</th>
-										<td style="vertical-align: middle;">Solicitud de matrícula en Educación Secundaria Obligatoria</td>
-										<td style="vertical-align: middle; width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
-									</tr>
-									<?php endif; ?>
-									<?php if ($ofertaBachillerato && stristr($curso_matricula, 'BACH') == true): ?>
-									<tr>
-										<th class="text-center" style="vertical-align: middle; width: 180px;">
-											<span class="text-info"><?php echo $dia_matricula_ini; ?> - <?php echo $dia_matricula_fin; ?></span>
-										</th>
-										<td style="vertical-align: middle;">Solicitud de matrícula en Bachillerato</td>
-										<td style="vertical-align: middle;  width: 80px;"><a href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado/matricula"><span class="far fa-sign-in fa-fw fa-2x"></span></a></td>
-									</tr>
-									<?php endif; ?>
-								</tbody>
-							</table>
-
-					</div><!-- /.col-sm-12 -->
-
-			</div><!-- /.row -->
-
-			<hr>
-			<?php endif; ?>
-
 			<div class="row">
 
 				<div class="col-sm-12">
@@ -300,7 +236,7 @@ include('../inc_menu.php');
 						<?php if (isset($config['alumnado']['ver_informes_tutoria']) && $config['alumnado']['ver_informes_tutoria']): ?>
 						<li class="nav-item"><a class="nav-link" href="#tutoria" role="tab" data-toggle="tab">Tutoría</a></li>
 						<?php endif; ?>
-						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes</a></li>
+						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes<?php echo ($numeroMensajesRecibidos) ? ' <span class="badge">'.$numeroMensajesRecibidos.'</span>' : ''; ?></a></li>
 					</ul>
 
 					<br>
