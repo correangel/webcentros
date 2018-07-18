@@ -207,7 +207,7 @@ include("inc_menu.php");
                                 <?php
                                  $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
-                                <p class="text-wrap"><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <p class="text-wrap"><?php echo cortarPalabras($noticia['contenido']).'<br><a href="'.$url_noticia.'">[Leer más]</a>'; ?></p>
 
                                 <div class="" style="margin-top: 10px;">
                                     <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
@@ -240,7 +240,7 @@ include("inc_menu.php");
                                 $noticia['contenido'] = str_ireplace(".", ". ", $noticia['contenido']);
                                 $noticia['contenido'] = str_ireplace("&nbsp;", "", $noticia['contenido']);
                                 ?>
-                                <p class="text-wrap"><?php echo trim(cortarTexto(strip_tags($noticia['contenido']), 300).'...<br><a href="'.$url_noticia.'">[Leer más]</a>'); ?></p>
+                                <p class="text-wrap"><?php echo cortarPalabras($noticia['contenido']).'<br><a href="'.$url_noticia.'">[Leer más]</a>'; ?></p>
 
                                 <div class="pad10">
                                     <a href="#" onclick="javascript:popup('http://www.facebook.com/share.php?u=<?php echo $url_noticia; ?>',550,350)" class="btn btn-default btn-sm btn-icon btn-round btn-pad5" data-toggle="tooltip" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>

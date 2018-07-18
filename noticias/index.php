@@ -22,7 +22,7 @@ $pagina['titulo'] = strip_tags($noticia['titulo']);
 //$pagina['meta']['canonical'] = 0;
 $pagina['meta']['meta_title'] = $pagina['titulo'];
 $pagina['meta']['meta_autor'] = $noticia['autor'];
-$pagina['meta']['meta_description'] = trim(cortarTexto(strip_tags($noticia['contenido']), 300)).'...';
+$pagina['meta']['meta_description'] = cortarPalabras($noticia['contenido']);
 $pagina['meta']['meta_type'] = "article";
 $pagina['meta']['meta_locale'] = "es_ES";
 

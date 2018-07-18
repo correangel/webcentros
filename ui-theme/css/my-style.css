@@ -101,6 +101,7 @@ a:hover.navbar-brand-lg {
 
 .text-wrap {
     word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .bg-secondary {

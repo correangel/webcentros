@@ -70,25 +70,23 @@ function getRealIP() {
     return $_SERVER['REMOTE_ADDR'];
 }
 
-function cortarTexto($texto, $numMaxCaract) {
-	if (strlen($texto) <  $numMaxCaract){
-		$textoCortado = $texto;
-	}else{
-		$textoCortado = substr($texto, 0, $numMaxCaract);
-		$ultimoEspacio = strripos($textoCortado, " ");
+function cortarPalabras($texto, $longitud = 50, $puntos = "...") {
+	$palabras_alt = array();
+	
+	$texto = trim(strip_tags($texto));
+	$palabras = explode(' ', $texto);
 
-		if ($ultimoEspacio !== false){
-			$textoCortadoTmp = substr($textoCortado, 0, $ultimoEspacio);
-			if (substr($textoCortado, $ultimoEspacio)){
-				$textoCortadoTmp .= '...';
-			}
-			$textoCortado = $textoCortadoTmp;
-		}elseif (substr($texto, $numMaxCaract)){
-			$textoCortado .= '...';
-		}
+	foreach ($palabras as $palabra) {
+		// Eliminamos cadenas de caracteres superiores a 23 letras (la palabra más larga del castellano tiene 24 letras),
+		// por lo que quiere decir que al usar strip_tags se han juntado varias palabras si se ha usado una tabla.
+		if (strlen($palabra) < 24) array_push($palabras_alt, $palabra);
 	}
 
-	return $textoCortado;
+	if (count($palabras) > $longitud) {
+		return implode(' ', array_slice($palabras_alt, 0, $longitud)) ." ". $puntos;
+	} else {
+		return implode(' ', array_slice($palabras_alt, 0, $longitud));
+	}
 }
 
 function ofuscarEmail($email) {
