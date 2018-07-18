@@ -193,9 +193,11 @@ include("../../inc_menu.php");
                                 <textarea name="mensaje" class="form-control" id="message" rows="6" placeholder="Mensaje" maxlenght="1000"></textarea>
                             </div>
 
+                            <p><small>Información sobre <a href="#" data-toggle="modal" data-target="#lopd"> Protección de Datos.</a></small></p>
+
                             <?php if ($plugin_google_recaptcha): ?>
 
-                            <div class="row">
+                            <div class="row pad10">
                                 <div class="col-md-8">
                                     <div class="form-group text-center">
                                         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -239,6 +241,26 @@ include("../../inc_menu.php");
 
             </div>
         </div>
+    </div>
+
+    <!-- Modal LOPD -->
+    <div class="modal fade" id="lopd" tabindex="-1" role="dialog" aria-labelledby="competenciaCdLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="competenciaCdLabel">Protección de Datos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted">En cumplimiento de lo dispuesto en la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal, la Consejería de Educación le informa que los datos personales proporcionados por Vd. en este formulario serán utilizados únicamente para gestionar su consulta y proporcionarle la respuesta adecuada. De acuerdo con lo previsto en la citada Ley Orgánica, puede ejercitar los derechos de acceso, rectificación, cancelación y oposición dirigiendo un escrito a la Secretaría General Técnica de la Consejería de Educación. C/ Juan Antonio de Vizarrón, s/n. Isla de la Cartuja. Torretriana. 41092. Sevilla.</small></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendido</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <?php if (isset($config['google_maps']['api_key']) && $config['google_maps']['api_key'] != 'YOUR_API_CODE' && isset($config['google_maps']['latitud']) && isset($config['google_maps']['longitud'])): ?>
