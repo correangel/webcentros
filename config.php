@@ -190,11 +190,13 @@ $config['sidebar_html'][2]['html'] = '';
 
 // CAROUSEL
 // Comente / descomente el bloque para ocultar o mostrar, respectivamente, un carousel de imagenes en la página principal.
-// En el campo 'imagen' se escribe la URL completa de la imagen. Este campo es obligatorio.
+// En el campo 'imagen' se escribe la URL completa de la imagen. La imagen debe tener un tamaño de 1218 x 580 pixeles. Este campo es obligatorio.
 // En el campo 'titulo' se escribe el título de la noticia, que aparecerá en la parte superior. Si se deja en blanco se mostrará el contenido únicamente.
 // En el campo 'contenido' se escribe el texto o código HTML del contenido que desee añadir para acompañar a la imagen. Este campo es opcional.
 // En el campo 'enlace' se escribe la URL a la que desee que el usuario vaya si hace click en la imagen. Este campo es opcional.
 // ¡CUIDADO! Es necesario escribir una barra inversa para escapar el caracter comilla (') correctamente (\')
+// Consejo: Es importante optimizar las imagenes para la publicación en la web, de esta manera conseguimos que la página cargue mucho más rápido
+// y los usuarios ahorren megas en dispostivos móviles. Utiliza la página https://imagecompressor.com/es/ para comprimir las imagenes.
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 $config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpeg';
