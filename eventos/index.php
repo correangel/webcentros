@@ -20,11 +20,11 @@ $array_meses = array(
 );
 
 $actividades_extraescolares = array();
-$result = mysqli_query($db_con, "SELECT DISTINCT MONTH(c.fechaini) AS nummes FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE c.categoria = 1 AND c.fechaini BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' ORDER BY MONTH(fechaini) ASC") or die (mysqli_error($db_con));
+$result = mysqli_query($db_con, "SELECT DISTINCT MONTH(c.fechaini) AS nummes FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE c.categoria = 1 AND c.fechaini >= '".$config['curso_inicio']."' ORDER BY MONTH(fechaini) ASC") or die (mysqli_error($db_con));
 while ($row = mysqli_fetch_array($result)) {
 
         $actividades_mes = array();
-        $result_actividades = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, lugar, departamento, profesores, unidades, observaciones FROM calendario WHERE MONTH(fechaini) = '".$row['nummes']."' AND categoria = 1 AND fechaini BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' ORDER BY fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
+        $result_actividades = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, lugar, departamento, profesores, unidades, observaciones FROM calendario WHERE MONTH(fechaini) = '".$row['nummes']."' AND categoria = 1 AND fechaini >= '".$config['curso_inicio']."' ORDER BY fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
         while ($row_actividades = mysqli_fetch_array($result_actividades)) {
 
                 $actividad_mes = array(
@@ -102,20 +102,20 @@ include("../inc_menu.php");
 
                             <div id="actividad_mes_<?php echo $nummes; ?>" role="tablist">
                             <?php foreach ($actividades_extraescolares[$found_mes]['actividades'] as $actividad): ?>
-                                <div class="card">
+                                <div class="card shadow-sm">
                                     <div class="card-header" role="tab" id="heading<?php echo $actividad['id']; ?>">
-                                    <h5 class="mb-0">
+                                    <h6 class="mb-0">
                                         <a data-toggle="collapse" href="#actividad<?php echo $actividad['id']; ?>" aria-expanded="false" aria-controls="actividad<?php echo $actividad['id']; ?>">
                                         <strong><?php echo strftime('%e %b', strtotime($actividad['fechaini'])); ?></strong> - <?php echo $actividad['nombre']; ?>
                                         </a>
-                                    </h5>
+                                    </h6>
                                     </div>
 
                                     <div id="actividad<?php echo $actividad['id']; ?>" class="collapse" role="tabpanel" aria-labelledby="heading<?php echo $actividad['id']; ?>" data-parent="#actividad_mes_<?php echo $nummes; ?>">
                                     <div class="card-body">
 
                                         <?php if (! empty($actividad['descripcion'])): ?>
-                                        <h6>Observaciones</h6>
+                                        <h6>Descripción</h6>
                                         <p><?php echo $actividad['descripcion']; ?></p>
                                         <?php endif; ?>
 

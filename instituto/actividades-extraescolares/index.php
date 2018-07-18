@@ -5,7 +5,7 @@ require_once("../../config.php");
 $anio_curso = substr($config['curso_actual'], 0, 4);
 $anio_curso_sig = $anio_curso + 1;
 $array_meses = array(
-    9 => 'Septiembre '.$anio_curso, 
+    9 => 'Septiembre '.$anio_curso,
     10 => 'Octubre '.$anio_curso,
     11 => 'Noviembre '.$anio_curso,
     12 => 'Diciembre '.$anio_curso,
@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($result)) {
         $actividades_mes = array();
         $result_actividades = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, lugar, departamento, profesores, unidades, observaciones FROM calendario WHERE MONTH(fechaini) = '".$row['nummes']."' AND categoria = 2 AND confirmado = 1 AND fechaini BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' ORDER BY fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
         while ($row_actividades = mysqli_fetch_array($result_actividades)) {
-        
+
                 $actividad_mes = array(
                     'id'            => $row_actividades['id'],
                     'nombre'        => $row_actividades['nombre'],
@@ -41,7 +41,7 @@ while ($row = mysqli_fetch_array($result)) {
                     'unidades'      => $row_actividades['unidades'],
                     'observaciones' => $row_actividades['observaciones']
                 );
-            
+
                 array_push($actividades_mes, $actividad_mes);
         }
         mysqli_free_result($result_actividades);
@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_array($result)) {
             'nummes'        => $row['nummes'],
             'actividades'   => $actividades_mes
         );
-    
+
         array_push($actividades_extraescolares, $actividad);
 }
 mysqli_free_result($result);
@@ -88,7 +88,7 @@ include("../../inc_menu.php");
                         <?php $i++; ?>
                         <?php endforeach; ?>
                     </ul>
-                    
+
                 </div>
 
                 <div class="col-md-9">
@@ -102,13 +102,13 @@ include("../../inc_menu.php");
 
                             <div id="actividad_mes_<?php echo $nummes; ?>" role="tablist">
                             <?php foreach ($actividades_extraescolares[$found_mes]['actividades'] as $actividad): ?>
-                                <div class="card">
+                                <div class="card shadow-sm">
                                     <div class="card-header" role="tab" id="heading<?php echo $actividad['id']; ?>">
-                                    <h5 class="mb-0">
+                                    <h6 class="mb-0">
                                         <a data-toggle="collapse" href="#actividad<?php echo $actividad['id']; ?>" aria-expanded="false" aria-controls="actividad<?php echo $actividad['id']; ?>">
                                         <strong><?php echo strftime('%e %b', strtotime($actividad['fechaini'])); ?></strong> - <?php echo $actividad['nombre']; ?>
                                         </a>
-                                    </h5>
+                                    </h6>
                                     </div>
 
                                     <div id="actividad<?php echo $actividad['id']; ?>" class="collapse" role="tabpanel" aria-labelledby="heading<?php echo $actividad['id']; ?>" data-parent="#actividad_mes_<?php echo $nummes; ?>">
@@ -179,7 +179,7 @@ include("../../inc_menu.php");
                         <?php endforeach; ?>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
