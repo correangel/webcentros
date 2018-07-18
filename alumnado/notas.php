@@ -66,7 +66,7 @@ $num = count($trozos);
   {
 $nombre_asig ="";
 $bloque = explode(":", $trozos[$i]);
-$nombreasig = "select NOMBRE, ABREV, CURSO, CODIGO from asignaturas where CODIGO = '" . $bloque[0] . "'  order by CURSO";
+$nombreasig = "select NOMBRE, ABREV, CURSO, CODIGO from asignaturas where CODIGO = '" . $bloque[0] . "'  order by CURSO ASC";
 $asig = mysqli_query($db_con, $nombreasig);
 if(mysqli_num_rows($asig) < 1)	{$nombre_asig = "Asignatura sin código"; }
 while($rowasig = mysqli_fetch_array($asig))	{
