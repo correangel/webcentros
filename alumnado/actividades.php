@@ -1,7 +1,7 @@
-<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed'); 
+<?php defined('WEBCENTROS_DIRECTORY') OR exit('No direct script access allowed');
 
 function nombremes($mes)
-{	
+{
 	switch ($mes) {
 		case 1 : $nombre = "Enero"; break;
 		case 2 : $nombre = "Febrero"; break;
@@ -16,7 +16,7 @@ function nombremes($mes)
 		case 11 : $nombre = "Noviembre"; break;
 		case 12 : $nombre = "Diciembre"; break;
 	}
-	
+
 	return $nombre;
 }
 ?>
@@ -26,7 +26,7 @@ function nombremes($mes)
 
 <br>
 
-<?php $result = mysqli_query($db_con, "SELECT DISTINCT MONTH(fechaini) AS mes, YEAR(fechaini) AS anio FROM calendario WHERE unidades LIKE '%$curso%' AND fechaini > '".$config['curso_inicio']."' AND confirmado=1 ORDER BY fechaini DESC"); ?>
+<?php $result = mysqli_query($db_con, "SELECT DISTINCT MONTH(fechaini) AS mes, YEAR(fechaini) AS anio FROM calendario WHERE unidades LIKE '%$unidad%' AND fechaini > '".$config['curso_inicio']."' AND confirmado=1 ORDER BY fechaini DESC"); ?>
 
 <?php if(mysqli_num_rows($result)): ?>
 
@@ -37,7 +37,7 @@ function nombremes($mes)
 			<th class="text-center text-info"><?php echo nombremes($row['mes']).', '.$row['anio']; ?></th>
 		</thead>
 		<tbody>
-			<?php $result_actividad = mysqli_query($db_con, "SELECT nombre, descripcion, fechaini, horaini, fechafin, horafin, departamento, profesores FROM calendario WHERE unidades LIKE '%$curso%' AND MONTH(fechaini)='".$row['mes']."' AND confirmado=1 ORDER BY fechaini DESC"); ?>
+			<?php $result_actividad = mysqli_query($db_con, "SELECT nombre, descripcion, fechaini, horaini, fechafin, horafin, departamento, profesores FROM calendario WHERE unidades LIKE '%$unidad%' AND MONTH(fechaini)='".$row['mes']."' AND confirmado=1 ORDER BY fechaini DESC"); ?>
 			<?php while ($row_actividad = mysqli_fetch_array($result_actividad)): ?>
 			<tr>
 				<td>
@@ -47,19 +47,19 @@ function nombremes($mes)
 					<p><strong>Departamento:</strong> <?php echo stripslashes($row_actividad['departamento']); ?></p>
 					<?php
 					$lista_profesores = "";
-					
+
 					$profesores = explode(';', $row_actividad['profesores']);
-					
+
 					$i = 0;
 					while ($profesores[$i]) {
 						$exp_profesor = explode(', ', $profesores[$i]);
 						$nomprofesor = $exp_profesor[1];
 						$apeprofesor = $exp_profesor[0];
-						
+
 						$lista_profesores .= $nomprofesor.' '.$apeprofesor.', ';
 						$i++;
 					}
-					
+
 					$lista_profesores = trim($lista_profesores, ', ');
 					?>
 					<p><strong>Profesores responsables:</strong> <?php echo $lista_profesores; ?></p>
