@@ -157,15 +157,11 @@
                           <?php endif; ?>
                           <div class="dropdown-divider"></div>
                           <h6 class="dropdown-header">Información académica</h6>
-                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">Información y contacto</a>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
                           <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
                           <?php endif; ?>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
-                          <?php if (isset($config['web_biblioteca']) && ! empty($config['web_biblioteca'])): ?>
-                          <a class="dropdown-item" href="<?php echo $config['web_biblioteca']; ?>" target="_blank">Biblioteca</a>
-                          <?php endif; ?>
                           <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
                           <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
                           <?php endif; ?>
@@ -187,10 +183,10 @@
                           <div class="dropdown-divider"></div>
                           <h6 class="dropdown-header">Educación Permanente</h6>
                           <?php if (isset($config['educacion_permanente']['espa']) && $config['educacion_permanente']['espa']): ?>
-                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/espa">Educación Secundaria para Personas Adultas (ESPA)</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/eso">Educación Secundaria para Personas Adultas (ESPA)</a>
                           <?php endif; ?>
                             <?php if (isset($config['educacion_permanente']['bachillerato']) && $config['educacion_permanente']['bachillerato']): ?>
-                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/bachillerato">Bachillerato (BTOPA)</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>oferta-educativa/educacion-permanente/bachillerato">Bachillerato para Personas Adultas (BTOPA)</a>
                           <?php endif; ?>
                           <?php endif; ?>
                           <?php if (isset($config['educacion_cfgb']) && count($config['educacion_cfgb'])): ?>
@@ -221,6 +217,11 @@
                       <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>documentos">Documentos</a>
                   </li>
                   <?php endif; ?>
+                  <?php if (isset($config['web_biblioteca']) && ! empty($config['web_biblioteca'])): ?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo $config['web_biblioteca']; ?>" target="_blank">Biblioteca</a>
+                  </li>
+                  <?php endif; ?>
                   <li class="nav-item">
                       <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>alumnado">Alumnado</a>
                   </li>
@@ -244,7 +245,7 @@
                   </li>
                   <?php endif; ?>
                   <li class="nav-item active">
-                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/contacto">
+                      <a class="nav-link" href="<?php echo WEBCENTROS_DOMINIO; ?>contacto">
                           <i class="now-ui-icons travel_info"></i>
                           <p>Te informamos</p>
                       </a>

@@ -1,11 +1,11 @@
 <?php
-require_once("../../bootstrap.php");
-require_once("../../config.php");
-require_once('../../plugins/phpmailer/PHPMailerAutoload.php');
+require_once("../bootstrap.php");
+require_once("../config.php");
+require_once('../plugins/phpmailer/PHPMailerAutoload.php');
 
 $plugin_google_recaptcha = false;
 if (isset($config['google_recaptcha']['site_key']) && $config['google_recaptcha']['site_key'] != 'YOUR_SITE_KEY' && isset($config['google_recaptcha']['secret']) && $config['google_recaptcha']['secret'] != 'YOUR_SECRET_CODE') {
-    require_once('../../plugins/recaptchalib.php');
+    require_once('../plugins/recaptchalib.php');
     $plugin_google_recaptcha = true;
 }
 
@@ -113,7 +113,7 @@ $pagina['meta']['meta_description'] = "Información de contacto. Número de tél
 $pagina['meta']['meta_type'] = "website";
 $pagina['meta']['meta_locale'] = "es_ES";
 
-include("../../inc_menu.php");
+include("../inc_menu.php");
 ?>
 
     <div class="section">
@@ -286,4 +286,4 @@ include("../../inc_menu.php");
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=<?php echo $config['google_maps']['api_key']; ?>&callback=initMap"></script>
     <?php endif; ?>
 
-    <?php include("../../inc_pie.php"); ?>
+    <?php include("../inc_pie.php"); ?>
