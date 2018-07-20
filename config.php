@@ -31,6 +31,21 @@ $config['web_imagenes']   = "";
 $config['alumnado']['ver_informes_tareas']  = 0;
 $config['alumnado']['ver_informes_tutoria'] = 0;
 
+// ICONOS BARRA LATERAL (SOLO 3 ICONOS)
+// Introducir la URL de la imagen de los iconos de la barra lateral, título y enlace URL a donde dirigir a los usuarios
+// Comentar / Descomentar este bloque para mostrar o no mostrar, respectivamente, los iconos en la barra lateral
+$config['sidebar_icon'][0]['imagen']   = WEBCENTROS_DOMINIO."/ui-theme/img/seneca.png";
+$config['sidebar_icon'][0]['titulo']   = "Ir a Portal Séneca";
+$config['sidebar_icon'][0]['enlace']   = "http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio";
+
+$config['sidebar_icon'][1]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/pasen.png';
+$config['sidebar_icon'][1]['titulo']   = "Ir a Portal Pasen";
+$config['sidebar_icon'][1]['enlace']   = "https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio";
+
+$config['sidebar_icon'][2]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/moodle.png';
+$config['sidebar_icon'][2]['titulo']   = "Ir a Plataforma Moodle";
+$config['sidebar_icon'][2]['enlace']   = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/moodle2/";
+
 // OFERTA EDUCATIVA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, información sobre el Bachillerato
 // $config['educacion_bachiller'] = 1;
