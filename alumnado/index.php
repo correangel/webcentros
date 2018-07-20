@@ -25,7 +25,7 @@ if ($claveal) {
 
 	if ($row1 = mysqli_fetch_array($result1)) {
 	  $unidad = $row1['unidad'];
-		$curso = $row1['curso'];
+	  $curso = $row1['curso'];
 	  $claveal1 = $row1['claveal1'];
 	  $apellido = $row1['apellidos'];
 	  $nombrepil = $row1['nombre'];
@@ -65,6 +65,41 @@ if (isset($_POST['subirFotografia'])) {
 			$msg_success = "La fotografía se ha actualizado.";
 		}
 
+	}
+}
+
+// Módulo de matriculación
+if (isset($config['mod_matriculacion']) && $config['mod_matriculacion']) {
+	if (@file_exists("../intranet/admin/matriculas/config.php")) require_once("../intranet/admin/matriculas/config.php");
+	if (@file_exists("../../intranet/admin/matriculas/config.php")) require_once("../../intranet/admin/matriculas/config.php");
+	if (@file_exists("/home/e-smith/files/ibays/intranet/html/admin/matriculas/config.php")) require_once("/home/e-smith/files/ibays/intranet/html/admin/matriculas/config.php");
+
+	$dia_matricula_ini = strftime('%d %B', strtotime($config['matriculas']['fecha_inicio']));
+	$dia_matricula_fin = strftime('%d %B', strtotime($config['matriculas']['fecha_fin']));
+
+	// Comprobamos si el centro ofrece estudios de Bachillerato
+	$result = mysqli_query($db_con, "SELECT nomcurso FROM cursos WHERE nomcurso LIKE '%Bachillerato%' LIMIT 1");
+	if (mysqli_num_rows($result)) $ofertaBachillerato = 1;
+	else $ofertaBachillerato = 0;
+
+	if (stristr($curso, '4º de E.S.O.') == true || stristr($curso, '1º de Bachillerato') == true) {
+		$result_matricula_bach = mysqli_query($db_con, "SELECT claveal FROM matriculas_bach WHERE claveal = '$claveal' LIMIT 1");
+		if (mysqli_num_rows($result_matricula_bach)) $estaMatriculadoBachillerato = 1;
+		else $estaMatriculadoBachillerato = 0;
+
+		if (stristr($curso, '4º de E.S.O.') == true) {
+			$curso_matricula = "1 BACH";
+		}
+		elseif (stristr($curso, '1º de Bachillerato') == true) {
+			$curso_matricula = "2 BACH";
+		}
+	}
+	else {
+		$result_matricula_eso = mysqli_query($db_con, "SELECT claveal FROM matriculas WHERE claveal = '$claveal' LIMIT 1");
+		if (mysqli_num_rows($result_matricula_eso)) $estaMatriculadoESO = 1;
+		else $estaMatriculadoESO = 0;
+
+		$curso_matricula = substr($curso, 0, 1) + 1 . " ESO";
 	}
 }
 
@@ -237,6 +272,12 @@ include('../inc_menu.php');
 						<li class="nav-item"><a class="nav-link" href="#tutoria" role="tab" data-toggle="tab">Tutoría</a></li>
 						<?php endif; ?>
 						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes<?php echo ($numeroMensajesRecibidos) ? ' <span class="badge">'.$numeroMensajesRecibidos.'</span>' : ''; ?></a></li>
+						<?php if ($estaMatriculadoBachillerato==1): ?>
+						<li class="nav-item"><a class="nav-link" href="./matriculas/matriculas_bach.php?curso=<?php echo $curso; ?>" target="_blank">Matrícula</a></li>
+						<?php endif; ?>
+						<?php if ($estaMatriculadoESO==1): ?>
+						<li class="nav-item"><a class="nav-link" href="./matriculas/matriculas.php?curso=<?php echo $curso; ?>" target="_blank">Matrícula</a></li>
+						<?php endif; ?>
 					</ul>
 
 					<br>
