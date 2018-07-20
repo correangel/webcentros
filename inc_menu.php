@@ -151,13 +151,13 @@
                           <h6 class="dropdown-header">Organización</h6>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
-                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías</a>
                           <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
                           <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
                           <?php endif; ?>
                           <div class="dropdown-divider"></div>
                           <h6 class="dropdown-header">Información académica</h6>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías y horarios</a>
                           <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
                           <?php endif; ?>
