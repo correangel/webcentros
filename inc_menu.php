@@ -54,7 +54,7 @@
     <?php endif; ?>
 
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//stackpath.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
