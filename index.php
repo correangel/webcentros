@@ -286,29 +286,31 @@ include("inc_menu.php");
 
                 <div class="col-md-4">
 
+                    <?php if (isset($config['sidebar_icon']) && count($config['sidebar_icon']) == 3): ?>
                     <div class="pad10 d-none d-sm-block">
                       <div class="row">
                         <div class="col-sm-4">
-                          <a href="http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Séneca">
-                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/seneca.png" alt="">
+                          <a href="<?php echo $config['sidebar_icon'][0]['enlace']; ?>" target="_blank" data-toggle="tooltip" title="" data-original-title="<?php echo $config['sidebar_icon'][0]['titulo']; ?>">
+                              <img src="<?php echo $config['sidebar_icon'][0]['imagen']; ?>" alt="<?php echo $config['sidebar_icon'][0]['titulo']; ?>">
                           </a>
                         </div>
 
                         <div class="col-sm-4">
-                          <a href="https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Portal Pasen">
-                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/pasen.png" alt="">
+                          <a href="<?php echo $config['sidebar_icon'][1]['enlace']; ?>" target="_blank" data-toggle="tooltip" title="" data-original-title="<?php echo $config['sidebar_icon'][1]['titulo']; ?>">
+                              <img src="<?php echo $config['sidebar_icon'][1]['imagen']; ?>" alt="<?php echo $config['sidebar_icon'][1]['titulo']; ?>">
                           </a>
                         </div>
 
                         <div class="col-sm-4">
-                          <a href="http://www.juntadeandalucia.es/averroes/centros-tic/<?php echo $config['centro_codigo']; ?>/moodle2/" target="_blank" data-toggle="tooltip" title="" data-original-title="Ir a Plataforma Moodle">
-                              <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/moodle.png" alt="">
+                          <a href="<?php echo $config['sidebar_icon'][2]['enlace']; ?>" target="_blank" data-toggle="tooltip" title="" data-original-title="<?php echo $config['sidebar_icon'][2]['titulo']; ?>">
+                              <img src="<?php echo $config['sidebar_icon'][2]['imagen']; ?>" alt="<?php echo $config['sidebar_icon'][2]['titulo']; ?>">
                           </a>
                         </div>
                       </div>
                     </div>
 
                     <br>
+                    <?php endif; ?>
 
                     <div class="calendario pad15">
                         <div class="card-box border-primary">
