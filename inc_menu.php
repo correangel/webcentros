@@ -81,7 +81,7 @@
     <?php endif; ?>
     <?php endif; ?>
 
-    <?php if (isset($config['fondo_patron']) && cmykcolor($config['fondo_patron'])): ?>
+    <?php if (isset($config['fondo_patron']) && intval($config['fondo_patron'])): ?>
     <style type="text/css">
     .my-header { background-image: url('../img/presets/bg<?php echo $config['fondo_patron']; ?>.png'); }
     </style>
