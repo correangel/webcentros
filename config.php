@@ -4,13 +4,18 @@
 */
 
 // LOGOTIPO Y FAVICON
-// Añade en la carpeta webcentros/ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
+// Añade en la carpeta ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
 // Se recomienda que el archivo logo.png tenga unas dimensiones de entre 400 y 500 píxeles, y favicon.ico de 32 píxeles
 
 // COLOR PRIMARIO
 // Puede cambiar el color primario del sitio por cualquier otro en formato CMYK
 // Utilice la página https://www.w3schools.com/colors/colors_cmyk.asp
 $config['color_primario'] = "0%, 60%, 80%, 2%";
+
+// Puede cambiar el patrón de fondo de los títulos de las páginas modificando el número de la variable.
+// También puede añadir sus propios patrones subiendo los diseños a la carpeta ui-theme/img/presets/.
+// Los valores posibles son del 1 al 7.
+$config['fondo_patron'] = "1";
 
 // SITIO WEB DE LA AMPA
 // Introducir la URL de la web, blog de la AMPA

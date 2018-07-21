@@ -60,7 +60,7 @@ a:hover.navbar-brand-lg {
 .my-header {
     min-height: 300px;
     background-color: #868e96;
-    background-image: url('../img/bg.png');
+    background-image: url('../img/presets/bg1.png');
     background-repeat: repeat;
     padding-top: 160px;
     text-align: center;
