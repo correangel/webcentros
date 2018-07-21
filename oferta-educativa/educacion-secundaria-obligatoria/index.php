@@ -41,7 +41,7 @@ include("../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                     <p>La Educación Secundaria Obligatoria (ESO) es una etapa educativa obligatoria y gratuita que completa la educación básica. Consta de cuatro cursos académicos que se realizan ordinariamente entre los 12 y los 16 años de edad. No obstante, los alumnos tendrán derecho a permanecer en régimen ordinario cursando la enseñanza básica hasta los dieciocho años de edad.</p>
 

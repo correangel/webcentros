@@ -24,7 +24,7 @@ include("../../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                   <p>El Bachillerato tiene como finalidad proporcionar al alumnado formación, madurez intelectual y humana, conocimientos y habilidades que les permitan desarrollar funciones sociales e incorporarse a la vida activa con responsabilidad y competencia. Asimismo, capacitará al alumnado para acceder a la educación superior.</p>
 

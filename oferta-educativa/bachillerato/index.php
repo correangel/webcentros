@@ -5,9 +5,13 @@ if (! isset($config['educacion_bachiller']) || $config['educacion_bachiller'] ==
     include("../../error404.php");
 }
 
+$tieneBachilleratoArtes = 0;
+
 $cursos = array();
 $result_cursos = mysqli_query($db_con, "SELECT `nomcurso` FROM `cursos` WHERE `nomcurso` LIKE '%Bachillerato%' ORDER BY `nomcurso` ASC") or die (mysqli_error($db_con));
 while ($row_cursos = mysqli_fetch_array($result_cursos)) {
+
+  if (strstr($row_cursos['nomcurso'], 'Artes') == true) $tieneBachilleratoArtes = 1;
 
   $asignaturas = array();
   $result_asignaturas = mysqli_query($db_con, "SELECT DISTINCT `nombre` FROM `asignaturas` WHERE `curso` = '" . $row_cursos['nomcurso'] . "' AND `abrev` NOT LIKE '%\_%' ORDER BY `nombre` ASC");
@@ -44,7 +48,7 @@ include("../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                     <p>El Bachillerato forma parte de la Educación Secundaria postobligatoria, y por lo tanto tiene carácter voluntario. Comprende dos cursos académicos, que se realizan ordinariamente entre los 16 y 18 años de edad.</p>
 
@@ -107,7 +111,7 @@ include("../../inc_menu.php");
                     <div class="row">
 
                       <?php foreach ($cursos as $curso): ?>
-                      <div class="col-md-6" style="margin-bottom: 15px;">
+                      <div class="<?php echo ($tieneBachilleratoArtes) ? 'col-md-4' : 'col-md-6'; ?>" style="margin-bottom: 15px;">
                         <h6 class="text-primary"><?php echo $curso['nombre']; ?></h6>
 
                         <ul>

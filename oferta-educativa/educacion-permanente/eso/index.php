@@ -24,7 +24,7 @@ include("../../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                   <p>La Educación Secundaria para Personas Adultas (ESPA) en su modalidad presencial es la formación que, incorporando las oportunas adaptaciones para las diferentes características de las personas adultas, conduce al título oficial de Graduado en Educación Secundaria Obligatoria.</p>
 

@@ -370,8 +370,7 @@ function contents_dir($current_dir, $directory)
 			echo '</small></div>';
 		}
 		echo "</td>
-      <td nowrap>
-        <div align=\"center\">";
+      <td nowrap class=\"text-right\">";
 
 //
 //
