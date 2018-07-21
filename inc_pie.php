@@ -5,32 +5,32 @@
             <div class="row justify-content-center">
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="https://www.mecd.gob.es/portada-mecd/" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/mefp.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/mefp.png" class="pad10" alt="">
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="https://www.mecd.gob.es/educacion/mc/fse/fse.html" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/fse.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/fse.png" class="pad10" alt="">
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="http://www.juntadeandalucia.es/educacion/cga/portal/" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/cga.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/cga.png" class="pad10" alt="">
                     </a>
                 </div>
                  <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="https://www.juntadeandalucia.es/educacion/portalaverroes/portada" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/averroes.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/averroes.png" class="pad10" alt="">
                     </a>
                 </div>
                  <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="http://www.juntadeandalucia.es/educacion/portals/web/buenas-practicas-educativas" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/bpe.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/bpe.png" class="pad10" alt="">
                     </a>
                 </div>
                  <div class="col-sm-6 col-md-4 col-lg-2 text-center">
                     <a href="http://www.formajoven.org" target="_blank">
-                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/formajoven.png" class="pad10" alt="">
+                        <img src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/png-icons/formajoven.png" class="pad10" alt="">
                     </a>
                 </div>
             </div>

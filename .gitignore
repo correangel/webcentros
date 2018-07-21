@@ -1,10 +1,5 @@
-
 .DS_Store
-
 *.sublime-project
-
 *.sublime-workspace
-
-ui-theme/img/*.jpg
-ui-theme/img/*.ico
-ui-theme/img/*.png
+ui-theme/img/favicon.ico
+ui-theme/img/logo.png
