@@ -103,6 +103,10 @@ if (isset($config['mod_matriculacion']) && $config['mod_matriculacion']) {
 	}
 }
 
+// Comprobamos si el alumno tiene actividades evaluables registradas
+$query_evaluables = mysqli_query($db_con, "SELECT DISTINCT notas_cuaderno.profesor AS nomprofesor, asignaturas.NOMBRE AS nomasignatura, notas_cuaderno.id AS idactividad, notas_cuaderno.nombre AS nomactividad, notas_cuaderno.fecha AS fecactividad FROM notas_cuaderno JOIN asignaturas ON notas_cuaderno.asignatura = asignaturas.CODIGO WHERE notas_cuaderno.curso LIKE '%$unidad%' AND notas_cuaderno.visible_nota=1");
+if (mysqli_num_rows($query_evaluables)>0) $muestra_evaluables = 1;
+
 // Comprobamos mensajes recibidos
 $query_mensajes = mysqli_query($db_con, "SELECT mens_texto.id, ahora, asunto, texto, c_profes.profesor, (SELECT recibidoprofe FROM mens_profes WHERE id_texto = mens_texto.id AND profesor LIKE '%$apellido, $nombrepil%' OR profesor LIKE '%".$_SESSION['claveal']."%' LIMIT 1) AS recibidoprofe FROM mens_texto JOIN c_profes ON mens_texto.origen = c_profes.idea WHERE ahora BETWEEN '".$config['curso_inicio']."' AND '".$config['curso_fin']."' AND (destino LIKE '%$apellido, $nombrepil%' OR destino LIKE '%".$_SESSION['claveal']."%' AND asunto NOT LIKE 'Mensaje de confirmación') ORDER BY ahora DESC");
 $numeroMensajesRecibidos = mysqli_num_rows($query_mensajes);
@@ -266,7 +270,9 @@ include('../inc_menu.php');
 						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Convivencia</a></li>
 						<li class="nav-item"><a class="nav-link" href="#evaluaciones" role="tab" data-toggle="tab">Calificaciones</a></li>
 						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Extraescolares</a></li>
+						<?php if ($muestra_evaluables == 1): ?>
 						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Actividades</a></li>
+						<?php endif; ?>
 						<li class="nav-item"><a class="nav-link" href="#horario" role="tab" data-toggle="tab">Horario</a></li>
 						<?php if (isset($config['alumnado']['ver_informes_tutoria']) && $config['alumnado']['ver_informes_tutoria']): ?>
 						<li class="nav-item"><a class="nav-link" href="#tutoria" role="tab" data-toggle="tab">Tutoría</a></li>
@@ -296,9 +302,11 @@ include('../inc_menu.php');
 						<div class="tab-pane" id="actividades">
 						<?php include("actividades.php"); ?>
 						</div>
+						<?php if ($muestra_evaluables == 1): ?>
 						<div class="tab-pane" id="evaluables">
 						<?php include("evaluables.php"); ?>
 						</div>
+						<?php endif; ?>
 						<div class="tab-pane" id="horario">
 						<?php include("horarios.php"); ?>
 						</div>

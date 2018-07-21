@@ -174,7 +174,6 @@ include("../../inc_menu.php");
                             <br><br>
                             <?php endif; ?>
 
-                            <pre><?php print_r($actividades_extraescolares[8]['actividades']); ?></pre>
                         </div>
                         <?php endforeach; ?>
                     </div>
