@@ -2,6 +2,27 @@
 require_once("../../bootstrap.php");
 require_once("../../config.php");
 
+$cursos = array();
+$result_cursos = mysqli_query($db_con, "SELECT `nomcurso` FROM `cursos` WHERE `nomcurso` LIKE '%E.S.O.' ORDER BY `nomcurso` ASC") or die (mysqli_error($db_con));
+while ($row_cursos = mysqli_fetch_array($result_cursos)) {
+
+  $asignaturas = array();
+  $result_asignaturas = mysqli_query($db_con, "SELECT DISTINCT `nombre` FROM `asignaturas` WHERE `curso` = '" . $row_cursos['nomcurso'] . "' AND `nombre` NOT LIKE '%**%' AND `abrev` NOT LIKE '%\_%' AND nombre <> 'Tutoría con Alumnos' AND nombre <> 'Refuerzo Pedagógico' ORDER BY `nombre` ASC");
+  while ($row_asignaturas = mysqli_fetch_array($result_asignaturas)) {
+    array_push($asignaturas, $row_asignaturas['nombre']);
+  }
+  mysqli_free_result($result_asignaturas);
+
+  $curso = array(
+    'nombre'      => $row_cursos['nomcurso'],
+    'asignaturas' => $asignaturas
+  );
+
+  array_push($cursos, $curso);
+}
+mysqli_free_result($result_cursos);
+unset($curso);
+
 $pagina['titulo'] = 'Educación Secundaria Obligatoria';
 
 // SEO
@@ -103,6 +124,28 @@ include("../../inc_menu.php");
                     <p>Las competencias clave deben estar integradas en las áreas o materias de las propuestas curriculares, y en ellas definirse, explicitarse y desarrollarse suficientemente los resultados de aprendizaje que los alumnos y alumnas deben conseguir.</p>
 
                     <p>Las competencias deben desarrollarse en los ámbitos de la educación formal, no formal e informal a lo largo de la Educación Primaria, la Educación Secundaria Obligatoria y el Bachillerato, y en la educación permanente a lo largo de toda la vida.</p>
+
+                    <hr>
+
+                    <h4>Estructura</h4>
+
+                    <p>La oferta educativa en Educación Secundaria Obligatoria en nuestro centro es la siguiente:</p>
+
+                    <div class="row">
+
+                      <?php foreach ($cursos as $curso): ?>
+                      <div class="col-md-6" style="margin-bottom: 15px;">
+                        <h6 class="text-primary"><?php echo $curso['nombre']; ?></h6>
+
+                        <ul>
+                          <?php foreach ($curso['asignaturas'] as $asignatura): ?>
+                          <li><?php echo $asignatura; ?></li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
+                      <?php endforeach; ?>
+
+                    </div>
 
                     <hr>
 
