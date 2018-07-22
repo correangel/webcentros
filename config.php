@@ -17,14 +17,14 @@ $config['color_primario'] = "0%, 60%, 80%, 2%";
 // Los valores posibles son del 1 al 7.
 $config['fondo_patron'] = "1";
 
-// PLAN ANUAL DE CENTRO
-// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el Plan anual de centro
-// $config['plan_centro']   = "";
-
 // SITIO WEB DE LA AMPA
 // Introducir la URL de la web, blog de la AMPA
 // Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el sitio web de la AMPA
-// $config['web_ampa']      = "";
+// $config['web_ampa']       = "";
+
+//PLAN DEL CENTRO
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el Pln Anual del Centro
+// $config['PC']       = "https://iesmonterroso.org/PC/";
 
 // SITIO WEB DE LA BIBLIOTECA
 // Introducir la URL de la web, blog de la Biblioteca, por defecto, utiliza el enlace a BiblioWeb

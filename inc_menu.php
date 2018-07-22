@@ -170,8 +170,8 @@
                           <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
                           <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
                           <?php endif; ?>
-                           <?php if (isset($config['plan_centro']) && ! empty($config['plan_centro'])): ?>
-                          <a class="dropdown-item" href="<?php echo $config['plan_centro']; ?>" target="_blank">Plan Anual de Centro</a>
+                           <?php if (isset($config['PC']) && ! empty($config['PC'])): ?>
+                          <a class="dropdown-item" href="<?php echo $config['PC']; ?>" target="_blank">Plan del Centro</a>
                           <?php endif; ?>
                       </div>
                   </li>
