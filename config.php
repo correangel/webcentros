@@ -216,7 +216,7 @@ $config['sidebar_html'][2]['html'] = '';
 // En el campo 'enlace' se escribe la URL a la que desee que el usuario vaya si hace click en la imagen. Este campo es opcional.
 // ¡CUIDADO! Es necesario escribir una barra inversa para escapar el caracter comilla (') correctamente (\')
 // Consejo: Es importante optimizar las imagenes para la publicación en la web, de esta manera conseguimos que la página cargue mucho más rápido
-// y los usuarios ahorren megas en dispostivos móviles. Utiliza la página https://imagecompressor.com/es/ para comprimir las imagenes.
+// y los usuarios ahorren megas en dispositivos móviles. Utiliza la página https://imagecompressor.com/es/ para comprimir las imagenes.
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 $config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpeg';
@@ -239,7 +239,7 @@ $config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/por
 //$config['google_analytics']['tracking_id'] = 'YOUR_GA_TRACKING_ID';
 
 // GOOGLE MAPS API
-// Consigue la clave para usar la API de Google Maps en https://developers.google.com/maps/documentation/javascript/?hl=es-419
+// Consigue la clave para usar la API de Google Maps Javascript en https://console.cloud.google.com/
 // Puedes obtener las coordenadas de tu centro educativo en https://www.coordenadas-gps.com
 //$config['google_maps']['api_key'] = 'YOUR_API_KEY';
 //$config['google_maps']['latitud'] = 36.4295948;
