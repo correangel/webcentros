@@ -34,7 +34,7 @@ include("../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                     <div class="text-muted">
                         <ul class="list-inline">

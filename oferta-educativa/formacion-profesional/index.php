@@ -84,7 +84,7 @@ include("../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <p>En la actualidad la FP son los estudios profesionales más cercanos a la realidad del mercado de trabajo y dan respuesta a la necesidad de personal cualificado especializado en los distintos sectores profesionales para responder a la actual demanda de empleo.</p>
 
                     <p>Si analizamos su alta inserción laboral podemos afirmar que la FP ya se ha transformado en una formación que responde a la demanda real de empleo, ahora es el momento del cambio en la sociedad española.</p>

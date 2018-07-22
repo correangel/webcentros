@@ -5,6 +5,31 @@ if (! isset($config['educacion_bachiller']) || $config['educacion_bachiller'] ==
     include("../../error404.php");
 }
 
+$tieneBachilleratoArtes = 0;
+
+$cursos = array();
+$result_cursos = mysqli_query($db_con, "SELECT `nomcurso` FROM `cursos` WHERE `nomcurso` LIKE '%Bachillerato%' ORDER BY `nomcurso` ASC") or die (mysqli_error($db_con));
+while ($row_cursos = mysqli_fetch_array($result_cursos)) {
+
+  if (strstr($row_cursos['nomcurso'], 'Artes') == true) $tieneBachilleratoArtes = 1;
+
+  $asignaturas = array();
+  $result_asignaturas = mysqli_query($db_con, "SELECT DISTINCT `nombre` FROM `asignaturas` WHERE `curso` = '" . $row_cursos['nomcurso'] . "' AND `abrev` NOT LIKE '%\_%' ORDER BY `nombre` ASC");
+  while ($row_asignaturas = mysqli_fetch_array($result_asignaturas)) {
+    array_push($asignaturas, $row_asignaturas['nombre']);
+  }
+  mysqli_free_result($result_asignaturas);
+
+  $curso = array(
+    'nombre'      => $row_cursos['nomcurso'],
+    'asignaturas' => $asignaturas
+  );
+
+  array_push($cursos, $curso);
+}
+mysqli_free_result($result_cursos);
+unset($curso);
+
 $pagina['titulo'] = 'Bachillerato';
 
 // SEO
@@ -23,7 +48,7 @@ include("../../inc_menu.php");
 
             <div class="row justify-content-md-center">
 
-                <div class="col-md-8">
+                <div class="col-md-9">
 
                     <p>El Bachillerato forma parte de la Educación Secundaria postobligatoria, y por lo tanto tiene carácter voluntario. Comprende dos cursos académicos, que se realizan ordinariamente entre los 16 y 18 años de edad.</p>
 
@@ -52,7 +77,7 @@ include("../../inc_menu.php");
 
                     <p>A partir de la completa implantación de la LOMCE, para obtener el título de bachiller será necesaria la superación de la evaluación final de Bachillerato, así como una calificación final de Bachillerato igual o superior a 5 puntos sobre 10.</p>
 
-                    <p>En función de lo establecido en el <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2016-11733" target="_blank">Real Decreto-ley 5/2016, de 9 de diciembre, de medidas urgentes para la ampliación del calendario de implantación de la Ley Orgánica 8/2013, de 9 de diciembre, para la mejora de la calidad educativa</a>, y hasta la entrada en vigor de la normativa resultante del Pacto de Estado social y político por la educación, la evaluación final de bachillerato regulada por el artículo 36 bis de la Ley Orgánica 2/2006, de 3 de mayo, no será necesaria para obtener el título de Bachiller y se realizará exclusivamente para el alumnado que quiera acceder a estudios universitarios.</p>
+                    <p><small>En función de lo establecido en el <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2016-11733" target="_blank">Real Decreto-ley 5/2016, de 9 de diciembre, de medidas urgentes para la ampliación del calendario de implantación de la Ley Orgánica 8/2013, de 9 de diciembre, para la mejora de la calidad educativa</a>, y hasta la entrada en vigor de la normativa resultante del Pacto de Estado social y político por la educación, la evaluación final de bachillerato regulada por el artículo 36 bis de la Ley Orgánica 2/2006, de 3 de mayo, no será necesaria para obtener el título de Bachiller y se realizará exclusivamente para el alumnado que quiera acceder a estudios universitarios.</small></p>
 
                     <hr>
 
@@ -76,6 +101,28 @@ include("../../inc_menu.php");
                         <li>Utilizar la educación física y el deporte para favorecer el desarrollo personal y social.</li>
                         <li>Afianzar actitudes de respeto y prevención en el ámbito de la seguridad vial.</li>
                     </ol>
+
+                    <hr>
+
+                    <h4>Estructura</h4>
+
+                    <p>La oferta educativa en Bachillerato en nuestro centro es la siguiente:</p>
+
+                    <div class="row">
+
+                      <?php foreach ($cursos as $curso): ?>
+                      <div class="<?php echo ($tieneBachilleratoArtes) ? 'col-md-4' : 'col-md-6'; ?>" style="margin-bottom: 15px;">
+                        <h6 class="text-primary"><?php echo $curso['nombre']; ?></h6>
+
+                        <ul>
+                          <?php foreach ($curso['asignaturas'] as $asignatura): ?>
+                          <li><?php echo $asignatura; ?></li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
+                      <?php endforeach; ?>
+
+                    </div>
 
                     <hr>
 
@@ -131,7 +178,7 @@ include("../../inc_menu.php");
                     <p>Quienes promocionen al segundo curso sin haber superado todas las materias, deberán matricularse de las materias pendientes del curso anterior. Los centros organizarán las consiguientes actividades de recuperación y la evaluación de las materias pendientes.</p>
 
                     <hr>
-                    
+
                     <h4>Títulación</h4>
 
                     <p>Para obtener el título de bachiller será necesaria la superación de la evaluación final de Bachillerato, así como una calificación final de Bachillerato igual o superior a 5 puntos sobre 10.</p>
@@ -143,7 +190,7 @@ include("../../inc_menu.php");
                       <li>con un peso del 40 %, la nota obtenida en la evaluación final de Bachillerato.</li>
                     </ol>
 
-                    <p>En función de lo establecido en el <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2016-11733" target="_blank">Real Decreto-ley 5/2016, de 9 de diciembre, de medidas urgentes para la ampliación del calendario de implantación de la Ley Orgánica 8/2013, de 9 de diciembre, para la mejora de la calidad educativa</a>, y hasta la entrada en vigor de la normativa resultante del Pacto de Estado social y político por la educación, la evaluación final de bachillerato regulada por el artículo 36 bis de la Ley Orgánica 2/2006, de 3 de mayo, no será necesaria para obtener el título de Bachiller y se realizará exclusivamente para el alumnado que quiera acceder a estudios universitarios.</p>
+                    <p><small>En función de lo establecido en el <a href="https://www.boe.es/diario_boe/txt.php?id=BOE-A-2016-11733" target="_blank">Real Decreto-ley 5/2016, de 9 de diciembre, de medidas urgentes para la ampliación del calendario de implantación de la Ley Orgánica 8/2013, de 9 de diciembre, para la mejora de la calidad educativa</a>, y hasta la entrada en vigor de la normativa resultante del Pacto de Estado social y político por la educación, la evaluación final de bachillerato regulada por el artículo 36 bis de la Ley Orgánica 2/2006, de 3 de mayo, no será necesaria para obtener el título de Bachiller y se realizará exclusivamente para el alumnado que quiera acceder a estudios universitarios.</small></p>
 
                     <p>Asimismo, durante este período, los alumnos que se encuentren en posesión de un título de Técnico o de Técnico Superior de Formación Profesional o de Técnico de las Enseñanzas Profesionales de Música o de Danza podrán obtener el título de Bachiller cursando y superando las materias generales del bloque de asignaturas troncales de la modalidad de Bachillerato que el alumno elija.</p>
 

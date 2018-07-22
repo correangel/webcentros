@@ -81,6 +81,11 @@
     <?php endif; ?>
     <?php endif; ?>
 
+    <?php if (isset($config['fondo_patron']) && intval($config['fondo_patron'])): ?>
+    <style type="text/css">
+    .my-header { background-image: url('<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/presets/bg<?php echo $config['fondo_patron']; ?>.png'); }
+    </style>
+    <?php endif; ?>
     <?php if (isset($config['color_primario']) && cmykcolor($config['color_primario'])): ?>
     <style type="text/css">
     .text-primary { color: <?php echo cmykcolor($config['color_primario'], 'rgb'); ?> !important; }
