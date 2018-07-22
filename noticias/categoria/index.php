@@ -75,7 +75,7 @@ include("../../inc_menu.php");
                 <div class="col-md-9">
 
                     <?php if ($total_noticias > 0): ?>
-                    
+
                     <p class="text-muted text-right"><small><?php echo ($pag < 1) ? '1' : $pag; ?> - <?php echo ($total_noticias >= $limite) ? $limite : $total_noticias; ?> de <?php echo $total_noticias; ?> resultados</small></p>
 
                     <table class="table">
@@ -91,29 +91,45 @@ include("../../inc_menu.php");
                     </table>
 
                     <br>
-                    
+
                     <?php if ($total_pags > 1): ?>
                     <nav role="pagination">
-                        <ul class="pagination justify-content-sm-center">
-                            <?php if ($pag < 1): ?>
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&laquo;</a></li>
-                            <?php else: ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/categoria/<?php echo (isset($_GET['categoria'])) ? htmlspecialchars(strip_tags(trim($_GET['categoria'])), ENT_QUOTES, 'UTF-8') : ''; ?>/?p=<?php echo ($pag - 1); ?>">&laquo;</a></li>
-                            <?php endif; ?>
-                            <?php for ($num = 1; $num <= $total_pags; $num++): ?>
-                            <li class="page-item<?php echo ($pag == $num || $pag == 0 && $num == 1) ? ' active' : ''; ?>"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/categoria/<?php echo (isset($_GET['categoria'])) ? htmlspecialchars(strip_tags(trim($_GET['categoria'])), ENT_QUOTES, 'UTF-8') : ''; ?>/?p=<?php echo $num; ?>"><?php echo $num; ?></a></li>
-                            <?php endfor; ?>
-                            <?php if ($pag < $total_pags): ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/categoria/<?php echo (isset($_GET['categoria'])) ? htmlspecialchars(strip_tags(trim($_GET['categoria'])), ENT_QUOTES, 'UTF-8') : ''; ?>/?p=<?php echo ($pag + 1); ?>">&raquo;</a></li>
-                            <?php else: ?>
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&raquo;</a></li>
-                            <?php endif; ?>
-                        </ul>
+                      <ul class="pagination justify-content-sm-center">
+                          <?php if ($pag < 1): ?>
+                          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&laquo;</a></li>
+                          <?php else: ?>
+                          <li class="page-item"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo ($pag - 1); ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>">&laquo;</a></li>
+                          <?php endif; ?>
+                          <?php if ($total_pags < 10): ?>
+                          <?php for ($num = 1; $num <= $total_pags; $num++): ?>
+                          <li class="page-item<?php echo ($pag == $num || $pag == 0 && $num == 1) ? ' active' : ''; ?>"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo $num; ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>"><?php echo $num; ?></a></li>
+                          <?php endfor; ?>
+                          <?php else: ?>
+                          <?php if ($pag < 7): ?>
+                          <?php for ($num = 1; $num <= 10; $num++): ?>
+                          <li class="page-item<?php echo ($pag == $num || $pag == 0 && $num == 1) ? ' active' : ''; ?>"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo $num; ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>"><?php echo $num; ?></a></li>
+                          <?php endfor; ?>
+                          <?php elseif (($total_pags - $pag) <= 4): ?>
+                          <?php for ($num = ($pag-5); $num <= $total_pags; $num++): ?>
+                          <li class="page-item<?php echo ($pag == $num || $pag == 0 && $num == 1) ? ' active' : ''; ?>"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo $num; ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>"><?php echo $num; ?></a></li>
+                          <?php endfor; ?>
+                          <?php else: ?>
+                          <?php for ($num = ($pag-5); $num <= ($pag+4); $num++): ?>
+                          <li class="page-item<?php echo ($pag == $num || $pag == 0 && $num == 1) ? ' active' : ''; ?>"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo $num; ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>"><?php echo $num; ?></a></li>
+                          <?php endfor; ?>
+                          <?php endif; ?>
+                          <?php endif; ?>
+                          <?php if ($pag < $total_pags): ?>
+                          <li class="page-item"><a class="page-link" href="<?php echo WEBCENTROS_DOMINIO; ?>noticias/buscar/?p=<?php echo ($pag + 1); ?><?php echo (isset($_GET['q'])) ? '&amp;q='.htmlspecialchars(strip_tags(trim($_GET['q'])), ENT_QUOTES, 'UTF-8') : ''; ?>">&raquo;</a></li>
+                          <?php else: ?>
+                          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">&raquo;</a></li>
+                          <?php endif; ?>
+                      </ul>
                     </nav>
                     <?php endif; ?>
 
                     <?php else: // ($total_noticias > 0) ?>
-                    
+
                     <div class="alert alert-warning">
                         Lo sentimos, no hemos encontrado resultados.
                     </div>
@@ -121,7 +137,7 @@ include("../../inc_menu.php");
                     <?php endif; ?>
 
                 </div>
-                
+
             </div>
         </div>
     </div>
