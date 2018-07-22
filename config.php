@@ -4,13 +4,18 @@
 */
 
 // LOGOTIPO Y FAVICON
-// Añade en la carpeta webcentros/ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
+// Añade en la carpeta ui-theme/img/ los archivos logo.png y favicon.ico con el logotipo del centro
 // Se recomienda que el archivo logo.png tenga unas dimensiones de entre 400 y 500 píxeles, y favicon.ico de 32 píxeles
 
 // COLOR PRIMARIO
 // Puede cambiar el color primario del sitio por cualquier otro en formato CMYK
 // Utilice la página https://www.w3schools.com/colors/colors_cmyk.asp
 $config['color_primario'] = "0%, 60%, 80%, 2%";
+
+// Puede cambiar el patrón de fondo de los títulos de las páginas modificando el número de la variable.
+// También puede añadir sus propios patrones subiendo los diseños a la carpeta ui-theme/img/presets/.
+// Los valores posibles son del 1 al 7.
+$config['fondo_patron'] = "1";
 
 // SITIO WEB DE LA AMPA
 // Introducir la URL de la web, blog de la AMPA
@@ -34,15 +39,15 @@ $config['alumnado']['ver_informes_tutoria'] = 0;
 // ICONOS BARRA LATERAL (SOLO 3 ICONOS)
 // Introducir la URL de la imagen de los iconos de la barra lateral, título y enlace URL a donde dirigir a los usuarios
 // Comentar / Descomentar este bloque para mostrar o no mostrar, respectivamente, los iconos en la barra lateral
-$config['sidebar_icon'][0]['imagen']   = WEBCENTROS_DOMINIO."/ui-theme/img/seneca.png";
+$config['sidebar_icon'][0]['imagen']   = WEBCENTROS_DOMINIO."/ui-theme/img/png-icons/seneca.png";
 $config['sidebar_icon'][0]['titulo']   = "Ir a Portal Séneca";
 $config['sidebar_icon'][0]['enlace']   = "http://www.juntadeandalucia.es/educacion/portalseneca/web/seneca/inicio";
 
-$config['sidebar_icon'][1]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/pasen.png';
+$config['sidebar_icon'][1]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/png-icons/pasen.png';
 $config['sidebar_icon'][1]['titulo']   = "Ir a Portal Pasen";
 $config['sidebar_icon'][1]['enlace']   = "https://www.juntadeandalucia.es/educacion/portalseneca/web/pasen/inicio";
 
-$config['sidebar_icon'][2]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/moodle.png';
+$config['sidebar_icon'][2]['imagen']   = WEBCENTROS_DOMINIO.'/ui-theme/img/png-icons/moodle.png';
 $config['sidebar_icon'][2]['titulo']   = "Ir a Plataforma Moodle";
 $config['sidebar_icon'][2]['enlace']   = "http://www.juntadeandalucia.es/averroes/centros-tic/".$config['centro_codigo']."/moodle2/";
 
