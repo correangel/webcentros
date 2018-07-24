@@ -223,17 +223,17 @@ $config['sidebar_html'][2]['html'] = '';
 // y los usuarios ahorren megas en dispositivos móviles. Utiliza la página https://imagecompressor.com/es/ para comprimir las imagenes.
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
-$config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpeg';
+$config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpg';
 $config['carousel'][0]['titulo'] = 'Ciclos formativos de grado medio y superior 2018/19';
 $config['carousel'][0]['contenido'] = '<p><strong>Segunda adjudicación</strong><br>24 de julio</p><p><strong>Matrícula o reserva</strong><br>Del 24 al 30 de julio</p>';
 $config['carousel'][0]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/grado-medio-superior/';
 
-$config['carousel'][1]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide2.jpeg';
+$config['carousel'][1]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide2.jpg';
 $config['carousel'][1]['titulo'] = 'Escolarización oferta parcial diferenciada 2018/19';
 $config['carousel'][1]['contenido'] = '<p>Presencial, semipresencial y distancia</p><p><strong>Matriculación:</strong><br>Del 24 al 27 de julio</p>';
 $config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-parcial/';
 
-$config['carousel'][2]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide3.jpeg';
+$config['carousel'][2]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide3.jpg';
 $config['carousel'][2]['titulo'] = 'Escolarización FP Básica 2018/19';
 $config['carousel'][2]['contenido'] = '<p><strong>Relación privisional</strong><br>13 de julio</p><p><strong>Alegaciones</strong><br>Del 16 al 18 de julio</p>';
 $config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/fp-basica/';
