@@ -158,14 +158,14 @@ include("inc_menu.php");
                             <?php $contenidoCarousel = 0; ?>
                             <?php if (isset($carousel['titulo']) || (isset($carousel['contenido']) && ! empty($carousel['contenido']))): ?>
                             <?php $contenidoCarousel = 1; ?>
-                            <div class="col-lg-4 d-none d-lg-block">
+                            <div class="col-xl-4 d-none d-xl-block">
                               <div class="container <?php echo ($esClaro) ? 'text-black' : 'text-white'; ?>" style="padding-top: 10px;">
                                 <h6><?php echo $carousel['titulo']; ?></h6>
                                 <?php echo $carousel['contenido']; ?>
                               </div>
                             </div>
                             <?php endif; ?>
-                            <div class="<?php echo ($contenidoCarousel) ? 'col-lg-8' : 'col-12'; ?>">
+                            <div class="<?php echo ($contenidoCarousel) ? 'col-xl-8' : 'col-12'; ?>">
                               <img class="d-block w-100" src="<?php echo $carousel['imagen']; ?>" alt="<?php echo $carousel['titulo']; ?>" draggable="false" style="-moz-user-select: none;">
                             </div>
                           </div>
