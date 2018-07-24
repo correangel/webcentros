@@ -224,19 +224,19 @@ $config['sidebar_html'][2]['html'] = '';
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 $config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpeg';
-$config['carousel'][0]['titulo'] = 'Escolarización oferta parcial diferenciada 2018/19';
-$config['carousel'][0]['contenido'] = '<p>Presencial, semipresencial y distancia.</p><p>Plazo de solicitudes:<br>Del 10 al 25 de junio</p>';
-$config['carousel'][0]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-parcial';
+$config['carousel'][0]['titulo'] = 'Ciclos formativos de grado medio y superior 2018/19';
+$config['carousel'][0]['contenido'] = '<p><strong>Segunda adjudicación</strong><br>24 de julio</p><p><strong>Matrículo o reserva</strong><br>Del 24 al 30 de julio</p>';
+$config['carousel'][0]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/grado-medio-superior/';
 
 $config['carousel'][1]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide2.jpeg';
-$config['carousel'][1]['titulo'] = 'Idiomas en Escuelas Oficiales de Idiomas (EOI)';
-$config['carousel'][1]['contenido'] = '<p>Modalidades presencial y semipresencial.</p><p>Plazo de matriculación:<br>Del 1 al 10 de julio</p>';
-$config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/educacion-permanente/idiomas/tramitacion';
+$config['carousel'][1]['titulo'] = 'Escolarización oferta parcial diferenciada 2018/19';
+$config['carousel'][1]['contenido'] = '<p>Presencial, semipresencial y distancia</p><p><strong>Matriculación:</strong><br>Del 24 al 27 de julio</p>';
+$config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-parcial/';
 
 $config['carousel'][2]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide3.jpeg';
-$config['carousel'][2]['titulo'] = 'Educación para personas adultas';
-$config['carousel'][2]['contenido'] = '<p>Modalidades presencial y semipresencial.</p><ul><li>ESO</li><li>Bachillerato</li></ul><p>Plazo de matriculación:<br>Del 1 al 10 de julio</p>';
-$config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/educacion-permanente';
+$config['carousel'][2]['titulo'] = 'Escolarización FP Básica 2018/19';
+$config['carousel'][2]['contenido'] = '<p><strong>Relación privisional</strong><br>13 de julio</p><p><strong>Alegaciones</strong><br>Del 16 al 18 de julio</p>';
+$config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/fp-basica/';
 
 // GOOGLE ANALYTICS
 // Consigue el ID de seguimiento para usar la API de Google Analytics en https://analytics.google.com/analytics/

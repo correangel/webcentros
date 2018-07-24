@@ -23,10 +23,10 @@ if (mysqli_num_rows($result)) {
         $fecha_anio = $fecha[0];
         substr($fecha[1],0,1)==0 ? $fecha_mes = substr($fecha[1],1,2) : $fecha_mes = $fecha[1];
         substr($fecha[2],0,1)==0 ? $fecha_dia = substr($fecha[2],1,2) : $fecha_dia = $fecha[2];
-        
+
         $cal->addEvent($row['nombre'], $fecha_anio, $fecha_mes, $fecha_dia, '#');
     }
-    
+
 }
 
 
@@ -47,69 +47,69 @@ include("../../inc_menu.php");
         <div class="container">
 
             <div class="row">
-            
+
                 <div class="col-lg-4">
                 <?php $cal->display(9, $curso); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(10, $curso); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(11, $curso); ?>
                 </div>
-            
+
             </div><!-- ./row -->
-        
+
             <div class="row">
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(12, $curso); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(1, $curso+1); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(2, $curso+1); ?>
                 </div>
-                
+
             </div><!-- ./row -->
-            
+
             <div class="row">
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(3, $curso+1); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(4, $curso+1); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(5, $curso+1); ?>
                 </div>
-                
+
             </div><!-- ./row -->
-            
+
             <div class="row">
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(6, $curso+1); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(7, $curso+1); ?>
                 </div>
-                
+
                 <div class="col-lg-4">
                 <?php $cal->display(8, $curso+1); ?>
                 </div>
-                
+
             </div><!-- ./row -->
-            
+
         </div>
     </div>
 

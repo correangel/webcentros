@@ -157,7 +157,9 @@
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
                           <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
-                          <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>" target="_blank">Asoc. de Madres y Padres</a>
+                          <?php $_target = ($pos = strpos($config['web_ampa'], WEBCENTROS_DOMINIO) !== false) ? 0 : 1; ?>
+                          <a class="dropdown-item" href="<?php echo $config['web_ampa']; ?>"<?php echo ($_target) ? ' target="_blank"' : ''; ?>>Asoc. de Madres y Padres</a>
+                          <?php unset($_target); ?>
                           <?php endif; ?>
                           <div class="dropdown-divider"></div>
                           <h6 class="dropdown-header">Información académica</h6>
@@ -168,10 +170,14 @@
                           <?php endif; ?>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/actividades-extraescolares">Actividades extraescolares</a>
                           <?php if (isset($config['web_imagenes']) && ! empty($config['web_imagenes'])): ?>
-                          <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>" target="_blank">Imágenes y reportajes</a>
+                          <?php $_target = ($pos = strpos($config['web_imagenes'], WEBCENTROS_DOMINIO) !== false) ? 0 : 1; ?>
+                          <a class="dropdown-item" href="<?php echo $config['web_imagenes']; ?>"<?php echo ($_target) ? ' target="_blank"' : ''; ?>>Imágenes y reportajes</a>
+                          <?php unset($_target); ?>
                           <?php endif; ?>
-                           <?php if (isset($config['plan_centro']) && ! empty($config['plan_centro'])): ?>
-                          <a class="dropdown-item" href="<?php echo $config['plan_centro']; ?>" target="_blank">Plan Anual de Centro</a>
+                          <?php if (isset($config['plan_centro']) && ! empty($config['plan_centro'])): ?>
+                          <?php $_target = ($pos = strpos($config['plan_centro'], WEBCENTROS_DOMINIO) !== false) ? 0 : 1; ?>
+                          <a class="dropdown-item" href="<?php echo $config['plan_centro']; ?>"<?php echo ($_target) ? ' target="_blank"' : ''; ?>>Plan Anual de Centro</a>
+                          <?php unset($_target); ?>
                           <?php endif; ?>
                       </div>
                   </li>

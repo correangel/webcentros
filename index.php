@@ -2,8 +2,6 @@
 require_once("bootstrap.php");
 require_once("config.php");
 
-error_reporting(E_ALL);
-
 $noticias_destacadas = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
