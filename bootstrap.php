@@ -72,7 +72,7 @@ function getRealIP() {
 
 function cortarPalabras($texto, $longitud = 50, $puntos = "...") {
 	$palabras_alt = array();
-	
+
 	$texto = trim(strip_tags($texto));
 	$palabras = explode(' ', $texto);
 
@@ -193,9 +193,9 @@ function cmykcolor($color, $output = false, $tono = false) {
 
 		if ($tono !== false) {
 			switch ($tono) {
-				case 'light'  : $tonalidad -= 10; break;
-				case 'dark'   : $tonalidad += 10; break;
-				default       : $tonalidad = 0;  break;
+				case 'light'	: $tonalidad -= 10; break;
+				case 'dark'		: $tonalidad += 10; break;
+				default				: $tonalidad = 0;  break;
 			}
 		}
 
@@ -205,9 +205,16 @@ function cmykcolor($color, $output = false, $tono = false) {
 		}
 		else {
 			$cvalue = trim($exp_cmyk[0]);
-			$mvalue = trim($exp_cmyk[1]) + $tonalidad;
-			$yvalue = trim($exp_cmyk[2]) + $tonalidad;
+			$mvalue = trim($exp_cmyk[1]);
+			$yvalue = trim($exp_cmyk[2]);
 			$kvalue = trim($exp_cmyk[3]);
+
+			if ($tonalidad != 0) {
+				if ($cvalue >= 10 && $cvalue <= 90) $cvalue = trim($exp_cmyk[0]) + $tonalidad;
+				if ($mvalue >= 10 && $mvalue <= 90) $mvalue = trim($exp_cmyk[1]) + $tonalidad;
+				if ($yvalue >= 10 && $yvalue <= 90) $yvalue = trim($exp_cmyk[2]) + $tonalidad;
+				if ($kvalue >= 10 && $kvalue <= 90) $kvalue = trim($exp_cmyk[3]) + $tonalidad;
+			}
 
 			if (! ($cvalue >= 0 && $cvalue <= 100)) {
 				die('Error CMYK Color : El porcentaje de color Cyan ' . $cvalue . ' no es válido. Debe ser un valor entre 0% y 100%.');
