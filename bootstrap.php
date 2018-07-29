@@ -136,6 +136,78 @@ function obtenerHoraTutoria($db_con, $dia, $hora) {
 	}
 }
 
+function sistemaPuntos($claveal) {
+	global $db_con, $config;
+
+  $fecha_hoy = date('Y-m-d');
+
+  $total = 0; // Puntos acumulados para restar
+  $max_puntos = 15; // Máximo de puntos que se pueden acumular
+  $total_puntos = 12; // Número de puntos que se asignan a principio de curso o tras expulsión
+
+  // COMPROBAMOS SI EL ALUMNO HA SIDO EXPULSADO DEL CENTRO
+  // En ese caso, cuando el alumno se reincorpora al centro, recupera los 12 puntos.
+  $sql_where = "";
+  $result_expulsion = mysqli_query($db_con, "SELECT `fin` FROM `Fechoria` WHERE `claveal` = '".$claveal."' AND `expulsion` > 0 ORDER BY `id` DESC LIMIT 1");
+  if (mysqli_num_rows($result_expulsion)) {
+    $row_expulsion = mysqli_fetch_array($result_expulsion);
+    $sql_where = " AND `FECHA` > '".$row_expulsion['fin']."' ";
+  }
+
+  // CONSULTAMOS PROBLEMAS REGISTRADOS DURANTE EL CURSO O TRAS ÚLTIMA EXPULSIÓN
+  $sql_exec = "SELECT `claveal`, COUNT(*) AS `total`,
+  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'leve') AS `leves`,
+  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'grave') AS `graves`,
+  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'muy grave') AS `mgraves`
+  FROM `Fechoria` AS `F`
+  GROUP BY `claveal` HAVING `claveal` = '".$claveal."' ".$sql_where."
+  ORDER BY `claveal` ASC";
+
+  $result = mysqli_query($db_con, $sql_exec);
+  $row = mysqli_fetch_array($result);
+
+  if (mysqli_num_rows($result)) {
+    $leves = $row['leves'] * 2; // Se quitan 2 puntos por cada parte leve
+    $graves = $row['graves'] * 4; // Se quitan 4 puntos por cada parte grave
+    $mgraves = $row['mgraves'] * 6; // Se quitan 6 puntos por cada parte muy grave
+
+    $total = $leves + $graves + $mgraves;
+
+    // COMPROBAMOS SI EL ALUMNO HA SIDO EXPULSADO AL AULA DE CONVIVENCIA
+    // En ese caso, si el alumno ha asistido y ha realizado las tareas recupera 2 puntos.
+    $result_aulaconv = mysqli_query($db_con, "SELECT `inicio_aula`, `fin_aula`, `horas` FROM `Fechoria` WHERE `claveal` = '".$claveal."' AND `aula_conv` > 0 ORDER BY `id` DESC LIMIT 1");
+    if (mysqli_num_rows($result_aulaconv)) {
+      $puntos_convivencia = 0;
+
+      $row_aulaconv = mysqli_fetch_array($result_aulaconv);
+      $result_aulaconv_asistencia = mysqli_query($db_con, "SELECT `hora`, `trabajo` FROM `convivencia` WHERE `claveal` = '".$claveal."' AND `fecha` BETWEEN '".$row_aulaconv['inicio_aula']."' AND '".$row_aulaconv['fin_aula']."'");
+      while ($row_aulaconv_asistencia = mysqli_fetch_array($result_aulaconv_asistencia)) {
+        if ((strstr($row_aulaconv['horas'], $row_aulaconv_asistencia['hora']) == true) && $row_aulaconv_asistencia['trabajo'] == 1) $puntos_convivencia = 2;
+        else $puntos_convivencia = 0;
+      }
+      $total -= $puntos_convivencia;
+    }
+  }
+
+  // COMPROBAMOS EL NÚMERO DE SEMANAS QUE HAN PASADO DESDE PRINCIPIO DE CURSO O TRAS EXPULSIÓN
+  // En ese caso, sumamos 0,15 puntos por buen comportamiento por cada semana
+  if (isset($row_expulsion['fin'])) $fecha_inicio = $row_expulsion['fin'];
+  else $fecha_inicio = $config['curso_inicio'];
+
+  if ($fecha_hoy >= $fecha_inicio) {
+		if ($fecha_hoy > $config['curso_fin']) $fecha_fin = $config['curso_fin'];
+    else $fecha_fin = $fecha_hoy;
+
+    $interval = date_diff(date_create($fecha_inicio), date_create($fecha_fin));
+    $numero_semanas = floor($interval->format('%a')/7) * 0.15;
+    $total -= $numero_semanas;
+  }
+
+  if (($total_puntos - $total) > $max_puntos) return $max_puntos;
+  elseif (($total_puntos - $total) < 0) return 0;
+  else return ($total_puntos - $total);
+}
+
 /*
 	La función cmyk_rgb convierte un color CMYK en RGB y devuelve el código correspondiente
 */

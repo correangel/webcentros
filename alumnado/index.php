@@ -233,6 +233,9 @@ include('../inc_menu.php');
 
 								<dt class="col-sm-5">Repetidor/a</dt>
 								<dd class="col-sm-7"><?php echo ($row['matriculas'] > 1) ? 'Sí': 'No'; ?></dd>
+
+								<dt class="col-sm-5">Puntos</dt>
+								<dd class="col-sm-7"><?php echo sistemaPuntos($row['claveal']); ?></dd>
 							</dl>
 
 						</div><!-- /.col-sm-6 -->
