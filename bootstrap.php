@@ -155,21 +155,23 @@ function sistemaPuntos($claveal) {
   }
 
   // CONSULTAMOS PROBLEMAS REGISTRADOS DURANTE EL CURSO O TRAS ÚLTIMA EXPULSIÓN
-  $sql_exec = "SELECT `claveal`, COUNT(*) AS `total`,
-  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'leve') AS `leves`,
-  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'grave') AS `graves`,
-  (SELECT COUNT(*) FROM `Fechoria` WHERE `claveal` = `F`.`claveal` AND `grave` = 'muy grave') AS `mgraves`
-  FROM `Fechoria` AS `F`
-  GROUP BY `claveal` HAVING `claveal` = '".$claveal."' ".$sql_where."
-  ORDER BY `claveal` ASC";
+	$sql_exec_leves = "SELECT COUNT(*) AS leves FROM `Fechoria` WHERE claveal = '".$claveal."' $sql_where AND grave = 'leve'";
+	$result_leves = mysqli_query($db_con, $sql_exec_leves);
+	$row_leves = mysqli_fetch_array($result_leves);
 
-  $result = mysqli_query($db_con, $sql_exec);
-  $row = mysqli_fetch_array($result);
+	$sql_exec_graves = "SELECT COUNT(*) AS graves FROM `Fechoria` WHERE claveal = '".$claveal."' $sql_where AND grave = 'grave'";
+	$result_graves = mysqli_query($db_con, $sql_exec_graves);
+	$row_graves = mysqli_fetch_array($result_graves);
 
-  if (mysqli_num_rows($result)) {
-    $leves = $row['leves'] * 2; // Se quitan 2 puntos por cada parte leve
-    $graves = $row['graves'] * 4; // Se quitan 4 puntos por cada parte grave
-    $mgraves = $row['mgraves'] * 6; // Se quitan 6 puntos por cada parte muy grave
+	$sql_exec_mgraves = "SELECT COUNT(*) AS mgraves FROM `Fechoria` WHERE claveal = '".$claveal."' $sql_where AND grave = 'muy grave'";
+	$result_mgraves = mysqli_query($db_con, $sql_exec_mgraves);
+	$row_mgraves = mysqli_fetch_array($result_mgraves);
+
+
+  if (mysqli_num_rows($result_leves) || mysqli_num_rows($result_graves) || mysqli_num_rows($result_mgraves)) {
+    $leves = $row_leves['leves'] * 2; // Se quitan 2 puntos por cada parte leve
+    $graves = $row_graves['graves'] * 4; // Se quitan 4 puntos por cada parte grave
+    $mgraves = $row_mgraves['mgraves'] * 6; // Se quitan 6 puntos por cada parte muy grave
 
     $total = $leves + $graves + $mgraves;
 
@@ -181,10 +183,13 @@ function sistemaPuntos($claveal) {
 
       $row_aulaconv = mysqli_fetch_array($result_aulaconv);
       $result_aulaconv_asistencia = mysqli_query($db_con, "SELECT `hora`, `trabajo` FROM `convivencia` WHERE `claveal` = '".$claveal."' AND `fecha` BETWEEN '".$row_aulaconv['inicio_aula']."' AND '".$row_aulaconv['fin_aula']."'");
-      while ($row_aulaconv_asistencia = mysqli_fetch_array($result_aulaconv_asistencia)) {
-        if ((strstr($row_aulaconv['horas'], $row_aulaconv_asistencia['hora']) == true) && $row_aulaconv_asistencia['trabajo'] == 1) $puntos_convivencia = 2;
-        else $puntos_convivencia = 0;
-      }
+			if (mysqli_num_rows($result_aulaconv_asistencia)) {
+				while ($row_aulaconv_asistencia = mysqli_fetch_array($result_aulaconv_asistencia)) {
+	        if ((strstr($row_aulaconv['horas'], $row_aulaconv_asistencia['hora']) == true) && $row_aulaconv_asistencia['trabajo'] == 1) $puntos_convivencia = 2;
+	        else $puntos_convivencia = 0;
+	      }
+			}
+
       $total -= $puntos_convivencia;
     }
   }
