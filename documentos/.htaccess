@@ -3,4 +3,4 @@ RewriteBase /documentos/
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 
-RewriteRule ^(.*)/?$ index.php?directory=$1 [L]
+RewriteRule ^(.*)/?$ https://%{SERVER_NAME}/documentos/index.php?directory=$1 [L]
