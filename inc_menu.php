@@ -181,7 +181,7 @@
                           <?php if (isset($config['plan_centro']) && ! empty($config['plan_centro'])): ?>
                           <?php $pos = strpos($config['plan_centro'], WEBCENTROS_DOMINIO); ?>
                           <?php $_target = ($pos !== false) ? 0 : 1; ?>
-                          <a class="dropdown-item" href="<?php echo $config['plan_centro']; ?>"<?php echo ($_target) ? ' target="_blank"' : ''; ?>>Plan Anual de Centro</a>
+                          <a class="dropdown-item" href="<?php echo $config['plan_centro']; ?>"<?php echo ($_target) ? ' target="_blank"' : ''; ?>>Plan de Centro</a>
                           <?php unset($pos); ?>
                           <?php unset($_target); ?>
                           <?php endif; ?>
