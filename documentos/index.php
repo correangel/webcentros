@@ -478,7 +478,7 @@ function show_contents()
 		$name = dirname($directory);
 		if ($directory == $name || $name == '.') $name = '';
 		echo "<h5><a href=\"" . WEBCENTROS_DOMINIO . "documentos/" . "$name\">";
-		echo "<i class='far fa-chevron-up'> &nbsp;&nbsp;</i> \n";
+		echo "<i class='fas fa-chevron-up'> &nbsp;&nbsp;</i> \n";
 		echo "</a>\n";
 		echo split_dir("$directory");
 		echo "</h5><br />";
