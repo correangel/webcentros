@@ -17,8 +17,8 @@ $config['color_primario'] = "0%, 60%, 80%, 2%";
 // Los valores posibles son del 1 al 7.
 $config['fondo_patron'] = "1";
 
-// PLAN ANUAL DE CENTRO
-// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el Plan Anual de Centro
+// PLAN DE CENTRO
+// Comentar / Descomentar la línea para mostrar o no mostrar, respectivamente, el Plan de Centro
 // $config['plan_centro']    = "";
 
 // SITIO WEB DE LA AMPA
