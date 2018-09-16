@@ -55,6 +55,8 @@ a:hover.navbar-brand-lg {
 
 .sidebar-collapse .navbar .dropdown.show .dropdown-menu, .sidebar-collapse .navbar .dropdown .dropdown-menu {
     height: auto !important;
+    max-height: 425px;
+    overflow-y: scroll;
 }
 
 .my-header {
