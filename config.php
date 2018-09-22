@@ -224,19 +224,19 @@ $config['sidebar_html'][2]['html'] = '';
 // Puede añadir tantos bloques como necesite, solo debe cambiar el número del array multidimensional: [0], [1], [2],...
 
 $config['carousel'][0]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide1.jpg';
-$config['carousel'][0]['titulo'] = 'Ciclos formativos de grado medio y superior 2018/19';
-$config['carousel'][0]['contenido'] = '<p><strong>Segunda adjudicación</strong><br>24 de julio</p><p><strong>Matrícula o reserva</strong><br>Del 24 al 30 de julio</p>';
-$config['carousel'][0]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/grado-medio-superior/';
+$config['carousel'][0]['titulo'] = 'La Educación en Andalucía';
+$config['carousel'][0]['contenido'] = '<p style="font-size: 0.85em;"><a href="http://www.juntadeandalucia.es/educacion/portals/delegate/content/92ce0f94-2edf-49c3-af14-277e52522109">#1 Destacados del Curso 2018/2019</a></p><p style="font-size: 0.75em;"><a href="http://www.juntadeandalucia.es/educacion/portals/delegate/content/c94478b2-8957-4d2f-8bf7-3e0ad816fcca">#2 Información básica para la comunidad educativa</a></p><p style="font-size: 0.75em;"><a href="http://www.juntadeandalucia.es/educacion/portals/delegate/content/023fe9ac-2c65-4a9f-9c3a-31f0b49c435b">#3 Datos y cifras curso 2018/2019</a></p><p style="font-size: 0.75em;"><a href="http://www.juntadeandalucia.es/educacion/portals/delegate/content/df4cc8fc-529f-472d-ad88-85f581a5b17a">Avance de datos</a></p>';
+$config['carousel'][0]['enlace'] = 'https://www.youtube.com/embed/cVYhhf5HLz0?list=UUq8I8XprHmCs8R_Jj3hSYdA';
 
 $config['carousel'][1]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide2.jpg';
-$config['carousel'][1]['titulo'] = 'Escolarización oferta parcial diferenciada 2018/19';
-$config['carousel'][1]['contenido'] = '<p>Presencial, semipresencial y distancia</p><p><strong>Matriculación:</strong><br>Del 24 al 27 de julio</p>';
-$config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-parcial/';
+$config['carousel'][1]['titulo'] = 'Nuevo portal WEB';
+$config['carousel'][1]['contenido'] = '<br><br><p class="text-center"><strong>Instituto Andaluz de Cualificaciones Profesionales</strong></p><p class="text-center"><strong>IACP</strong></p>';
+$config['carousel'][1]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/iacp/inicio';
 
 $config['carousel'][2]['imagen'] = WEBCENTROS_DOMINIO . 'ui-theme/img/slide/slide3.jpg';
-$config['carousel'][2]['titulo'] = 'Escolarización FP Básica 2018/19';
-$config['carousel'][2]['contenido'] = '<p><strong>Relación privisional</strong><br>13 de julio</p><p><strong>Alegaciones</strong><br>Del 16 al 18 de julio</p>';
-$config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/fp-basica/';
+$config['carousel'][2]['titulo'] = 'Ciclos formativos de grado medio y superior 2018/19';
+$config['carousel'][2]['contenido'] = '<p><strong>2º Período de solicitudes</strong><br>Del 1 al 17 de septiembre</p><p><strong>Relación provisional</strong><br>19 de septiembre</p>';
+$config['carousel'][2]['enlace'] = 'http://www.juntadeandalucia.es/educacion/portals/web/formacion-profesional-andaluza/escolarizacion/oferta-completa/grado-medio-superior/';
 
 // GOOGLE ANALYTICS
 // Consigue el ID de seguimiento para usar la API de Google Analytics en https://analytics.google.com/analytics/
