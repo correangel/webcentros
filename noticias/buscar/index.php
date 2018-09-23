@@ -28,11 +28,13 @@ $result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub FROM not
 $total_noticias = mysqli_num_rows($result);
 mysqli_free_result($result);
 
-$total_pags = ceil($total_noticias / $limite) - 1;
-$query_sig = $pag * $limite;
+$total_pags = ceil($total_noticias / $limite);
+if ($pag == 0 || $pag == 1) $inicio = 0;
+else $inicio = $pag - 1;
+$query_sig = $inicio * $limite;
 
 $noticias = array();
-$result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub FROM noticias WHERE pagina LIKE '%2%' $query_sql ORDER BY fechapub DESC LIMIT $query_sig , $limite");
+$result = mysqli_query($db_con, "SELECT id, titulo, contenido, fechapub FROM noticias WHERE pagina LIKE '%2%' $query_sql ORDER BY fechapub DESC LIMIT $query_sig, $limite");
 while ($row = mysqli_fetch_array($result)) {
 
     $noticia = array(

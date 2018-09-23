@@ -6,8 +6,13 @@ $noticias_destacadas = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria from noticias where pagina like '%2%' and fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC");
 while ($row = mysqli_fetch_array($result)) {
 
-    $exp_autor = explode(', ', $row['autor']);
-    $autor = trim($exp_autor[1]);
+    if (strstr($row['autor'], ', ') == true) {
+      $exp_autor = explode(', ', $row['autor']);
+      $autor = trim($exp_autor[1]);
+    }
+    else {
+        $autor = trim($row['autor']);
+    }
 
     $noticia_destacada = array(
         'id'                => $row['id'],
@@ -32,8 +37,14 @@ $noticias = array();
 $result = mysqli_query($db_con, "SELECT id, titulo, contenido, autor, fechapub, categoria FROM noticias WHERE fechapub <= '".date('Y-m-d H:i:s')."' AND pagina LIKE '%2%' AND id NOT IN (SELECT id FROM noticias WHERE pagina LIKE '%2%' AND fechafin >= '".date('Y-m-d H:i:s')."' ORDER BY fechapub DESC) ORDER BY fechapub DESC LIMIT 10");
 while ($row = mysqli_fetch_array($result)) {
 
-    $exp_autor = explode(', ', $row['autor']);
-    $autor = trim($exp_autor[1]);
+    if (strstr($row['autor'], ', ') == true) {
+      $exp_autor = explode(', ', $row['autor']);
+      $autor = trim($exp_autor[1]);
+    }
+    else {
+        $autor = trim($row['autor']);
+    }
+
 
     $noticia = array(
         'id'                => $row['id'],
