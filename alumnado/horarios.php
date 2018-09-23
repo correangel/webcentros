@@ -34,7 +34,7 @@ foreach ($tr_combasi as $codigo){
 		</thead>
 		<tbody>
 			<?php
-			$hr = mysqli_query($db_con,"select hora_inicio, hora_fin, hora from tramos where hora < '7'");
+			$hr = mysqli_query($db_con,"select hora_inicio, hora_fin, hora from tramos ORDER BY idjornada ASC, horini ASC");
 				while ($hor = mysqli_fetch_array($hr)):
 					$desc = substr($hor[0],0,5)." - ".substr($hor[1],0,5);
 					$hora = $hor[2];
