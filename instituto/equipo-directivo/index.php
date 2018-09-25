@@ -21,16 +21,17 @@ include("../../inc_menu.php");
                 (!isset($config['eqdirectivo_vicedireccion']['nombre']) || empty($config['eqdirectivo_vicedireccion']['nombre'])) &&
                 (!isset($config['eqdirectivo_jefatura_adjunta']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta']['nombre'])) &&
                 (!isset($config['eqdirectivo_jefatura_adjunta2']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta2']['nombre'])) &&
-                (!isset($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']))
+                (!isset($config['eqdirectivo_jefatura_adjunta_adultos']['nombre']) || empty($config['eqdirectivo_jefatura_adjunta_adultos']['nombre'])) &&
+                (!isset($config['eqdirectivo_administrador']['nombre']) || empty($config['eqdirectivo_administrador']['nombre']))
               ) ? 1 : 0; ?>
 
-            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'jefatura_adjunta2', 'jefatura_adultos', 'jefatura_adjunta_adultos', 'secretaria'); ?>
+            <?php $cargos = array('direccion', 'vicedireccion', 'jefatura', 'jefatura_adjunta', 'jefatura_adjunta2', 'jefatura_adultos', 'jefatura_adjunta_adultos', 'secretaria', 'administrador'); ?>
 
             <?php if ($enUnaFila): ?>
             <div class="row justify-content-center">
             <?php endif; ?>
             <?php foreach ($cargos as $cargo): ?>
-            <?php if (!$enUnaFila && ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'jefatura_adultos' || $cargo == 'secretaria')): ?>
+            <?php if (!$enUnaFila && ($cargo == 'direccion' || $cargo == 'jefatura' || $cargo == 'jefatura_adultos' || $cargo == 'secretaria' || $cargo == 'administrador')): ?>
             <div class="row justify-content-center">
             <?php endif; ?>
 

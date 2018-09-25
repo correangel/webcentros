@@ -157,6 +157,11 @@ $config['eqdirectivo_secretaria']['cargo']                    = "Secretario/a";
 $config['eqdirectivo_secretaria']['telefono']                 = "";
 $config['eqdirectivo_secretaria']['correoe']                  = "";
 
+$config['eqdirectivo_administrador']['nombre']                = "";
+$config['eqdirectivo_administrador']['cargo']                 = "Administrador/a";
+$config['eqdirectivo_administrador']['telefono']              = "";
+$config['eqdirectivo_administrador']['correoe']               = "";
+
 
 // CÓDIGO PERSONALIZADO EN BLOQUE DE CONTENIDO DE LA PÁGINA DE INICIO
 // Es necesario descomentar el bloque correspondiente y rellenarlo de la siguiente manera:
