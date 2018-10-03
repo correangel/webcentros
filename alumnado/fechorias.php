@@ -5,9 +5,7 @@
 <a name="convivencia"></a>
 <h3>Problemas de convivencia</h3>
 
-<?php $result = mysqli_query($db_con, "SELECT DISTINCT FALUMNOS.apellidos, FALUMNOS.nombre, FALUMNOS.unidad, Fechoria.fecha, 
-Fechoria.notas, Fechoria.asunto, Fechoria.informa, Fechoria.claveal, grave FROM Fechoria, FALUMNOS WHERE FALUMNOS.claveal = Fechoria.claveal
- AND FALUMNOS.claveal = $claveal ORDER BY Fechoria.fecha DESC, FALUMNOS.unidad, FALUMNOS.apellidos"); ?>
+<?php $result = mysqli_query($db_con, "SELECT DISTINCT alma.apellidos, alma.nombre, alma.unidad, Fechoria.fecha, Fechoria.notas, Fechoria.asunto, Fechoria.informa, Fechoria.claveal, grave FROM Fechoria, alma WHERE alma.claveal = Fechoria.claveal AND alma.claveal = '$claveal' ORDER BY Fechoria.fecha DESC, alma.unidad, alma.apellidos"); ?>
 <?php if (mysqli_num_rows($result)): ?>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped table-hover datatable2">
