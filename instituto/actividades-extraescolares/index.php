@@ -115,7 +115,7 @@ include("../../inc_menu.php");
                                     <div class="card-body">
 
                                         <?php if (! empty($actividad['descripcion'])): ?>
-                                        <h6>Observaciones</h6>
+                                        <h6>Descripción</h6>
                                         <p><?php echo $actividad['descripcion']; ?></p>
                                         <?php endif; ?>
 
