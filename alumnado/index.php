@@ -16,7 +16,6 @@ if(isset($_SESSION['cambiar_clave_alumno']) && $_SESSION['cambiar_clave_alumno']
 	header('Location:'.WEBCENTROS_DOMINIO.'alumnado/clave.php');
 	exit();
 }
-
 $claveal = $_SESSION['claveal'];
 $c_escolar = (date('n') > 6) ?  date('Y').'/'.(date('y')+1) : (date('Y')-1).'/'.date('y');
 
@@ -272,9 +271,9 @@ include('../inc_menu.php');
 						<li class="nav-item"><a class="nav-link active" href="#asistencia" role="tab" data-toggle="tab">Asistencia</a></li>
 						<li class="nav-item"><a class="nav-link" href="#convivencia" role="tab" data-toggle="tab">Convivencia</a></li>
 						<li class="nav-item"><a class="nav-link" href="#evaluaciones" role="tab" data-toggle="tab">Calificaciones</a></li>
-						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Extraescolares</a></li>
+						<li class="nav-item"><a class="nav-link" href="#actividades" role="tab" data-toggle="tab">Actividades</a></li>
 						<?php if ($muestra_evaluables == 1): ?>
-						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Actividades</a></li>
+						<li class="nav-item"><a class="nav-link" href="#evaluables" role="tab" data-toggle="tab">Pruebas</a></li>
 						<?php endif; ?>
 						<li class="nav-item"><a class="nav-link" href="#horario" role="tab" data-toggle="tab">Horario</a></li>
 						<?php if (isset($config['alumnado']['ver_informes_tutoria']) && $config['alumnado']['ver_informes_tutoria']): ?>
