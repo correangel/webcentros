@@ -20,8 +20,46 @@ function nombremes($mes)
 	return $nombre;
 }
 ?>
-
+<br>
 <a name="actividades"></a>
+
+<h3>Actividades evaluables</h3>
+<br>
+<?
+$eventQuery = mysqli_query($db_con,"SELECT id, fechaini, unidades, nombre, asignaturas FROM calendario WHERE unidades like '%".$unidad."%' and date(fechaini)>'".$config['curso_inicio']."' and categoria > '2' order by fechaini");
+if (mysqli_num_rows($eventQuery)>0) {
+?>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <th class="text-center text-info">Unidades</th><th class="text-center text-info">Fecha</th><th class="text-center text-info">Actividad</th><th class="text-center text-info">Asignatura</th>
+    </thead>
+<?php  
+while ($reg=mysqli_fetch_array($eventQuery)) {
+  $asg = explode(';', $reg[4]);
+  $asign = $asg[0];
+?>
+<tr><td><?php echo $reg[2];?></td><td nowrap><?php echo $reg[1];?></td><td><?php echo $reg[3];?></td><td><?php echo $asign ;?></td></tr>
+
+
+<?
+}
+?>
+</table>
+</div>
+<?php
+}
+else {
+?>
+
+<div class="justify-content-center">
+	<p class="lead text-muted text-center p-5">No se han registrado actividades evaluables</p>
+</div>
+<?php } ?>
+
+
+<br>
+<hr>
 <h3>Actividades extraescolares</h3>
 
 <br>
@@ -78,3 +116,6 @@ function nombremes($mes)
 </div>
 
 <?php endif; ?>
+
+<hr>
+
