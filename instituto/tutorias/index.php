@@ -3,25 +3,35 @@ require_once("../../bootstrap.php");
 require_once("../../config.php");
 
 $tutorias = array();
-$result = mysqli_query($db_con, "SELECT `cursos`.`nomcurso`, `unidades`.`nomunidad`, `FTUTORES`.`tutor` FROM `cursos` JOIN `unidades` ON `cursos`.`idcurso` = `unidades`.`idcurso` JOIN `FTUTORES` ON `unidades`.`nomunidad` = `FTUTORES`.`unidad` ORDER BY `cursos`.`nomcurso` ASC, `unidades`.`nomunidad` ASC");
+$result = mysqli_query($db_con, "SELECT DISTINCT `unidades`.`nomunidad`, `FTUTORES`.`tutor` FROM `unidades` JOIN `FTUTORES` ON `unidades`.`nomunidad` = `FTUTORES`.`unidad` ORDER BY `unidades`.`nomunidad` ASC");
 while ($row = mysqli_fetch_array($result)) {
 
-        $result_horario = mysqli_query($db_con, "SELECT `dia`, `hora` FROM `horw` WHERE `c_asig` = '117' AND (`a_grupo` = '".$row['nomunidad']."' OR `prof` = (select tutor from FTUTORES where unidad = '".$row['nomunidad']."')) LIMIT 1");
-				$row_horario = mysqli_fetch_array($result_horario);
-				$horario = obtenerHoraTutoria($db_con, $row_horario['dia'], $row_horario['hora']);
-        if (empty($horario)) $horario = '<i>Sin definir</i>';
-        mysqli_free_result($result_horario);
+  $result_horario = mysqli_query($db_con, "SELECT `dia`, `hora` FROM `horw` WHERE `c_asig` = '117' AND (`a_grupo` = '".$row['nomunidad']."' OR `prof` = '".$row['tutor']."') LIMIT 1");
+  $row_horario = mysqli_fetch_array($result_horario);
+  $horario = obtenerHoraTutoria($db_con, $row_horario['dia'], $row_horario['hora']);
+  if (empty($horario)) $horario = '<i>Sin definir</i>';
+  mysqli_free_result($result_horario);
 
-        $tutoria = array(
-						'curso'		=> $row['nomcurso'],
-						'unidad'	=> $row['nomunidad'],
-            'tutor'		=> nombreProfesorTitle($row['tutor']),
-            'horario'	=> $horario
-        );
+  $cursos = array();
+  $result_cursos = mysqli_query($db_con, "SELECT `cursos`.`nomcurso` FROM `cursos` JOIN `unidades` ON `cursos`.`idcurso` = `unidades`.`idcurso` WHERE `unidades`.`nomunidad` = '".$row['nomunidad']."' ORDER BY `cursos`.`nomcurso` ASC");
+  while ($row_cursos = mysqli_fetch_array($result_cursos)) {
+    array_push($cursos, $row_cursos['nomcurso']);
+  }
 
-        array_push($tutorias, $tutoria);
-				unset($row_horario);
-				unset($horario);
+  $nomtutor = nombreProfesorTitle($row['tutor']);
+  $exp_nomtutor = explode(',', $nomtutor);
+  $nomtutor = $exp_nomtutor[1].' '.$exp_nomtutor[0];
+
+  $tutoria = array(
+  		'unidad'	=> $row['nomunidad'],
+      'cursos'  => $cursos,
+      'tutor'		=> $nomtutor,
+      'horario'	=> $horario
+  );
+
+  array_push($tutorias, $tutoria);
+  unset($row_horario);
+  unset($horario);
 }
 mysqli_free_result($result);
 unset($tutoria);
@@ -60,7 +70,9 @@ include("../../inc_menu.php");
 											<tr>
 												<td>
 													<h6><?php echo $tutoria['unidad']; ?></h6>
-													<small class="text-muted"><?php echo $tutoria['curso']; ?></small>
+                          <?php foreach ($tutoria['cursos'] as $curso): ?>
+                          <small class="text-muted"><?php echo $curso; ?></small><br>
+                          <?php endforeach; ?>
 												</td>
 												<td><?php echo $tutoria['tutor']; ?></td>
 												<td><?php echo $tutoria['horario']; ?></td>
