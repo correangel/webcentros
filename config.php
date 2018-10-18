@@ -39,6 +39,7 @@ $config['web_imagenes']   = "";
 // Si se establece estas variables a 1 o true, el alumno podrá ver y descargar los informes de tareas y tutoría
 $config['alumnado']['ver_informes_tareas']  = 0;
 $config['alumnado']['ver_informes_tutoria'] = 0;
+$config['alumnado']['detalles_fechorias'] = 0;
 
 // ICONOS BARRA LATERAL (SOLO 3 ICONOS)
 // Introducir la URL de la imagen de los iconos de la barra lateral, título y enlace URL a donde dirigir a los usuarios
