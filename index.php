@@ -155,12 +155,21 @@ include("inc_menu.php");
                         <?php foreach ($config['carousel'] as $carousel): ?>
                         <?php $rgbImagen = obtenerColorImagen($carousel['imagen']); ?>
                         <?php
-                        $umbral = 255 / 2;
-                        $rDecimal = hexdec($rgbImagen['r']);
-                        $gDecimal = hexdec($rgbImagen['g']);
-                        $bDecimal = hexdec($rgbImagen['b']);
-                        $promedioDecimal = ($rDecimal + $gDecimal + $bDecimal) / 3;
-                        $esClaro = ($promedioDecimal >= $umbral) ? 1 : 0;
+                        if (! intval($rgbImagen['r']) && ! intval($rgbImagen['g']) && ! intval($rgbImagen['b'])) {
+                          $rgbImagen['r'] = 194;
+                          $rgbImagen['g'] = 202;
+                          $rgbImagen['b'] = 210;
+                          $esClaro = 1;
+                        }
+                        else {
+                          $rDecimal = hexdec($rgbImagen['r']);
+                          $gDecimal = hexdec($rgbImagen['g']);
+                          $bDecimal = hexdec($rgbImagen['b']);
+
+                          $umbral = 255 / 2;
+                          $promedioDecimal = ($rDecimal + $gDecimal + $bDecimal) / 3;
+                          $esClaro = ($promedioDecimal >= $umbral) ? 1 : 0;
+                        }
                         ?>
                         <div class="carousel-item <?php echo ($i == 1) ? 'active' : ''; ?>" data-href="<?php echo $carousel['enlace']; ?>" style="cursor: pointer;">
                           <div class="row" style="background-color: rgb(<?php echo $rgbImagen['r'].','.$rgbImagen['g'].','.$rgbImagen['b']; ?>);">
