@@ -20,11 +20,11 @@ $array_meses = array(
 );
 
 $actividades_extraescolares = array();
-$result = mysqli_query($db_con, "SELECT DISTINCT MONTH(c.fechaini) AS nummes FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE c.categoria = 1 AND c.fechaini >= '".$config['curso_inicio']."' ORDER BY MONTH(fechaini) ASC") or die (mysqli_error($db_con));
+$result = mysqli_query($db_con, "SELECT DISTINCT MONTH(c.fechaini) AS nummes FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE (c.categoria = 1 || c.categoria = 2 && c.confirmado = 1 || c.categoria > 2 && cc.espublico = 1) AND c.fechaini >= '".$config['curso_inicio']."' ORDER BY MONTH(fechaini) ASC") or die (mysqli_error($db_con));
 while ($row = mysqli_fetch_array($result)) {
 
         $actividades_mes = array();
-        $result_actividades = mysqli_query($db_con, "SELECT id, nombre, descripcion, fechaini, horaini, fechafin, horafin, lugar, departamento, profesores, unidades, observaciones FROM calendario WHERE MONTH(fechaini) = '".$row['nummes']."' AND categoria = 1 AND fechaini >= '".$config['curso_inicio']."' ORDER BY fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
+        $result_actividades = mysqli_query($db_con, "SELECT c.id, c.nombre, c.descripcion, c.fechaini, c.horaini, c.fechafin, c.horafin, c.lugar, c.departamento, c.profesores, c.unidades, c.observaciones FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE (c.categoria = 1 || c.categoria = 2 && c.confirmado = 1 || c.categoria > 2 && cc.espublico = 1) AND MONTH(c.fechaini) = '".$row['nummes']."' AND c.fechaini >= '".$config['curso_inicio']."' ORDER BY c.fechaini DESC, horaini DESC") or die (mysqli_error($db_con));
         while ($row_actividades = mysqli_fetch_array($result_actividades)) {
 
                 $actividad_mes = array(
