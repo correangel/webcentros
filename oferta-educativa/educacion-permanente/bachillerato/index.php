@@ -11,7 +11,7 @@ $result_cursos = mysqli_query($db_con, "SELECT `nomcurso` FROM `cursos` WHERE `n
 while ($row_cursos = mysqli_fetch_array($result_cursos)) {
 
   $asignaturas = array();
-  $result_asignaturas = mysqli_query($db_con, "SELECT DISTINCT `nombre` FROM `asignaturas` WHERE `curso` = '" . $row_cursos['nomcurso'] . "' AND `abrev` NOT LIKE '%\_%' ORDER BY `nombre` ASC");
+  $result_asignaturas = mysqli_query($db_con, "SELECT DISTINCT `nombre` FROM `asignaturas` WHERE `curso` = '" . $row_cursos['nomcurso'] . "' AND `abrev` NOT LIKE '%\_%' AND `nombre` NOT LIKE '%Tutoría%' AND `nombre` <> 'Pedagogía Terapéutica' AND nombre <> 'Refuerzo Pedagógico' ORDER BY `nombre` ASC");
   while ($row_asignaturas = mysqli_fetch_array($result_asignaturas)) {
     array_push($asignaturas, $row_asignaturas['nombre']);
   }
