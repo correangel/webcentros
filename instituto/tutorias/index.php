@@ -6,7 +6,7 @@ $tutorias = array();
 $result = mysqli_query($db_con, "SELECT DISTINCT `unidades`.`nomunidad`, `FTUTORES`.`tutor` FROM `unidades` JOIN `FTUTORES` ON `unidades`.`nomunidad` = `FTUTORES`.`unidad` ORDER BY `unidades`.`nomunidad` ASC");
 while ($row = mysqli_fetch_array($result)) {
 
-  $result_horario = mysqli_query($db_con, "SELECT `dia`, `hora` FROM `horw` WHERE `c_asig` = '117' OR `c_asig` = '279' AND (`a_grupo` = '".$row['nomunidad']."' OR `prof` = '".$row['tutor']."') LIMIT 1");
+  $result_horario = mysqli_query($db_con, "SELECT `dia`, `hora` FROM `horw` WHERE (`c_asig` = '117' OR `c_asig` = '279') AND (`a_grupo` = '".$row['nomunidad']."' OR `prof` = '".$row['tutor']."') LIMIT 1");
   $row_horario = mysqli_fetch_array($result_horario);
   $horario = obtenerHoraTutoria($db_con, $row_horario['dia'], $row_horario['hora']);
   if (empty($horario)) $horario = '<i>Sin definir</i>';
