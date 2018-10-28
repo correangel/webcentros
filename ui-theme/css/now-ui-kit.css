@@ -2397,7 +2397,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-group.form-group-no-border.input-lg .input-group-addon,
 .input-group.form-group-no-border.input-lg .input-group-addon {
-  padding: 15px 0 15px 19px;
+  padding: 15px 0 12px 19px;
 }
 
 .form-group.form-group-no-border.input-lg .form-control,
@@ -2427,7 +2427,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-group.input-lg .input-group-addon+.form-control,
 .input-group.input-lg .input-group-addon+.form-control {
-  padding: 15px 18px 15px 16px;
+  padding: 23px 18px 25px 16px;
 }
 
 .form-group.form-group-no-border .form-control,
