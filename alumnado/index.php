@@ -280,12 +280,12 @@ include('../inc_menu.php');
 						<li class="nav-item"><a class="nav-link" href="#tutoria" role="tab" data-toggle="tab">Tutoría</a></li>
 						<?php endif; ?>
 						<li class="nav-item"><a class="nav-link" href="#mensajes" role="tab" data-toggle="tab">Mensajes<?php echo ($numeroMensajesRecibidos) ? ' <span class="badge">'.$numeroMensajesRecibidos.'</span>' : ''; ?></a></li>
-						<?php if ($estaMatriculadoBachillerato==1): ?>
+						<!-- <?php if ($estaMatriculadoBachillerato==1): ?>
 						<li class="nav-item"><a class="nav-link" href="./matriculas/matriculas_bach.php?curso=<?php echo $curso; ?>" target="_blank">Matrícula</a></li>
 						<?php endif; ?>
 						<?php if ($estaMatriculadoESO==1): ?>
 						<li class="nav-item"><a class="nav-link" href="./matriculas/matriculas.php?curso=<?php echo $curso; ?>" target="_blank">Matrícula</a></li>
-						<?php endif; ?>
+						<?php endif; ?>-->
 					</ul>
 
 					<br>
