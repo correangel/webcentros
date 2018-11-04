@@ -93,7 +93,7 @@
                 // Validamos el formulario
                 var validated = true;
                 if($('#user').val().length < 6) validated = false;
-                if($('#clave').val().length < 7) validated = false;
+                if($('#clave').val().length < 6) validated = false;
 
         // Si el formulario es válido habilitamos el botón, en otro caso
         // lo volvemos a deshabilitar
