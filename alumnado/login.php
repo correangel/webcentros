@@ -13,7 +13,7 @@ if (! isset($_SESSION['intentos'])) $_SESSION['intentos'] = 0;
 
 $_SESSION['alumno_autenticado'] = 0;
 
-if (isset($_POST['submit']) && (strlen($_POST['user']) > 5 && strlen($_POST['clave']) > 6)) {
+if (isset($_POST['submit']) && (strlen($_POST['user']) > 5 && strlen($_POST['clave']) > 5)) {
 
 	$usuario	= xss_clean($_POST['user']);
 	$clave		= xss_clean($_POST['clave']);
