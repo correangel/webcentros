@@ -5,7 +5,7 @@
 <a name="tutoria"></a>
 <h3>Informes de tutoría</h3>
 
-<?php $result = mysqli_query($db_con, "SELECT id, f_entrev, tutor FROM infotut_alumno WHERE claveal = '$claveal' ORDER BY f_entrev DESC"); ?>
+<?php $result = mysqli_query($db_con, "SELECT id, f_entrev, tutor FROM infotut_alumno WHERE claveal = '$claveal' and DATE( F_ENTREV ) < DATE_SUB( CURDATE( ) , INTERVAL 1 DAY ) and valido = '1' ORDER BY f_entrev DESC"); ?>
 <?php if (mysqli_num_rows($result)): ?>
 <div class="table-responsive">
 	<table class="table table-bordered table-striped table-hover">
@@ -42,7 +42,9 @@
 
 <?php endif; ?>
 
-<hrA>
+<br>
+<hr>
+<br>
 
 <h3>Informes de tareas</h3>
 
