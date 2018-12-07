@@ -66,7 +66,7 @@ unset($noticia);
 // 7 ULTIMOS EVENTOS
 $ultima_fecha = "0000-00-00";
 $eventos = array();
-$result = mysqli_query($db_con, "SELECT c.nombre, c.fechaini, c.horaini, c.fechafin, c.horafin, c.lugar, c.categoria, c.confirmado FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE cc.espublico = 1 AND fechaini BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL 7 DAY) ORDER BY fechaini ASC");
+$result = mysqli_query($db_con, "SELECT c.nombre, c.fechaini, c.horaini, c.fechafin, c.horafin, c.lugar, c.categoria, c.confirmado FROM calendario AS c JOIN calendario_categorias AS cc ON c.categoria = cc.id WHERE cc.espublico = 1 AND fechaini BETWEEN ADDDATE(NOW(), INTERVAL -1 DAY) AND ADDDATE(NOW(), INTERVAL 8 DAY) ORDER BY fechaini ASC");
 while ($row = mysqli_fetch_array($result)) {
 
     if (($row['categoria'] == 2 && $row['confirmado'] == 1) || $row['categoria'] != 2) {
@@ -87,7 +87,7 @@ mysqli_free_result($result);
 unset($evento);
 
 // DIAS FESTIVOS
-$result = mysqli_query($db_con, "SELECT fecha, nombre, ambito FROM festivos WHERE fecha BETWEEN NOW() AND ADDDATE(NOW(), INTERVAL 7 DAY) ORDER BY fecha ASC");
+$result = mysqli_query($db_con, "SELECT fecha, nombre, ambito FROM festivos WHERE fecha BETWEEN ADDDATE(NOW(), INTERVAL -1 DAY) AND ADDDATE(NOW(), INTERVAL 8 DAY) ORDER BY fecha ASC");
 while ($row = mysqli_fetch_array($result)) {
 
     $evento = array(
@@ -143,15 +143,15 @@ include("inc_menu.php");
                     <?php if ($carouselEstado): ?>
                     <div id="carousel" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
-                        <?php $i = 0; ?>
+                        <?php $i = 1; ?>
                         <?php foreach ($config['carousel'] as $carousel): ?>
-                        <li data-target="#carousel" data-slide-to="<?php echo $i; ?>"<?php echo ($i == 0) ? 'class="active"' : ''; ?>></li>
+                        <li data-target="#carousel" data-slide-to="<?php echo $i; ?>"<?php echo ($i == 1) ? 'class="active"' : ''; ?>></li>
                         <?php $i++; ?>
                         <?php endforeach; ?>
                         <?php unset($i); ?>
                       </ol>
                       <div class="carousel-inner shadow-sm">
-                        <?php $i = 0; ?>
+                        <?php $i = 1; ?>
                         <?php foreach ($config['carousel'] as $carousel): ?>
                         <?php $rgbImagen = obtenerColorImagen($carousel['imagen']); ?>
                         <?php
@@ -166,7 +166,7 @@ include("inc_menu.php");
                           $gDecimal = hexdec($rgbImagen['g']);
                           $bDecimal = hexdec($rgbImagen['b']);
 
-                          $umbral = 255 / 2;
+                          $umbral = 255 / 1;
                           $promedioDecimal = ($rDecimal + $gDecimal + $bDecimal) / 3;
                           $esClaro = ($promedioDecimal >= $umbral) ? 1 : 0;
                         }
