@@ -66,12 +66,12 @@
     <!-- Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/now-ui-kit.js" type="text/javascript"></script>
-    <?php if (((date('d') >= 17 && date('m') == 12) || (date('d') <= 6 && date('m') == 1)) && stristr($_SERVER['REQUEST_URI'], '/alumnado/index.php') == false && stristr($_SERVER['REQUEST_URI'], '/alumnado/clave.php') == false): ?>
+    <?php if (((date('d') >= 17 && date('m') == 12) || (date('d') <= 6 && date('m') == 1)) && stristr($_SERVER['REQUEST_URI'], '/alumnado') == false ): ?>
     <script src="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/js/snowfall.jquery.js" type="text/javascript"></script>
     <script>
     $(document).ready(function(){
         $(document).snowfall({
-            deviceorientation: true,
+            deviceorientation: false,
             round: true,
             minSize: 1,
             maxSize:8,
