@@ -112,6 +112,17 @@
 </head>
 
 <body class="index-page sidebar-collapse">
+    <?php if (! navegadorSoportado()): ?>
+    <div id="old-navigator" class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; top: 0; right: 0; left: 0; z-index: 1040; margin: 0; background-color: #FFF9C4; border-bottom: 2px solid #FFEE58; color: #333;">
+      <div class="container">
+        <h5 class="alert-heading">Su navegador no está soportado</h5>
+        <p class="">Para acceder a esta web, le recomendamos usar la última versión de Mozilla Firefox, Google Chrome, Safari o Internet Explorer.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="font-size: 2em; line-height: 20px; color: #666; opacity: 0.9;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <?php endif; ?>
     <nav class="fixed-top">
         <div class="navbar-lg d-none d-sm-none d-md-none d-lg-block">
           <div class="container">

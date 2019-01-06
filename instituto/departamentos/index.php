@@ -129,7 +129,7 @@ include("../../inc_menu.php");
                         <h6><span class="far fa-folder fa-fw"></span> Recursos</h6>
                         <hr>
                         <ul class="list-unstyled">
-                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="far fa-file-alt fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
+                            <li><a href="<?php echo WEBCENTROS_DOMINIO; ?>documentos/index.php?dir=/Departamentos/<?php echo urlencode(str_replace($acentos, $no_acentos_con_espacio, $departamento['nombre'])); ?>"><i class="far fa-file-alt fa-fw"> </i>&nbsp;Documentos de <?php echo $departamento['nombre']; ?></a></li>
                         </ul>
                     </div>
                 </div>

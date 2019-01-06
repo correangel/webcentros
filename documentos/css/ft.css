@@ -1,0 +1,90 @@
+.safarihide {
+	position:absolute;
+	left:-10000px;
+}
+
+#filelist .details span.hide {
+	background:#ffc;
+	color:#000;
+}
+
+.label_highlight {
+  font-weight:bold;
+}
+
+/* File list */
+#filelist tr th, #filelist tr td {
+	vertical-align: middle;
+}
+
+#filelist tr.dir > td.name a, #filelist tr.file > td.name a {
+	display: block;
+	color: #2c3e50;
+	text-decoration: none;
+}
+
+#filelist tr.seperator td {
+  border-top-width: 3px !important;
+}
+
+#filelist td.details {
+  padding:0.3em 0;
+}
+#filelist .details span.show, #filelist .details span.hide {
+	cursor:pointer;
+  padding:4px 4px;
+}
+
+#filelist .hover, #filelist .filedetails ul li {
+	cursor:pointer;
+}
+#filelist .filedetails td {
+	background-color: #ecf0f1;
+	font-size:12px;
+	border-top-width: 3px;
+	border-bottom-width: 3px;
+	padding:1em 0.5em;
+}
+#filelist .filedetails td {
+	width:275px;
+}
+#filelist .filedetails .newvalue {
+	width:150px;
+}
+#filelist .filedetails form {
+	padding:0.3em;
+}
+#filelist .filedetails label {
+	display:block;
+	font-weight:bold;
+	margin:0 0 0.5em 0;
+}
+#filelist .filedetails ul.list-inline {
+	margin-left: 0 !important;
+}
+#filelist .filedetails ul li.selected {
+	font-weight:bold;
+}
+#filelist td.error {
+	padding:1em 3em;
+}
+form#sort_form {
+  margin:0;
+  padding:0;
+  float:right;
+}
+#sort {
+  margin:0;
+  padding:0;
+}
+/* Edit form */
+form#edit, #main {
+/*  margin-left:265px;*/
+float:left;
+}
+form#edit textarea {
+	margin:1.5em 0 1em 0;
+}
+#savestatus {
+	margin-left:265px;
+}

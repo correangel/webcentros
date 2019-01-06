@@ -380,4 +380,190 @@ function obtenerColorImagen($imagen) {
 
 }
 
+function getBrowser($u_agent) {
+  if (empty($u_agent)) {
+      $u_agent = 'Agente de usuario no detectado';
+  }
+  $bname = 'Navegador desconocido';
+  $bversion= "";
+  $ub = "Navegador desconocido";
+  $platform = 'Dispositivo desconocido';
+  $pname = "";
+  $pversion= "";
+
+  $u_agent = str_replace('; es-es', '', $u_agent);
+  $u_agent = str_replace('; en-us', '', $u_agent);
+  $u_agent = str_replace('; en-uk', '', $u_agent);
+
+  // First get the platform?
+  if (preg_match('/android/i', $u_agent)) {
+    $platform_name = 'Android';
+    $pname = 'Android';
+  } elseif (preg_match('/ubuntu/i', $u_agent)) {
+    $platform = 'Ubuntu';
+    $pname = 'Ubuntu';
+  } elseif (preg_match('/Linux Mint/i', $u_agent)) {
+    $platform = 'Linux Mint';
+    $pname = 'Linux Mint';
+  } elseif (preg_match('/x11; linux/i', $u_agent)) {
+    $platform = 'GNU/Linux';
+    $pname = 'GNU/Linux';
+  } elseif (preg_match('/linux/i', $u_agent)) {
+    $platform = 'Linux';
+    $pname = 'Linux';
+  } elseif (preg_match('/iPhone/i', $u_agent)) {
+    $platform = 'iPhone iOS';
+    $pname = 'iPhone OS';
+  } elseif (preg_match('/iPad/i', $u_agent)) {
+    $platform = 'iPad iOS';
+    $pname = 'iPad; CPU OS';
+  } elseif (preg_match('/mac os x 10_13|mac os x 10_12/i', $u_agent)) {
+    $platform = 'macOS';
+    $pname = 'Mac OS X';
+  } elseif (preg_match('/mac os x 10_11|mac os x 10_10|mac os x 10_9/i', $u_agent)) {
+    $platform = 'OS X';
+    $pname = 'Mac OS X';
+  } elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+    $platform = 'Mac OS X';
+    $pname = 'Mac OS X';
+  } elseif (preg_match('/windows nt 10/i', $u_agent)) {
+    $platform = 'Windows 10';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 6.3/i', $u_agent)) {
+    $platform = 'Windows 8.1';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 6.2/i', $u_agent)) {
+    $platform = 'Windows 8';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 6.1/i', $u_agent)) {
+    $platform = 'Windows 7';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 6.0/i', $u_agent)) {
+    $platform = 'Windows Vista';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 5.1/i', $u_agent)) {
+    $platform = 'Windows XP';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows nt 5.0/i', $u_agent)) {
+    $platform = 'Windows 2000';
+    $pname = 'Windows';
+  } elseif (preg_match('/windows|win32/i', $u_agent)) {
+    $platform = 'Windows';
+    $pname = 'Windows';
+  }
+
+  if ($pname != "" && $pname != 'Windows') {
+    // finally get the correct version number
+    $known = array($pname, $ub, 'other');
+    if ($pname == 'Android') {
+      $pattern = '#(?<platform>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|0-9_|a-zA-Z.|a-zA-Z_]*;[0-9]*([a-zA-Z]*[-| ])*[a-zA-Z]*[-| ]*[0-9]*[-]*[a-zA-Z]*[-]*[0-9]*)#';
+    }
+    else {
+      $pattern = '#(?<platform>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|0-9_|a-zA-Z.|a-zA-Z_]*)#';
+    }
+    if (!preg_match_all($pattern, $u_agent, $matches)) {
+      // we have no matching number just continue
+    }
+    // see how many we have
+    $i = count($matches['platform']);
+    if ($i > 1) {
+      //we will have two since we are not using 'other' argument yet
+      //see if version is before or after the name
+      if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
+        $pversion= str_replace('_', '.', $matches['version'][0]);
+      } else {
+        $pversion= str_replace('_', '.', $matches['version'][1]);
+      }
+    } elseif ($i == 1) {
+      $pversion= str_replace('_', '.', $matches['version'][0]);
+    }
+    // check if we have a number
+    if ($pversion==null || $pversion=="") {
+      $pversion="";
+    }
+    elseif ($pname == 'Android') {
+      $pversion = str_replace(' es-es; ', '', $pversion);
+      $exp_pversion = explode(';', $pversion);
+      $platform = ltrim(trim($exp_pversion[1]).' - Android', ' - ');
+      $pversion = trim($exp_pversion[0]);
+    }
+  }
+
+
+  // Next get the name of the useragent yes seperately and for good reason
+  if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) {
+    $bname = 'Internet Explorer';
+		$ub = "MSIE";
+	} elseif(preg_match('/Edge/i',$u_agent)) {
+    $bname = 'Microsoft Edge';
+    $ub = "Edge";
+  } elseif(preg_match('/Firefox/i',$u_agent)) {
+    $bname = 'Mozilla Firefox';
+    $ub = "Firefox";
+  } elseif(preg_match('/Chrome/i',$u_agent)) {
+    $bname = 'Google Chrome';
+    $ub = "Chrome";
+  } elseif(preg_match('/Safari/i',$u_agent)) {
+    $bname = 'Safari';
+    $ub = "Safari";
+  } elseif(preg_match('/Opera/i',$u_agent)) {
+    $bname = 'Opera';
+		$ub = "Opera";
+	} elseif(preg_match('/Vivaldi/i',$u_agent)) {
+    $bname = 'Vivaldi';
+    $ub = "Vivaldi";
+  } elseif(preg_match('/Netscape/i',$u_agent)) {
+    $bname = 'Netscape';
+    $ub = "Netscape";
+  }
+  // finally get the correct version number
+  $known = array('Version', $ub, 'other');
+  $pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
+  if (!preg_match_all($pattern, $u_agent, $matches)) {
+      // we have no matching number just continue
+  }
+  // see how many we have
+  $i = count($matches['browser']);
+  if ($i > 1) {
+    //we will have two since we are not using 'other' argument yet
+    //see if version is before or after the name
+    if (strripos($u_agent,"Version") < strripos($u_agent,$ub)){
+        $bversion= $matches['version'][0];
+    } else {
+        $bversion= $matches['version'][1];
+    }
+  } elseif ($i == 1) {
+    $bversion= $matches['version'][0];
+  }
+  // check if we have a number
+  if ($bversion==null || $bversion=="") {$bversion="";}
+  return array(
+    'userAgent'         => $u_agent,
+    'browser_name'      => $bname,
+    'browser_version'   => $bversion,
+    'platform_name'     => $pname,
+    'platform'          => $platform,
+    'platform_version'  => $pversion,
+    'pattern'           => $pattern
+  );
+}
+
+function navegadorSoportado() {
+	$ua = getBrowser($_SERVER['HTTP_USER_AGENT']);
+	$plataforma = $ua['platform'];
+	$plataforma_version = $ua['platform_version'];
+	$navegador = $ua['browser_name'];
+	$navegador_version = $ua['browser_version'];
+
+	if ($navegador == 'Google Chrome' && $navegador_version > 45) return true;
+	elseif ($navegador == 'Mozilla Firefox' && $navegador_version > 38) return true;
+	elseif ($navegador == 'Opera' && $navegador_version > 30) return true;
+	elseif ($navegador == 'Internet Explorer' && $navegador_version > 10) return true;
+	elseif ($navegador == 'Microsoft Edge' && $navegador_version > 12) return true;
+	elseif ($navegador == 'Safari' && $navegador_version > 9) return true;
+	elseif ($plataforma == 'iPhone iOS' && $plataforma_version > 9) return true;
+	elseif ($plataforma == 'iPad iOS' && $plataforma_version > 9) return true;
+	elseif ($plataforma == 'Android' && $plataforma_version > 4.4) return true;
+	else return false;
+}
 // Fin de archivo bootstrap.php
