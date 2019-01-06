@@ -2,6 +2,10 @@
 require_once("../bootstrap.php");
 require_once('../config.php');
 
+if (file_exists('../intranet/admin/fechorias/config.php')) {
+	include('../intranet/admin/fechorias/config.php');
+}
+
 // COMPROBAMOS LA SESION
 if ($_SESSION['alumno_autenticado'] != 1) {
 	$_SESSION = array();
@@ -233,8 +237,10 @@ include('../inc_menu.php');
 								<dt class="col-sm-5">Repetidor/a</dt>
 								<dd class="col-sm-7"><?php echo ($row['matriculas'] > 1) ? 'Sí': 'No'; ?></dd>
 
+								<?php if (isset($config['convivencia']['puntos']['habilitado']) && $config['convivencia']['puntos']['habilitado']): ?>
 								<dt class="col-sm-5">Puntos</dt>
 								<dd class="col-sm-7"><?php echo sistemaPuntos($row['claveal']); ?></dd>
+								<?php endif; ?>
 							</dl>
 
 						</div><!-- /.col-sm-6 -->
