@@ -756,18 +756,16 @@ function ft_make_body() {
 	$status = '';
 	if (ft_check_upload() === TRUE && is_writeable(ft_get_dir()) && (LIMIT > 0 && LIMIT < ROOTDIRSIZE)) {
 	  $status = '
-		<div class="col-sm-12">
 			<div id="status" class="alert alert-danger alert-block">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
 				'. t('Upload disabled. Total disk space use of !size exceeds the limit of !limit.', array('!limit' => ft_get_nice_filesize(LIMIT), '!size' => ft_get_nice_filesize(ROOTDIRSIZE))) . '
-			</div>
-		</div>';
+			</div>';
 	}
 	$status .= ft_make_messages();
 	if (empty($status)) {
-    $str .= "<div class=\"col-sm-12 hidden\"></div>";
+    $str .= "<div class=\"d-none\"></div>";
 	} else {
-		$str .= "<div class=\"col-sm-12\">{$status}</div>";
+		$str .= "<div>{$status}</div>";
 	}
 
 	// Invoke page hook if an action has been set.
@@ -796,15 +794,14 @@ function ft_make_body() {
 			// List couldn't be fetched. Throw error.
       // ft_set_message(t("Could not open directory."), 'error');
       // ft_redirect();
-      $str .= '<div class="col-sm-12"><p class="lead text-muted text-center" style="margin: 40px 0;">'.t("Could not open directory.").'</p></div>';
+      $str .= '<p class="lead text-muted text-center" style="margin: 40px 0;">'.t("Could not open directory.").'</p>';
 		} else {
 			// Show list of files in a table.
 			$colspan = 3;
 			if (SHOWDATES) {
 			  $colspan = 4;
 			}
-      $str .= "<div class=\"col-sm-12\">";
-      $str .= '<div style="margin-bottom: 20px;">';
+
       if (ft_check_upload() === TRUE && is_writeable(ft_get_dir())) {
 
     	  if (LIMIT <= 0 || LIMIT > ROOTDIRSIZE) {
@@ -899,10 +896,10 @@ function ft_make_body() {
 					}
 
 					if ($c['type'] == "file"){
-            $str .= "<td><span class=\"float-right\" style=\"width: 160px;\">".ft_get_nice_filesize($c['size'])."</span></td>";
+            $str .= "<td style=\"width: 160px;\"><span class=\"float-right\">".ft_get_nice_filesize($c['size'])."</span></td>";
           }
           else {
-            $str .= "<td><span class=\"float-right\" style=\"width: 160px;\">{$c['size']} ".(($c['size'] == 0 || $c['size'] > 1) ? t('files') : 'archivo')."</span></td>";
+            $str .= "<td style=\"width: 160px;\"><span class=\"float-right\">{$c['size']} ".(($c['size'] == 0 || $c['size'] > 1) ? t('files') : 'archivo')."</span></td>";
           }
 					/*
           if (SHOWDATES) {
@@ -931,7 +928,6 @@ function ft_make_body() {
 			}
 			$str .= "</tbody><tfoot><tr><td colspan=\"{$colspan}\">".$countfolders." ".t('folders')." - ".$countfiles." ".t('files')."{$totalsize}</td></tr></tfoot>";
 			$str .= "</table>";
-      $str .= "</div>";
 		}
 	}
 	return $str;
@@ -942,8 +938,7 @@ function ft_make_body() {
  */
 function ft_make_header() {
   global $ft;
-	$str = '<div class="col-sm-12">';
-	$str .= '<nav aria-label="breadcrumb">';
+	$str = '<nav aria-label="breadcrumb">';
   $str .= '<ol class="breadcrumb">';
   $str .= '<li class="breadcrumb-item">'.ft_make_link(t("Home"), '', t("Go to home folder")).'</li>';
 	if (! empty($_REQUEST['dir'])) {
@@ -962,7 +957,6 @@ function ft_make_header() {
 	}
   $str .= "</ol>";
 	$str .= "</nav>";
-  $str .= "</div>";
 	return $str;
 }
 
@@ -1547,9 +1541,7 @@ include("../inc_menu.php");
 
 	  <div class="container">
 
-	    <div class="row">
-	      <?php echo $str;?>
-	    </div>
+	     <?php echo $str;?>
 
 	  </div>
 
