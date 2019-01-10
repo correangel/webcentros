@@ -912,20 +912,6 @@ function ft_make_body() {
               $str .= "<td class='date text-center hidden-xs' nowrap>&mdash;</td>";
             }
           }
-
-          if ($c['writeable'] && ft_check_fileactions() === TRUE) {
-						$str .= '
-						<td class="details text-center">
-							<span class="'.$class.'">
-							  <button type="button" class="btn btn-default btn-xs">
-							    <i class="fas fa-ellipsis-h fa-fw"></i>
-							  </button>
-							</span>
-							<span class="hide" style="display: none;"></span>
-						</td>';
-					} else {
-						$str .= "<td class='details text-center'>&mdash;</td>";
-					}
 					*/
 
 					// Add filesize to total.
