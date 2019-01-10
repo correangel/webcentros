@@ -2,7 +2,7 @@
 // INFORMACIÓN DE LA SESIÓN
 ini_set("session.use_cookies", 1);
 ini_set("session.use_only_cookies", 1);
-if ($_SERVER["HTTPS"] == "on") {
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on")  {
 	ini_set("session.cookie_secure", 1);
 }
 ini_set("session.cookie_httponly", 1);
@@ -25,7 +25,7 @@ setlocale(LC_TIME, 'es_ES.UTF-8');
 // OBTENEMOS LA URL DE LA PÁGINA WEB
 if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) $_servername = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
 else $_servername = $_SERVER['SERVER_NAME'];
-if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) $_servername = "https://".$_servername."/";
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") $_servername = "https://".$_servername."/";
 else $_servername = "http://".$_servername."/";
 
 // DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB Y EL DIRECTORIO DONDE ESTÁ INSTALADO

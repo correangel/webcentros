@@ -85,7 +85,6 @@ include("../../inc_menu.php");
                                 <?php echo $nommes; ?>
                             </a>
                         </li>
-                        <?php $i++; ?>
                         <?php endforeach; ?>
                     </ul>
 
