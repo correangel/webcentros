@@ -170,6 +170,7 @@
                           <h6 class="dropdown-header">Organización</h6>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/equipo-directivo">Equipo directivo</a>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/departamentos">Departamentos</a>
+                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías</a>
                           <?php if (isset($config['web_ampa']) && ! empty($config['web_ampa'])): ?>
                           <?php $pos = strpos($config['web_ampa'], WEBCENTROS_DOMINIO); ?>
                           <?php $_target = ($pos !== false) ? 0 : 1; ?>
@@ -180,7 +181,6 @@
                           <div class="dropdown-divider"></div>
                           <h6 class="dropdown-header">Información académica</h6>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/calendario">Calendario escolar</a>
-                          <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/tutorias">Tutorías y horarios</a>
                           <?php if (isset($config['libros_texto']) && $config['libros_texto']): ?>
                           <a class="dropdown-item" href="<?php echo WEBCENTROS_DOMINIO; ?>instituto/libros-texto">Libros de texto</a>
                           <?php endif; ?>
