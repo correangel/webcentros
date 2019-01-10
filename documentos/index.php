@@ -899,10 +899,10 @@ function ft_make_body() {
 					}
 
 					if ($c['type'] == "file"){
-            $str .= "<td class=\"hidden-xs\">".ft_get_nice_filesize($c['size'])."</td>";
+            $str .= "<td class=\"d-none d-sm-block\"><span class=\"float-right\">".ft_get_nice_filesize($c['size'])."</span></td>";
           }
           else {
-            $str .= "<td class=\"hidden-xs\">{$c['size']} ".(($c['size'] > 1) ? t('files') : 'archivo')."</td>";
+            $str .= "<td class=\"d-none d-sm-block\"><span class=\"float-right\">{$c['size']} ".(($c['size'] > 1) ? t('files') : 'archivo')."</span></td>";
           }
 					/*
           if (SHOWDATES) {
