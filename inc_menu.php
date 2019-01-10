@@ -15,8 +15,12 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport">
 
     <!-- FAVICON -->
+    <?php if (file_exists(WEBCENTROS_DIRECTORY."/ui-theme/img/apple-icon.png")): ?>
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/apple-icon.png">
+    <?php endif; ?>
+    <?php if (file_exists(WEBCENTROS_DIRECTORY."/ui-theme/img/favicon.png")): ?>
     <link rel="icon" type="image/png" href="<?php echo WEBCENTROS_DOMINIO; ?>ui-theme/img/favicon.ico">
+    <?php endif; ?>
 
     <title><?php echo (isset($pagina['titulo']) && $pagina['titulo'] != '') ? strip_tags($pagina['titulo'])." - ".$config['centro_denominacion'] : $config['centro_denominacion']; ?> - Instituto de Educación Secundaria de <?php echo $config['centro_localidad']; ?></title>
     <?php $canonical_str = rtrim(str_replace($_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']), '?'); ?>
