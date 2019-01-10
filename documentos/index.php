@@ -897,14 +897,14 @@ function ft_make_body() {
             $str .= "<td class='name'>".ft_make_link('<i class="fas fa-folder text-info fa-lg fa-fw"></i> '.$c['shortname'], "dir=".rawurlencode($_REQUEST['dir'])."/".rawurlencode($c['name']), t("Show files in !folder", array('!folder' => $c['name'])))."{$plugin_data}</td>";
 						$countfolders++;
 					}
-					/*
+
 					if ($c['type'] == "file"){
             $str .= "<td class=\"hidden-xs\">".ft_get_nice_filesize($c['size'])."</td>";
           }
           else {
-            $str .= "<td class=\"hidden-xs\">{$c['size']} ".t('files')."</td>";
+            $str .= "<td class=\"hidden-xs\">{$c['size']} ".(($c['size'] > 1) ? t('files') : 'archivo')."</td>";
           }
-
+					/*
           if (SHOWDATES) {
             if ($c['type'] == "file" && isset($c['modified']) && $c['modified'] > 0) {
               $str .= "<td class='date text-center hidden-xs' nowrap>".date(SHOWDATES, $c['modified'])."</td>";
