@@ -25,8 +25,8 @@ setlocale(LC_TIME, 'es_ES.UTF-8');
 // OBTENEMOS LA URL DE LA PÁGINA WEB
 if ($_SERVER['SERVER_PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443) $_servername = $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'];
 else $_servername = $_SERVER['SERVER_NAME'];
-if (! $_SERVER['HTTPS']) $_servername = "http://".$_servername."/";
-else $_servername = "https://".$_servername."/";
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) $_servername = "https://".$_servername."/";
+else $_servername = "http://".$_servername."/";
 
 // DEFINIMOS UNA CONSTANTE CON EL DOMINIO DE LA WEB Y EL DIRECTORIO DONDE ESTÁ INSTALADO
 define("WEBCENTROS_DOMINIO", $_servername);
@@ -57,7 +57,7 @@ if (mysqli_num_rows($result_libros_texto)) {
 else {
 	$config['libros_texto'] = 0;
 }
-mysqli_free_result($result);
+mysqli_free_result($result_libros_texto);
 
 // FUNCIONES GENERALES
 function getRealIP() {
