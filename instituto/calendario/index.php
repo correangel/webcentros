@@ -7,6 +7,10 @@ $curso = substr($config['curso_actual'], 0, 4);
 
 $cal = new calendar();
 
+$cal->enablePrettyHTML();
+$cal->setStartDay(0);
+$cal->disableNavigation();
+$cal->disableNavigation();
 $cal->enableNonMonthDays();
 $cal->enableYear();
 
